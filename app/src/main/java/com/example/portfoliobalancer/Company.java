@@ -58,14 +58,6 @@ public class Company implements Parcelable {
         this.targetPercentage = targetPercentage;
     }
 
-    public float getCurrentUnitPrice() {
-        return currentUnitPrice;
-    }
-
-    public void setCurrentUnitPrice(float currentUnitPrice) {
-        this.currentUnitPrice = currentUnitPrice;
-    }
-
     public Date getCurrentUnitPriceDate() {
         return currentUnitPriceDate;
     }
@@ -141,5 +133,12 @@ public class Company implements Parcelable {
         dest.writeFloat(this.targetPercentage);
         dest.writeFloat(this.currentUnitPrice);
         dest.writeSerializable(this.currentUnitPriceDate);
+    }
+
+    //-----------------------------Methods-----------------------------
+
+    public float getCurrentUnitPrice() {
+
+        return this.costPrice * this.unitCount;
     }
 }
