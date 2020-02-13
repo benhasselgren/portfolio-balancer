@@ -189,6 +189,11 @@ public class Portfolio implements Parcelable
 
     }
 
+    public Company addCompany()
+    {
+        return null;
+    }
+
     public void removeCompany(Company c)
     {
 
