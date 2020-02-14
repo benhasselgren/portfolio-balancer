@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "uk.ac.napier.set08114.travelapp"
+        applicationId "com.example.portfoliobalancer"
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
