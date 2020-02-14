@@ -123,7 +123,7 @@ public class Portfolio implements Parcelable
         this.currentPrice = in.readDouble();
         this.initialPrice = in.readDouble();
         this.lastRebalanced = new Date(in.readLong());
-        this.balanced = in.readBoolean();
+        this.balanced = in.readByte() != 0;
         this.currentPriceDate = new Date(in.readLong());
         this.percentageChangeLimit = in.readInt();
     }
@@ -160,7 +160,7 @@ public class Portfolio implements Parcelable
         dest.writeDouble(this.currentPrice);
         dest.writeDouble(this.initialPrice);
         dest.writeSerializable(this.lastRebalanced);
-        dest.writeBoolean(this.balanced);
+        dest.writeByte((byte) (this.balanced ? 1 : 0));
         dest.writeSerializable(this.currentPriceDate);
         dest.writeInt(this.percentageChangeLimit);
     }
