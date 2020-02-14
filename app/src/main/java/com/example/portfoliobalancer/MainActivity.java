@@ -1,6 +1,7 @@
 package com.example.portfoliobalancer;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
@@ -13,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView portfoliosListView;
     private ArrayList<Portfolio> portfolios;
     private ArrayList<Company> companies;
-    private ArrayList<UserData> userData;
+    private UserData userData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,13 +30,25 @@ public class MainActivity extends AppCompatActivity {
 
         // get the data
         loadPlaces();
+
+        // Initialize the Places adapter, which binds the data to the entry view
+        PlacesAdapter adapter = new PlacesAdapter(this, R.layout.location_entry, places);
+
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+
+        portfoliosListView.setLayoutManager(layoutManager);
+
+        portfoliosListView.setAdapter(adapter);
+        // You can change animation of items and decorations
+        // by using ItemAnimator and ItemDecorators and binding them
+        // by calling to appropriate method attractionsListView.setItem...
     }
 
     private void loadPlaces() {
 
         portfolios = new ArrayList<Portfolio>();
         companies = new ArrayList<Company>();
-        userData = new ArrayList<UserData>();
+        userData = new UserData(portfolios);
         Date date = new Date();
 
         Portfolio portfolio = new Portfolio("Test Portfolio", "A test portfolio", companies, 20000, 20000, date, false, date, 5 );
@@ -51,11 +64,8 @@ public class MainActivity extends AppCompatActivity {
         portfolio.addCompany(Tesla);
 
         for(int i=0;i<6;i++)
-
         {
-            places.add(hopewell_rocks);
-            places.add(parliament);
-            places.add(niagara);
+            userData.addPortfolio(portfolio);
         }
     }
 }
