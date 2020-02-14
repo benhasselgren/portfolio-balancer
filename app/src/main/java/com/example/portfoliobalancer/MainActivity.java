@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView portfoliosListView;
     private ArrayList<Portfolio> portfolios;
     private ArrayList<Company> companies;
+    private ArrayList<UserData> userData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,21 +35,20 @@ public class MainActivity extends AppCompatActivity {
 
         portfolios = new ArrayList<Portfolio>();
         companies = new ArrayList<Company>();
+        userData = new ArrayList<UserData>();
         Date date = new Date();
 
         Portfolio portfolio = new Portfolio("Test Portfolio", "A test portfolio", companies, 20000, 20000, date, false, date, 5 );
 
-        Company Apple = new Company("Apple Inc", "AAPL", 0, 324, 70, 0, date);
+        Company Apple = new Company("Apple Inc", "AAPL", 0, 324.95, 70, 0, date );
 
-        Company Microsoft = new Company(
-                R.string.location_parliament_hill_name,
-                R.drawable.parliament_hill,
-                R.string.location_parliament_hill_info);
+        Company Microsoft = new Company("Microsoft Corporation", "MSFT", 0 , 183.72, 15, 0, date);
 
-        Company Tesla = new Company(
-                R.string.location_niagara_falls_name,
-                R.drawable.niagara_falls,
-                R.string.location_niagara_falls_info);
+        Company Tesla = new Company("Tesla Inc", "TSLA", 0, 803.95, 15, 0, date);
+
+        portfolio.addCompany(Apple);
+        portfolio.addCompany(Microsoft);
+        portfolio.addCompany(Tesla);
 
         for(int i=0;i<6;i++)
 
