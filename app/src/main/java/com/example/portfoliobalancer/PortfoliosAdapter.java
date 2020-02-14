@@ -42,6 +42,7 @@ public class PortfoliosAdapter extends RecyclerView.Adapter<PortfoliosHolder>
 
     @Override
     public int getItemCount() {
-        return 0;
+
+        return this.portfolios.size();
     }
 }
