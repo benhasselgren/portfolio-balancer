@@ -10,10 +10,10 @@ public class Company implements Parcelable {
     //-----------------------------Instance variables-----------------------------
     private String name;
     private String companyCode;
-    private float unitCount;
-    private float costPrice;
-    private float targetPercentage;
-    private float currentUnitPrice;
+    private double unitCount;
+    private double costPrice;
+    private double targetPercentage;
+    private double currentUnitPrice;
     private Date currentUnitPriceDate;
 
     //-----------------------------Getters/Setters-----------------------------
@@ -34,27 +34,27 @@ public class Company implements Parcelable {
         this.companyCode = companyCode;
     }
 
-    public float getUnitCount() {
+    public double getUnitCount() {
         return unitCount;
     }
 
-    public void setUnitCount(float unitCount) {
+    public void setUnitCount(double unitCount) {
         this.unitCount = unitCount;
     }
 
-    public float getCostPrice() {
+    public double getCostPrice() {
         return costPrice;
     }
 
-    public void setCostPrice(float costPrice) {
+    public void setCostPrice(double costPrice) {
         this.costPrice = costPrice;
     }
 
-    public float getTargetPercentage() {
+    public double getTargetPercentage() {
         return targetPercentage;
     }
 
-    public void setTargetPercentage(float targetPercentage) {
+    public void setTargetPercentage(double targetPercentage) {
         this.targetPercentage = targetPercentage;
     }
 
@@ -69,7 +69,7 @@ public class Company implements Parcelable {
 
     //-----------------------------Constructors-----------------------------
 
-    public Company(String name, String companyCode, float unitCount, float costPrice, float targetPercentage, float currentUnitPrice, Date currentUnitPriceDate)
+    public Company(String name, String companyCode, double unitCount, double costPrice, double targetPercentage, double currentUnitPrice, Date currentUnitPriceDate)
     {
         this.name = name;
         this.companyCode = companyCode;
@@ -95,10 +95,10 @@ public class Company implements Parcelable {
     {
         this.name = in.readString();
         this.companyCode = in.readString();
-        this.unitCount = in.readFloat();
-        this.costPrice = in.readFloat();
-        this.targetPercentage = in.readFloat();
-        this.currentUnitPrice = in.readFloat();
+        this.unitCount = in.readDouble();
+        this.costPrice = in.readDouble();
+        this.targetPercentage = in.readDouble();
+        this.currentUnitPrice = in.readDouble();
         this.currentUnitPriceDate = new Date(in.readLong());
     }
 
@@ -128,16 +128,16 @@ public class Company implements Parcelable {
     {
         dest.writeString(this.name);
         dest.writeString(this.companyCode);
-        dest.writeFloat(this.unitCount);
-        dest.writeFloat(this.costPrice);
-        dest.writeFloat(this.targetPercentage);
-        dest.writeFloat(this.currentUnitPrice);
+        dest.writeDouble(this.unitCount);
+        dest.writeDouble(this.costPrice);
+        dest.writeDouble(this.targetPercentage);
+        dest.writeDouble(this.currentUnitPrice);
         dest.writeSerializable(this.currentUnitPriceDate);
     }
 
     //-----------------------------Methods-----------------------------
 
-    public float getCurrentUnitPrice() {
+    public double getCurrentUnitPrice() {
 
         return this.costPrice * this.unitCount;
     }

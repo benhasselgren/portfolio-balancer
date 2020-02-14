@@ -13,11 +13,11 @@ public class Portfolio implements Parcelable
     private String name;
     private String description;
     private List<Company> companies = new ArrayList<Company>();
-    private float currentPrice;
-    private float initialPrice;
+    private double currentPrice;
+    private double initialPrice;
     private Date lastRebalanced;
     private boolean balanced;
-    private Date currentUnitPriceDate;
+    private Date currentPriceDate;
     private int percentageChangeLimit;
 
     //-----------------------------Getters/Setters-----------------------------
@@ -46,11 +46,11 @@ public class Portfolio implements Parcelable
         this.companies = companies;
     }
 
-    public float getInitialPrice() {
+    public double getInitialPrice() {
         return initialPrice;
     }
 
-    public void setInitialPrice(float initialPrice) {
+    public void setInitialPrice(double initialPrice) {
         this.initialPrice = initialPrice;
     }
 
@@ -70,12 +70,12 @@ public class Portfolio implements Parcelable
         this.balanced = balanced;
     }
 
-    public Date getCurrentUnitPriceDate() {
-        return currentUnitPriceDate;
+    public Date getCurrentPriceDate() {
+        return currentPriceDate;
     }
 
-    public void setCurrentUnitPriceDate(Date currentUnitPriceDate) {
-        this.currentUnitPriceDate = currentUnitPriceDate;
+    public void setCurrentPriceDate(Date currentUnitPriceDate) {
+        this.currentPriceDate = currentUnitPriceDate;
     }
 
     public int getPercentageChangeLimit() {
@@ -88,7 +88,7 @@ public class Portfolio implements Parcelable
 
     //-----------------------------Constructors-----------------------------
 
-    public Portfolio(String name, String description, List<Company> companies, float currentPrice, float initialPrice, Date lastRebalanced, boolean balanced, Date currentUnitPriceDate, int percentageChangeLimit)
+    public Portfolio(String name, String description, List<Company> companies, double currentPrice, double initialPrice, Date lastRebalanced, boolean balanced, Date currentPriceDate, int percentageChangeLimit)
     {
         this.name = name;
         this.description = description;
@@ -97,7 +97,7 @@ public class Portfolio implements Parcelable
         this.initialPrice = initialPrice;
         this.lastRebalanced = lastRebalanced;
         this.balanced = balanced;
-        this.currentUnitPriceDate = currentUnitPriceDate;
+        this.currentPriceDate = currentPriceDate;
         this.percentageChangeLimit = percentageChangeLimit;
     }
 
@@ -110,7 +110,7 @@ public class Portfolio implements Parcelable
         this.initialPrice = p.initialPrice;
         this.lastRebalanced = p.lastRebalanced;
         this.balanced = p.balanced;
-        this.currentUnitPriceDate = p.currentUnitPriceDate;
+        this.currentPriceDate = p.currentPriceDate;
         this.percentageChangeLimit = p.percentageChangeLimit;
     }
 
@@ -120,11 +120,11 @@ public class Portfolio implements Parcelable
         this.name = in.readString();
         this.description = in.readString();
         this.companies = in.readArrayList(null);
-        this.currentPrice = in.readFloat();
-        this.initialPrice = in.readFloat();
+        this.currentPrice = in.readDouble();
+        this.initialPrice = in.readDouble();
         this.lastRebalanced = new Date(in.readLong());
         this.balanced = in.readBoolean();
-        this.currentUnitPriceDate = new Date(in.readLong());
+        this.currentPriceDate = new Date(in.readLong());
         this.percentageChangeLimit = in.readInt();
     }
 
@@ -157,11 +157,11 @@ public class Portfolio implements Parcelable
         dest.writeString(this.name);
         dest.writeString(this.description);
         dest.writeList(this.companies);
-        dest.writeFloat(this.currentPrice);
-        dest.writeFloat(this.initialPrice);
+        dest.writeDouble(this.currentPrice);
+        dest.writeDouble(this.initialPrice);
         dest.writeSerializable(this.lastRebalanced);
         dest.writeBoolean(this.balanced);
-        dest.writeSerializable(this.currentUnitPriceDate);
+        dest.writeSerializable(this.currentPriceDate);
         dest.writeInt(this.percentageChangeLimit);
     }
 
@@ -189,9 +189,9 @@ public class Portfolio implements Parcelable
 
     }
 
-    public Company addCompany()
+    public void addCompany(Company c)
     {
-        return null;
+        this.companies.add(c);
     }
 
     public void removeCompany(Company c)
