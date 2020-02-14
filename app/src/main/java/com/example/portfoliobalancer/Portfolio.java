@@ -119,7 +119,7 @@ public class Portfolio implements Parcelable
     {
         this.name = in.readString();
         this.description = in.readString();
-        this.companies = in.readArrayList(Company.class.getClassLoader());
+        in.readTypedList(this.companies, Company.CREATOR);
         this.currentPrice = in.readDouble();
         this.initialPrice = in.readDouble();
         this.lastRebalanced = new Date(in.readLong());
@@ -156,7 +156,7 @@ public class Portfolio implements Parcelable
     {
         dest.writeString(this.name);
         dest.writeString(this.description);
-        dest.writeList(this.companies);
+        dest.writeTypedList(this.companies);
         dest.writeDouble(this.currentPrice);
         dest.writeDouble(this.initialPrice);
         dest.writeSerializable(this.lastRebalanced);
