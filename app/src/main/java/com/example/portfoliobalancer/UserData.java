@@ -72,14 +72,14 @@ public class UserData implements Parcelable
 
     //-----------------------------Methods-----------------------------
 
-    public Portfolio addPortfolio()
+    public void addPortfolio(Portfolio p)
     {
-        return null;
+        this.portfolios.add(p);
     }
 
     public void removePortfolio(Portfolio p)
     {
-
+        this.portfolios.remove(p);
     }
 
     public List<Portfolio> loadUserData()
