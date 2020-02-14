@@ -119,7 +119,7 @@ public class Portfolio implements Parcelable
     {
         this.name = in.readString();
         this.description = in.readString();
-        this.companies = in.readArrayList(null);
+        this.companies = in.readArrayList(Company.class.getClassLoader());
         this.currentPrice = in.readDouble();
         this.initialPrice = in.readDouble();
         this.lastRebalanced = new Date(in.readLong());

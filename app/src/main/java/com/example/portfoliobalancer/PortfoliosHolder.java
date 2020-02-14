@@ -3,6 +3,7 @@ package com.example.portfoliobalancer;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -36,6 +37,7 @@ public class PortfoliosHolder extends RecyclerView.ViewHolder implements View.On
 
     @Override
     public void onClick(View v) {
+        Log.e("ALERT:", "PROGRAM MADE IT HERE" );
         if (this.portfolio != null) {
             Intent intent = new Intent(itemView.getContext(), PortfolioDetails.class);
             intent.putExtra("portfolio", this.portfolio);
