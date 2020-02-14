@@ -38,7 +38,7 @@ public class UserData implements Parcelable
 
     protected UserData(Parcel in)
     {
-        this.portfolios = in.readArrayList(null);
+        this.portfolios = in.readArrayList(Portfolio.class.getClassLoader());
     }
 
     //-----------------------------Implemented Parcelable Constructor/Methods-----------------------------
