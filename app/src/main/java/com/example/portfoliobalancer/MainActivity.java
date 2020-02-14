@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -21,15 +22,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
         portfoliosListView = (RecyclerView)findViewById(R.id.portfolios_list);
         // if the recyclerview doesn't change size, we can set this true and
         portfoliosListView.setHasFixedSize(true);
 
         // get the data
         loadPlaces();
+        Log.i("Program:", "Working here");
 
         // Initialize the Places adapter, which binds the data to the entry view
         PortfoliosAdapter adapter = new PortfoliosAdapter(this, R.layout.portfolio_entry, userData.getPortfolios());
