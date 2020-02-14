@@ -37,7 +37,6 @@ public class PortfoliosHolder extends RecyclerView.ViewHolder implements View.On
 
     @Override
     public void onClick(View v) {
-        Log.e("ALERT:", "PROGRAM MADE IT HERE" );
         if (this.portfolio != null) {
             Intent intent = new Intent(itemView.getContext(), PortfolioDetails.class);
             intent.putExtra("portfolio", this.portfolio);

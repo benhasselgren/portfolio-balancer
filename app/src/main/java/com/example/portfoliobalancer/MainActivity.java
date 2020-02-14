@@ -27,8 +27,6 @@ public class MainActivity extends AppCompatActivity {
 
         // get the data
         loadPlaces();
-        Log.e("ALERT:", "The size of portfolios list is: " + userData.getPortfolios().size());
-        Log.e("ALERT:", "The name of company 1 is: " + ((userData.getPortfolios().get(0)).getCompanies().get(0)).getName());
 
         // Initialize the Places adapter, which binds the data to the entry view
         PortfoliosAdapter adapter = new PortfoliosAdapter(this, R.layout.portfolio_entry, userData.getPortfolios());
