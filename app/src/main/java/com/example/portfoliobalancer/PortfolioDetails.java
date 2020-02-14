@@ -11,22 +11,17 @@ public class PortfolioDetails extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_location_details);
+        setContentView(R.layout.activity_portfolio_details);
 
-        Place place =
-                (Place) getIntent().getParcelableExtra("place");
+        Portfolio portfolio = (Portfolio) getIntent().getParcelableExtra("portfolio");
 
-        if (place != null) {
-            TextView locationTitle =
-                    (TextView) findViewById(R.id.location_info_title);
-            ImageView locationImage =
-                    (ImageView) findViewById(R.id.location_info_image);
-            TextView locationInfo =
-                    (TextView) findViewById(R.id.location_info_body);
+        if (portfolio != null)
+        {
+            TextView portfolioName = (TextView) findViewById(R.id.portfolio_info_title);
+            TextView portfolioDescription = (TextView) findViewById(R.id.portfolio_info_description);
 
-            locationTitle.setText(place.getNameId());
-            locationImage.setImageResource(place.getIconId());
-            locationInfo.setText(place.getInfo());
+            portfolioName.setText(portfolio.getName());
+            portfolioDescription.setText(portfolio.getDescription());
         }
     }
 }

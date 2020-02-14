@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         loadPlaces();
 
         // Initialize the Places adapter, which binds the data to the entry view
-        PlacesAdapter adapter = new PlacesAdapter(this, R.layout.location_entry, places);
+        PortfoliosAdapter adapter = new PortfoliosAdapter(this, R.layout.portfolio_entry, userData.getPortfolios());
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
 
