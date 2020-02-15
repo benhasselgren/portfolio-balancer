@@ -15,7 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#FFFFFFFF"
-        android:text="LastRebalanced"
+        android:text="Last rebalanced: 10.20am 10/08/20"
         android:textSize="9sp"
         android:textColor="#ababab"
         android:textStyle="bold" />
@@ -25,8 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/entry_portfolio_last_rebalanced"
-        android:background="#FFFFFFFF"
-        android:text="PortfolioName"
+        android:text="My Porfolio"
         android:textSize="18sp"
         android:textColor="#000000"
         android:textStyle="bold" />
@@ -36,24 +35,47 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/entry_portfolio_name"
-        android:background="#FFFFFFFF"
-        android:text="PortfolioDescription"
+        android:text="Description of portfolio"
         android:textSize="12sp"
         android:textColor="#ababab"
         android:textStyle="bold" />
 
     <!-- +++++++++++++++++++++++ Right align +++++++++++++++++++++++ -->
 
+    <!-- Portfolio unbalanced-->
+    <TextView
+        android:id="@+id/entry_portfolio_unbalanced"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:background="#C52222"
+        android:paddingLeft="5dip"
+        android:paddingRight="5dip"
+        android:text="Unbalanced"
+        android:textColor="#FFFFFF"
+        android:textSize="12sp"
+        android:textStyle="bold" />
     <!-- Portfolio current price -->
     <TextView
         android:id="@+id/entry_portfolio_currentPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/entry_portfolio_name"
-        android:background="#FFFFFFFF"
-        android:text="PortfolioDescription"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/entry_portfolio_unbalanced"
+        android:text="£100000.00"
+        android:textSize="18sp"
+        android:textColor="#000000"
+        android:textStyle="bold" />
+    <!-- Portfolio growth amount -->
+    <TextView
+        android:id="@+id/entry_portfolio_growth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/entry_portfolio_currentPrice"
+        android:layout_alignParentRight="true"
+        android:text="+£1000.33"
+        android:textColor="#34AAF1"
         android:textSize="12sp"
-        android:textColor="#ababab"
         android:textStyle="bold" />
 
 
