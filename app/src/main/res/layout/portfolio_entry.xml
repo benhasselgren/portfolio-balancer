@@ -2,16 +2,19 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginBottom="10dip"
+    android:background="#FFFFFF"
     android:orientation="horizontal"
-    android:padding="5dip" >
+    android:padding="10dip">
 
     <!-- Place name -->
     <TextView
-    android:id="@+id/entry_location_name"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="PortfolioName"
-    android:textSize="24sp"
-    android:textStyle="bold" />
+        android:id="@+id/entry_location_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFFFF"
+        android:text="PortfolioName"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
 </RelativeLayout>
