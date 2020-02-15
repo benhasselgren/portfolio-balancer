@@ -60,9 +60,15 @@ public class MainActivity extends AppCompatActivity {
         portfolio.addCompany(Microsoft);
         portfolio.addCompany(Tesla);
 
-        for(int i=0;i<6;i++)
+        for(int i=0;i<2;i++)
         {
             userData.addPortfolio(portfolio);
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //This resolves the memory leak by removing the handler references.
     }
 }

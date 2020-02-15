@@ -46,6 +46,7 @@ public class PortfoliosHolder extends RecyclerView.ViewHolder implements View.On
         // Bind the data to all the ViewHolders
         this.portfolio = portfolio;
 
+
         this.name.setText(portfolio.getName());
 
         this.description.setText(portfolio.getDescription());
@@ -57,10 +58,10 @@ public class PortfoliosHolder extends RecyclerView.ViewHolder implements View.On
             this.unbalanced.setVisibility(View.INVISIBLE);
         }
 
-        Log.w("CurrentPrice", Double.toString(portfolio.getCurrentPrice()));
+        //Log.w("CurrentPrice", Double.toString(portfolio.getCurrentPrice()));
 
-        //this.currentPrice.setText(String.format("+£%.2f", portfolio.getCurrentPrice()));
-
+        this.currentPrice.setText(String.format("+£%.2f", portfolio.getCurrentPrice()));
+/*
         if(portfolio.getCurrentPrice() > portfolio.getInitialPrice())
         {
             this.growth.setTextColor(Color.parseColor("#34AAF1"));
@@ -75,11 +76,7 @@ public class PortfoliosHolder extends RecyclerView.ViewHolder implements View.On
             this.growth.setTextColor(Color.parseColor("#31c533"));
             this.growth.setText("£00.00(0.0%)");
         }
-
-
-
-
-
+*/
     }
 
     @Override

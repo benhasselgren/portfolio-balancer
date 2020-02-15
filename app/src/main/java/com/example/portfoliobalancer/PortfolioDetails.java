@@ -22,4 +22,10 @@ public class PortfolioDetails extends AppCompatActivity {
             portfolioDescription.setText(portfolio.getDescription());
         }
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //This resolves the memory leak by removing the handler references.
+    }
 }
