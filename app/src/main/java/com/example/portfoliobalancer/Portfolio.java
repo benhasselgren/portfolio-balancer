@@ -198,6 +198,5 @@ public class Portfolio implements Parcelable
     public void removeCompany(Company c)
     {
         this.companies.remove(c);
-
     }
 }

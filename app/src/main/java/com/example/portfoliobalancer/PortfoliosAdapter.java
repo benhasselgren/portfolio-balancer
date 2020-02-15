@@ -10,7 +10,6 @@ import java.util.List;
 
 public class PortfoliosAdapter extends RecyclerView.Adapter<PortfoliosHolder>
 {
-
     private final List<Portfolio> portfolios;
     private Context context;
     private int itemResource;
@@ -38,7 +37,6 @@ public class PortfoliosAdapter extends RecyclerView.Adapter<PortfoliosHolder>
         // Bind the place object to the holder
         holder.bindPortfolio(p);
     }
-
 
     @Override
     public int getItemCount() {
