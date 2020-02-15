@@ -38,7 +38,7 @@ public class UserData implements Parcelable
 
     protected UserData(Parcel in)
     {
-        this.portfolios = in.readArrayList(Portfolio.class.getClassLoader());
+        in.readTypedList(this.portfolios, Portfolio.CREATOR);
     }
 
     //-----------------------------Implemented Parcelable Constructor/Methods-----------------------------
@@ -67,7 +67,7 @@ public class UserData implements Parcelable
     @Override
     public void writeToParcel(Parcel dest, int flags)
     {
-        dest.writeList(this.portfolios);
+        dest.writeTypedList(this.portfolios);
     }
 
     //-----------------------------Methods-----------------------------
