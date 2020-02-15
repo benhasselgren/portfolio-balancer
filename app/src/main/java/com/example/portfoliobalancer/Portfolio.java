@@ -167,19 +167,20 @@ public class Portfolio implements Parcelable
 
     //-----------------------------Methods-----------------------------
 
-    public float getCurrentPrice()
+    public double getCurrentPrice()
     {
+        /*
         float totalPrice = 0;
 
         for(Company c : this.companies)
         {
             totalPrice += c.getCurrentUnitPrice();
         }
-
-        return totalPrice;
+    */
+        return this.getCurrentPrice();
     }
 
-    public float getPriceDifference()
+    public double getPriceDifference()
     {
         return 0;
     }

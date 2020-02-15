@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         userData = new UserData(portfolios);
         Date date = new Date();
 
-        Portfolio portfolio = new Portfolio("Test Portfolio", "A test portfolio", companies, 20000, 20000, date, false, date, 5 );
+        Portfolio portfolio = new Portfolio("Test Portfolio", "A test portfolio", companies, 20000, 20000, date, true, date, 5 );
 
         Company Apple = new Company("Apple Inc", "AAPL", 0, 324.95, 70, 0, date );
 
