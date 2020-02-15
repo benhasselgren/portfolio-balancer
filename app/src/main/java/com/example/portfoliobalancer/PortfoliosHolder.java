@@ -20,7 +20,7 @@ public class PortfoliosHolder extends RecyclerView.ViewHolder implements View.On
 
         this.context = context;
 
-        this.portfolioName = (TextView) itemView.findViewById(R.id.entry_location_name);
+        this.portfolioName = (TextView) itemView.findViewById(R.id.entry_portfolio_name);
 
         // Set the "onClick" listener of the holder
         // here we use (this) because this class has a onClick function thanks
