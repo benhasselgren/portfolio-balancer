@@ -59,7 +59,7 @@ public class PortfoliosHolder extends RecyclerView.ViewHolder implements View.On
 
         Log.w("CurrentPrice", Double.toString(portfolio.getCurrentPrice()));
 
-        this.currentPrice.setText(String.format("+£%.2f", portfolio.getCurrentPrice()));
+        //this.currentPrice.setText(String.format("+£%.2f", portfolio.getCurrentPrice()));
 
         if(portfolio.getCurrentPrice() > portfolio.getInitialPrice())
         {
