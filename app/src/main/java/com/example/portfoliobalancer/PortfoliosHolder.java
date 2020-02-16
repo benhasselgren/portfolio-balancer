@@ -8,6 +8,8 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
 public class PortfoliosHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -53,8 +55,10 @@ public class PortfoliosHolder extends RecyclerView.ViewHolder implements View.On
         // ------------------- Description Field -------------------
         this.description.setText(portfolio.getDescription());
 
-        // ------------------- Last rebalanced Field -------------------
-        //this.last_balanced.setText(String.format("Last rebalanced: %t", new SimpleDateFormat("MM-dd-yyyy").format(portfolio.getLastRebalanced())));
+        // ------------------- Last rebalanced date Field -------------------
+        DateFormat formatter = new SimpleDateFormat("EEE, dd MMM yyyy");
+        String date = formatter.format(portfolio.getLastRebalanced());
+        this.last_balanced.setText(String.format("Last rebalanced: %s", date));
 
         // ------------------- Unbalanced alert badge  -------------------
         if(portfolio.isBalanced())

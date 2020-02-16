@@ -4,8 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.os.Bundle;
-import android.util.Log;
-
+import java.util.Calendar;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -47,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         portfolios = new ArrayList<Portfolio>();
         companies = new ArrayList<Company>();
         userData = new UserData(portfolios);
-        Date date = new Date();
+        Date date = Calendar.getInstance().getTime();
 
         Portfolio portfolio = new Portfolio("Test Portfolio", "A test portfolio", companies, 20000, 20000, date, true, date, 5 );
 
