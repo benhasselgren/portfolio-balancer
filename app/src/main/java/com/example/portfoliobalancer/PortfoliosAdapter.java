@@ -10,7 +10,7 @@ import java.util.List;
 
 public class PortfoliosAdapter extends RecyclerView.Adapter<PortfoliosHolder>
 {
-    private final List<Portfolio> portfolios;
+    private List<Portfolio> portfolios;
     private Context context;
     private int itemResource;
 
@@ -40,7 +40,6 @@ public class PortfoliosAdapter extends RecyclerView.Adapter<PortfoliosHolder>
 
     @Override
     public int getItemCount() {
-
         return this.portfolios.size();
     }
 }

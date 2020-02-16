@@ -177,7 +177,7 @@ public class Portfolio implements Parcelable
             totalPrice += c.getCurrentUnitPrice();
         }
     */
-        return this.getCurrentPrice();
+        return this.currentPrice;
     }
 
     public double getPriceDifference()

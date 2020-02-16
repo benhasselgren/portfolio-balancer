@@ -52,13 +52,13 @@ public class MainActivity extends AppCompatActivity {
 
         Company Apple = new Company("Apple Inc", "AAPL", 0, 324.95, 70, 0, date );
 
-        Company Microsoft = new Company("Microsoft Corporation", "MSFT", 0 , 183.72, 15, 0, date);
+        //Company Microsoft = new Company("Microsoft Corporation", "MSFT", 0 , 183.72, 15, 0, date);
 
-        Company Tesla = new Company("Tesla Inc", "TSLA", 0, 803.95, 15, 0, date);
+        //Company Tesla = new Company("Tesla Inc", "TSLA", 0, 803.95, 15, 0, date);
 
         portfolio.addCompany(Apple);
-        portfolio.addCompany(Microsoft);
-        portfolio.addCompany(Tesla);
+       // portfolio.addCompany(Microsoft);
+       // portfolio.addCompany(Tesla);
 
         for(int i=0;i<2;i++)
         {
