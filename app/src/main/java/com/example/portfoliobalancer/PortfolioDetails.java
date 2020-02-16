@@ -26,6 +26,5 @@ public class PortfolioDetails extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        //This resolves the memory leak by removing the handler references.
     }
 }

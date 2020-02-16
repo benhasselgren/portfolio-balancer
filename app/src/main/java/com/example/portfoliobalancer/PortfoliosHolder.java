@@ -2,6 +2,7 @@ package com.example.portfoliobalancer;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Debug;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -11,12 +12,12 @@ import java.text.SimpleDateFormat;
 
 public class PortfoliosHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    private  TextView name;
-    private  TextView description;
-    private  TextView last_balanced;
-    private  TextView unbalanced;
-    private  TextView currentPrice;
-    private  TextView growth;
+    private final TextView name;
+    private final TextView description;
+    private final TextView last_balanced;
+    private final TextView unbalanced;
+    private final TextView currentPrice;
+    private final TextView growth;
 
     private Portfolio portfolio;
     private Context context;
@@ -47,20 +48,19 @@ public class PortfoliosHolder extends RecyclerView.ViewHolder implements View.On
         this.portfolio = portfolio;
 
 
-       // this.name.setText(portfolio.getName());
+        this.name.setText(portfolio.getName());
 
-        //this.description.setText(portfolio.getDescription());
+        this.description.setText(portfolio.getDescription());
 
         //this.last_balanced.setText(String.format("Last rebalanced: %t", new SimpleDateFormat("MM-dd-yyyy").format(portfolio.getLastRebalanced())));
 
-        //if(portfolio.isBalanced())
-        //{
-        //    this.unbalanced.setVisibility(View.INVISIBLE);
-        //}
+        if(portfolio.isBalanced())
+        {
+            this.unbalanced.setVisibility(View.INVISIBLE);
+        }
 
-        //Log.w("CurrentPrice", Double.toString(portfolio.getCurrentPrice()));
         this.currentPrice.setText(String.format("+£%.2f", portfolio.getCurrentPrice()));
-/*
+
         if(portfolio.getCurrentPrice() > portfolio.getInitialPrice())
         {
             this.growth.setTextColor(Color.parseColor("#34AAF1"));
@@ -75,7 +75,6 @@ public class PortfoliosHolder extends RecyclerView.ViewHolder implements View.On
             this.growth.setTextColor(Color.parseColor("#31c533"));
             this.growth.setText("£00.00(0.0%)");
         }
-*/
     }
 
     @Override
