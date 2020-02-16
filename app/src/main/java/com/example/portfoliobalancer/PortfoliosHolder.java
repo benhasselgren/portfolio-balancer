@@ -47,20 +47,25 @@ public class PortfoliosHolder extends RecyclerView.ViewHolder implements View.On
         // Bind the data to all the ViewHolders
         this.portfolio = portfolio;
 
-
+        // ------------------- Name Field -------------------
         this.name.setText(portfolio.getName());
 
+        // ------------------- Description Field -------------------
         this.description.setText(portfolio.getDescription());
 
+        // ------------------- Last rebalanced Field -------------------
         //this.last_balanced.setText(String.format("Last rebalanced: %t", new SimpleDateFormat("MM-dd-yyyy").format(portfolio.getLastRebalanced())));
 
+        // ------------------- Unbalanced alert badge  -------------------
         if(portfolio.isBalanced())
         {
             this.unbalanced.setVisibility(View.INVISIBLE);
         }
 
-        this.currentPrice.setText(String.format("+£%.2f", portfolio.getCurrentPrice()));
+        // ------------------- Current portfolio price Field -------------------
+        this.currentPrice.setText(String.format("£%.2f", portfolio.getCurrentPrice()));
 
+        // ------------------- Overall growth field Field -------------------
         if(portfolio.getCurrentPrice() > portfolio.getInitialPrice())
         {
             this.growth.setTextColor(Color.parseColor("#34AAF1"));
