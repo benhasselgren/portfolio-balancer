@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 
 import java.util.List;
 
@@ -30,6 +31,9 @@ public class PortfoliosAdapter extends RecyclerView.Adapter<PortfoliosHolder>
 
     @Override
     public void onBindViewHolder(PortfoliosHolder holder, int position) {
+
+        //set animation
+        holder.container.setAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_scale_animation));
 
         // Use position to access the correct place object
         Portfolio p = this.portfolios.get(position);

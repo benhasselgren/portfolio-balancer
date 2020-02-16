@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         portfoliosListView = (RecyclerView)findViewById(R.id.portfolios_list);
+
         // if the recyclerview doesn't change size, we can set this true and
         portfoliosListView.setHasFixedSize(true);
 

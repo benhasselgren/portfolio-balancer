@@ -1,12 +1,15 @@
 package com.example.portfoliobalancer;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Debug;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.text.DateFormat;
@@ -21,6 +24,7 @@ public class PortfoliosHolder extends RecyclerView.ViewHolder implements View.On
     private final TextView currentPrice;
     private final TextView growth;
 
+    public RelativeLayout container;
     private Portfolio portfolio;
     private Context context;
 
@@ -29,6 +33,9 @@ public class PortfoliosHolder extends RecyclerView.ViewHolder implements View.On
 
         //Set context
         this.context = context;
+
+        //Set container relative layout
+        this.container = (RelativeLayout) itemView.findViewById(R.id.container);
 
         //Assign existing views to variables
         this.name = (TextView) itemView.findViewById(R.id.entry_portfolio_name);
