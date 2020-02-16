@@ -11,8 +11,16 @@
         android:theme="@style/AppTheme"
         android:largeHeap="true"
         android:hardwareAccelerated="false">
-        <activity android:name=".PortfolioDetails"></activity>
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".PortfolioDetails"
+            android:label="@string/title_activity_detail">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.portfoliobalancer.MainActivity"/>
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/title_main_activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

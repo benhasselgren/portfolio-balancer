@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">PortfolioBalancer</string>
     <string name="portfolios_title">Portfolios</string>
+    <string name="title_activity_detail">TestPortfolio</string>
+    <string name="title_main_activity">Portfolios</string>
 </resources>

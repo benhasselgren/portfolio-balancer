@@ -11,6 +11,7 @@ public class PortfolioDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_portfolio_details);
 
+
         Portfolio portfolio = (Portfolio) getIntent().getParcelableExtra("portfolio");
 
         if (portfolio != null)
