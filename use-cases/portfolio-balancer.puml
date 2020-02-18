@@ -1,0 +1,24 @@
+@startuml
+'default
+left to right direction
+actor Employee
+rectangle ls as "Local Storage"
+
+rectangle "Portfolio Balancer Application" {
+
+    usecase UC1 as "View main screen (portfolios)."
+    usecase UC2 as "Create a new portfolio."
+    usecase UC3 as "Rebalance a portfolio."
+    usecase UC4 as "Edit target percentages in portfolio settings."
+
+
+    Employee --> UC1
+    UC1 -- ls
+    Employee --> UC2
+    UC2 -- ls
+    Employee --> UC3
+    UC3 -- ls
+    Employee --> UC4
+    UC4 -- ls
+}
+@enduml
