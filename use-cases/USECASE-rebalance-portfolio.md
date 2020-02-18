@@ -4,7 +4,7 @@
 
 ### Goal in Context
 
-As a user I want to be able to balance a portfolio so I can ensure the target percentage of each company is continually met.
+As a *user* I want to be able to balance a portfolio so I can ensure the target percentage of each company is continually met.
 
 ### Level
 
@@ -28,7 +28,7 @@ User.
 
 ### Trigger
 
-User presses the the rebalance portfolio button..
+User presses the the rebalance portfolio button.
 
 ## MAIN SUCCESS SCENARIO
 
