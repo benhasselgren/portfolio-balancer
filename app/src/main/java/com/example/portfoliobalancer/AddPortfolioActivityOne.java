@@ -3,6 +3,7 @@ package com.example.portfoliobalancer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputFilter;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -47,29 +48,11 @@ public class AddPortfolioActivityOne extends AppCompatActivity {
                 try
                 {
                     checkValidation();
+                    Toast.makeText(getBaseContext(), "Everything is valid", Toast.LENGTH_SHORT).show();
                 }
                 catch (IllegalArgumentException ex)
                 {
-
-                }
-
-
-
-                //Display appropriate messages if everything is valid or not valid
-                if(amountValid)
-                {
-                    if(textValid)
-                    {
-                        Toast.makeText(getBaseContext(), "Hurray!", Toast.LENGTH_SHORT).show();
-                    }
-                    else
-                    {
-                        Toast.makeText(getBaseContext(), "You need to fill in all the fields", Toast.LENGTH_SHORT).show();
-                    }
-                }
-                else
-                {
-                    Toast.makeText(getBaseContext(), "Amount needs to be between £100 and £25,000", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(), ex.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
         });
