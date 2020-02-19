@@ -1,5 +1,6 @@
 package com.example.portfoliobalancer;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -56,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-
+                startActivity(new Intent(MainActivity.this, AddPortfolioActivityOne.class));
             }
         });
     }
