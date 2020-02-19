@@ -3,9 +3,9 @@ package com.example.portfoliobalancer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputFilter;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import com.example.portfoliobalancer.InputFilterMinMax;
 
 public class AddPortfolioActivityOne extends AppCompatActivity {
 
@@ -31,7 +31,7 @@ public class AddPortfolioActivityOne extends AppCompatActivity {
         final EditText amount = (EditText) findViewById(R.id.add_portfolio_amount_input);
 
         amount.setFilters(new InputFilter[] {
-                new InputFilter.LengthFilter(30)
+                new InputFilterMinMax("100", "25000")
         });
 
         //Assigns the button to a variable
