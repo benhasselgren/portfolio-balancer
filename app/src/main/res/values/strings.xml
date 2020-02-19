@@ -3,4 +3,7 @@
     <string name="portfolios_title">Portfolios</string>
     <string name="title_activity_detail">TestPortfolio</string>
     <string name="title_main_activity">Portfolios</string>
+    <string name="add_portfolio_name">Enter name</string>
+    <string name="add_portfolio_description">Enter description</string>
+    <string name="add_portfolio_amount">Enter amount to invest</string>
 </resources>
