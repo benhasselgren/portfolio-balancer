@@ -4,6 +4,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import com.example.portfoliobalancer.classes.Company;
 import com.example.portfoliobalancer.classes.Portfolio;
@@ -19,11 +21,15 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Portfolio> portfolios;
     private ArrayList<Company> companies;
     private UserData userData;
+    private Button add_portfolio_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Add portfolio button
+        add_portfolio_btn = (Button)findViewById(R.id.add_portfolio_btn);
 
         portfoliosListView = (RecyclerView)findViewById(R.id.portfolios_list);
 
@@ -44,6 +50,15 @@ public class MainActivity extends AppCompatActivity {
         // You can change animation of items and decorations
         // by using ItemAnimator and ItemDecorators and binding them
         // by calling to appropriate method attractionsListView.setItem...
+
+        //Add portfolio button clicked event handled here
+        add_portfolio_btn.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 
     private void loadPlaces() {
