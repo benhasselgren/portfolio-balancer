@@ -1,4 +1,4 @@
-package com.example.portfoliobalancer;
+package com.example.portfoliobalancer.classes;
 
 import android.os.Parcel;
 import android.os.Parcelable;

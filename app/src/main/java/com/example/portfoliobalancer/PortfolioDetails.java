@@ -2,8 +2,10 @@ package com.example.portfoliobalancer;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.portfoliobalancer.classes.Portfolio;
+
 public class PortfolioDetails extends AppCompatActivity {
 
     @Override

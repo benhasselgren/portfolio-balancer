@@ -1,16 +1,16 @@
 package com.example.portfoliobalancer;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Debug;
-import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.example.portfoliobalancer.classes.Portfolio;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

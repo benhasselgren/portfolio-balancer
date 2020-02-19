@@ -4,6 +4,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.os.Bundle;
+
+import com.example.portfoliobalancer.classes.Company;
+import com.example.portfoliobalancer.classes.Portfolio;
+import com.example.portfoliobalancer.classes.UserData;
+
 import java.util.Calendar;
 import java.util.ArrayList;
 import java.util.Date;

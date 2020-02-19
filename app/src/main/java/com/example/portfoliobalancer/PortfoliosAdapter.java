@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 
+import com.example.portfoliobalancer.classes.Portfolio;
+
 import java.util.List;
 
 public class PortfoliosAdapter extends RecyclerView.Adapter<PortfoliosHolder>
