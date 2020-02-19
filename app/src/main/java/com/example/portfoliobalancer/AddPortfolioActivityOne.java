@@ -3,8 +3,11 @@ package com.example.portfoliobalancer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputFilter;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
 import com.example.portfoliobalancer.InputFilterMinMax;
 
 public class AddPortfolioActivityOne extends AppCompatActivity {
@@ -36,5 +39,13 @@ public class AddPortfolioActivityOne extends AppCompatActivity {
 
         //Assigns the button to a variable
         Button nextButton = (Button) findViewById(R.id.add_portfolio_activity_one_btn);
+
+        //Triggers if button is clicked
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                Toast.makeText(getBaseContext(), "Hurray!", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
