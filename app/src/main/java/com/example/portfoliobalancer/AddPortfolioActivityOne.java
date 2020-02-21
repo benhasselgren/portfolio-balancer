@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.portfoliobalancer.InputFilterMinMax;
+import com.example.portfoliobalancer.classes.Portfolio;
 
 public class AddPortfolioActivityOne extends AppCompatActivity {
 
@@ -47,8 +48,18 @@ public class AddPortfolioActivityOne extends AppCompatActivity {
 
                 try
                 {
-                    checkValidation();
-                    Toast.makeText(getBaseContext(), "Everything is valid", Toast.LENGTH_SHORT).show();
+                    //Convert name and description to strings
+                    String nameString = name.getText().toString().trim();
+                    String descriptionString = description.getText().toString().trim();
+                    //Convert amount to string, then int
+                    String amountString = amount.getText().toString().trim();
+
+                    //Pass strings to validation method
+                    checkValidation(nameString, descriptionString, amountString);
+
+                    //If everything is valid, create a portfolio and start a new activity (passing the portfolio to that activity)
+                    Portfolio portfolio = new Portfolio("Test Portfolio", "A test portfolio", companies, 20000, 20000, date, true, date, 5 );
+                    Toast.makeText(getBaseContext(), "Valid", Toast.LENGTH_SHORT).show();
                 }
                 catch (RuntimeException ex)
                 {
@@ -58,14 +69,8 @@ public class AddPortfolioActivityOne extends AppCompatActivity {
         });
     }
 
-    public void checkValidation()
+    public void checkValidation(String nameString, String descriptionString, String amountString)
     {
-        //Convert name and description to strings
-        String nameString = name.getText().toString().trim();
-        String descriptionString = description.getText().toString().trim();
-        //Convert amount to string, then int
-        String amountString = amount.getText().toString().trim();
-
         if (nameString.isEmpty())
         {
             throw new RuntimeException("Name field cannot be empty.");
