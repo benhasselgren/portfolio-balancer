@@ -14,23 +14,14 @@
         <activity
             android:name=".PortfolioDetails"
             android:label="@string/title_activity_detail">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.portfoliobalancer.MainActivity"/>
         </activity>
         <activity
             android:name=".AddCompanyActivity"
-            android:label="Add portfolio">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.portfoliobalancer.AddPortfolioActivity"/>
+            android:label="@string/title_add_companies">
         </activity>
         <activity
             android:name=".AddPortfolioActivity"
-            android:label="@string/add_portfolio_title">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.portfoliobalancer.MainActivity"/>
+            android:label="@string/title_add_portfolio">
         </activity>
         <activity
             android:name=".MainActivity"

@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:background="#203B53"
         android:orientation="vertical"
-        android:padding="20dip">
+        android:padding="10dip">
 
         <AutoCompleteTextView
             android:id="@+id/company_selector"
