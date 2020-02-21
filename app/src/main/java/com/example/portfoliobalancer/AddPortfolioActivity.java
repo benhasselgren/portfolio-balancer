@@ -72,7 +72,7 @@ public class AddPortfolioActivity extends AppCompatActivity {
         });
     }
 
-    public void checkValidation(String nameString, String descriptionString, String amountString)
+    private void checkValidation(String nameString, String descriptionString, String amountString)
     {
         if (nameString.isEmpty())
         {

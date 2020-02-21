@@ -20,7 +20,10 @@ public class AddCompanyActivity extends AppCompatActivity {
         //Assign the intent parcelable extra to a variable
         portfolio = (Portfolio) getIntent().getParcelableExtra("portfolio");
 
-        /*
+        //Initialise variables
+        availableCompanies = new ArrayList<>();
+
+
         //Get the companies from the string array and add them to the companies strings array list
         String[] strings = getResources().getStringArray(R.array.companies);
 
@@ -28,12 +31,15 @@ public class AddCompanyActivity extends AppCompatActivity {
         {
 
             String[] result = s.split(",");
-            String code = result[0];
-            String
+            String c_code = result[0];
+            String c_name = result[1];
+            Double c_price = Double.parseDouble(result[2]);
+            Company c = new Company(c_name, c_code, 0, c_price, 0, 0, null );
+
+            availableCompanies.add(c);
         }
-
-
-         */
     }
+
+    private
 
 }
