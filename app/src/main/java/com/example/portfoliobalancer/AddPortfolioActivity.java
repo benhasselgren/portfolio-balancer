@@ -20,7 +20,7 @@ public class AddPortfolioActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.add_portfolio_activity_one);
+        setContentView(R.layout.activity_add_portfolio);
 
         //Assigns the name field to a variable and adds validation
         name = (EditText) findViewById(R.id.add_portfolio_name_input);
@@ -40,9 +40,9 @@ public class AddPortfolioActivity extends AppCompatActivity {
         amount = (EditText) findViewById(R.id.add_portfolio_amount_input);
 
         //Assigns the button to a variable
-        Button nextButton = (Button) findViewById(R.id.add_portfolio_activity_one_btn);
+        Button nextButton = (Button) findViewById(R.id.add_portfolio_activity_btn);
 
-        //Triggers if button is clicked
+        //Triggers if next button is clicked
         nextButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 

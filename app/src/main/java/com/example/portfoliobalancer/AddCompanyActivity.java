@@ -1,11 +1,13 @@
 package com.example.portfoliobalancer;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -28,7 +30,7 @@ public class AddCompanyActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.add_company);
+        setContentView(R.layout.activity_add_company);
 
         //Assign the intent parcelable extra to a variable
         portfolio = (Portfolio) getIntent().getParcelableExtra("portfolio");
@@ -36,6 +38,8 @@ public class AddCompanyActivity extends AppCompatActivity {
         //Add views
         companySelector = (AutoCompleteTextView)findViewById(R.id.company_selector);
         selectedCompaniesDisplay = (ListView) findViewById(R.id.selected_companies);
+        //Assigns the button to a variable
+        Button nextButton = (Button) findViewById(R.id.add_company_activity_btn);
 
         //Intitalise the selectedCompanies arraylist
         selectedCompanies = new ArrayList<>();
@@ -52,6 +56,7 @@ public class AddCompanyActivity extends AppCompatActivity {
 
 
 
+        //Triggers if item is clicked
         //Adds the item clicked to the selectedCompaniesArrayList and to the selceted companies list in the xaml file
         companySelector.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -64,16 +69,37 @@ public class AddCompanyActivity extends AppCompatActivity {
                 //If company already has been selected then show error message
                 if(selectedCompanies.contains(c))
                 {
+                    //Show error message
                     Toast.makeText(getBaseContext(), "You have already added this company.", Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
                     //add to selected companies arraylist
                     selectedCompanies.add(c);
-                    //Update selected companies list display
+                    //Update selected companies list display and show success message
                     selectedCompanyTitles.add(c_code);
                     adapterList.notifyDataSetChanged();
                     Toast.makeText(getBaseContext(), "You have succesfully added " + c.getName() + ".", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        //Triggers if next button is clicked
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                if(selectedCompanies.size()==0)
+                {
+                    Toast.makeText(getBaseContext(), "You need to enter at least one company.", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    //If everything is valid, add companies to portfolio start a new activity (passing the portfolio to that activity)
+                    //Intent intent = new Intent(AddCompanyActivity.this, AddCompanyActivity.class);
+                    //intent.putExtra("portfolio", portfolio);
+                    //startActivity(intent);
+                    portfolio.setCompanies(selectedCompanies);
+                    Toast.makeText(getBaseContext(), "Valid.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
