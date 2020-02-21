@@ -1,5 +1,6 @@
 package com.example.portfoliobalancer;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputFilter;
@@ -9,10 +10,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.portfoliobalancer.InputFilterMinMax;
 import com.example.portfoliobalancer.classes.Portfolio;
 
-public class AddPortfolioActivityOne extends AppCompatActivity {
+public class AddPortfolioActivity extends AppCompatActivity {
 
     private EditText name;
     private EditText description;
@@ -58,8 +58,11 @@ public class AddPortfolioActivityOne extends AppCompatActivity {
                     checkValidation(nameString, descriptionString, amountString);
 
                     //If everything is valid, create a portfolio and start a new activity (passing the portfolio to that activity)
-                    Portfolio portfolio = new Portfolio("Test Portfolio", "A test portfolio", companies, 20000, 20000, date, true, date, 5 );
+                    Portfolio portfolio = new Portfolio(nameString, descriptionString, null, Double.parseDouble(amountString), Double.parseDouble(amountString), null, true, null, 5 );
                     Toast.makeText(getBaseContext(), "Valid", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(AddPortfolioActivity.this, AddStockActivity.class);
+                    intent.putExtra("portfolio", portfolio);
+                    startActivity(intent);
                 }
                 catch (RuntimeException ex)
                 {
