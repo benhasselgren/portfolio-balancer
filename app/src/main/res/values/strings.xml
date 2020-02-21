@@ -7,4 +7,14 @@
     <string name="add_portfolio_name">Enter name</string>
     <string name="add_portfolio_description">Enter description</string>
     <string name="add_portfolio_amount">Enter amount to invest</string>
+
+    <string name="apple">AAPL,Apple Inc,324.95</string>
+    <string name="microsoft">MSFT,Microsoft Corporation,183.72</string>
+    <string name="tesla">TSLA,Tesla Inc,803.95</string>
+
+    <string-array name="companies">
+        <item>@string/apple</item>
+        <item>@string/microsoft</item>
+        <item>@string/tesla</item>
+    </string-array>
 </resources>
