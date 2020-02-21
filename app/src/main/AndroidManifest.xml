@@ -19,6 +19,13 @@
                 android:value="com.example.portfoliobalancer.MainActivity"/>
         </activity>
         <activity
+            android:name=".AddCompanyActivity"
+            android:label="Add portfolio">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.portfoliobalancer.AddPortfolioActivity"/>
+        </activity>
+        <activity
             android:name=".AddPortfolioActivity"
             android:label="@string/add_portfolio_title">
             <meta-data
