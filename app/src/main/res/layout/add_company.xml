@@ -13,13 +13,14 @@
         android:orientation="vertical"
         android:padding="20dip">
 
-        <SearchView
-            android:id="@+id/simpleSearchView"
+        <AutoCompleteTextView
+            android:id="@+id/actv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#FFFFFF"
-            android:iconifiedByDefault="false"
-            android:queryHint="Search Here" />
+            android:backgroundTint="#FFFFFF"
+            android:completionHint="Select a company"
+            android:completionThreshold="1"
+            android:hint="Select a company" />
 
     </LinearLayout>
     <ScrollView
