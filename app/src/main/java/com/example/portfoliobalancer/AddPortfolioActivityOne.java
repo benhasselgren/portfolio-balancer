@@ -50,7 +50,7 @@ public class AddPortfolioActivityOne extends AppCompatActivity {
                     checkValidation();
                     Toast.makeText(getBaseContext(), "Everything is valid", Toast.LENGTH_SHORT).show();
                 }
-                catch (IllegalArgumentException ex)
+                catch (RuntimeException ex)
                 {
                     Toast.makeText(getBaseContext(), ex.getMessage(), Toast.LENGTH_SHORT).show();
                 }
@@ -60,29 +60,29 @@ public class AddPortfolioActivityOne extends AppCompatActivity {
 
     public void checkValidation()
     {
-        //Convert amount to string, then int
-        String amountString = name.getText().toString();
-        int amountInt = Integer.parseInt(amountString);
         //Convert name and description to strings
-        String nameString = name.getText().toString();
-        String descriptionString = name.getText().toString();
+        String nameString = name.getText().toString().trim();
+        String descriptionString = description.getText().toString().trim();
+        //Convert amount to string, then int
+        String amountString = amount.getText().toString().trim();
 
-        if (nameString.length() <= 0)
+        if (nameString.isEmpty())
         {
-            throw new IllegalArgumentException("Name field cannot be empty");
+            throw new RuntimeException("Name field cannot be empty.");
         }
-        else if(descriptionString.length() <=0)
+        else if(descriptionString.isEmpty())
         {
-            throw new IllegalArgumentException("Description field cannot be empty");
+            throw new RuntimeException("Description field cannot be empty.");
         }
-        else if(amountString.length() <=0)
+        else if(amountString.isEmpty())
         {
-            throw new IllegalArgumentException("Amount field cannot be empty");
+            throw new RuntimeException("Amount field cannot be empty.");
         }
         else {
+            int amountInt = Integer.parseInt(amountString);
             if (amountInt < 100 || amountInt > 25000)
             {
-                throw new IllegalArgumentException("Amount has to be between £100-£25,000");
+                throw new RuntimeException("Amount has to be between £100-£25,000.");
             }
         }
     }
