@@ -16,8 +16,13 @@ import com.example.portfoliobalancer.classes.Portfolio;
 
 import java.util.ArrayList;
 
+//######################-----------------------------AppCompanyActivityClass-----------------------------######################
+//XML file: activity_add_company.xml
+//User can add companies from a list to his portfolio
+
 public class AddCompanyActivity extends AppCompatActivity {
 
+    //-----------------------------Variables/Views-----------------------------
     //Variables
     private Portfolio portfolio;
     private ArrayList<Company> availableCompanies;
@@ -28,6 +33,7 @@ public class AddCompanyActivity extends AppCompatActivity {
     private AutoCompleteTextView companySelector;
     private ListView selectedCompaniesDisplay;
 
+    //-----------------------------On Create method-----------------------------
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_company);
@@ -54,8 +60,7 @@ public class AddCompanyActivity extends AppCompatActivity {
         final ArrayAdapter<String> adapterList = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, selectedCompanyTitles);
         selectedCompaniesDisplay.setAdapter(adapterList);
 
-
-
+        //-----------------------------Event Listener Methods----------------------------
         //Triggers if item is clicked
         //Adds the item clicked to the selectedCompaniesArrayList and to the selceted companies list in the xaml file
         companySelector.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -105,6 +110,9 @@ public class AddCompanyActivity extends AppCompatActivity {
         });
     }
 
+    //-----------------------------Methods-----------------------------
+
+    //Gets all the available companies from the strings.xml file in resources
     private void getAvailableCompanies()
     {
         //Initialise variable
@@ -116,7 +124,6 @@ public class AddCompanyActivity extends AppCompatActivity {
 
         for(String s : strings)
         {
-
             String[] result = s.split(",");
             String c_code = result[0];
             String c_name = result[1];
@@ -130,6 +137,7 @@ public class AddCompanyActivity extends AppCompatActivity {
         }
     }
 
+    //Finds a company in the available companies list using a company code
     private Company findCompany(String c_code)
     {
         for(Company c: availableCompanies)

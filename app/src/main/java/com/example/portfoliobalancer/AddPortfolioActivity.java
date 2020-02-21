@@ -12,12 +12,19 @@ import android.widget.Toast;
 
 import com.example.portfoliobalancer.classes.Portfolio;
 
+//######################-----------------------------AppPortfolioActivityClass-----------------------------######################
+//XML file: activity_add_portfolio.xml
+//User adds the portfolio name, description and amount to invest here
+
 public class AddPortfolioActivity extends AppCompatActivity {
 
+    //-----------------------------Variables/Views-----------------------------
+    //Views
     private EditText name;
     private EditText description;
     private EditText amount;
 
+    //-----------------------------On Create method-----------------------------
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_portfolio);
@@ -42,6 +49,7 @@ public class AddPortfolioActivity extends AppCompatActivity {
         //Assigns the button to a variable
         Button nextButton = (Button) findViewById(R.id.add_portfolio_activity_btn);
 
+        //-----------------------------Event Listener Methods-----------------------------
         //Triggers if next button is clicked
         nextButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -66,12 +74,16 @@ public class AddPortfolioActivity extends AppCompatActivity {
                 }
                 catch (RuntimeException ex)
                 {
+                    //Catches all exceptions here and displays appropriate error message
                     Toast.makeText(getBaseContext(), ex.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
 
+    //-----------------------------Methods-----------------------------
+
+    //Checks all the field to see if they are valid and throws exceptions if they are not valid
     private void checkValidation(String nameString, String descriptionString, String amountString)
     {
         if (nameString.isEmpty())

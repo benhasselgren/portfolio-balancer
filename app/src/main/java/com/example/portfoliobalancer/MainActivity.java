@@ -16,31 +16,39 @@ import java.util.Calendar;
 import java.util.ArrayList;
 import java.util.Date;
 
+//######################-----------------------------MainActivityClass-----------------------------######################
+//XML file: activity_main.xml
+//Main page of app. It shows the user all their portfolios.
+
 public class MainActivity extends AppCompatActivity {
 
-    private RecyclerView portfoliosListView;
+    //-----------------------------Variables/Views-----------------------------
+    //Variables
     private ArrayList<Portfolio> portfolios;
     private ArrayList<Company> companies;
     private UserData userData;
+    //Views
     private Button add_portfolio_btn;
+    private RecyclerView portfoliosListView;
 
+    //-----------------------------On Create method-----------------------------
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Add portfolio button
+        //Add views
         add_portfolio_btn = (Button)findViewById(R.id.add_portfolio_btn);
 
         portfoliosListView = (RecyclerView)findViewById(R.id.portfolios_list);
 
-        // if the recyclerview doesn't change size, we can set this true and
+        //If the recyclerview doesn't change size, we can set this true and
         portfoliosListView.setHasFixedSize(true);
 
-        // get the data
+        //Get the data
         loadPlaces();
 
-        // Initialize the Places adapter, which binds the data to the entry view
+        //Initialize the Places adapter, which binds the data to the entry view
         PortfoliosAdapter adapter = new PortfoliosAdapter(this, R.layout.portfolio_entry, userData.getPortfolios());
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
@@ -48,10 +56,8 @@ public class MainActivity extends AppCompatActivity {
         portfoliosListView.setLayoutManager(layoutManager);
 
         portfoliosListView.setAdapter(adapter);
-        // You can change animation of items and decorations
-        // by using ItemAnimator and ItemDecorators and binding them
-        // by calling to appropriate method attractionsListView.setItem...
 
+        //-----------------------------Event Listener Methods-----------------------------
         //Add portfolio button clicked event handled here
         add_portfolio_btn.setOnClickListener(new View.OnClickListener() {
 
@@ -62,6 +68,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    //-----------------------------Methods----------------------------
+
+    //Creates some example portfolios to use
     private void loadPlaces() {
 
         //Create companies and portfolios and add them to userdata array list
@@ -86,10 +95,5 @@ public class MainActivity extends AppCompatActivity {
         {
             userData.addPortfolio(portfolio);
         }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
     }
 }

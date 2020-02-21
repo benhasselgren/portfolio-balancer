@@ -6,8 +6,13 @@ import android.widget.TextView;
 
 import com.example.portfoliobalancer.classes.Portfolio;
 
+//######################-----------------------------MainActivityClass-----------------------------######################
+//XML file: activity_portfolio_details.xml
+//Displays the portfolio details (List of companies, prices, growth, etc.)
+
 public class PortfolioDetails extends AppCompatActivity {
 
+    //-----------------------------On Create Method-----------------------------
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,10 +29,5 @@ public class PortfolioDetails extends AppCompatActivity {
             portfolioName.setText(portfolio.getName());
             portfolioDescription.setText(portfolio.getDescription());
         }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
     }
 }
