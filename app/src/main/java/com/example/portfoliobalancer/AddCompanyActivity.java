@@ -71,14 +71,12 @@ public class AddCompanyActivity extends AppCompatActivity {
                     //add to selected companies arraylist
                     selectedCompanies.add(c);
                     //Update selected companies list display
-                    selectedCompanyTitles.add(companyTitles.get(i));
+                    selectedCompanyTitles.add(c_code);
                     adapterList.notifyDataSetChanged();
                     Toast.makeText(getBaseContext(), "You have succesfully added " + c.getName() + ".", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-
-
     }
 
     private void getAvailableCompanies()
