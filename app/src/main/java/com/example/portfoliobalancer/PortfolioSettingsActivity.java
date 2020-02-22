@@ -10,4 +10,4 @@ public class PortfolioSettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_portfolio_settings);
     }
 
-    }
+}

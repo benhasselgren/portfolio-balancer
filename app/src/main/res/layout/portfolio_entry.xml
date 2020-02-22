@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="10dip"
-    android:background="#FFFFFF"
+    android:background="@color/colorEntryBackground"
     android:orientation="horizontal"
     android:padding="20dip"
     android:focusable="true"
@@ -18,9 +18,9 @@
         android:id="@+id/entry_portfolio_last_rebalanced"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#FFFFFFFF"
+        android:background="@color/colorEntryBackground"
         android:text="Last rebalanced: 10.20am 10/08/20"
-        android:textColor="#ababab"
+        android:textColor="@color/textColorSubHeading"
         android:textSize="9sp"
         android:textStyle="bold" />
     <!-- Portfolio name -->
@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/entry_portfolio_last_rebalanced"
         android:text="My Porfolio"
-        android:textColor="#000000"
+        android:textColor="@color/textColorHeading"
         android:textSize="18sp"
         android:textStyle="bold" />
     <!-- Portfolio description -->
@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/entry_portfolio_name"
         android:text="Description of portfolio"
-        android:textColor="#ababab"
+        android:textColor="@color/textColorSubHeading"
         android:textSize="12sp"
         android:textStyle="bold" />
 
@@ -56,7 +56,7 @@
         android:paddingLeft="5dip"
         android:paddingRight="5dip"
         android:text="Unbalanced"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/textColorHighlight"
         android:textSize="12sp"
         android:textStyle="bold" />
     <!-- Portfolio current price -->
@@ -67,7 +67,7 @@
         android:layout_below="@id/entry_portfolio_unbalanced"
         android:layout_alignParentRight="true"
         android:text="£100000.00"
-        android:textColor="#000000"
+        android:textColor="@color/textColorHeading"
         android:textSize="18sp"
         android:textStyle="bold" />
     <!-- Portfolio growth amount -->
@@ -78,7 +78,7 @@
         android:layout_below="@id/entry_portfolio_currentPrice"
         android:layout_alignParentRight="true"
         android:text="+£1000.33"
-        android:textColor="#34AAF1"
+        android:textColor="@color/textColorAssetGrowth"
         android:textSize="12sp"
         android:textStyle="bold" />
 

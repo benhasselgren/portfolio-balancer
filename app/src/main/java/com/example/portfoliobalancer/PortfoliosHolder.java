@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Debug;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
@@ -79,16 +80,16 @@ public class PortfoliosHolder extends RecyclerView.ViewHolder implements View.On
         // ------------------- Overall growth field Field -------------------
         if(portfolio.getCurrentPrice() > portfolio.getInitialPrice())
         {
-            this.growth.setTextColor(Color.parseColor("#34AAF1"));
+            this.growth.setTextColor(ContextCompat.getColor(context, R.color.textColorAssetGrowth));
             this.growth.setText(String.format("+£%.2f(0.0%%)", portfolio.getCurrentPrice()));
         }
         else if (portfolio.getCurrentPrice() < portfolio.getInitialPrice())
         {
-            this.growth.setTextColor(Color.parseColor("#C52222"));
+            this.growth.setTextColor(ContextCompat.getColor(context, R.color.textColorAssetDecline));
             this.growth.setText(String.format("+£%.2f(0.0%%)", portfolio.getCurrentPrice()));
         }
         else {
-            this.growth.setTextColor(Color.parseColor("#31c533"));
+            this.growth.setTextColor(ContextCompat.getColor(context, R.color.textColorAsset));
             this.growth.setText("£00.00(0.0%)");
         }
     }
@@ -101,10 +102,12 @@ public class PortfoliosHolder extends RecyclerView.ViewHolder implements View.On
             itemView.getContext().startActivity(intent);
         }
     }
-
+/*
     protected void displayMemoryUsage(String message) {
         int usedKBytes = (int) (Debug.getNativeHeapAllocatedSize() / 1024L);
         String usedMegsString = String.format("%s - usedMemory = Memory Used: %d KB", message, usedKBytes);
         Log.d("DATA", usedMegsString);
     }
+
+ */
 }

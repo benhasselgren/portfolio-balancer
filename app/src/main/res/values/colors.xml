@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--Main Themes-->
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
+    <!--Background Colours-->
     <color name="colorMainBackground">#D1D1D1</color>
+    <color name="colorEntryBackground">#FFFFFF</color>
+
+    <!--Text Colours-->
+    <color name="textColorAssetGrowth">#34AAF1</color>
+    <color name="textColorAssetDecline">#C52222</color>
+    <color name="textColorAsset">#31c533</color>
+    <color name="textColorHeading">#000000</color>
+    <color name="textColorSubHeading">#ababab</color>
+    <color name="textColorHighlight">#FFFFFF</color>
 </resources>
