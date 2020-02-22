@@ -36,39 +36,7 @@ public class UserData implements Parcelable
         this.portfolios = u.portfolios;
     }
 
-    protected UserData(Parcel in)
-    {
-        in.readTypedList(this.portfolios, Portfolio.CREATOR);
-    }
-
     //-----------------------------Implemented Parcelable Constructor/Methods-----------------------------
-
-    public static final Creator<UserData> CREATOR = new Creator<UserData>()
-    {
-        @Override
-        public UserData createFromParcel(Parcel in)
-        {
-            return new UserData(in);
-        }
-
-        @Override
-        public UserData[] newArray(int size)
-        {
-            return new UserData[size];
-        }
-    };
-
-    @Override
-    public int describeContents()
-    {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags)
-    {
-        dest.writeTypedList(this.portfolios);
-    }
 
     //-----------------------------Methods-----------------------------
 
@@ -91,4 +59,30 @@ public class UserData implements Parcelable
     {
 
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeTypedList(this.portfolios);
+    }
+
+    protected UserData(Parcel in) {
+        this.portfolios = in.createTypedArrayList(Portfolio.CREATOR);
+    }
+
+    public static final Creator<UserData> CREATOR = new Creator<UserData>() {
+        @Override
+        public UserData createFromParcel(Parcel source) {
+            return new UserData(source);
+        }
+
+        @Override
+        public UserData[] newArray(int size) {
+            return new UserData[size];
+        }
+    };
 }
