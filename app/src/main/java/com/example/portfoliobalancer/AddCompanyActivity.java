@@ -100,11 +100,10 @@ public class AddCompanyActivity extends AppCompatActivity {
                 else
                 {
                     //If everything is valid, add companies to portfolio start a new activity (passing the portfolio to that activity)
-                    //Intent intent = new Intent(AddCompanyActivity.this, AddCompanyActivity.class);
-                    //intent.putExtra("portfolio", portfolio);
-                    //startActivity(intent);
                     portfolio.setCompanies(selectedCompanies);
-                    Toast.makeText(getBaseContext(), "Valid.", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(AddCompanyActivity.this, PortfolioSettingsActivity.class);
+                    intent.putExtra("portfolio", portfolio);
+                    startActivity(intent);
                 }
             }
         });

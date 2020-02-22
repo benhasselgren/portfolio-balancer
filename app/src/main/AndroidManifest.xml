@@ -12,7 +12,11 @@
         android:largeHeap="true"
         android:hardwareAccelerated="false">
         <activity
-            android:name=".PortfolioDetails"
+            android:name=".PortfolioSettingsActivity"
+            android:label="@string/title_portfolio_settings">
+        </activity>
+        <activity
+            android:name=".PortfolioDetailsActivity"
             android:label="@string/title_activity_detail">
         </activity>
         <activity

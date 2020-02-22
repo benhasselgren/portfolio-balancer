@@ -10,7 +10,7 @@ import com.example.portfoliobalancer.classes.Portfolio;
 //XML file: activity_portfolio_details.xml
 //Displays the portfolio details (List of companies, prices, growth, etc.)
 
-public class PortfolioDetails extends AppCompatActivity {
+public class PortfolioDetailsActivity extends AppCompatActivity {
 
     //-----------------------------On Create Method-----------------------------
     @Override

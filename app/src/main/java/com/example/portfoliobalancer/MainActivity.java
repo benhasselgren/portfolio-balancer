@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         //Get the data
         loadPlaces();
 
-        //Initialize the Places adapter, which binds the data to the entry view
+        //Initialize the Portfolios adapter, which binds the data to the entry view
         PortfoliosAdapter adapter = new PortfoliosAdapter(this, R.layout.portfolio_entry, userData.getPortfolios());
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
