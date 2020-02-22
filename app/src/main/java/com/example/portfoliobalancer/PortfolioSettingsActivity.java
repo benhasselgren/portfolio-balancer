@@ -5,11 +5,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.portfoliobalancer.classes.Portfolio;
 
-public class PortfolioSettingsActivity extends AppCompatActivity {
+public class PortfolioSettingsActivity extends AppCompatActivity  {
 
     //-----------------------------Variables/Views-----------------------------
     //Variables
@@ -17,6 +18,9 @@ public class PortfolioSettingsActivity extends AppCompatActivity {
     //Views
     private RecyclerView portfoliosTargetPercentagesListView;
     private TextView totalPercentage;
+    private EditText name;
+    private EditText description;
+    private EditText amount;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +32,9 @@ public class PortfolioSettingsActivity extends AppCompatActivity {
         //Add views
         portfoliosTargetPercentagesListView = (RecyclerView)findViewById(R.id.portfolios_target_percentages_list);
         totalPercentage = (TextView)findViewById(R.id.textView);
+        name = (EditText) findViewById(R.id.portfolio_name_input);
+        description = (EditText) findViewById(R.id.portfolio_description_input);
+        amount = (EditText) findViewById(R.id.portfolio_amount_input);
 
         //If the recyclerview doesn't change size, we can set this true and
         portfoliosTargetPercentagesListView.setHasFixedSize(true);
@@ -41,7 +48,11 @@ public class PortfolioSettingsActivity extends AppCompatActivity {
 
         portfoliosTargetPercentagesListView.setAdapter(adapter);
 
+        //Set portfolio details
+        name.setText(portfolio.getName());
+        description.setText(portfolio.getDescription());
+        amount.setText(String.format("£%.2f", portfolio.getCurrentPrice()));
+
         totalPercentage.setText(String.format("%s", portfolio.getTotalPercentage()));
     }
-
 }

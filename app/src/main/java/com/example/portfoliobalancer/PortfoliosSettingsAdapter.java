@@ -9,8 +9,6 @@ import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 
 import com.example.portfoliobalancer.classes.Company;
-import com.example.portfoliobalancer.classes.Portfolio;
-
 import java.util.List;
 
 public class PortfoliosSettingsAdapter extends RecyclerView.Adapter<PortfoliosSettingsHolder> {
@@ -18,7 +16,6 @@ public class PortfoliosSettingsAdapter extends RecyclerView.Adapter<PortfoliosSe
     private List<Company> companies;
     private Context context;
     private int itemResource;
-
 
     public PortfoliosSettingsAdapter(Context context, int itemResource, List<Company> companies)
     {
