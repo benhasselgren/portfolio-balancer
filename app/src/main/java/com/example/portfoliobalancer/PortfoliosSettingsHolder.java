@@ -32,7 +32,8 @@ public class PortfoliosSettingsHolder  extends RecyclerView.ViewHolder {
         company_target_percentage_seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
-                company_target_percentage_value.setText(String.valueOf(progress));
+                company.setTargetPercentage(Integer.valueOf(progress));
+                company_target_percentage_value.setText(String.format("%s%%",company.getTargetPercentage()));
             }
 
             @Override
