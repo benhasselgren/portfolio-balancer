@@ -114,8 +114,6 @@ public class Portfolio implements Parcelable
         this.percentageChangeLimit = p.percentageChangeLimit;
     }
 
-    //-----------------------------Implemented Parcelable Constructor/Methods-----------------------------
-
     //-----------------------------Methods-----------------------------
 
     public double getCurrentPrice()
@@ -150,6 +148,18 @@ public class Portfolio implements Parcelable
     {
         this.companies.remove(c);
     }
+
+    public int getTotalPercentage()
+    {
+        int total = 0;
+        for(Company c : companies)
+        {
+            total += c.getTargetPercentage();
+        }
+        return total;
+    }
+
+    //-----------------------------Implemented Parcelable Constructor/Methods-----------------------------
 
     @Override
     public int describeContents() {

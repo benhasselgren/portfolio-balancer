@@ -49,4 +49,5 @@ public class PortfoliosSettingsAdapter extends RecyclerView.Adapter<PortfoliosSe
     public int getItemCount() {
         return this.companies.size();
     }
+
 }

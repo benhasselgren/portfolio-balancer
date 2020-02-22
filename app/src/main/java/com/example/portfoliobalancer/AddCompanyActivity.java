@@ -40,7 +40,6 @@ public class AddCompanyActivity extends AppCompatActivity {
 
         //Assign the intent parcelable extra to a variable
         portfolio = (Portfolio) getIntent().getParcelableExtra("portfolio");
-        final Portfolio p = new Portfolio(portfolio.getName(), portfolio.getDescription(), portfolio.getCompanies(), portfolio.getCurrentPrice(), portfolio.getInitialPrice(), portfolio.getLastRebalanced(), portfolio.isBalanced(), portfolio.getCurrentPriceDate(), portfolio.describeContents());
 
         //Add views
         companySelector = (AutoCompleteTextView)findViewById(R.id.company_selector);
@@ -101,9 +100,9 @@ public class AddCompanyActivity extends AppCompatActivity {
                 else
                 {
                     //If everything is valid, add companies to portfolio start a new activity (passing the portfolio to that activity)
-                    p.setCompanies(selectedCompanies);
+                    portfolio.setCompanies(selectedCompanies);
                     Intent intent = new Intent(AddCompanyActivity.this, PortfolioSettingsActivity.class);
-                    intent.putExtra("portfolio", p);
+                    intent.putExtra("portfolio", portfolio);
                     startActivity(intent);
                 }
             }
