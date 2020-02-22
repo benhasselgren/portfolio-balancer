@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dip"
+    android:background="@color/colorEntryBackground"
+    android:orientation="horizontal"
+    android:padding="20dip"
+    android:focusable="true"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground">
+
+    <!-- +++++++++++++++++++++++ Left align +++++++++++++++++++++++ -->
+    <!-- Company name -->
+    <TextView
+        android:id="@+id/entry_company_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="AAPL"
+        android:textColor="@color/textColorHeading"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+    <!-- Company target percentage seekbar -->
+    <SeekBar
+        android:id="@+id/entry_company_target_percentage_seekBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/entry_company_name" />
+
+    <!-- +++++++++++++++++++++++ Right align +++++++++++++++++++++++ -->
+
+    <!-- Company target percentage -->
+    <TextView
+        android:id="@+id/entry_company_target_percentage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:text="70%"
+        android:textColor="@color/textColorAssetGrowth"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+</RelativeLayout>

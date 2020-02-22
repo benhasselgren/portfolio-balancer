@@ -12,7 +12,7 @@ public class Company implements Parcelable {
     private String companyCode;
     private double unitCount;
     private double costPrice;
-    private double targetPercentage;
+    private int targetPercentage;
     private double currentUnitPrice;
     private Date currentUnitPriceDate;
 
@@ -50,11 +50,11 @@ public class Company implements Parcelable {
         this.costPrice = costPrice;
     }
 
-    public double getTargetPercentage() {
+    public int getTargetPercentage() {
         return targetPercentage;
     }
 
-    public void setTargetPercentage(double targetPercentage) {
+    public void setTargetPercentage(int targetPercentage) {
         this.targetPercentage = targetPercentage;
     }
 
@@ -69,7 +69,7 @@ public class Company implements Parcelable {
 
     //-----------------------------Constructors-----------------------------
 
-    public Company(String name, String companyCode, double unitCount, double costPrice, double targetPercentage, double currentUnitPrice, Date currentUnitPriceDate)
+    public Company(String name, String companyCode, double unitCount, double costPrice, int targetPercentage, double currentUnitPrice, Date currentUnitPriceDate)
     {
         this.name = name;
         this.companyCode = companyCode;
@@ -97,7 +97,7 @@ public class Company implements Parcelable {
         this.companyCode = in.readString();
         this.unitCount = in.readDouble();
         this.costPrice = in.readDouble();
-        this.targetPercentage = in.readDouble();
+        this.targetPercentage = in.readInt();
         this.currentUnitPrice = in.readDouble();
         this.currentUnitPriceDate = new Date(in.readLong());
     }
@@ -130,7 +130,7 @@ public class Company implements Parcelable {
         dest.writeString(this.companyCode);
         dest.writeDouble(this.unitCount);
         dest.writeDouble(this.costPrice);
-        dest.writeDouble(this.targetPercentage);
+        dest.writeInt(this.targetPercentage);
         dest.writeDouble(this.currentUnitPrice);
         dest.writeSerializable(this.currentUnitPriceDate);
     }

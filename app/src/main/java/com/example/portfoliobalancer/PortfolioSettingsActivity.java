@@ -34,9 +34,9 @@ public class PortfolioSettingsActivity extends AppCompatActivity {
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
 
-        portfoliosListView.setLayoutManager(layoutManager);
+        portfoliosTargetPercentagesListView.setLayoutManager(layoutManager);
 
-        portfoliosListView.setAdapter(adapter);
+        portfoliosTargetPercentagesListView.setAdapter(adapter);
     }
 
 }

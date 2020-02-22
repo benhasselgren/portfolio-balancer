@@ -37,9 +37,6 @@ public class PortfoliosSettingsAdapter extends RecyclerView.Adapter<PortfoliosSe
     @Override
     public void onBindViewHolder(PortfoliosSettingsHolder holder, int position) {
 
-        //set animation
-        holder.container.setAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_scale_animation));
-
         // Use position to access the correct place object
         Company c = this.companies.get(position);
 

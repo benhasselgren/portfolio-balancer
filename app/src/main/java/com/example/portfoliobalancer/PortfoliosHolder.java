@@ -35,7 +35,7 @@ public class PortfoliosHolder extends RecyclerView.ViewHolder implements View.On
         //Set container relative layout
         this.container = (RelativeLayout) itemView.findViewById(R.id.container);
 
-        //Assign existing views to variables
+        //Add views
         this.name = (TextView) itemView.findViewById(R.id.entry_portfolio_name);
         this.description = (TextView) itemView.findViewById(R.id.entry_portfolio_description);
         this.last_balanced = (TextView) itemView.findViewById(R.id.entry_portfolio_last_rebalanced);
