@@ -114,20 +114,6 @@ public class Portfolio implements Parcelable
         this.percentageChangeLimit = p.percentageChangeLimit;
     }
 
-
-    protected Portfolio(Parcel in)
-    {
-        this.name = in.readString();
-        this.description = in.readString();
-        in.readTypedList(this.companies, Company.CREATOR);
-        this.currentPrice = in.readDouble();
-        this.initialPrice = in.readDouble();
-        this.lastRebalanced = new Date(in.readLong());
-        this.balanced = in.readByte() != 0;
-        this.currentPriceDate = new Date(in.readLong());
-        this.percentageChangeLimit = in.readInt();
-    }
-
     //-----------------------------Implemented Parcelable Constructor/Methods-----------------------------
 
     @Override
@@ -150,6 +136,19 @@ public class Portfolio implements Parcelable
             return new Portfolio[size];
         }
     };
+
+    protected Portfolio(Parcel in)
+    {
+        this.name = in.readString();
+        this.description = in.readString();
+        this.companies = in.createTypedArrayList(Company.CREATOR);
+        this.currentPrice = in.readDouble();
+        this.initialPrice = in.readDouble();
+        this.lastRebalanced = new Date(in.readLong());
+        this.balanced = in.readByte() != 0;
+        this.currentPriceDate = new Date(in.readLong());
+        this.percentageChangeLimit = in.readInt();
+    }
 
     @Override
     public void writeToParcel(Parcel dest, int flags)

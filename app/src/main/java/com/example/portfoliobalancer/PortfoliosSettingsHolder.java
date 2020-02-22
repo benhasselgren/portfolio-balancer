@@ -3,12 +3,10 @@ package com.example.portfoliobalancer;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.example.portfoliobalancer.classes.Company;
-import com.example.portfoliobalancer.classes.Portfolio;
 
 public class PortfoliosSettingsHolder  extends RecyclerView.ViewHolder {
     private Company company;
@@ -29,6 +27,24 @@ public class PortfoliosSettingsHolder  extends RecyclerView.ViewHolder {
         this.company_name = (TextView) itemView.findViewById(R.id.entry_company_name);
         this.company_target_percentage_seekbar = (SeekBar) itemView.findViewById(R.id.entry_company_target_percentage_seekBar);
         this.company_target_percentage_value = (TextView) itemView.findViewById(R.id.entry_company_target_percentage);
+
+        //Updates the value of the seekbar and displays it in the value text view
+        company_target_percentage_seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
+                company_target_percentage_value.setText(String.valueOf(progress));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
     }
 
     public void bindPortfolio(Company company) {
@@ -49,4 +65,6 @@ public class PortfoliosSettingsHolder  extends RecyclerView.ViewHolder {
         company_target_percentage_seekbar.setProgress(company.getTargetPercentage());
         company_target_percentage_seekbar.setMax(100);
     }
+
+
 }
