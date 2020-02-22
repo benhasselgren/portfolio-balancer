@@ -116,54 +116,6 @@ public class Portfolio implements Parcelable
 
     //-----------------------------Implemented Parcelable Constructor/Methods-----------------------------
 
-    @Override
-    public int describeContents()
-    {
-        return 0;
-    }
-
-    public static final Creator<Portfolio> CREATOR = new Creator<Portfolio>()
-    {
-        @Override
-        public Portfolio createFromParcel(Parcel in)
-        {
-            return new Portfolio(in);
-        }
-
-        @Override
-        public Portfolio[] newArray(int size)
-        {
-            return new Portfolio[size];
-        }
-    };
-
-    protected Portfolio(Parcel in)
-    {
-        this.name = in.readString();
-        this.description = in.readString();
-        this.companies = in.createTypedArrayList(Company.CREATOR);
-        this.currentPrice = in.readDouble();
-        this.initialPrice = in.readDouble();
-        this.lastRebalanced = new Date(in.readLong());
-        this.balanced = in.readByte() != 0;
-        this.currentPriceDate = new Date(in.readLong());
-        this.percentageChangeLimit = in.readInt();
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags)
-    {
-        dest.writeString(this.name);
-        dest.writeString(this.description);
-        dest.writeTypedList(this.companies);
-        dest.writeDouble(this.currentPrice);
-        dest.writeDouble(this.initialPrice);
-        dest.writeSerializable(this.lastRebalanced);
-        dest.writeByte((byte) (this.balanced ? 1 : 0));
-        dest.writeSerializable(this.currentPriceDate);
-        dest.writeInt(this.percentageChangeLimit);
-    }
-
     //-----------------------------Methods-----------------------------
 
     public double getCurrentPrice()
@@ -198,4 +150,48 @@ public class Portfolio implements Parcelable
     {
         this.companies.remove(c);
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.name);
+        dest.writeString(this.description);
+        dest.writeTypedList(this.companies);
+        dest.writeDouble(this.currentPrice);
+        dest.writeDouble(this.initialPrice);
+        dest.writeLong(this.lastRebalanced != null ? this.lastRebalanced.getTime() : -1);
+        dest.writeByte(this.balanced ? (byte) 1 : (byte) 0);
+        dest.writeLong(this.currentPriceDate != null ? this.currentPriceDate.getTime() : -1);
+        dest.writeInt(this.percentageChangeLimit);
+    }
+
+    protected Portfolio(Parcel in) {
+        this.name = in.readString();
+        this.description = in.readString();
+        this.companies = in.createTypedArrayList(Company.CREATOR);
+        this.currentPrice = in.readDouble();
+        this.initialPrice = in.readDouble();
+        long tmpLastRebalanced = in.readLong();
+        this.lastRebalanced = tmpLastRebalanced == -1 ? null : new Date(tmpLastRebalanced);
+        this.balanced = in.readByte() != 0;
+        long tmpCurrentPriceDate = in.readLong();
+        this.currentPriceDate = tmpCurrentPriceDate == -1 ? null : new Date(tmpCurrentPriceDate);
+        this.percentageChangeLimit = in.readInt();
+    }
+
+    public static final Creator<Portfolio> CREATOR = new Creator<Portfolio>() {
+        @Override
+        public Portfolio createFromParcel(Parcel source) {
+            return new Portfolio(source);
+        }
+
+        @Override
+        public Portfolio[] newArray(int size) {
+            return new Portfolio[size];
+        }
+    };
 }

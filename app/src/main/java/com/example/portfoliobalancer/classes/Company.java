@@ -91,54 +91,49 @@ public class Company implements Parcelable {
         this.currentUnitPriceDate = c.currentUnitPriceDate;
     }
 
-    protected Company(Parcel in)
-    {
-        this.name = in.readString();
-        this.companyCode = in.readString();
-        this.unitCount = in.readDouble();
-        this.costPrice = in.readDouble();
-        this.targetPercentage = in.readInt();
-        this.currentUnitPrice = in.readDouble();
-        this.currentUnitPriceDate = new Date(in.readLong());
-    }
-
-    //-----------------------------Implemented Parcelable Constructor/Methods-----------------------------
-    public static final Creator<Company> CREATOR = new Creator<Company>()
-    {
-        @Override
-        public Company createFromParcel(Parcel in)
-        {
-            return new Company(in);
-        }
-        @Override
-        public Company[] newArray(int size)
-        {
-            return new Company[size];
-        }
-    };
-
-    @Override
-    public int describeContents()
-    {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags)
-    {
-        dest.writeString(this.name);
-        dest.writeString(this.companyCode);
-        dest.writeDouble(this.unitCount);
-        dest.writeDouble(this.costPrice);
-        dest.writeInt(this.targetPercentage);
-        dest.writeDouble(this.currentUnitPrice);
-        dest.writeSerializable(this.currentUnitPriceDate);
-    }
-
     //-----------------------------Methods-----------------------------
 
     public double getCurrentUnitPrice() {
 
         return this.costPrice * this.unitCount;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.name);
+        dest.writeString(this.companyCode);
+        dest.writeDouble(this.unitCount);
+        dest.writeDouble(this.costPrice);
+        dest.writeInt(this.targetPercentage);
+        dest.writeDouble(this.currentUnitPrice);
+        dest.writeLong(this.currentUnitPriceDate != null ? this.currentUnitPriceDate.getTime() : -1);
+    }
+
+    protected Company(Parcel in) {
+        this.name = in.readString();
+        this.companyCode = in.readString();
+        this.unitCount = in.readDouble();
+        this.costPrice = in.readDouble();
+        this.targetPercentage = in.readInt();
+        this.currentUnitPrice = in.readDouble();
+        long tmpCurrentUnitPriceDate = in.readLong();
+        this.currentUnitPriceDate = tmpCurrentUnitPriceDate == -1 ? null : new Date(tmpCurrentUnitPriceDate);
+    }
+
+    public static final Creator<Company> CREATOR = new Creator<Company>() {
+        @Override
+        public Company createFromParcel(Parcel source) {
+            return new Company(source);
+        }
+
+        @Override
+        public Company[] newArray(int size) {
+            return new Company[size];
+        }
+    };
 }

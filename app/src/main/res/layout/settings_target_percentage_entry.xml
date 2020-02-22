@@ -6,8 +6,6 @@
     android:background="@color/colorEntryBackground"
     android:orientation="horizontal"
     android:padding="20dip"
-    android:focusable="true"
-    android:clickable="true"
     android:foreground="?android:attr/selectableItemBackground">
 
     <!-- +++++++++++++++++++++++ Left align +++++++++++++++++++++++ -->
