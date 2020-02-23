@@ -1,19 +1,34 @@
 <resources>
+    <!-- App details -->
     <string name="app_name">PortfolioBalancer</string>
-    <string name="portfolios_title">Portfolios</string>
+    <!-- App titles -->
+    <string name="title_portfolios">Portfolios</string>
     <string name="title_activity_detail">TestPortfolio</string>
     <string name="title_main_activity">Portfolios</string>
     <string name="title_add_companies">Add companies</string>
     <string name="title_add_portfolio">Add portfolio</string>
     <string name="title_portfolio_settings">Portfolio settings</string>
+
+    <!-- Add portfolio activity. -->
     <string name="add_portfolio_name">Enter name</string>
     <string name="add_portfolio_description">Enter description</string>
     <string name="add_portfolio_amount">Enter amount to invest</string>
 
+    <!-- Portfolio settings activity. -->
+    <string name="portfolio_name">Name</string>
+    <string name="portfolio_description">Description</string>
+    <string name="portfolio_amount">Amount</string>
+    <string name="portfolio_details_title">Portfolio Details</string>
+    <string name="target_percentages_title">Portfolio Details</string>
+    <string name="target_percentages_total">Total</string>
+    <string name="rebalance_btn">Rebalance</string>
+
+    <!-- Companies -->
     <string name="apple">AAPL,Apple Inc,324.95</string>
     <string name="microsoft">MSFT,Microsoft Corporation,183.72</string>
     <string name="tesla">TSLA,Tesla Inc,803.95</string>
 
+    <!-- Array of companies -->
     <string-array name="companies">
         <item>@string/apple</item>
         <item>@string/microsoft</item>
