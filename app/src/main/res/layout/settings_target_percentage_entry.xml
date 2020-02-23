@@ -12,7 +12,7 @@
         android:id="@+id/entry_company_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="AAPL"
+        android:text="@string/target_percentages_total"
         android:textColor="@color/textColorHeading"
         android:textSize="18sp"
         android:textStyle="bold" />
@@ -31,7 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:text="70%"
+        android:text="@string/target_percentages_total"
         android:textColor="@color/textColorAssetGrowth"
         android:textSize="18sp"
         android:textStyle="bold" />

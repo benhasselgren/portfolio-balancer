@@ -20,9 +20,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="#FFFFFF"
-            android:completionHint="Search for a company"
+            android:completionHint="@string/search_for_company_hint"
             android:completionThreshold="1"
-            android:hint="Search for a company"
+            android:hint="@string/search_for_company_hint"
             android:textSize="15sp"
             android:textColor="#FFFFFF"
             android:textColorHint="#FFFFFF" />
@@ -43,7 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-        <!-- Nect button-->
+        <!-- Next button-->
         <Button
             android:id="@+id/add_company_activity_btn"
             android:layout_width="match_parent"
@@ -51,6 +51,6 @@
             android:layout_marginLeft="100dp"
             android:layout_marginRight="100dp"
             android:layout_weight="1"
-            android:text="Next" />
+            android:text="@string/next_btn" />
     </LinearLayout>
 </LinearLayout>

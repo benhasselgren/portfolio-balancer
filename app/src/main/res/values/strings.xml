@@ -3,16 +3,24 @@
     <string name="app_name">PortfolioBalancer</string>
     <!-- App titles -->
     <string name="title_portfolios">Portfolios</string>
-    <string name="title_activity_detail">TestPortfolio</string>
+    <string name="title_test_portfolio">TestPortfolio</string>
     <string name="title_main_activity">Portfolios</string>
     <string name="title_add_companies">Add companies</string>
     <string name="title_add_portfolio">Add portfolio</string>
     <string name="title_portfolio_settings">Portfolio settings</string>
 
+    <!-- Main activity. -->
+    <string name="unbalanced_label">Unbalanced</string>
+
     <!-- Add portfolio activity. -->
     <string name="add_portfolio_name">Enter name</string>
     <string name="add_portfolio_description">Enter description</string>
     <string name="add_portfolio_amount">Enter amount to invest</string>
+    <string name="next_btn">Next</string>
+
+
+    <!-- Add company activity. -->
+    <string name="search_for_company_hint">Search for a company</string>
 
     <!-- Portfolio settings activity. -->
     <string name="portfolio_name">Name</string>
