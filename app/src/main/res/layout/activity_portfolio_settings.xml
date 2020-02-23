@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- #################################### Activity Portfolio Settings #################################### -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -92,6 +93,7 @@
                 android:id="@+id/portfolio_target_percentages_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dip"
                 android:layout_marginBottom="5dip"
                 android:text="Target Percentages"
                 android:textColor="@color/textColorAssetGrowth"
@@ -103,15 +105,15 @@
                 android:id="@+id/portfolios_target_percentages_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dip"
                 android:scrollbars="vertical" >
 
             </android.support.v7.widget.RecyclerView>
 
             <!-- Portfolio Total Percentage / Rebalance Button-->
-            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dip"
                 android:orientation="horizontal">
 
                 <!-- +++++++++++++++++++++++ Left align +++++++++++++++++++++++ -->
@@ -144,10 +146,12 @@
                     android:id="@+id/add_company_activity_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/textColorAssetGrowth"
                     android:layout_alignParentRight="true"
-                    android:textColor="@color/textColorHighlight"
-                    android:text="Rebalance" />
+                    android:background="@color/textColorAssetGrowth"
+                    android:paddingLeft="20dip"
+                    android:paddingRight="20dip"
+                    android:text="Rebalance"
+                    android:textColor="@color/textColorHighlight" />
 
             </RelativeLayout>
         </LinearLayout>
