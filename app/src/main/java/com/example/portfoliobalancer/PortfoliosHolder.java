@@ -13,19 +13,27 @@ import com.example.portfoliobalancer.business_logic_classes.Portfolio;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
+//######################-----------------------------PortfoliosHolderClass-----------------------------######################
+//XML file: portfolio_entry.xml
+//This displays the portfolios
+
 public class PortfoliosHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
+    //-----------------------------Variables/Views-----------------------------
+    //Variables
+    private Portfolio portfolio;
+    private Context context;
+    //Views
     private final TextView name;
     private final TextView description;
     private final TextView last_balanced;
     private final TextView unbalanced;
     private final TextView currentPrice;
     private final TextView growth;
-
     public RelativeLayout container;
-    private Portfolio portfolio;
-    private Context context;
 
+
+    //-----------------------------Constructor-----------------------------
     public PortfoliosHolder(Context context, View itemView) {
         super(itemView);
 
@@ -91,6 +99,8 @@ public class PortfoliosHolder extends RecyclerView.ViewHolder implements View.On
         }
     }
 
+    //-----------------------------Event Listener Methods----------------------------
+    //Triggered when a user clicks a portfolio
     @Override
     public void onClick(View v) {
         if (this.portfolio != null) {

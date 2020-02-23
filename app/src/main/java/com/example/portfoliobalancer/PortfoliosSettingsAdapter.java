@@ -9,12 +9,17 @@ import android.view.ViewGroup;
 import com.example.portfoliobalancer.business_logic_classes.Company;
 import java.util.List;
 
+//######################-----------------------------PortfolioSettingsAdapterClass-----------------------------######################
+//Binds the data from the PortfolioSettingsActivity to the elements in the recyclerview
+
 public class PortfoliosSettingsAdapter extends RecyclerView.Adapter<PortfoliosSettingsHolder> {
 
+    //-----------------------------Variables-----------------------------
     private List<Company> companies;
     private Context context;
     private int itemResource;
 
+    //-----------------------------Constructor-----------------------------
     public PortfoliosSettingsAdapter(Context context, int itemResource, List<Company> companies)
     {
         this.companies = companies;
@@ -22,6 +27,9 @@ public class PortfoliosSettingsAdapter extends RecyclerView.Adapter<PortfoliosSe
         this.itemResource = itemResource;
     }
 
+    //-----------------------------Methods-----------------------------
+
+    //Passes the data from the activity to the holder
     @Override
     public PortfoliosSettingsHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
@@ -29,17 +37,18 @@ public class PortfoliosSettingsAdapter extends RecyclerView.Adapter<PortfoliosSe
         return new PortfoliosSettingsHolder(this.context, view);
     }
 
+    //Binds the data to the holder
     @Override
     public void onBindViewHolder(PortfoliosSettingsHolder holder, int position) {
 
-        // Use position to access the correct place object
+        // Use position to access the correct company object
         Company c = this.companies.get(position);
 
-        // Bind the place object to the holder
+        // Bind the company object to the holder
         holder.bindPortfolio(c);
     }
 
-
+    //Returns the size of the list
     @Override
     public int getItemCount() {
         return this.companies.size();
