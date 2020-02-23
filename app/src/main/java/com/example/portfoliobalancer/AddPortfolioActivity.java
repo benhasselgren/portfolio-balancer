@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.portfoliobalancer.classes.Portfolio;
+import com.example.portfoliobalancer.classes.Validation;
 
 //######################-----------------------------AppPortfolioActivityClass-----------------------------######################
 //XML file: activity_add_portfolio.xml
@@ -19,6 +20,8 @@ import com.example.portfoliobalancer.classes.Portfolio;
 public class AddPortfolioActivity extends AppCompatActivity {
 
     //-----------------------------Variables/Views-----------------------------
+    //Variables
+    Validation validation = new Validation();
     //Views
     private EditText name;
     private EditText description;
@@ -63,7 +66,7 @@ public class AddPortfolioActivity extends AppCompatActivity {
                     String amountString = amount.getText().toString().trim();
 
                     //Pass strings to validation method
-                    checkValidation(nameString, descriptionString, amountString);
+                    validation.checkPortfolioDetailsValid(nameString, descriptionString, amountString);
 
                     //If everything is valid, create a portfolio and start a new activity (passing the portfolio to that activity)
                     Portfolio portfolio = new Portfolio(nameString, descriptionString, null, Double.parseDouble(amountString), Double.parseDouble(amountString), null, true, null, 5 );
@@ -79,31 +82,5 @@ public class AddPortfolioActivity extends AppCompatActivity {
                 }
             }
         });
-    }
-
-    //-----------------------------Methods-----------------------------
-
-    //Checks all the field to see if they are valid and throws exceptions if they are not valid
-    private void checkValidation(String nameString, String descriptionString, String amountString)
-    {
-        if (nameString.isEmpty())
-        {
-            throw new RuntimeException("Name field cannot be empty.");
-        }
-        else if(descriptionString.isEmpty())
-        {
-            throw new RuntimeException("Description field cannot be empty.");
-        }
-        else if(amountString.isEmpty())
-        {
-            throw new RuntimeException("Amount field cannot be empty.");
-        }
-        else {
-            int amountInt = Integer.parseInt(amountString);
-            if (amountInt < 100 || amountInt > 25000)
-            {
-                throw new RuntimeException("Amount has to be between £100-£25,000.");
-            }
-        }
     }
 }
