@@ -15,6 +15,9 @@ import android.widget.Toast;
 
 import com.example.portfoliobalancer.classes.Portfolio;
 
+import java.util.Calendar;
+import java.util.Date;
+
 //######################-----------------------------PortfoliosSettingsActivityClass-----------------------------######################
 //XML file: activity_portfolio_settings.xml
 //Portfolio settings page of app. It's where the user can edit their portfolio details and change the target percentages.
@@ -83,9 +86,9 @@ public class PortfolioSettingsActivity extends AppCompatActivity  {
                     //Add all the values to the new companies and portfolio and create portfolio
                     finalisePortfolio();
                     Intent intent = new Intent(PortfolioSettingsActivity.this, MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     intent.putExtra("portfolio", portfolio);
                     startActivity(intent);
-                    finish();
                 }
                 else{
                     //Show error message if total pecentage does not equal 100%
@@ -98,6 +101,13 @@ public class PortfolioSettingsActivity extends AppCompatActivity  {
 
     private void finalisePortfolio()
     {
+        //Set the portfolio date and call the balance method here
 
+        //Set date to now
+        Date date = Calendar.getInstance().getTime();
+        portfolio.setCurrentPriceDate(date);
+
+        //Balance portfolio
+        portfolio.setLastRebalanced(date);
     }
 }
