@@ -103,6 +103,7 @@ public class AddCompanyActivity extends AppCompatActivity {
                     portfolio.setCompanies(selectedCompanies);
                     Intent intent = new Intent(AddCompanyActivity.this, PortfolioSettingsActivity.class);
                     intent.putExtra("portfolio", portfolio);
+                    intent.putExtra("FROM_ACTIVITY", "add_company");
                     startActivity(intent);
                 }
             }

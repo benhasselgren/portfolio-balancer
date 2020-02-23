@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.portfoliobalancer.classes.Portfolio;
+import com.example.portfoliobalancer.classes.Validation;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -27,6 +28,7 @@ public class PortfolioSettingsActivity extends AppCompatActivity  {
     //-----------------------------Variables/Views-----------------------------
     //Variables
     private Portfolio portfolio;
+    Validation validation = new Validation();
     //Views
     private RecyclerView portfoliosTargetPercentagesListView;
     private TextView totalPercentage;
@@ -44,6 +46,8 @@ public class PortfolioSettingsActivity extends AppCompatActivity  {
 
         //Assign the intent parcelable extra to a variable
         portfolio = (Portfolio) getIntent().getParcelableExtra("portfolio");
+        //Get the previous activity to customise activity to suit the action
+        String previousActivity= getIntent().getStringExtra("FROM_ACTIVITY");
 
         //Add views
         portfoliosTargetPercentagesListView = (RecyclerView)findViewById(R.id.portfolios_target_percentages_list);
@@ -68,10 +72,16 @@ public class PortfolioSettingsActivity extends AppCompatActivity  {
         //Set portfolio details
         name.setText(portfolio.getName());
         description.setText(portfolio.getDescription());
-        amount.setText(String.format("£%.2f", portfolio.getCurrentPrice()));
+        amount.setText(String.format("%.2f", portfolio.getCurrentPrice()));
 
         //Set portfolio target percentage total
         totalPercentage.setText(String.format("%s%%", portfolio.getTotalPercentage()));
+
+        //Set the button text based on the previous activity
+        if (previousActivity.equals("add_company"))
+        {
+            rebalance_create_btn.setText("Create portfolio");
+        }
 
         //Triggers if rebalance/create button is clicked
         rebalance_create_btn.setOnClickListener(new View.OnClickListener() {
@@ -80,21 +90,38 @@ public class PortfolioSettingsActivity extends AppCompatActivity  {
                 //Set the total percentage text to show total percentage
                 totalPercentage.setText(String.format("%s%%", portfolio.getTotalPercentage()));
 
-                //If the total percentage is = 100 then save target percentages and go back to main activity
-                if(portfolio.getTotalPercentage() == 100)
+                try
                 {
-                    //Add all the values to the new companies and portfolio and create portfolio
-                    finalisePortfolio();
-                    Intent intent = new Intent(PortfolioSettingsActivity.this, MainActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    intent.putExtra("portfolio", portfolio);
-                    startActivity(intent);
-                }
-                else{
-                    //Show error message if total pecentage does not equal 100%
-                    Toast.makeText(getBaseContext(), "The total percentage must equal 100%", Toast.LENGTH_SHORT).show();
-                }
+                    //-------------------Check to see details are valid-------------------
+                    //Convert name and description to strings
+                    String nameString = name.getText().toString().trim();
+                    String descriptionString = description.getText().toString().trim();
+                    //Convert amount to string, then int
+                    String amountString = amount.getText().toString().trim();
+                    //Pass strings to validation method
+                    validation.checkPortfolioDetailsValid(nameString, descriptionString, amountString);
 
+                    //-------------------See if total of target percentages is equal too 100% -------------------
+                    //If the total percentage is = 100 then save target percentages and go back to main activity
+                    if(portfolio.getTotalPercentage() == 100)
+                    {
+                        //Add all the values to the new companies and portfolio and create portfolio
+                        finalisePortfolio();
+                        Intent intent = new Intent(PortfolioSettingsActivity.this, MainActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        intent.putExtra("portfolio", portfolio);
+                        startActivity(intent);
+                    }
+                    else{
+                        //Throw error message if total pecentage does not equal 100%
+                        throw new RuntimeException("Percentage total has to equal 100%");
+                    }
+                }
+                catch (RuntimeException ex)
+                {
+                    //Catches all exceptions here and displays appropriate error message
+                    Toast.makeText(getBaseContext(), ex.getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
