@@ -4,7 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import com.example.portfoliobalancer.classes.Portfolio;
+import com.example.portfoliobalancer.business_logic_classes.Portfolio;
 
 //######################-----------------------------MainActivityClass-----------------------------######################
 //XML file: activity_portfolio_details.xml

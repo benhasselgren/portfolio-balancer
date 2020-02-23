@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 
-import com.example.portfoliobalancer.classes.Portfolio;
+import com.example.portfoliobalancer.business_logic_classes.Portfolio;
 
 import java.util.List;
 

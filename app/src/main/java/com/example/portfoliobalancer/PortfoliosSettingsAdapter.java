@@ -1,14 +1,12 @@
 package com.example.portfoliobalancer;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AnimationUtils;
 
-import com.example.portfoliobalancer.classes.Company;
+import com.example.portfoliobalancer.business_logic_classes.Company;
 import java.util.List;
 
 public class PortfoliosSettingsAdapter extends RecyclerView.Adapter<PortfoliosSettingsHolder> {

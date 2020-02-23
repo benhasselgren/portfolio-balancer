@@ -10,8 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.portfoliobalancer.classes.Portfolio;
-import com.example.portfoliobalancer.classes.Validation;
+import com.example.portfoliobalancer.business_logic_classes.Portfolio;
+import com.example.portfoliobalancer.business_logic_classes.Validation;
 
 //######################-----------------------------AppPortfolioActivityClass-----------------------------######################
 //XML file: activity_add_portfolio.xml

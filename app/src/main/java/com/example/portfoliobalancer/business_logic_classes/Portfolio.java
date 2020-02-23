@@ -1,4 +1,4 @@
-package com.example.portfoliobalancer.classes;
+package com.example.portfoliobalancer.business_logic_classes;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
 
+//######################-----------------------------PortfolioClass-----------------------------######################
+//Parcelable class that hold details about a portfolio
 public class Portfolio implements Parcelable
 {
     //-----------------------------Instance variables-----------------------------

@@ -1,4 +1,4 @@
-package com.example.portfoliobalancer.classes;
+package com.example.portfoliobalancer.business_logic_classes;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -6,6 +6,8 @@ import android.os.Parcelable;
 import java.util.ArrayList;
 import java.util.List;
 
+//######################-----------------------------UserDataClass-----------------------------######################
+//Parcelable class that hold details about users portfolios
 public class UserData implements Parcelable
 {
     //-----------------------------Instance variables-----------------------------
@@ -36,8 +38,6 @@ public class UserData implements Parcelable
         this.portfolios = u.portfolios;
     }
 
-    //-----------------------------Implemented Parcelable Constructor/Methods-----------------------------
-
     //-----------------------------Methods-----------------------------
 
     public void addPortfolio(Portfolio p)
@@ -60,6 +60,7 @@ public class UserData implements Parcelable
 
     }
 
+    //-----------------------------Implemented Parcelable Constructor/Methods-----------------------------
     @Override
     public int describeContents() {
         return 0;

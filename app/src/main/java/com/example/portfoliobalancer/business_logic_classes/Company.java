@@ -1,10 +1,12 @@
-package com.example.portfoliobalancer.classes;
+package com.example.portfoliobalancer.business_logic_classes;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.util.Date;
 
+//######################-----------------------------CompanyClass-----------------------------######################
+//Parcelable class that hold details about a company
 public class Company implements Parcelable {
 
     //-----------------------------Instance variables-----------------------------
@@ -97,6 +99,8 @@ public class Company implements Parcelable {
 
         return this.costPrice * this.unitCount;
     }
+
+    //-----------------------------Implemented Parcelable Constructor/Methods-----------------------------
 
     @Override
     public int describeContents() {

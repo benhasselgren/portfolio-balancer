@@ -11,8 +11,8 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.portfoliobalancer.classes.Company;
-import com.example.portfoliobalancer.classes.Portfolio;
+import com.example.portfoliobalancer.business_logic_classes.Company;
+import com.example.portfoliobalancer.business_logic_classes.Portfolio;
 
 import java.util.ArrayList;
 

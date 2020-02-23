@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.portfoliobalancer.classes.Portfolio;
+import com.example.portfoliobalancer.business_logic_classes.Portfolio;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

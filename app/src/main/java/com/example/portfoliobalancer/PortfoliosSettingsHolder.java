@@ -6,9 +6,13 @@ import android.view.View;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import com.example.portfoliobalancer.classes.Company;
+import com.example.portfoliobalancer.business_logic_classes.Company;
 
-public class PortfoliosSettingsHolder  extends RecyclerView.ViewHolder {
+//######################-----------------------------PortfolioSettingsHolderClass-----------------------------######################
+//XML file: settings_target_percentage_entry.xml
+//This displays the sliders to adjust the companies target percentages
+
+public class PortfoliosSettingsHolder extends RecyclerView.ViewHolder {
     private Company company;
     private Context context;
 
@@ -30,10 +34,12 @@ public class PortfoliosSettingsHolder  extends RecyclerView.ViewHolder {
 
         //Updates the value of the seekbar and displays it in the value text view
         company_target_percentage_seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
+            int progress_tracker;
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
-                company.setTargetPercentage(Integer.valueOf(progress));
-                company_target_percentage_value.setText(String.format("%s%%",company.getTargetPercentage()));
+                progress_tracker = progress;
+                company_target_percentage_value.setText(String.format("%s%%",progress_tracker));
             }
 
             @Override
@@ -43,7 +49,7 @@ public class PortfoliosSettingsHolder  extends RecyclerView.ViewHolder {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-
+                company.setTargetPercentage(Integer.valueOf(progress_tracker));
             }
         });
     }

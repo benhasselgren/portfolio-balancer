@@ -1,5 +1,7 @@
-package com.example.portfoliobalancer.classes;
+package com.example.portfoliobalancer.business_logic_classes;
 
+//######################-----------------------------ValidationClass-----------------------------######################
+//Class that hold validation methods
 public class Validation {
 
     //-----------------------------Methods-----------------------------

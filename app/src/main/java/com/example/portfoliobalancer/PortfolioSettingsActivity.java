@@ -2,7 +2,6 @@ package com.example.portfoliobalancer;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,8 +12,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.portfoliobalancer.classes.Portfolio;
-import com.example.portfoliobalancer.classes.Validation;
+import com.example.portfoliobalancer.business_logic_classes.Portfolio;
+import com.example.portfoliobalancer.business_logic_classes.Validation;
 
 import java.util.Calendar;
 import java.util.Date;

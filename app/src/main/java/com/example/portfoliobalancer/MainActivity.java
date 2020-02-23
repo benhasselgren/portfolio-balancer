@@ -8,9 +8,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.portfoliobalancer.classes.Company;
-import com.example.portfoliobalancer.classes.Portfolio;
-import com.example.portfoliobalancer.classes.UserData;
+import com.example.portfoliobalancer.business_logic_classes.Company;
+import com.example.portfoliobalancer.business_logic_classes.Portfolio;
+import com.example.portfoliobalancer.business_logic_classes.UserData;
 
 import java.util.Calendar;
 import java.util.ArrayList;
