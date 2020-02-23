@@ -21,6 +21,7 @@
             android:completionHint="Search for a company"
             android:completionThreshold="1"
             android:hint="Search for a company"
+            android:textSize="15sp"
             android:textColor="#FFFFFF"
             android:textColorHint="#FFFFFF" />
 

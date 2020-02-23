@@ -23,6 +23,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textSize="15sp"
                 android:text="@string/add_portfolio_name"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -30,6 +31,7 @@
                 android:id="@+id/add_portfolio_name_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSize="15sp"
                 android:layout_weight="1"
                 android:inputType="textPersonName" />
 
@@ -38,6 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textSize="15sp"
                 android:text="@string/add_portfolio_description"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -46,6 +49,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textSize="15sp"
                 android:inputType="textShortMessage" />
 
             <TextView
@@ -53,6 +57,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textSize="15sp"
                 android:text="@string/add_portfolio_amount"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -61,6 +66,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:textSize="15sp"
                 android:inputType="number" />
 
             <Button
