@@ -7,7 +7,6 @@
     android:orientation="vertical"
     tools:context=".PortfolioSettingsActivity">
 
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -20,66 +19,75 @@
             android:orientation="vertical"
             android:padding="20dip">
 
-                <TextView
-                    android:id="@+id/portfolio_details_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dip"
-                    android:text="Portfolio Details"
-                    android:textColor="@color/textColorAssetGrowth"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-                <TextView
-                    android:id="@+id/portfolio_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textSize="15sp"
-                    android:text="@string/add_portfolio_name"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+            <!-- Portfolio Description Title -->
+            <TextView
+                android:id="@+id/portfolio_details_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dip"
+                android:text="Portfolio Details"
+                android:textColor="@color/textColorAssetGrowth"
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
-                <EditText
-                    android:id="@+id/portfolio_name_input"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textSize="15sp"
-                    android:inputType="textPersonName" />
+            <!-- Portfolio name  -->
+            <TextView
+                android:id="@+id/portfolio_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="15sp"
+                android:text="@string/add_portfolio_name"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
 
-                <TextView
-                    android:id="@+id/portfolio_description"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textSize="15sp"
-                    android:text="@string/add_portfolio_description"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+            <!-- Portfolio name input -->
+            <EditText
+                android:id="@+id/portfolio_name_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="15sp"
+                android:inputType="textPersonName" />
 
-                <EditText
-                    android:id="@+id/portfolio_description_input"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textSize="15sp"
-                    android:inputType="textShortMessage" />
+            <!-- Portfolio description input -->
+            <TextView
+                android:id="@+id/portfolio_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="15sp"
+                android:text="@string/add_portfolio_description"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
 
-                <TextView
-                    android:id="@+id/portfolio_amount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textSize="15sp"
-                    android:text="@string/add_portfolio_amount"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+            <!-- Portfolio description input -->
+            <EditText
+                android:id="@+id/portfolio_description_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="15sp"
+                android:inputType="textShortMessage" />
 
-                <EditText
-                    android:id="@+id/portfolio_amount_input"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textSize="15sp"
-                    android:inputType="number" />
+            <!-- Portfolio amount -->
+            <TextView
+                android:id="@+id/portfolio_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="15sp"
+                android:text="@string/add_portfolio_amount"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
 
+            <!-- Portfolio amount input -->
+            <EditText
+                android:id="@+id/portfolio_amount_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="15sp"
+                android:inputType="number" />
+
+            <!-- Company target percentages Title-->
             <TextView
                 android:id="@+id/portfolio_target_percentages_title"
                 android:layout_width="wrap_content"
@@ -90,6 +98,7 @@
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
+            <!-- Company target percentages list -->
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/portfolios_target_percentages_list"
                 android:layout_width="match_parent"
@@ -99,11 +108,15 @@
 
             </android.support.v7.widget.RecyclerView>
 
+            <!-- Portfolio Total Percentage / Rebalance Button-->
             <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
+                <!-- +++++++++++++++++++++++ Left align +++++++++++++++++++++++ -->
+
+                <!-- Total target percentage total-->
                 <TextView
                     android:id="@+id/portfolio_target_percentage_total"
                     android:layout_width="wrap_content"
@@ -113,6 +126,7 @@
                     android:text="100%"
                     android:textStyle="bold"/>
 
+                <!-- Total sub heading -->
                 <TextView
                     android:id="@+id/entry_portfolio_description"
                     android:layout_width="wrap_content"
@@ -123,6 +137,9 @@
                     android:textSize="9sp"
                     android:textStyle="bold" />
 
+                <!-- +++++++++++++++++++++++ Right align +++++++++++++++++++++++ -->
+
+                <!-- Rebalance/Create portfolio button-->
                 <Button
                     android:id="@+id/add_company_activity_btn"
                     android:layout_width="wrap_content"
@@ -130,7 +147,7 @@
                     android:background="@color/textColorAssetGrowth"
                     android:layout_alignParentRight="true"
                     android:textColor="@color/textColorHighlight"
-                    android:text="Next" />
+                    android:text="Rebalance" />
 
             </RelativeLayout>
         </LinearLayout>

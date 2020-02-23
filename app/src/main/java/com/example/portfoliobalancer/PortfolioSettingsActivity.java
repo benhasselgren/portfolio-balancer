@@ -35,7 +35,7 @@ public class PortfolioSettingsActivity extends AppCompatActivity  {
 
         //Add views
         portfoliosTargetPercentagesListView = (RecyclerView)findViewById(R.id.portfolios_target_percentages_list);
-        totalPercentage = (TextView)findViewById(R.id.textView);
+        totalPercentage = (TextView)findViewById(R.id.portfolio_target_percentage_total);
         name = (EditText) findViewById(R.id.portfolio_name_input);
         description = (EditText) findViewById(R.id.portfolio_description_input);
         amount = (EditText) findViewById(R.id.portfolio_amount_input);
