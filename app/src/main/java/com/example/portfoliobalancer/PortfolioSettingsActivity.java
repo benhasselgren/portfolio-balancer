@@ -74,12 +74,14 @@ public class PortfolioSettingsActivity extends AppCompatActivity  {
         rebalance_create_btn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                //Set the text to show
+                //Set the total percentage text to show total percentage
                 totalPercentage.setText(String.format("%s%%", portfolio.getTotalPercentage()));
 
                 //If the total percentage is = 100 then save target percentages and go back to main activity
                 if(portfolio.getTotalPercentage() == 100)
                 {
+                    //Add all the values to the new companies and portfolio and create portfolio
+                    finalisePortfolio();
                     Intent intent = new Intent(PortfolioSettingsActivity.this, MainActivity.class);
                     intent.putExtra("portfolio", portfolio);
                     startActivity(intent);
@@ -92,5 +94,10 @@ public class PortfolioSettingsActivity extends AppCompatActivity  {
 
             }
         });
+    }
+
+    private void finalisePortfolio()
+    {
+
     }
 }

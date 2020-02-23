@@ -159,6 +159,11 @@ public class Portfolio implements Parcelable
         return total;
     }
 
+    private void finalisePortfolio()
+    {
+
+    }
+
     //-----------------------------Implemented Parcelable Constructor/Methods-----------------------------
 
     @Override

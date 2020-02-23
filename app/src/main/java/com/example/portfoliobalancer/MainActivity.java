@@ -37,6 +37,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Create portfolio list
+        portfolios = new ArrayList<Portfolio>();
+
+        //If the user has come from the create portfolio screen then add new portfolio
+        //Assign the intent parcelable extra to a variable
+        Portfolio newPortfolio = (Portfolio) getIntent().getParcelableExtra("portfolio");
+        if (newPortfolio != null)
+        {
+            portfolios.add(newPortfolio);
+        }
+
         //Add views
         add_portfolio_btn = (Button)findViewById(R.id.add_portfolio_btn);
 
@@ -74,7 +85,6 @@ public class MainActivity extends AppCompatActivity {
     private void loadPlaces() {
 
         //Create companies and portfolios and add them to userdata array list
-        portfolios = new ArrayList<Portfolio>();
         companies = new ArrayList<Company>();
         userData = new UserData(portfolios);
         Date date = Calendar.getInstance().getTime();
