@@ -62,7 +62,7 @@ public class AddPortfolioActivity extends AppCompatActivity {
                     //Convert name and description to strings
                     String nameString = name.getText().toString().trim();
                     String descriptionString = description.getText().toString().trim();
-                    //Convert amount to string, then int
+                    //Convert amount to string
                     String amountString = amount.getText().toString().trim();
 
                     //Pass strings to validation method

@@ -95,10 +95,11 @@ public class PortfolioSettingsActivity extends AppCompatActivity  {
                     //Convert name and description to strings
                     String nameString = name.getText().toString().trim();
                     String descriptionString = description.getText().toString().trim();
-                    //Convert amount to string, then int
-                    String amountString = amount.getText().toString().trim();
+                    //Convert amount to string then split to get the left side of the decimal
+                    String amountString = amount.getText().toString();
+                    String[] amountStringSplit = amountString.split("\\.");
                     //Pass strings to validation method
-                    validation.checkPortfolioDetailsValid(nameString, descriptionString, amountString);
+                    validation.checkPortfolioDetailsValid(nameString, descriptionString, amountStringSplit[0]);
 
                     //-------------------See if total of target percentages is equal too 100% -------------------
                     //If the total percentage is = 100 then save target percentages and go back to main activity
