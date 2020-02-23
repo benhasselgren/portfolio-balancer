@@ -14,6 +14,7 @@
         android:orientation="vertical"
         android:padding="10dip">
 
+        <!-- Companies search bar -->
         <AutoCompleteTextView
             android:id="@+id/company_selector"
             android:layout_width="match_parent"
@@ -27,6 +28,7 @@
             android:textColorHint="#FFFFFF" />
 
     </LinearLayout>
+
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -35,18 +37,20 @@
             android:layout_marginRight="10dip"
             android:orientation="vertical">
 
-            <ListView
-                android:id="@+id/selected_companies"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+        <!-- Selected companies list -->
+        <ListView
+            android:id="@+id/selected_companies"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
-            <Button
-                android:id="@+id/add_company_activity_btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="100dp"
-                android:layout_marginRight="100dp"
-                android:layout_weight="1"
-                android:text="Next" />
+        <!-- Nect button-->
+        <Button
+            android:id="@+id/add_company_activity_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:layout_marginRight="100dp"
+            android:layout_weight="1"
+            android:text="Next" />
     </LinearLayout>
 </LinearLayout>

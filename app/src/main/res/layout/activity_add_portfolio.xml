@@ -19,6 +19,7 @@
             android:layout_marginRight="10dip"
             android:orientation="vertical">
 
+            <!-- Portfolio name -->
             <TextView
                 android:id="@+id/add_portfolio_name"
                 android:layout_width="wrap_content"
@@ -28,6 +29,7 @@
                 android:text="@string/add_portfolio_name"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
+            <!-- Portfolio name input -->
             <EditText
                 android:id="@+id/add_portfolio_name_input"
                 android:layout_width="match_parent"
@@ -36,6 +38,7 @@
                 android:layout_weight="1"
                 android:inputType="textPersonName" />
 
+            <!-- Portfolio description -->
             <TextView
                 android:id="@+id/add_portfolio_description"
                 android:layout_width="wrap_content"
@@ -45,6 +48,7 @@
                 android:text="@string/add_portfolio_description"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
+            <!-- Portfolio description input -->
             <EditText
                 android:id="@+id/add_portfolio_description_input"
                 android:layout_width="match_parent"
@@ -53,6 +57,7 @@
                 android:textSize="15sp"
                 android:inputType="textShortMessage" />
 
+            <!-- Portfolio investment amount -->
             <TextView
                 android:id="@+id/add_portfolio_amount"
                 android:layout_width="wrap_content"
@@ -62,6 +67,7 @@
                 android:text="@string/add_portfolio_amount"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
+            <!-- Portfolio investment amount input -->
             <EditText
                 android:id="@+id/add_portfolio_amount_input"
                 android:layout_width="match_parent"
@@ -70,6 +76,7 @@
                 android:textSize="15sp"
                 android:inputType="number" />
 
+            <!-- Next button -->
             <Button
                 android:id="@+id/add_portfolio_activity_btn"
                 android:layout_width="match_parent"
