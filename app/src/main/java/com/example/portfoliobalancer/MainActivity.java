@@ -1,8 +1,9 @@
 package com.example.portfoliobalancer;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,6 +18,7 @@ import com.example.portfoliobalancer.business_logic_classes.UserData;
 import java.util.Calendar;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.prefs.Preferences;
 
 //######################-----------------------------MainActivityClass-----------------------------######################
 //XML file: activity_main.xml
@@ -39,8 +41,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
         //Set the context
         context = getApplicationContext();
+
+        //SharedPreferences pref = getApplicationContext().getSharedPreferences("shared preferences", MODE_PRIVATE);
+        //Editor editor = pref.edit();
+
+        //editor.clear();
+        //editor.commit();
 
         //Create a new UserData object
         userData = new UserData();
@@ -59,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
             userData.saveUserData(context);
         }
 
-        if(userData.getPortfolios() != null )
+        if(userData.getPortfolios() != null || userData.getPortfolios().size() == 0)
         {
             //Add views
             add_portfolio_btn = (Button)findViewById(R.id.add_portfolio_btn);

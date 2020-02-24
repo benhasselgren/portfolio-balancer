@@ -149,12 +149,12 @@ public class Portfolio implements Parcelable
         for(Company c : companies)
         {
             //Get the available amount to invest based on target percentage ( [targetPercentage/100] * current price of portfolio)
-            double c_investment_sum = (c.getTargetPercentage()/100) * this.getCurrentPrice();
+            double c_investment_sum = (c.getTargetPercentage()/100.00) * this.getCurrentPrice();
 
             //Set the unit count by dividing the cost of the company by the available amount to invest
-            c.setUnitCount(c.getCostPrice()/c_investment_sum);
+            c.setUnitCount(c_investment_sum/c.getCostPrice());
             //Set the current unit price by calling the getUnitPrice method
-            c.setCurrentUnitPrice(getCurrentPrice());
+            c.setCurrentUnitPrice(c.getCurrentUnitPrice());
             //Set the current unit price date of the company
             c.setCurrentUnitPriceDate(date);
         }

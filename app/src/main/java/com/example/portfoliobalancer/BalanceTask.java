@@ -2,9 +2,7 @@ package com.example.portfoliobalancer;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.os.AsyncTask;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.portfoliobalancer.business_logic_classes.Portfolio;
@@ -20,6 +18,13 @@ public class BalanceTask extends AsyncTask<Portfolio, Void, Portfolio> {
         this.progressDialog = progressDialog;
     }
 
+    // Before the tasks execution
+    protected void onPreExecute(){
+        super.onPreExecute();
+        // Display the progress dialog on async task start
+        progressDialog.show();
+    }
+
     @Override
     protected Portfolio doInBackground(Portfolio... portfolios) {
         //Get the portfolio
@@ -30,13 +35,6 @@ public class BalanceTask extends AsyncTask<Portfolio, Void, Portfolio> {
 
         //Return the portfolio
         return portfolio;
-    }
-
-    // Before the tasks execution
-    protected void onPreExecute(){
-        super.onPreExecute();
-        // Display the progress dialog on async task start
-        progressDialog.show();
     }
 
     // When all async task have finished

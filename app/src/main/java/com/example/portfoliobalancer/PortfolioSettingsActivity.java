@@ -145,6 +145,11 @@ public class PortfolioSettingsActivity extends AppCompatActivity  {
         // Progress dialog message
         progressDialog.setMessage(getResources().getString(R.string.balance_dialog_message));
 
+
+        progressDialog.show();
+        portfolio.balancePortfolio();
+        progressDialog.dismiss();
+        /*
         // Create the async task
         balanceTask = new BalanceTask(
                 progressDialog,
@@ -154,5 +159,7 @@ public class PortfolioSettingsActivity extends AppCompatActivity  {
         balanceTask.execute(
                 portfolio
         );
+        */
+
     }
 }
