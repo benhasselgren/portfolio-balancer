@@ -30,6 +30,8 @@
     <string name="target_percentages_title">Portfolio Details</string>
     <string name="target_percentages_total">Total</string>
     <string name="rebalance_btn">Rebalance</string>
+    <string name="balance_dialog_title">Balancing portfolio</string>
+    <string name="balance_dialog_message">Please wait...</string>
 
     <!-- Companies -->
     <string name="apple">AAPL,Apple Inc,324.95</string>

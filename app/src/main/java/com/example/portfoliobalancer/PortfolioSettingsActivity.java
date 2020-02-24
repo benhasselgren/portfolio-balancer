@@ -1,5 +1,6 @@
 package com.example.portfoliobalancer;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -28,6 +29,7 @@ public class PortfolioSettingsActivity extends AppCompatActivity  {
     //Variables
     private Portfolio portfolio;
     Validation validation = new Validation();
+    private BalanceTask balanceTask;
     //Views
     private RecyclerView portfoliosTargetPercentagesListView;
     private TextView totalPercentage;
@@ -35,6 +37,7 @@ public class PortfolioSettingsActivity extends AppCompatActivity  {
     private EditText description;
     private EditText amount;
     private Button rebalance_create_btn;
+    private ProgressDialog progressDialog;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -126,6 +129,9 @@ public class PortfolioSettingsActivity extends AppCompatActivity  {
         });
     }
 
+    //-----------------------------Methods-----------------------------
+
+    //Adds the remaining values tot he empty variables in the object
     private void finalisePortfolio()
     {
         //Set the portfolio date and call the balance method here
@@ -135,6 +141,24 @@ public class PortfolioSettingsActivity extends AppCompatActivity  {
         portfolio.setCurrentPriceDate(date);
 
         //Balance portfolio
-        portfolio.setLastRebalanced(date);
+        // Initialize the progress dialog
+        progressDialog = new ProgressDialog(PortfolioSettingsActivity.this);
+        progressDialog.setIndeterminate(true);
+        // Progress dialog horizontal style
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        // Progress dialog title
+        progressDialog.setTitle( getResources().getString(R.string.balance_dialog_title));
+        // Progress dialog message
+        progressDialog.setMessage(getResources().getString(R.string.balance_dialog_message));
+
+        // Create the async task
+        balanceTask = new BalanceTask(
+                progressDialog,
+                getApplicationContext()
+        );
+        // now execute the Task and pass the portfolio to balance
+        balanceTask.execute(
+                portfolio
+        );
     }
 }
