@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
 
     //-----------------------------Variables/Views-----------------------------
     //Variables
-    private ArrayList<Portfolio> portfolios;
     private ArrayList<Company> companies;
     private UserData userData;
     private Context context;
@@ -40,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //Set the context
-        context = this.context;
+        context = getApplicationContext();
 
         //Create a new UserData object
         userData = new UserData();
@@ -48,41 +47,45 @@ public class MainActivity extends AppCompatActivity {
         //Load portfolios
         userData.loadUserData(context);
 
-        //If the user has come from the create portfolio screen then add new portfolio
+        //If the user has come from the create portfolio screen then add new portfolio and save it to the device
         //Assign the intent parcelable extra to a variable
         Portfolio newPortfolio = (Portfolio) getIntent().getParcelableExtra("portfolio");
         if (newPortfolio != null)
         {
-            portfolios.add(newPortfolio);
+            userData.getPortfolios().add(newPortfolio);
+            userData.saveUserData(context);
         }
 
-        //Add views
-        add_portfolio_btn = (Button)findViewById(R.id.add_portfolio_btn);
+        if(userData.getPortfolios() != null )
+        {
+            //Add views
+            add_portfolio_btn = (Button)findViewById(R.id.add_portfolio_btn);
 
-        portfoliosListView = (RecyclerView)findViewById(R.id.portfolios_list);
+            portfoliosListView = (RecyclerView)findViewById(R.id.portfolios_list);
 
-        //If the recyclerview doesn't change size, we can set this true and
-        portfoliosListView.setHasFixedSize(true);
+            //If the recyclerview doesn't change size, we can set this true and
+            portfoliosListView.setHasFixedSize(true);
 
-        //Initialize the Portfolios adapter, which binds the data to the entry view
-        PortfoliosAdapter adapter = new PortfoliosAdapter(this, R.layout.portfolio_entry, userData.getPortfolios());
+            //Initialize the Portfolios adapter, which binds the data to the entry view
+            PortfoliosAdapter adapter = new PortfoliosAdapter(this, R.layout.portfolio_entry, userData.getPortfolios());
 
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
 
-        portfoliosListView.setLayoutManager(layoutManager);
+            portfoliosListView.setLayoutManager(layoutManager);
 
-        portfoliosListView.setAdapter(adapter);
+            portfoliosListView.setAdapter(adapter);
 
-        //-----------------------------Event Listener Methods-----------------------------
-        //Add portfolio button clicked event handled here
-        add_portfolio_btn.setOnClickListener(new View.OnClickListener() {
+            //-----------------------------Event Listener Methods-----------------------------
+            //Add portfolio button clicked event handled here
+            add_portfolio_btn.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, AddPortfolioActivity.class);
-                startActivity(intent);
-            }
-        });
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(MainActivity.this, AddPortfolioActivity.class);
+                    startActivity(intent);
+                }
+            });
+        }
     }
 
     //-----------------------------Methods----------------------------

@@ -74,12 +74,12 @@ public class UserData implements Parcelable
         }
     }
 
-    public void saveUserData(List<Portfolio> p, Context context)
+    public void saveUserData(Context context)
     {
         SharedPreferences sharedPreferences = context.getSharedPreferences("shared preferences", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         Gson gson = new Gson();
-        String json = gson.toJson(portfolios);
+        String json = gson.toJson(this.portfolios);
         editor.putString(portfoliosTag, json);
         editor.apply();
     }
