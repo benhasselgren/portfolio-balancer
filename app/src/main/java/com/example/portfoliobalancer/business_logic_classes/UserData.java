@@ -19,6 +19,7 @@ public class UserData implements Parcelable
     //-----------------------------Instance variables-----------------------------
 
     private List<Portfolio> portfolios = new ArrayList<Portfolio>();
+    private static String portfoliosTag = "portfolios";
 
     //-----------------------------Getters/Setters-----------------------------
 
@@ -63,7 +64,7 @@ public class UserData implements Parcelable
     {
         SharedPreferences sharedPreferences = context.getSharedPreferences("shared preferences", Context.MODE_PRIVATE);
         Gson gson = new Gson();
-        String json = sharedPreferences.getString("task list", null);
+        String json = sharedPreferences.getString(portfoliosTag, null);
         Type type = new TypeToken<ArrayList<Portfolio>>() {}.getType();
         portfolios = gson.fromJson(json, type);
 
@@ -80,7 +81,7 @@ public class UserData implements Parcelable
         SharedPreferences.Editor editor = sharedPreferences.edit();
         Gson gson = new Gson();
         String json = gson.toJson(portfolios);
-        editor.putString("task list", json);
+        editor.putString(portfoliosTag, json);
         editor.apply();
     }
 

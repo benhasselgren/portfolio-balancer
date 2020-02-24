@@ -1,5 +1,6 @@
 package com.example.portfoliobalancer;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Portfolio> portfolios;
     private ArrayList<Company> companies;
     private UserData userData;
+    private Context context;
     //Views
     private Button add_portfolio_btn;
     private RecyclerView portfoliosListView;
@@ -37,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Set the context
+        context = this.context;
 
         //Create a new UserData object
         userData = new UserData();
@@ -45,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         loadPlaces();
 
         //Create portfolio list
-        portfolios = userData;
+        portfolios = userData.loadUserData(context);
 
         //If the user has come from the create portfolio screen then add new portfolio
         //Assign the intent parcelable extra to a variable
