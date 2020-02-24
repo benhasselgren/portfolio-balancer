@@ -70,7 +70,6 @@ public class AddPortfolioActivity extends AppCompatActivity {
 
                     //If everything is valid, create a portfolio and start a new activity (passing the portfolio to that activity)
                     Portfolio portfolio = new Portfolio(nameString, descriptionString, null, Double.parseDouble(amountString), Double.parseDouble(amountString), null, true, null, 5 );
-                    Toast.makeText(getBaseContext(), "Valid", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(AddPortfolioActivity.this, AddCompanyActivity.class);
                     intent.putExtra("portfolio", portfolio);
                     startActivity(intent);
