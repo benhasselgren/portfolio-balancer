@@ -45,11 +45,8 @@ public class MainActivity extends AppCompatActivity {
         //Create a new UserData object
         userData = new UserData();
 
-        //Get the data
-        loadPlaces();
-
-        //Create portfolio list
-        portfolios = userData.loadUserData(context);
+        //Load portfolios
+        userData.loadUserData(context);
 
         //If the user has come from the create portfolio screen then add new portfolio
         //Assign the intent parcelable extra to a variable

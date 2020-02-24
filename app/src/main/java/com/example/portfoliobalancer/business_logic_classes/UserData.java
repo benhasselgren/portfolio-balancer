@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.widget.ArrayAdapter;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -60,19 +61,17 @@ public class UserData implements Parcelable
         this.portfolios.remove(p);
     }
 
-    public List<Portfolio> loadUserData(Context context)
+    public void loadUserData(Context context)
     {
         SharedPreferences sharedPreferences = context.getSharedPreferences("shared preferences", Context.MODE_PRIVATE);
         Gson gson = new Gson();
         String json = sharedPreferences.getString(portfoliosTag, null);
         Type type = new TypeToken<ArrayList<Portfolio>>() {}.getType();
-        portfolios = gson.fromJson(json, type);
+        this.portfolios = gson.fromJson(json, type);
 
-        if (portfolios == null) {
-            portfolios = new ArrayList<>();
+        if (this.portfolios == null) {
+            this.portfolios = new ArrayList<>();
         }
-
-        return portfolios;
     }
 
     public void saveUserData(List<Portfolio> p, Context context)
