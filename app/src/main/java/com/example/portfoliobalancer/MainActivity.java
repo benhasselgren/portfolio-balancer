@@ -1,5 +1,6 @@
 package com.example.portfoliobalancer;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -44,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         //Create a new UserData object
         userData = new UserData();
 
-        //Load portfolios
+        // ########## LOAD PORTFOLIOS HERE ##########
         userData.loadUserData(context);
 
         //If the user has come from the create portfolio screen then add new portfolio and save it to the device
@@ -52,7 +53,9 @@ public class MainActivity extends AppCompatActivity {
         Portfolio newPortfolio = (Portfolio) getIntent().getParcelableExtra("portfolio");
         if (newPortfolio != null)
         {
-            userData.getPortfolios().add(newPortfolio);
+            userData.addPortfolio(newPortfolio);
+
+            // ########## SAVE PORTFOLIOS HERE ##########
             userData.saveUserData(context);
         }
 
@@ -89,29 +92,4 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //-----------------------------Methods----------------------------
-
-    //Creates some example portfolios to use
-    private void loadPlaces() {
-
-        //Create companies and portfolios and add them to userdata array list
-        companies = new ArrayList<Company>();
-        Date date = Calendar.getInstance().getTime();
-
-        Portfolio portfolio = new Portfolio("Test Portfolio", "A test portfolio", companies, 20000, 20000, date, true, date, 5 );
-
-        Company Apple = new Company("Apple Inc", "AAPL", 0, 324.95, 70, 0, date );
-
-        Company Microsoft = new Company("Microsoft Corporation", "MSFT", 0 , 183.72, 15, 0, date);
-
-        Company Tesla = new Company("Tesla Inc", "TSLA", 0, 803.95, 15, 0, date);
-
-        portfolio.addCompany(Apple);
-        portfolio.addCompany(Microsoft);
-        portfolio.addCompany(Tesla);
-
-        for(int i=0;i<2;i++)
-        {
-            userData.addPortfolio(portfolio);
-        }
-    }
 }
