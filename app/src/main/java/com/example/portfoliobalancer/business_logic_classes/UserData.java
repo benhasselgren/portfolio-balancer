@@ -1,8 +1,14 @@
 package com.example.portfoliobalancer.business_logic_classes;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +33,9 @@ public class UserData implements Parcelable
 
     //-----------------------------Constructors-----------------------------
 
+    public UserData()
+    {
+    }
 
     public UserData(List<Portfolio> portfolios)
     {
@@ -50,14 +59,29 @@ public class UserData implements Parcelable
         this.portfolios.remove(p);
     }
 
-    public List<Portfolio> loadUserData()
+    public List<Portfolio> loadUserData(Context context)
     {
-        return null;
+        SharedPreferences sharedPreferences = context.getSharedPreferences("shared preferences", Context.MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString("task list", null);
+        Type type = new TypeToken<ArrayList<Portfolio>>() {}.getType();
+        portfolios = gson.fromJson(json, type);
+
+        if (portfolios == null) {
+            portfolios = new ArrayList<>();
+        }
+
+        return portfolios;
     }
 
-    public void saveUserData(List<Portfolio> p)
+    public void saveUserData(List<Portfolio> p, Context context)
     {
-
+        SharedPreferences sharedPreferences = context.getSharedPreferences("shared preferences", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(portfolios);
+        editor.putString("task list", json);
+        editor.apply();
     }
 
     //-----------------------------Implemented Parcelable Constructor/Methods-----------------------------

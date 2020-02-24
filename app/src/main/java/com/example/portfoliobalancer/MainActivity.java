@@ -37,8 +37,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        //Create a new UserData object
+        userData = new UserData();
+
+        //Get the data
+        loadPlaces();
+
         //Create portfolio list
-        portfolios = new ArrayList<Portfolio>();
+        portfolios = userData;
 
         //If the user has come from the create portfolio screen then add new portfolio
         //Assign the intent parcelable extra to a variable
@@ -56,9 +63,6 @@ public class MainActivity extends AppCompatActivity {
         //If the recyclerview doesn't change size, we can set this true and
         portfoliosListView.setHasFixedSize(true);
 
-        //Get the data
-        loadPlaces();
-
         //Initialize the Portfolios adapter, which binds the data to the entry view
         PortfoliosAdapter adapter = new PortfoliosAdapter(this, R.layout.portfolio_entry, userData.getPortfolios());
 
@@ -74,7 +78,8 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, AddPortfolioActivity.class));
+                Intent intent = new Intent(MainActivity.this, AddPortfolioActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -86,7 +91,6 @@ public class MainActivity extends AppCompatActivity {
 
         //Create companies and portfolios and add them to userdata array list
         companies = new ArrayList<Company>();
-        userData = new UserData(portfolios);
         Date date = Calendar.getInstance().getTime();
 
         Portfolio portfolio = new Portfolio("Test Portfolio", "A test portfolio", companies, 20000, 20000, date, true, date, 5 );

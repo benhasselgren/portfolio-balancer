@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.portfoliobalancer.business_logic_classes.Portfolio;
+import com.example.portfoliobalancer.business_logic_classes.UserData;
 import com.example.portfoliobalancer.business_logic_classes.Validation;
 
 //######################-----------------------------AppPortfolioActivityClass-----------------------------######################
@@ -21,7 +22,8 @@ public class AddPortfolioActivity extends AppCompatActivity {
 
     //-----------------------------Variables/Views-----------------------------
     //Variables
-    Validation validation = new Validation();
+    private Validation validation = new Validation();
+    private UserData userData;
     //Views
     private EditText name;
     private EditText description;
