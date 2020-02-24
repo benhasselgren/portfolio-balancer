@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Date;
 
@@ -138,7 +139,31 @@ public class Portfolio implements Parcelable
 
     public void balancePortfolio()
     {
+        //Get the current date
+        Date date = Calendar.getInstance().getTime();
 
+        //Set the current price date of the portfolio
+        this.setCurrentPriceDate(date);
+
+        //Balance the portfolio by diving the portfolios equity among the companies (using the target percentages)
+        for(Company c : companies)
+        {
+            //Get the available amount to invest based on target percentage ( [targetPercentage/100] * current price of portfolio)
+            double c_investment_sum = (c.getTargetPercentage()/100) * this.getCurrentPrice();
+
+            //Set the unit count by dividing the cost of the company by the available amount to invest
+            c.setUnitCount(c.getCostPrice()/c_investment_sum);
+            //Set the current unit price by calling the getUnitPrice method
+            c.setCurrentUnitPrice(getCurrentPrice());
+            //Set the current unit price date of the company
+            c.setCurrentUnitPriceDate(date);
+        }
+
+        // Set the portfolio to balanced
+        this.setBalanced(true);
+
+        //Set the last rebalanced date of the portfolio to now
+        this.setLastRebalanced(date);
     }
 
     public void addCompany(Company c)

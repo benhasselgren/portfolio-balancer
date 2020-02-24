@@ -134,12 +134,6 @@ public class PortfolioSettingsActivity extends AppCompatActivity  {
     //Adds the remaining values tot he empty variables in the object
     private void finalisePortfolio()
     {
-        //Set the portfolio date and call the balance method here
-
-        //Set date to now
-        Date date = Calendar.getInstance().getTime();
-        portfolio.setCurrentPriceDate(date);
-
         //Balance portfolio
         // Initialize the progress dialog
         progressDialog = new ProgressDialog(PortfolioSettingsActivity.this);

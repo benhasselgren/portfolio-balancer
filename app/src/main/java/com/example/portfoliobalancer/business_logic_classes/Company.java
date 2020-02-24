@@ -68,6 +68,9 @@ public class Company implements Parcelable {
         this.currentUnitPriceDate = currentUnitPriceDate;
     }
 
+    public void setCurrentUnitPrice(double currentUnitPrice) {
+        this.currentUnitPrice = currentUnitPrice;
+    }
 
     //-----------------------------Constructors-----------------------------
 
