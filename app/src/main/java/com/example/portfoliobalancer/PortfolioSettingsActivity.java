@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.example.portfoliobalancer.background_tasks.BalanceTask;
 import com.example.portfoliobalancer.business_logic_classes.Portfolio;
+import com.example.portfoliobalancer.business_logic_classes.UserData;
 import com.example.portfoliobalancer.business_logic_classes.Validation;
 
 //######################-----------------------------PortfoliosSettingsActivityClass-----------------------------######################
@@ -163,7 +164,6 @@ public class PortfolioSettingsActivity extends AppCompatActivity  {
         portfolio.setDescription(descriptionString);
         portfolio.setInitialPrice(Double.parseDouble(amountString));
 
-        //Balance portfolio
         // Initialize the progress dialog
         progressDialog = new ProgressDialog(PortfolioSettingsActivity.this);
         progressDialog.setIndeterminate(true);
@@ -174,10 +174,19 @@ public class PortfolioSettingsActivity extends AppCompatActivity  {
         // Progress dialog message
         progressDialog.setMessage(getResources().getString(R.string.balance_dialog_message));
 
+        //Start the process dialog
+        progressDialog.show();
 
         //Balance portfolio
-        progressDialog.show();
         portfolio.balancePortfolio();
+
+
+        //Load portfolios, check if this portfolio exists and add or update portfolio, then save portfolios
+
+        UserData ud = new UserData();
+        ud.loadUserData(getApplicationContext());
+
+
         progressDialog.dismiss();
         /*
         // Create the async task

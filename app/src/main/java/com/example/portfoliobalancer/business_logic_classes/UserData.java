@@ -61,6 +61,24 @@ public class UserData implements Parcelable
         this.portfolios.remove(p);
     }
 
+    public void updatePortfolio(Portfolio p)
+    {
+        this.removePortfolio(p);
+        this.addPortfolio(p);
+    }
+
+    public Portfolio findPortfolioById(int id)
+    {
+        for(Portfolio p : this.portfolios)
+        {
+            if(p.getId() == id)
+            {
+                return p;
+            }
+        }
+        return null;
+    }
+
     public void loadUserData(Context context)
     {
         SharedPreferences sharedPreferences = context.getSharedPreferences("shared preferences", Context.MODE_PRIVATE);
