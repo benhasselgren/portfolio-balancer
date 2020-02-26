@@ -23,7 +23,7 @@ public class AddPortfolioActivity extends AppCompatActivity {
     //-----------------------------Variables/Views-----------------------------
     //Variables
     private Validation validation = new Validation();
-    private UserData userData;
+    private static int PERCENTAGE_CHANGE_LIMIT = 10;
     //Views
     private EditText name;
     private EditText description;
@@ -95,7 +95,7 @@ public class AddPortfolioActivity extends AppCompatActivity {
         p.setDescription(descriptionString);
         p.setInitialPrice(Double.parseDouble(amountString));
         p.setCurrentPrice(Double.parseDouble(amountString));
-        p.setPercentageChangeLimit(5);
+        p.setPercentageChangeLimit(PERCENTAGE_CHANGE_LIMIT);
 
         return p;
     }
