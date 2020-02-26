@@ -108,6 +108,10 @@ public class PortfolioSettingsActivity extends AppCompatActivity  {
         {
             rebalance_create_btn.setText("Create portfolio");
         }
+        else if (previousActivity.equals("portfolio_details"))
+        {
+            rebalance_create_btn.setText("Update portfolio");
+        }
 
         //Triggers if rebalance/create button is clicked
         rebalance_create_btn.setOnClickListener(new View.OnClickListener() {
@@ -193,7 +197,7 @@ public class PortfolioSettingsActivity extends AppCompatActivity  {
         if (p != null)
         {
             //If it does then update
-            ud.updatePortfolio(portfolio);
+            ud.updatePortfolio(portfolio, p);
         }
         else
         {

@@ -1,11 +1,13 @@
 package com.example.portfoliobalancer;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -42,7 +44,7 @@ public class PortfolioDetailsActivity extends AppCompatActivity {
         context = getApplicationContext();
 
         //Assign the intent parcelable extra to a variable
-        Portfolio portfolio = (Portfolio) getIntent().getParcelableExtra("portfolio");
+        final Portfolio portfolio = (Portfolio) getIntent().getParcelableExtra("portfolio");
 
         if (portfolio != null)
         {
@@ -92,6 +94,18 @@ public class PortfolioDetailsActivity extends AppCompatActivity {
             DateFormat formatter = new SimpleDateFormat("EEE, dd MMM yyyy");
             String date = formatter.format(portfolio.getLastRebalanced());
             lastRebalanced.setText(String.format("Last rebalanced: %s", date));
+
+            //-----------------------------Event Listener Methods-----------------------------
+            //Add portfolio button clicked event handled here
+            settingsBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(PortfolioDetailsActivity.this, PortfolioSettingsActivity.class);
+                    intent.putExtra("portfolio", portfolio);
+                    intent.putExtra("FROM_ACTIVITY", "portfolio_details");
+                    startActivity(intent);
+                }
+            });
         }
     }
 }

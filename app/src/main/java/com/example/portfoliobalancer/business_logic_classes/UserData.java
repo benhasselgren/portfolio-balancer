@@ -61,10 +61,10 @@ public class UserData implements Parcelable
         this.portfolios.remove(p);
     }
 
-    public void updatePortfolio(Portfolio p)
+    public void updatePortfolio(Portfolio add_p, Portfolio remove_p)
     {
-        this.removePortfolio(p);
-        this.addPortfolio(p);
+        this.removePortfolio(remove_p);
+        this.addPortfolio(add_p);
     }
 
     public Portfolio findPortfolioById(int id)
