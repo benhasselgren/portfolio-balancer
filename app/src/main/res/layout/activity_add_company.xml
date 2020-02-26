@@ -25,7 +25,8 @@
             android:hint="@string/search_for_company_hint"
             android:textSize="15sp"
             android:textColor="#FFFFFF"
-            android:textColorHint="#FFFFFF" />
+            android:textColorHint="#FFFFFF"
+            android:drawableLeft="@drawable/ic_search"/>
 
     </LinearLayout>
 
