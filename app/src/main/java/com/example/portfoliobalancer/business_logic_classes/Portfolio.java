@@ -13,6 +13,7 @@ import java.util.Date;
 public class Portfolio implements Parcelable
 {
     //-----------------------------Instance variables-----------------------------
+    private int id;
     private String name;
     private String description;
     private List<Company> companies = new ArrayList<Company>();
@@ -24,6 +25,15 @@ public class Portfolio implements Parcelable
     private int percentageChangeLimit;
 
     //-----------------------------Getters/Setters-----------------------------
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -97,8 +107,9 @@ public class Portfolio implements Parcelable
 
     public Portfolio(){}
 
-    public Portfolio(String name, String description, List<Company> companies, double currentPrice, double initialPrice, Date lastRebalanced, boolean balanced, Date currentPriceDate, int percentageChangeLimit)
+    public Portfolio(int id, String name, String description, List<Company> companies, double currentPrice, double initialPrice, Date lastRebalanced, boolean balanced, Date currentPriceDate, int percentageChangeLimit)
     {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.companies = companies;
@@ -112,6 +123,7 @@ public class Portfolio implements Parcelable
 
     public Portfolio(Portfolio p)
     {
+        this.id = p.id;
         this.name = p.name;
         this.description = p.description;
         this.companies = p.companies;
@@ -207,6 +219,7 @@ public class Portfolio implements Parcelable
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(this.id);
         dest.writeString(this.name);
         dest.writeString(this.description);
         dest.writeTypedList(this.companies);
@@ -219,6 +232,7 @@ public class Portfolio implements Parcelable
     }
 
     protected Portfolio(Parcel in) {
+        this.id = in.readInt();
         this.name = in.readString();
         this.description = in.readString();
         this.companies = in.createTypedArrayList(Company.CREATOR);

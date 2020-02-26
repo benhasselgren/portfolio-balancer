@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         context = getApplicationContext();
 
         //SharedPreferences pref = getApplicationContext().getSharedPreferences("shared preferences", MODE_PRIVATE);
-        //Editor editor = pref.edit();
+       // Editor editor = pref.edit();
 
         //editor.clear();
         //editor.commit();
@@ -53,19 +53,26 @@ public class MainActivity extends AppCompatActivity {
         //Create a new UserData object
         userData = new UserData();
 
-        // ########## LOAD PORTFOLIOS HERE ##########
         userData.loadUserData(context);
 
-        //If the user has come from the create portfolio screen then add new portfolio and save it to the device
+        //If the user has come from the portfolio settings activity then add new portfolio and save it to the device
         //Assign the intent parcelable extra to a variable
-        Portfolio newPortfolio = (Portfolio) getIntent().getParcelableExtra("portfolio");
-        if (newPortfolio != null)
+        String previousActivity= getIntent().getStringExtra("FROM_ACTIVITY");
+        if (previousActivity != null)
         {
-            userData.addPortfolio(newPortfolio);
+            if (previousActivity.equals("portfolio_settings"))
+            {
+                Portfolio newPortfolio = (Portfolio) getIntent().getParcelableExtra("portfolio");
+                if (newPortfolio != null)
+                {
+                    userData.addPortfolio(newPortfolio);
 
-            // ########## SAVE PORTFOLIOS HERE ##########
-            userData.saveUserData(context);
+                    // ########## SAVE PORTFOLIOS HERE ##########
+                    userData.saveUserData(context);
+                }
+            }
         }
+
 
         if(userData.getPortfolios() != null || userData.getPortfolios().size() == 0)
         {
@@ -93,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(MainActivity.this, AddPortfolioActivity.class);
+                    intent.putExtra("NEW_PORTFOLIO_ID", userData.getPortfolios().size() + 1);
                     startActivity(intent);
                 }
             });

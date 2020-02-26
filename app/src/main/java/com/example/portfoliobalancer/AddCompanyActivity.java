@@ -85,6 +85,8 @@ public class AddCompanyActivity extends AppCompatActivity {
                     selectedCompanyTitles.add(c_code);
                     adapterList.notifyDataSetChanged();
                     Toast.makeText(getBaseContext(), "You have succesfully added " + c.getName() + ".", Toast.LENGTH_SHORT).show();
+                    //Clear search bar
+                    companySelector.setText("");
                 }
             }
         });

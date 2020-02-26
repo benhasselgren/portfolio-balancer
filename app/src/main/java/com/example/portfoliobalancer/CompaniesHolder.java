@@ -61,6 +61,21 @@ public class CompaniesHolder extends RecyclerView.ViewHolder implements View.OnC
         currentPrice.setText(String.format(String.format("£%.2f", company.getCurrentUnitPrice())));
 
         // Company growth
+        // Overall growth field
+        if(company.getGrowth() > 0)
+        {
+            growth.setTextColor(ContextCompat.getColor(context, R.color.textColorAssetGrowth));
+            growth.setText(String.format("+£%.2f(0.0%%)", company.getGrowth()));
+        }
+        else if (company.getGrowth() < 0)
+        {
+            growth.setTextColor(ContextCompat.getColor(context, R.color.textColorAssetDecline));
+            growth.setText(String.format("+£%.2f(0.0%%)", company.getGrowth()));
+        }
+        else {
+            growth.setTextColor(ContextCompat.getColor(context, R.color.textColorAsset));
+            growth.setText("£00.00(0.0%)");
+        }
 
     }
 

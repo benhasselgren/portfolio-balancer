@@ -135,6 +135,7 @@ public class PortfolioSettingsActivity extends AppCompatActivity  {
                         finalisePortfolio(nameString, descriptionString, amountString);
                         Intent intent = new Intent(PortfolioSettingsActivity.this, MainActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        intent.putExtra("FROM_ACTIVITY", "portfolio_settings");
                         intent.putExtra("portfolio", portfolio);
                         startActivity(intent);
                     }
