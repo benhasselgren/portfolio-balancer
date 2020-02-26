@@ -15,7 +15,7 @@ import com.example.portfoliobalancer.business_logic_classes.Portfolio;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
-//######################-----------------------------MainActivityClass-----------------------------######################
+//######################-----------------------------PortfolioDetailsActivity-----------------------------######################
 //XML file: activity_portfolio_details.xml
 //Displays the portfolio details (List of companies, prices, growth, etc.)
 
