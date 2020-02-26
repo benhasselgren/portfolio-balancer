@@ -183,11 +183,30 @@ public class PortfolioSettingsActivity extends AppCompatActivity  {
 
         //Load portfolios, check if this portfolio exists and add or update portfolio, then save portfolios
 
+        //Load
         UserData ud = new UserData();
         ud.loadUserData(getApplicationContext());
 
+        //Check if it exists
+        Portfolio p = ud.findPortfolioById(portfolio.getId());
 
+        if (p != null)
+        {
+            //If it does then update
+            ud.updatePortfolio(portfolio);
+        }
+        else
+        {
+            //If it doesn't then add it to portfolios
+            ud.addPortfolio(portfolio);
+        }
+
+        //Save portfolios
+        ud.saveUserData(getApplicationContext());
+
+        //End process dialog
         progressDialog.dismiss();
+
         /*
         // Create the async task
         balanceTask = new BalanceTask(
