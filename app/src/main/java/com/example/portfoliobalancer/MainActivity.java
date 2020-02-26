@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(MainActivity.this, AddPortfolioActivity.class);
-                    intent.putExtra("NEW_PORTFOLIO_ID", userData.getPortfolios().size() + 1);
+                    intent.putExtra("NEW_PORTFOLIO_ID", String.format("%s",userData.getPortfolios().size() + 1));
                     startActivity(intent);
                 }
             });
