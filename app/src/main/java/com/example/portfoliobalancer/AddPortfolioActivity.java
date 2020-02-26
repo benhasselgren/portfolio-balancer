@@ -25,6 +25,7 @@ public class AddPortfolioActivity extends AppCompatActivity {
     //Variables
     private Validation validation = new Validation();
     private static int PERCENTAGE_CHANGE_LIMIT = 10;
+    private int portfolioId;
     //Views
     private EditText name;
     private EditText description;
@@ -34,6 +35,9 @@ public class AddPortfolioActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_portfolio);
+
+        //Get the portfolio id
+        int portfolioId= getIntent().getIntExtra("NEW_PORTFOLIO_ID", 0);
 
         //Assigns the name field to a variable and adds validation
         name = (EditText) findViewById(R.id.add_portfolio_name_input);
@@ -105,6 +109,7 @@ public class AddPortfolioActivity extends AppCompatActivity {
     private Portfolio createPortfolio(String nameString, String descriptionString, String amountString)
     {
         Portfolio p = new Portfolio();
+        p.setId(portfolioId);
         p.setName(nameString);
         p.setDescription(descriptionString);
         p.setInitialPrice(Double.parseDouble(amountString));

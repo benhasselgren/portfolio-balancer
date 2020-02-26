@@ -73,7 +73,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-
         if(userData.getPortfolios() != null || userData.getPortfolios().size() == 0)
         {
             //Add views
