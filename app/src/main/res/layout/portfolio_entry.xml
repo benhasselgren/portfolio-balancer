@@ -13,73 +13,82 @@
     android:foreground="?android:attr/selectableItemBackground">
 
     <!-- +++++++++++++++++++++++ Left align +++++++++++++++++++++++ -->
-
-    <!-- Portfolio last rebalanced date -->
-    <TextView
-        android:id="@+id/entry_portfolio_last_rebalanced"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/colorEntryBackground"
-        android:text="@string/title_test_portfolio"
-        android:textColor="@color/textColorSubHeading"
-        android:textSize="9sp"
-        android:textStyle="bold" />
-    <!-- Portfolio name -->
-    <TextView
-        android:id="@+id/entry_portfolio_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/entry_portfolio_last_rebalanced"
-        android:text="@string/title_test_portfolio"
-        android:textColor="@color/textColorHeading"
-        android:textSize="18sp"
-        android:textStyle="bold" />
-    <!-- Portfolio description -->
-    <TextView
-        android:id="@+id/entry_portfolio_description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/entry_portfolio_name"
-        android:text="@string/title_test_portfolio"
-        android:textColor="@color/textColorSubHeading"
-        android:textSize="12sp"
-        android:textStyle="bold" />
+        android:layout_centerVertical="true"
+        android:orientation="vertical" >
+        <!-- Portfolio last rebalanced date -->
+        <TextView
+            android:id="@+id/entry_portfolio_last_rebalanced"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorEntryBackground"
+            android:text="@string/title_test_portfolio"
+            android:textColor="@color/textColorSubHeading"
+            android:textSize="9sp"
+            android:textStyle="bold" />
+        <!-- Portfolio name -->
+        <TextView
+            android:id="@+id/entry_portfolio_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/entry_portfolio_last_rebalanced"
+            android:text="@string/title_test_portfolio"
+            android:textColor="@color/textColorHeading"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+        <!-- Portfolio description -->
+        <TextView
+            android:id="@+id/entry_portfolio_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/entry_portfolio_name"
+            android:text="@string/title_test_portfolio"
+            android:textColor="@color/textColorSubHeading"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
     <!-- +++++++++++++++++++++++ Right align +++++++++++++++++++++++ -->
 
-    <!-- Portfolio unbalanced-->
-    <TextView
-        android:id="@+id/entry_portfolio_unbalanced"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
-        android:background="#C52222"
-        android:paddingLeft="5dip"
-        android:paddingRight="5dip"
-        android:text="@string/unbalanced_label"
-        android:textColor="@color/textColorHighlight"
-        android:textSize="12sp"
-        android:textStyle="bold" />
-    <!-- Portfolio current price -->
-    <TextView
-        android:id="@+id/entry_portfolio_currentPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/entry_portfolio_unbalanced"
-        android:layout_alignParentRight="true"
-        android:text="@string/title_test_portfolio"
-        android:textColor="@color/textColorHeading"
-        android:textSize="18sp"
-        android:textStyle="bold" />
-    <!-- Portfolio growth amount -->
-    <TextView
-        android:id="@+id/entry_portfolio_growth"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/entry_portfolio_currentPrice"
-        android:layout_alignParentRight="true"
-        android:text="@string/title_test_portfolio"
-        android:textColor="@color/textColorAssetGrowth"
-        android:textSize="12sp"
-        android:textStyle="bold" />
+        android:orientation="vertical" >
+        <!-- Portfolio unbalanced-->
+        <TextView
+            android:id="@+id/entry_portfolio_unbalanced"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#C52222"
+            android:paddingLeft="5dip"
+            android:paddingRight="5dip"
+            android:text="@string/unbalanced_label"
+            android:textColor="@color/textColorHighlight"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+        <!-- Portfolio current price -->
+        <TextView
+            android:id="@+id/entry_portfolio_currentPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/entry_portfolio_unbalanced"
+            android:text="@string/title_test_portfolio"
+            android:textColor="@color/textColorHeading"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+        <!-- Portfolio growth amount -->
+        <TextView
+            android:id="@+id/entry_portfolio_growth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/entry_portfolio_currentPrice"
+            android:text="@string/title_test_portfolio"
+            android:textColor="@color/textColorAssetGrowth"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+    </LinearLayout>
 </RelativeLayout>

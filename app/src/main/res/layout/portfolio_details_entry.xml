@@ -1,6 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<!-- #################################### Portfolio Details Entry (Adheres to Activity Portfolio Details) #################################### -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dip"
+    android:background="@color/colorEntryBackground"
+    android:orientation="horizontal"
+    android:padding="20dip"
+    android:focusable="true"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground">
 
-</android.support.constraint.ConstraintLayout>
+    <!-- +++++++++++++++++++++++ Left align +++++++++++++++++++++++ -->
+
+    <LinearLayout
+        android:id="@+id/top_row"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <!-- Company code -->
+        <TextView
+            android:id="@+id/entry_company_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_test_portfolio"
+            android:textColor="@color/textColorHeading"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <!-- Company target percentage -->
+        <TextView
+            android:id="@+id/entry_company_target_percentage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@id/entry_company_code"
+            android:layout_marginLeft="5dip"
+            android:text="@string/title_test_portfolio"
+            android:textColor="@color/textColorAssetGrowth"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- Company name -->
+    <TextView
+        android:id="@+id/entry_company_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/top_row"
+        android:background="@color/colorEntryBackground"
+        android:text="@string/title_test_portfolio"
+        android:textColor="@color/textColorSubHeading"
+        android:textSize="9sp"
+        android:textStyle="bold" />
+
+    <!-- Percentage change -->
+    <TextView
+        android:id="@+id/entry_percentage_change"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/entry_company_name"
+        android:text="@string/title_test_portfolio"
+        android:textColor="@color/textColorSubHeading"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+    <!-- +++++++++++++++++++++++ Right align +++++++++++++++++++++++ -->
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:orientation="vertical" >
+        <!-- Portfolio unbalanced-->
+        <TextView
+            android:id="@+id/entry_portfolio_unbalanced"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_test_portfolio"
+            android:textColor="@color/textColorHeading"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+        <!-- Portfolio current price -->
+        <TextView
+            android:id="@+id/entry_portfolio_currentPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/entry_portfolio_unbalanced"
+            android:text="@string/title_test_portfolio"
+            android:textColor="@color/textColorAssetGrowth"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+</RelativeLayout>
