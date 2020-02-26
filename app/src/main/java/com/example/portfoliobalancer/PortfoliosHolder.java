@@ -82,7 +82,7 @@ public class PortfoliosHolder extends RecyclerView.ViewHolder implements View.On
         // Current portfolio price Field
         currentPrice.setText(String.format("£%.2f", portfolio.getCurrentPrice()));
 
-        // Overall growth field Field
+        // Overall growth field
         if(portfolio.getCurrentPrice() > portfolio.getInitialPrice())
         {
             growth.setTextColor(ContextCompat.getColor(context, R.color.textColorAssetGrowth));

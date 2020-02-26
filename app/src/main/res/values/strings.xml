@@ -12,12 +12,15 @@
     <!-- Main activity. -->
     <string name="unbalanced_label">Unbalanced</string>
 
+    <!-- Portfolio Details. -->
+    <string name="portfolio_value">Portfolio value</string>
+    <string name="portfolio_gain_loss">Total gain/loss</string>
+
     <!-- Add portfolio activity. -->
     <string name="add_portfolio_name">Enter name</string>
     <string name="add_portfolio_description">Enter description</string>
     <string name="add_portfolio_amount">Enter amount to invest</string>
     <string name="next_btn">Next</string>
-
 
     <!-- Add company activity. -->
     <string name="search_for_company_hint">Search for a company</string>

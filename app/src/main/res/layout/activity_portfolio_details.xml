@@ -34,7 +34,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/title_test_portfolio"
                     android:textColor="@color/textColorHighlight"
-                    android:textSize="18sp"
+                    android:textSize="24sp"
                     android:textStyle="bold" />
 
                 <!-- Portfolio current price title -->
@@ -43,7 +43,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/portfolio_current_price"
-                    android:text="@string/title_test_portfolio"
+                    android:text="@string/portfolio_value"
                     android:textColor="@color/textColorSubHeading"
                     android:textSize="12sp"
                     android:textStyle="bold" />
@@ -56,7 +56,7 @@
                     android:layout_below="@id/portfolio_current_price_title"
                     android:text="@string/title_test_portfolio"
                     android:textColor="@color/textColorAssetGrowth"
-                    android:textSize="14sp"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <!-- Portfolio growth title -->
@@ -65,7 +65,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/portfolio_growth"
-                    android:text="@string/title_test_portfolio"
+                    android:text="@string/portfolio_gain_loss"
                     android:textColor="@color/textColorSubHeading"
                     android:textSize="12sp"
                     android:textStyle="bold" />
@@ -81,7 +81,7 @@
                     android:paddingBottom="10dip"
                     android:text="@string/title_test_portfolio"
                     android:textColor="@color/textColorSubHeading"
-                    android:textSize="12sp"
+                    android:textSize="9sp"
                     android:textStyle="bold" />
 
                 <!-- +++++++++++++++++++++++ Right align +++++++++++++++++++++++ -->
@@ -94,10 +94,11 @@
                     android:layout_alignParentRight="true"
                     android:layout_alignParentBottom="true"
                     android:background="@color/textColorSubHeading"
-                    android:paddingLeft="20dip"
-                    android:paddingRight="20dip"
+                    android:paddingLeft="10dip"
+                    android:paddingRight="10dip"
                     android:text="@string/rebalance_btn"
-                    android:textColor="@color/textColorHighlight" />
+                    android:textColor="@color/textColorHighlight"
+                    android:drawableLeft="@drawable/ic_rebalance"/>
 
                 <!-- Portfolio settings button-->
 

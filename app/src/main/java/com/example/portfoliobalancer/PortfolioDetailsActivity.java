@@ -1,5 +1,6 @@
 package com.example.portfoliobalancer;
 
+import android.content.Context;
 import android.media.Image;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +11,9 @@ import android.widget.TextView;
 
 import com.example.portfoliobalancer.business_logic_classes.Portfolio;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 //######################-----------------------------MainActivityClass-----------------------------######################
 //XML file: activity_portfolio_details.xml
 //Displays the portfolio details (List of companies, prices, growth, etc.)
@@ -18,6 +22,7 @@ public class PortfolioDetailsActivity extends AppCompatActivity {
 
     //-----------------------------Variables/Views-----------------------------
     //Variables
+    private Context context;
     //Views
     private TextView currentPrice;
     private TextView growth;
@@ -31,23 +36,46 @@ public class PortfolioDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_portfolio_details);
 
+        //Set the context
+        context = getApplicationContext();
+
         //Assign the intent parcelable extra to a variable
         Portfolio portfolio = (Portfolio) getIntent().getParcelableExtra("portfolio");
 
-        // Overall growth field Field
-        if(portfolio.getGrowth() > 0)
+        if (portfolio != null)
         {
-            growth.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.textColorAssetGrowth));
-            growth.setText(String.format("+£%.2f(0.0%%)", portfolio.getCurrentPrice()));
-        }
-        else if (portfolio.getGrowth() < 0)
-        {
-            growth.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.textColorAssetDecline));
-            growth.setText(String.format("+£%.2f(0.0%%)", portfolio.getCurrentPrice()));
-        }
-        else {
-            growth.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.textColorAsset));
-            growth.setText("£00.00(0.0%)");
+            //Add views
+            currentPrice = (TextView) findViewById(R.id.portfolio_current_price);
+            growth = (TextView) findViewById(R.id.portfolio_growth);
+            lastRebalanced = (TextView) findViewById(R.id.portfolio_last_rebalanced);
+            settingsBtn = (ImageView) findViewById(R.id.portfolio_settings);
+            rebalanceBtn = (Button) findViewById(R.id.portfolio_rebalance_btn);
+
+            //Bind data
+
+            //Set current price
+            currentPrice.setText(String.format("£%.2f", portfolio.getCurrentPrice()));
+
+            // Set growth
+            if(portfolio.getGrowth() > 0)
+            {
+                growth.setTextColor(ContextCompat.getColor(context, R.color.textColorAssetGrowth));
+                growth.setText(String.format("+£%.2f(0.0%%)", portfolio.getCurrentPrice()));
+            }
+            else if (portfolio.getGrowth() < 0)
+            {
+                growth.setTextColor(ContextCompat.getColor(context, R.color.textColorAssetDecline));
+                growth.setText(String.format("+£%.2f(0.0%%)", portfolio.getCurrentPrice()));
+            }
+            else {
+                growth.setTextColor(ContextCompat.getColor(context, R.color.textColorAsset));
+                growth.setText("£00.00(0.0%)");
+            }
+
+            //Set last rebalanced
+            DateFormat formatter = new SimpleDateFormat("EEE, dd MMM yyyy");
+            String date = formatter.format(portfolio.getLastRebalanced());
+            lastRebalanced.setText(String.format("Last rebalanced: %s", date));
         }
     }
 }
