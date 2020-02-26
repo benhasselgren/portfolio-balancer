@@ -1,6 +1,7 @@
 package com.example.portfoliobalancer;
 
 import android.media.Image;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
@@ -33,18 +34,20 @@ public class PortfolioDetailsActivity extends AppCompatActivity {
         //Assign the intent parcelable extra to a variable
         Portfolio portfolio = (Portfolio) getIntent().getParcelableExtra("portfolio");
 
-        if (portfolio != null)
+        // Overall growth field Field
+        if(portfolio.getGrowth() > 0)
         {
-            //Add views
-            currentPrice = (TextView) findViewById(R.id.portfolio_current_price);
-            growth = (TextView) findViewById(R.id.portfolio_growth);
-            lastRebalanced = (TextView) findViewById(R.id.portfolio_last_rebalanced);
-            settingsBtn = (ImageView) findViewById(R.id.portfolio_settings);
-            rebalanceBtn = (Button) findViewById(R.id.portfolio_rebalance_btn);
-
-            //Bind data to views
-            currentPrice.setText(String.format("£%.2f", portfolio.getCurrentPrice()));
-            currentPrice.setText(String.for);
+            growth.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.textColorAssetGrowth));
+            growth.setText(String.format("+£%.2f(0.0%%)", portfolio.getCurrentPrice()));
+        }
+        else if (portfolio.getGrowth() < 0)
+        {
+            growth.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.textColorAssetDecline));
+            growth.setText(String.format("+£%.2f(0.0%%)", portfolio.getCurrentPrice()));
+        }
+        else {
+            growth.setTextColor(ContextCompat.getColor(getApplicationContext(), R.color.textColorAsset));
+            growth.setText("£00.00(0.0%)");
         }
     }
 }

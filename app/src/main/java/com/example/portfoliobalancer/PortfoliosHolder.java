@@ -41,15 +41,15 @@ public class PortfoliosHolder extends RecyclerView.ViewHolder implements View.On
         this.context = context;
 
         //Set container relative layout
-        this.container = (RelativeLayout) itemView.findViewById(R.id.container);
+        container = (RelativeLayout) itemView.findViewById(R.id.container);
 
         //Add views
-        this.name = (TextView) itemView.findViewById(R.id.entry_portfolio_name);
-        this.description = (TextView) itemView.findViewById(R.id.entry_portfolio_description);
-        this.last_balanced = (TextView) itemView.findViewById(R.id.entry_portfolio_last_rebalanced);
-        this.unbalanced = (TextView) itemView.findViewById(R.id.entry_portfolio_unbalanced);
-        this.currentPrice = (TextView) itemView.findViewById(R.id.entry_portfolio_currentPrice);
-        this.growth = (TextView) itemView.findViewById(R.id.entry_portfolio_growth);
+        name = (TextView) itemView.findViewById(R.id.entry_portfolio_name);
+        description = (TextView) itemView.findViewById(R.id.entry_portfolio_description);
+        last_balanced = (TextView) itemView.findViewById(R.id.entry_portfolio_last_rebalanced);
+        unbalanced = (TextView) itemView.findViewById(R.id.entry_portfolio_unbalanced);
+        currentPrice = (TextView) itemView.findViewById(R.id.entry_portfolio_currentPrice);
+        growth = (TextView) itemView.findViewById(R.id.entry_portfolio_growth);
 
         // Set the "onClick" listener of the holder
         // here we use (this) because this class has a onClick function thanks
@@ -62,40 +62,40 @@ public class PortfoliosHolder extends RecyclerView.ViewHolder implements View.On
         // Bind the data to all the ViewHolders
         this.portfolio = portfolio;
 
-        // ------------------- Name Field -------------------
-        this.name.setText(portfolio.getName());
+        // Name Field
+        name.setText(portfolio.getName());
 
-        // ------------------- Description Field -------------------
-        this.description.setText(portfolio.getDescription());
+        // Description Field
+        description.setText(portfolio.getDescription());
 
-        // ------------------- Last rebalanced date Field -------------------
+        // Last rebalanced date Field
         DateFormat formatter = new SimpleDateFormat("EEE, dd MMM yyyy");
         String date = formatter.format(portfolio.getLastRebalanced());
-        this.last_balanced.setText(String.format("Last rebalanced: %s", date));
+        last_balanced.setText(String.format("Last rebalanced: %s", date));
 
-        // ------------------- Unbalanced alert badge  -------------------
+        // Unbalanced alert badge
         if(portfolio.isBalanced())
         {
-            this.unbalanced.setVisibility(View.INVISIBLE);
+            unbalanced.setVisibility(View.INVISIBLE);
         }
 
-        // ------------------- Current portfolio price Field -------------------
-        this.currentPrice.setText(String.format("£%.2f", portfolio.getCurrentPrice()));
+        // Current portfolio price Field
+        currentPrice.setText(String.format("£%.2f", portfolio.getCurrentPrice()));
 
-        // ------------------- Overall growth field Field -------------------
+        // Overall growth field Field
         if(portfolio.getCurrentPrice() > portfolio.getInitialPrice())
         {
-            this.growth.setTextColor(ContextCompat.getColor(context, R.color.textColorAssetGrowth));
-            this.growth.setText(String.format("+£%.2f(0.0%%)", portfolio.getCurrentPrice()));
+            growth.setTextColor(ContextCompat.getColor(context, R.color.textColorAssetGrowth));
+            growth.setText(String.format("+£%.2f(0.0%%)", portfolio.getCurrentPrice()));
         }
         else if (portfolio.getCurrentPrice() < portfolio.getInitialPrice())
         {
-            this.growth.setTextColor(ContextCompat.getColor(context, R.color.textColorAssetDecline));
-            this.growth.setText(String.format("+£%.2f(0.0%%)", portfolio.getCurrentPrice()));
+            growth.setTextColor(ContextCompat.getColor(context, R.color.textColorAssetDecline));
+            growth.setText(String.format("+£%.2f(0.0%%)", portfolio.getCurrentPrice()));
         }
         else {
-            this.growth.setTextColor(ContextCompat.getColor(context, R.color.textColorAsset));
-            this.growth.setText("£00.00(0.0%)");
+            growth.setTextColor(ContextCompat.getColor(context, R.color.textColorAsset));
+            growth.setText("£00.00(0.0%)");
         }
     }
 
@@ -103,9 +103,9 @@ public class PortfoliosHolder extends RecyclerView.ViewHolder implements View.On
     //Triggered when a user clicks a portfolio
     @Override
     public void onClick(View v) {
-        if (this.portfolio != null) {
+        if (portfolio != null) {
             Intent intent = new Intent(itemView.getContext(), PortfolioDetailsActivity.class);
-            intent.putExtra("portfolio", this.portfolio);
+            intent.putExtra("portfolio", portfolio);
             itemView.getContext().startActivity(intent);
         }
     }
