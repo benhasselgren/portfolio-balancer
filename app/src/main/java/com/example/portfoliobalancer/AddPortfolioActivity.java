@@ -37,7 +37,7 @@ public class AddPortfolioActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_portfolio);
 
         //Get the portfolio id
-        int portfolioId= getIntent().getIntExtra("NEW_PORTFOLIO_ID", 0);
+        int portfolioId= Integer.parseInt(getIntent().getStringExtra("NEW_PORTFOLIO_ID"));
 
         //Assigns the name field to a variable and adds validation
         name = (EditText) findViewById(R.id.add_portfolio_name_input);
