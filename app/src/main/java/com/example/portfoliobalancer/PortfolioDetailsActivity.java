@@ -53,13 +53,13 @@ public class PortfolioDetailsActivity extends AppCompatActivity {
             settingsBtn = (ImageView) findViewById(R.id.portfolio_settings);
             rebalanceBtn = (Button) findViewById(R.id.portfolio_rebalance_btn);
 
-            companiesListView = (RecyclerView)findViewById(R.id.portfolios_list);
+            companiesListView = (RecyclerView)findViewById(R.id.companies_list);
 
             //If the recyclerview doesn't change size, we can set this true and
             companiesListView.setHasFixedSize(true);
 
             //Initialize the Portfolios adapter, which binds the data to the entry view
-            PortfoliosAdapter adapter = new CompaniesAdapter(this, R.layout.company_entry, portfolio.getCompanies());
+            CompaniesAdapter adapter = new CompaniesAdapter(this, R.layout.company_entry, portfolio.getCompanies());
 
             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
 

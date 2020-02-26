@@ -107,7 +107,7 @@ public class PortfolioSettingsActivity extends AppCompatActivity  {
                     if(portfolio.getTotalPercentage() == 100)
                     {
                         //Add all the values to the new companies and portfolio and create portfolio
-                        finalisePortfolio();
+                        finalisePortfolio(nameString, descriptionString, amountString);
                         Intent intent = new Intent(PortfolioSettingsActivity.this, MainActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         intent.putExtra("portfolio", portfolio);
@@ -130,8 +130,13 @@ public class PortfolioSettingsActivity extends AppCompatActivity  {
     //-----------------------------Methods-----------------------------
 
     //Adds the remaining values tot he empty variables in the object
-    private void finalisePortfolio()
+    private void finalisePortfolio(String nameString, String descriptionString, String amountString)
     {
+        //Update porfolio details
+        portfolio.setName(nameString);
+        portfolio.setDescription(descriptionString);
+        portfolio.setInitialPrice(Double.parseDouble(amountString));
+
         //Balance portfolio
         // Initialize the progress dialog
         progressDialog = new ProgressDialog(PortfolioSettingsActivity.this);
@@ -144,6 +149,7 @@ public class PortfolioSettingsActivity extends AppCompatActivity  {
         progressDialog.setMessage(getResources().getString(R.string.balance_dialog_message));
 
 
+        //Balance portfolio
         progressDialog.show();
         portfolio.balancePortfolio();
         progressDialog.dismiss();

@@ -57,6 +57,10 @@ public class Portfolio implements Parcelable
         this.initialPrice = initialPrice;
     }
 
+    public void setCurrentPrice(double currentPrice) {
+        this.currentPrice = currentPrice;
+    }
+
     public Date getLastRebalanced() {
         return lastRebalanced;
     }
@@ -90,6 +94,8 @@ public class Portfolio implements Parcelable
     }
 
     //-----------------------------Constructors-----------------------------
+
+    public Portfolio(){}
 
     public Portfolio(String name, String description, List<Company> companies, double currentPrice, double initialPrice, Date lastRebalanced, boolean balanced, Date currentPriceDate, int percentageChangeLimit)
     {
@@ -160,6 +166,7 @@ public class Portfolio implements Parcelable
             c.setUnitCount(c_investment_sum/c.getCostPrice());
             //Set the current unit price by calling the getUnitPrice method
             c.setCurrentUnitPrice(c.getCurrentUnitPrice());
+            c.setIntitialPrice(c.getCurrentUnitPrice());
             //Set the current unit price date of the company
             c.setCurrentUnitPriceDate(date);
         }

@@ -129,7 +129,8 @@ public class AddCompanyActivity extends AppCompatActivity {
             String c_name = result[1];
             Double c_price = Double.parseDouble(result[2]);
 
-            Company c = new Company(c_name, c_code, 0, c_price, 0, 0, null );
+            //Create a new company with the initial details
+            Company c = createCompany(c_name, c_code, c_price);
 
             //Add company object to companies list and add company title to companyTitles list
             companyTitles.add(String.format("%s", c_code));
@@ -148,5 +149,16 @@ public class AddCompanyActivity extends AppCompatActivity {
             }
         }
         return null;
+    }
+
+    //Creates a company with basic details
+    private Company createCompany(String c_name, String c_code, Double c_price)
+    {
+        Company c = new Company();
+        c.setName(c_name);
+        c.setCompanyCode(c_code);
+        c.setCostPrice(c_price);
+
+        return c;
     }
 }

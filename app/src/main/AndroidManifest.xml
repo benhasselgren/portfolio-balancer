@@ -20,6 +20,10 @@
             android:label="@string/title_main_activity">
         </activity>
         <activity
+            android:name=".CompanyDetailsActivity"
+            android:label="@string/title_main_activity">
+        </activity>
+        <activity
             android:name=".AddCompanyActivity"
             android:label="@string/title_add_companies">
         </activity>

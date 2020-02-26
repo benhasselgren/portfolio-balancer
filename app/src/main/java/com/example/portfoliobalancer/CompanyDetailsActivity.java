@@ -10,7 +10,7 @@ import com.example.portfoliobalancer.business_logic_classes.Portfolio;
 //XML file: activity_company_details.xml
 //Displays the company details (List of companies, prices, growth, etc.)
 
-public class CompanyDetails extends AppCompatActivity {
+public class CompanyDetailsActivity extends AppCompatActivity {
 
     //-----------------------------Variables/Views-----------------------------
     //Variables

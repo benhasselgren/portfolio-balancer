@@ -71,7 +71,7 @@ public class AddPortfolioActivity extends AppCompatActivity {
                     validation.checkPortfolioDetailsValid(nameString, descriptionString, amountString);
 
                     //If everything is valid, create a portfolio and start a new activity (passing the portfolio to that activity)
-                    Portfolio portfolio = new Portfolio(nameString, descriptionString, null, Double.parseDouble(amountString), Double.parseDouble(amountString), null, true, null, 5 );
+                    Portfolio portfolio = createPortfolio(nameString, descriptionString, amountString);
                     Intent intent = new Intent(AddPortfolioActivity.this, AddCompanyActivity.class);
                     intent.putExtra("portfolio", portfolio);
                     startActivity(intent);
@@ -84,4 +84,20 @@ public class AddPortfolioActivity extends AppCompatActivity {
             }
         });
     }
+
+    //-----------------------------Methods-----------------------------
+
+    //Creates a basic portfolio with basic details
+    private Portfolio createPortfolio(String nameString, String descriptionString, String amountString)
+    {
+        Portfolio p = new Portfolio();
+        p.setName(nameString);
+        p.setDescription(descriptionString);
+        p.setInitialPrice(Double.parseDouble(amountString));
+        p.setCurrentPrice(Double.parseDouble(amountString));
+        p.setPercentageChangeLimit(5);
+
+        return p;
+    }
+
 }
