@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -30,7 +31,7 @@ public class PortfolioDetailsActivity extends AppCompatActivity {
     private TextView currentPrice;
     private TextView growth;
     private TextView lastRebalanced;
-    private ImageView settingsBtn;
+    private ImageButton settingsBtn;
     private Button rebalanceBtn;
     private RecyclerView companiesListView;
 
@@ -52,7 +53,7 @@ public class PortfolioDetailsActivity extends AppCompatActivity {
             currentPrice = (TextView) findViewById(R.id.portfolio_current_price);
             growth = (TextView) findViewById(R.id.portfolio_growth);
             lastRebalanced = (TextView) findViewById(R.id.portfolio_last_rebalanced);
-            settingsBtn = (ImageView) findViewById(R.id.portfolio_settings);
+            settingsBtn = (ImageButton) findViewById(R.id.portfolio_settings);
             rebalanceBtn = (Button) findViewById(R.id.portfolio_rebalance_btn);
 
             companiesListView = (RecyclerView)findViewById(R.id.companies_list);
@@ -72,18 +73,18 @@ public class PortfolioDetailsActivity extends AppCompatActivity {
             //Bind data
 
             //Set current price
-            currentPrice.setText(String.format("£%.2f", portfolio.getCurrentPrice()));
+            currentPrice.setText(String.format("£%.2f", portfolio.getCurrentPrice(false)));
 
             // Set growth
-            if(portfolio.getGrowth() > 0)
+            if(portfolio.getPriceGrowth() > 0)
             {
                 growth.setTextColor(ContextCompat.getColor(context, R.color.textColorAssetGrowth));
-                growth.setText(String.format("+£%.2f(0.0%%)", portfolio.getGrowth()));
+                growth.setText(String.format("+£%.2f(%.2f%%)", portfolio.getPriceGrowth(), portfolio.getPercentageGrowth()));
             }
-            else if (portfolio.getGrowth() < 0)
+            else if (portfolio.getPriceGrowth() < 0)
             {
                 growth.setTextColor(ContextCompat.getColor(context, R.color.textColorAssetDecline));
-                growth.setText(String.format("+£%.2f(0.0%%)", portfolio.getGrowth()));
+                growth.setText(String.format("+£%.2f(%.2f%%)", portfolio.getPriceGrowth(), portfolio.getPercentageGrowth()));
             }
             else {
                 growth.setTextColor(ContextCompat.getColor(context, R.color.textColorAsset));

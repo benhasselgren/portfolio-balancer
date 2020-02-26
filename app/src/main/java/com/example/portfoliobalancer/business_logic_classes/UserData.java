@@ -102,7 +102,6 @@ public class UserData implements Parcelable
         editor.apply();
     }
 
-    //-----------------------------Implemented Parcelable Constructor/Methods-----------------------------
     @Override
     public int describeContents() {
         return 0;

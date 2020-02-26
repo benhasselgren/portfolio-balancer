@@ -98,7 +98,6 @@ public class PortfolioSettingsActivity extends AppCompatActivity  {
         //Set portfolio details
         name.setText(portfolio.getName());
         description.setText(portfolio.getDescription());
-        amount.setText(String.format("%.2f", portfolio.getCurrentPrice()));
 
         //Set portfolio target percentage total
         totalPercentage.setText(String.format("%s%%", portfolio.getTotalPercentage()));
@@ -107,10 +106,12 @@ public class PortfolioSettingsActivity extends AppCompatActivity  {
         if (previousActivity.equals("add_company"))
         {
             rebalance_create_btn.setText("Create portfolio");
+            amount.setText(String.format("%.2f", portfolio.getCurrentPrice(true)));
         }
         else if (previousActivity.equals("portfolio_details"))
         {
             rebalance_create_btn.setText("Update portfolio");
+            amount.setText(String.format("%.2f", portfolio.getCurrentPrice(false)));
         }
 
         //Triggers if rebalance/create button is clicked
@@ -167,6 +168,7 @@ public class PortfolioSettingsActivity extends AppCompatActivity  {
         portfolio.setName(nameString);
         portfolio.setDescription(descriptionString);
         portfolio.setInitialPrice(Double.parseDouble(amountString));
+        portfolio.setCurrentPrice(Double.parseDouble(amountString));
 
         // Initialize the progress dialog
         progressDialog = new ProgressDialog(PortfolioSettingsActivity.this);

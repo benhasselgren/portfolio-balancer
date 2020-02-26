@@ -62,15 +62,15 @@ public class CompaniesHolder extends RecyclerView.ViewHolder implements View.OnC
 
         // Company growth
         // Overall growth field
-        if(company.getGrowth() > 0)
+        if(company.getPriceGrowth() > 0)
         {
             growth.setTextColor(ContextCompat.getColor(context, R.color.textColorAssetGrowth));
-            growth.setText(String.format("+£%.2f(0.0%%)", company.getGrowth()));
+            growth.setText(String.format("+£%.2f(%.2f%%)", company.getPriceGrowth(), company.getPercentageGrowth()));
         }
-        else if (company.getGrowth() < 0)
+        else if (company.getPriceGrowth() < 0)
         {
             growth.setTextColor(ContextCompat.getColor(context, R.color.textColorAssetDecline));
-            growth.setText(String.format("+£%.2f(0.0%%)", company.getGrowth()));
+            growth.setText(String.format("+£%.2f(%.2f%%)", company.getPriceGrowth(), company.getPercentageGrowth()));
         }
         else {
             growth.setTextColor(ContextCompat.getColor(context, R.color.textColorAsset));

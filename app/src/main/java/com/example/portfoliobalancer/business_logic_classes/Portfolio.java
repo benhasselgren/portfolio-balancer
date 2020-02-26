@@ -137,17 +137,23 @@ public class Portfolio implements Parcelable
 
     //-----------------------------Methods-----------------------------
 
-    public double getCurrentPrice()
+    public double getCurrentPrice(Boolean newPortfolio)
     {
-        /*
-        float totalPrice = 0;
-
-        for(Company c : this.companies)
+        if(newPortfolio)
         {
-            totalPrice += c.getCurrentUnitPrice();
+            return this.currentPrice;
         }
-    */
-        return this.currentPrice;
+        else
+        {
+            float totalPrice = 0;
+
+            for(Company c : this.companies)
+            {
+                totalPrice += c.getCurrentUnitPrice();
+            }
+
+            return totalPrice;
+        }
     }
 
     public double getPriceDifference()
@@ -155,9 +161,15 @@ public class Portfolio implements Parcelable
         return 0;
     }
 
-    public double getGrowth()
+    public double getPriceGrowth()
     {
         return this.currentPrice - this.initialPrice;
+    }
+
+    public double getPercentageGrowth()
+    {
+        double growth = ((this.currentPrice/this.initialPrice)-1)*10;
+        return growth;
     }
 
     public void balancePortfolio()
@@ -178,7 +190,7 @@ public class Portfolio implements Parcelable
             c.setUnitCount(c_investment_sum/c.getCostPrice());
             //Set the current unit price by calling the getUnitPrice method
             c.setCurrentUnitPrice(c.getCurrentUnitPrice());
-            c.setIntitialPrice(c.getCurrentUnitPrice());
+            c.setInitialPrice(c.getCurrentUnitPrice());
             //Set the current unit price date of the company
             c.setCurrentUnitPriceDate(date);
         }

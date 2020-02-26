@@ -16,7 +16,7 @@ public class Company implements Parcelable {
     private double costPrice;
     private int targetPercentage;
     private double currentUnitPrice;
-    private double intitialPrice;
+    private double initialPrice;
     private Date currentUnitPriceDate;
 
     //-----------------------------Getters/Setters-----------------------------
@@ -73,12 +73,12 @@ public class Company implements Parcelable {
         this.currentUnitPrice = currentUnitPrice;
     }
 
-    public double getIntitialPrice() {
-        return intitialPrice;
+    public double getInitialPrice() {
+        return initialPrice;
     }
 
-    public void setIntitialPrice(double intitialPrice) {
-        this.intitialPrice = intitialPrice;
+    public void setInitialPrice(double initialPrice) {
+        this.initialPrice = initialPrice;
     }
 
     //-----------------------------Constructors-----------------------------
@@ -87,7 +87,7 @@ public class Company implements Parcelable {
     {
     }
 
-    public Company(String name, String companyCode, double unitCount, double costPrice, int targetPercentage, double currentUnitPrice, Date currentUnitPriceDate, double intitialPrice)
+    public Company(String name, String companyCode, double unitCount, double costPrice, int targetPercentage, double currentUnitPrice, Date currentUnitPriceDate, double initialPrice)
     {
         this.name = name;
         this.companyCode = companyCode;
@@ -96,7 +96,7 @@ public class Company implements Parcelable {
         this.targetPercentage = targetPercentage;
         this.currentUnitPrice = currentUnitPrice;
         this.currentUnitPriceDate = currentUnitPriceDate;
-        this.intitialPrice = intitialPrice;
+        this.initialPrice = initialPrice;
     }
 
     public Company(Company c)
@@ -108,7 +108,7 @@ public class Company implements Parcelable {
         this.targetPercentage = c.targetPercentage;
         this.currentUnitPrice = c.currentUnitPrice;
         this.currentUnitPriceDate = c.currentUnitPriceDate;
-        this.intitialPrice = c.intitialPrice;
+        this.initialPrice = c.initialPrice;
     }
 
     //-----------------------------Methods-----------------------------
@@ -118,9 +118,15 @@ public class Company implements Parcelable {
         return this.costPrice * this.unitCount;
     }
 
-    public double getGrowth()
+    public double getPriceGrowth()
     {
-        return this.currentUnitPrice - this.intitialPrice;
+        return this.currentUnitPrice - this.initialPrice;
+    }
+
+    public double getPercentageGrowth()
+    {
+        double growth = ((this.currentUnitPrice/this.initialPrice)-1)*10;
+        return growth;
     }
 
     //-----------------------------Implemented Parcelable Constructor/Methods-----------------------------
@@ -138,7 +144,7 @@ public class Company implements Parcelable {
         dest.writeDouble(this.costPrice);
         dest.writeInt(this.targetPercentage);
         dest.writeDouble(this.currentUnitPrice);
-        dest.writeDouble(this.intitialPrice);
+        dest.writeDouble(this.initialPrice);
         dest.writeLong(this.currentUnitPriceDate != null ? this.currentUnitPriceDate.getTime() : -1);
     }
 
@@ -149,7 +155,7 @@ public class Company implements Parcelable {
         this.costPrice = in.readDouble();
         this.targetPercentage = in.readInt();
         this.currentUnitPrice = in.readDouble();
-        this.intitialPrice = in.readDouble();
+        this.initialPrice = in.readDouble();
         long tmpCurrentUnitPriceDate = in.readLong();
         this.currentUnitPriceDate = tmpCurrentUnitPriceDate == -1 ? null : new Date(tmpCurrentUnitPriceDate);
     }

@@ -110,9 +110,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_alignParentTop="true"
                     android:layout_marginRight="10dip"
-                    android:background="@drawable/ic_settings"
-                    android:clickable="true"
-                    android:focusable="true"/>
+                    android:background="@drawable/ic_settings"/>
             </RelativeLayout>
 
             <!-- Companies List -->
