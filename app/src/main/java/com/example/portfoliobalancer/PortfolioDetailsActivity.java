@@ -1,7 +1,6 @@
 package com.example.portfoliobalancer;
 
 import android.content.Context;
-import android.media.Image;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -60,7 +59,7 @@ public class PortfolioDetailsActivity extends AppCompatActivity {
             companiesListView.setHasFixedSize(true);
 
             //Initialize the Portfolios adapter, which binds the data to the entry view
-            PortfoliosAdapter adapter = new CompanyAdapter(this, R.layout.company_entry, portfolio.getCompanies());
+            PortfoliosAdapter adapter = new CompaniesAdapter(this, R.layout.company_entry, portfolio.getCompanies());
 
             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
 

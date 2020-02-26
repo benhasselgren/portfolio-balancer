@@ -1,4 +1,4 @@
 package com.example.portfoliobalancer;
 
-public class CompanyAdapter {
+public class CompaniesHolder {
 }
