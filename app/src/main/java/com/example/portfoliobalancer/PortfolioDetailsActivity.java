@@ -60,7 +60,7 @@ public class PortfolioDetailsActivity extends AppCompatActivity {
             companiesListView.setHasFixedSize(true);
 
             //Initialize the Portfolios adapter, which binds the data to the entry view
-            PortfoliosAdapter adapter = new PortfoliosAdapter(this, R.layout.company_entry, portfolio.getCompanies());
+            PortfoliosAdapter adapter = new CompanyAdapter(this, R.layout.company_entry, portfolio.getCompanies());
 
             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
 
