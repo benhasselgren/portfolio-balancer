@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         context = getApplicationContext();
 
         //SharedPreferences pref = getApplicationContext().getSharedPreferences("shared preferences", MODE_PRIVATE);
-       // Editor editor = pref.edit();
+        //Editor editor = pref.edit();
 
         //editor.clear();
         //editor.commit();
@@ -54,24 +54,6 @@ public class MainActivity extends AppCompatActivity {
         userData = new UserData();
 
         userData.loadUserData(context);
-
-        //If the user has come from the portfolio settings activity then add new portfolio and save it to the device
-        //Assign the intent parcelable extra to a variable
-        String previousActivity= getIntent().getStringExtra("FROM_ACTIVITY");
-        if (previousActivity != null)
-        {
-            if (previousActivity.equals("portfolio_settings"))
-            {
-                Portfolio newPortfolio = (Portfolio) getIntent().getParcelableExtra("portfolio");
-                if (newPortfolio != null)
-                {
-                    userData.addPortfolio(newPortfolio);
-
-                    // ########## SAVE PORTFOLIOS HERE ##########
-                    userData.saveUserData(context);
-                }
-            }
-        }
 
         if(userData.getPortfolios() != null || userData.getPortfolios().size() == 0)
         {

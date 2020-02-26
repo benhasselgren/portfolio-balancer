@@ -54,6 +54,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/portfolio_current_price_title"
+                    android:layout_marginTop="5dip"
                     android:text="@string/title_test_portfolio"
                     android:textColor="@color/textColorAssetGrowth"
                     android:textSize="16sp"
