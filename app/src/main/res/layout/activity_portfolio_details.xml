@@ -18,18 +18,97 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-            <TextView
-                android:id="@+id/portfolio_info_title"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:textAppearance="?android:attr/textAppearanceLarge"/>
-            <TextView
-                android:id="@+id/portfolio_info_description"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:textAppearance="?android:attr/textAppearanceLarge"/>
+                android:paddingLeft="10dip"
+                android:paddingTop="10dip"
+                android:background="@color/colorDarkBackground"
+                android:orientation="horizontal">
+
+                <!-- +++++++++++++++++++++++ Left align +++++++++++++++++++++++ -->
+                <!-- Portfolio current price -->
+                <TextView
+                    android:id="@+id/portfolio_current_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_test_portfolio"
+                    android:textColor="@color/textColorHighlight"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <!-- Portfolio current price title -->
+                <TextView
+                    android:id="@+id/portfolio_current_price_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/portfolio_current_price"
+                    android:text="@string/title_test_portfolio"
+                    android:textColor="@color/textColorSubHeading"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <!-- Portfolio growth -->
+                <TextView
+                    android:id="@+id/portfolio_growth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/portfolio_current_price_title"
+                    android:text="@string/title_test_portfolio"
+                    android:textColor="@color/textColorAssetGrowth"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <!-- Portfolio growth title -->
+                <TextView
+                    android:id="@+id/portfolio_growth_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/portfolio_growth"
+                    android:text="@string/title_test_portfolio"
+                    android:textColor="@color/textColorSubHeading"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <!-- Portfolio last rebalanced date -->
+                <TextView
+                    android:id="@+id/entry_portfolio_last_rebalanced"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_below="@id/portfolio_growth_title"
+                    android:layout_marginTop="50dip"
+                    android:paddingBottom="10dip"
+                    android:text="@string/title_test_portfolio"
+                    android:textColor="@color/textColorSubHeading"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <!-- +++++++++++++++++++++++ Right align +++++++++++++++++++++++ -->
+
+                <!-- Rebalance/Create portfolio button-->
+                <Button
+                    android:id="@+id/portfolio_rebalance_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/textColorSubHeading"
+                    android:paddingLeft="20dip"
+                    android:paddingRight="20dip"
+                    android:text="@string/rebalance_btn"
+                    android:textColor="@color/textColorHighlight" />
+
+                <!-- Portfolio settings button-->
+                <Button
+                    android:id="@+id/portfolio_settings"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:text="@string/rebalance_btn"
+                    android:textColor="@color/textColorHighlight" />
+            </RelativeLayout>
         </LinearLayout>
     </ScrollView>
 
