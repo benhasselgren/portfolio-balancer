@@ -137,19 +137,24 @@ public class Portfolio implements Parcelable
         return 0;
     }
 
+    public double getGrowth()
+    {
+        return this.currentPrice - this.initialPrice;
+    }
+
     public void balancePortfolio()
     {
         //Get the current date
         Date date = Calendar.getInstance().getTime();
 
         //Set the current price date of the portfolio
-        this.setCurrentPriceDate(date);
+        this.currentPriceDate = date;
 
         //Balance the portfolio by diving the portfolios equity among the companies (using the target percentages)
         for(Company c : companies)
         {
             //Get the available amount to invest based on target percentage ( [targetPercentage/100] * current price of portfolio)
-            double c_investment_sum = (c.getTargetPercentage()/100.00) * this.getCurrentPrice();
+            double c_investment_sum = (c.getTargetPercentage()/100.00) * this.currentPrice;
 
             //Set the unit count by dividing the cost of the company by the available amount to invest
             c.setUnitCount(c_investment_sum/c.getCostPrice());
