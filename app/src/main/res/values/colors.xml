@@ -8,6 +8,7 @@
     <!--Background Colours-->
     <color name="colorMainBackground">#D1D1D1</color>
     <color name="colorEntryBackground">#FFFFFF</color>
+    <color name="colorDarkBackground">#203B53</color>
 
     <!--Text Colours-->
     <color name="textColorAssetGrowth">#34AAF1</color>

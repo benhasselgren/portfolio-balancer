@@ -13,11 +13,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.portfoliobalancer.background_tasks.BalanceTask;
 import com.example.portfoliobalancer.business_logic_classes.Portfolio;
 import com.example.portfoliobalancer.business_logic_classes.Validation;
-
-import java.util.Calendar;
-import java.util.Date;
 
 //######################-----------------------------PortfoliosSettingsActivityClass-----------------------------######################
 //XML file: activity_portfolio_settings.xml
