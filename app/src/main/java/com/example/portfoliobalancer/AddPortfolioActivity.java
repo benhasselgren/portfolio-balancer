@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputFilter;
 
+import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -41,12 +42,25 @@ public class AddPortfolioActivity extends AppCompatActivity {
                 new InputFilter.LengthFilter(15)
         });
 
+        // Programmatically enable the EditText to sentence first letter capitalization
+        name.setInputType(
+                InputType.TYPE_CLASS_TEXT|
+                        InputType.TYPE_TEXT_FLAG_CAP_SENTENCES
+        );
+
         //Assigns the description field to a variable and adds validation
         description = (EditText) findViewById(R.id.add_portfolio_description_input);
 
         description.setFilters(new InputFilter[] {
                 new InputFilter.LengthFilter(30)
         });
+
+        // Programmatically enable the EditText to sentence first letter capitalization
+        description.setInputType(
+                InputType.TYPE_CLASS_TEXT|
+                        InputType.TYPE_TEXT_FLAG_CAP_SENTENCES
+        );
+
 
         //Assigns the amount field to a variable
         amount = (EditText) findViewById(R.id.add_portfolio_amount_input);

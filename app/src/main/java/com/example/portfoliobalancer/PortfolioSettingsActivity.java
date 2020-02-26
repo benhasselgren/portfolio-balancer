@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.InputFilter;
+import android.text.InputType;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -52,8 +54,31 @@ public class PortfolioSettingsActivity extends AppCompatActivity  {
         //Add views
         portfoliosTargetPercentagesListView = (RecyclerView)findViewById(R.id.portfolios_target_percentages_list);
         totalPercentage = (TextView)findViewById(R.id.portfolio_target_percentage_total);
+
         name = (EditText)findViewById(R.id.portfolio_name_input);
+
+        //Set filter
+        name.setFilters(new InputFilter[] {
+                new InputFilter.LengthFilter(15)
+        });
+
+        // Programmatically enable the EditText to sentence first letter capitalization
+        name.setInputType(
+                InputType.TYPE_CLASS_TEXT|
+                        InputType.TYPE_TEXT_FLAG_CAP_SENTENCES
+        );
+
         description = (EditText)findViewById(R.id.portfolio_description_input);
+        //set description filter
+        description.setFilters(new InputFilter[] {
+                new InputFilter.LengthFilter(30)
+        });
+        // Programmatically enable the EditText to sentence first letter capitalization
+        description.setInputType(
+                InputType.TYPE_CLASS_TEXT|
+                        InputType.TYPE_TEXT_FLAG_CAP_SENTENCES
+        );
+
         amount = (EditText)findViewById(R.id.portfolio_amount_input);
         rebalance_create_btn = (Button) findViewById(R.id.rebalance_create__btn);
 
