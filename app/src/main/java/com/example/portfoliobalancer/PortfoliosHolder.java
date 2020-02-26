@@ -86,12 +86,12 @@ public class PortfoliosHolder extends RecyclerView.ViewHolder implements View.On
         if(portfolio.getGrowth() > 0)
         {
             growth.setTextColor(ContextCompat.getColor(context, R.color.textColorAssetGrowth));
-            growth.setText(String.format("+£%.2f(0.0%%)", portfolio.getCurrentPrice()));
+            growth.setText(String.format("+£%.2f(0.0%%)", portfolio.getGrowth()));
         }
         else if (portfolio.getGrowth() < 0)
         {
             growth.setTextColor(ContextCompat.getColor(context, R.color.textColorAssetDecline));
-            growth.setText(String.format("+£%.2f(0.0%%)", portfolio.getCurrentPrice()));
+            growth.setText(String.format("+£%.2f(0.0%%)", portfolio.getGrowth()));
         }
         else {
             growth.setTextColor(ContextCompat.getColor(context, R.color.textColorAsset));
