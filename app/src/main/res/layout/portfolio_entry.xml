@@ -57,6 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
+        android:gravity="right"
         android:orientation="vertical" >
         <!-- Portfolio unbalanced-->
         <TextView
