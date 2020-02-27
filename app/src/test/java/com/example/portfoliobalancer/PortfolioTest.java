@@ -1,8 +1,11 @@
 package com.example.portfoliobalancer;
 
+import com.example.portfoliobalancer.business_logic_classes.Company;
 import com.example.portfoliobalancer.business_logic_classes.Portfolio;
 
 import org.junit.Test;
+
+import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
@@ -18,12 +21,142 @@ public class PortfolioTest {
     @Test
     public void getCurrentPriceTestNewPortfolio() {
 
-        double expectedValue = 100;
+        double expected = 100;
 
-        Portfolio p = new Portfolio(1, "TestPortfolio", "test description", null, expectedValue, expectedValue, null, true, null, 10);
+        ArrayList<Company>companies=new ArrayList<Company>();
 
-        double actualValue = p.getCurrentPrice(true);
+        Portfolio p = new Portfolio(1, "TestPortfolio", "test description", companies, expected, expected, null, true, null, 10);
 
-        assertEquals(p);
+        double actual = p.getCurrentPrice(true);
+
+        assertEquals(expected, actual, 0);
+    }
+
+    @Test
+    public void getCurrentPriceTestPortfolio() {
+
+        double expected = 25;
+        ArrayList<Company>companies=new ArrayList<Company>();
+
+        Company c1 = new Company("Apple", "APPL", 2.5, 5, 50, 10, null, 5);
+        Company c2 = new Company("Microsoft", "MSFT", 2.5, 5, 50, 10, null, 5);
+
+        Portfolio p = new Portfolio(1, "TestPortfolio", "test description", companies, expected, expected, null, true, null, 10);
+        p.addCompany(c1);
+        p.addCompany(c2);
+
+        double actual = p.getCurrentPrice(false);
+
+        assertEquals(expected, actual, 0);
+    }
+
+    /**
+     * Test getTotalPercentage method
+     */
+
+    @Test
+    public void getTotalPercentageTest() {
+
+        int expected = 100;
+        ArrayList<Company>companies=new ArrayList<Company>();
+
+        Company c1 = new Company("Apple", "APPL", 2.5, 5, 50, 10, null, 5);
+        Company c2 = new Company("Microsoft", "MSFT", 2.5, 5, 50, 10, null, 5);
+
+        Portfolio p = new Portfolio(1, "TestPortfolio", "test description", companies, expected, expected, null, true, null, 10);
+        p.addCompany(c1);
+        p.addCompany(c2);
+
+        int actual = p.getTotalPercentage();
+
+        assertEquals(expected, actual, 0);
+    }
+
+    /**
+     * Test getPriceGrowth method
+     */
+    @Test
+    public void getPriceGrowthTestNoGrowth() {
+
+        double expected = 0;
+        ArrayList<Company>companies=new ArrayList<Company>();
+
+        Company c1 = new Company("Apple", "APPL", 2.5, 5, 50, 10, null, 5);
+        Company c2 = new Company("Microsoft", "MSFT", 2.5, 5, 50, 10, null, 5);
+
+        Portfolio p = new Portfolio(1, "TestPortfolio", "test description", companies, 25, 25, null, true, null, 10);
+        p.addCompany(c1);
+        p.addCompany(c2);
+
+        double actual = p.getPriceGrowth();
+
+        assertEquals(expected, actual, 0);
+    }
+
+    @Test
+    public void getPriceGrowthTestGrowth() {
+
+        double expected = 25;
+        ArrayList<Company>companies=new ArrayList<Company>();
+
+        Company c1 = new Company("Apple", "APPL", 2.5, 5, 50, 10, null, 10);
+        Company c2 = new Company("Microsoft", "MSFT", 2.5, 5, 50, 10, null, 10);
+
+        Portfolio p = new Portfolio(1, "TestPortfolio", "test description", companies, 25, 25, null, true, null, 10);
+        p.addCompany(c1);
+        p.addCompany(c2);
+
+        for(Company c : companies)
+        {
+            c.setCostPrice(10);
+        }
+
+        double actual = p.getPriceGrowth();
+
+        assertEquals(expected, actual, 0);
+    }
+
+    /**
+     * Test getPercentageGrowth method
+     */
+    @Test
+    public void getPercentageGrowthTestNoGrowth() {
+
+        double expected = 0;
+        ArrayList<Company>companies=new ArrayList<Company>();
+
+        Company c1 = new Company("Apple", "APPL", 2.5, 5, 50, 10, null, 5);
+        Company c2 = new Company("Microsoft", "MSFT", 2.5, 5, 50, 10, null, 5);
+
+        Portfolio p = new Portfolio(1, "TestPortfolio", "test description", companies, 25, 25, null, true, null, 10);
+        p.addCompany(c1);
+        p.addCompany(c2);
+
+        double actual = p.getPercentageGrowth();
+
+        assertEquals(expected, actual, 0);
+    }
+
+    @Test
+    public void getPercentageGrowthTestGrowth() {
+
+        double expected = 10;
+        ArrayList<Company>companies=new ArrayList<Company>();
+
+        Company c1 = new Company("Apple", "APPL", 2.5, 5, 50, 10, null, 10);
+        Company c2 = new Company("Microsoft", "MSFT", 2.5, 5, 50, 10, null, 10);
+
+        Portfolio p = new Portfolio(1, "TestPortfolio", "test description", companies, 25, 25, null, true, null, 10);
+        p.addCompany(c1);
+        p.addCompany(c2);
+
+        for(Company c : companies)
+        {
+            c.setCostPrice(10);
+        }
+
+        double actual = p.getPercentageGrowth();
+
+        assertEquals(expected, actual, 0);
     }
 }

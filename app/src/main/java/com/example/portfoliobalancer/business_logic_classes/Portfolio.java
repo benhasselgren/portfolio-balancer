@@ -179,12 +179,12 @@ public class Portfolio implements Parcelable
 
     public double getPriceGrowth()
     {
-        return this.currentPrice - this.initialPrice;
+        return this.getCurrentPrice(false) - this.initialPrice;
     }
 
     public double getPercentageGrowth()
     {
-        double growth = ((this.currentPrice/this.initialPrice)-1)*10;
+        double growth = ((this.getCurrentPrice(false)/this.initialPrice)-1)*10;
         return growth;
     }
 
