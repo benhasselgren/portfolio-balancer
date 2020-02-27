@@ -168,7 +168,6 @@ public class PortfolioSettingsActivity extends AppCompatActivity  {
         portfolio.setName(nameString);
         portfolio.setDescription(descriptionString);
         portfolio.setInitialPrice(Double.parseDouble(amountString));
-        portfolio.setCurrentPrice(Double.parseDouble(amountString));
 
         // Initialize the progress dialog
         progressDialog = new ProgressDialog(PortfolioSettingsActivity.this);

@@ -18,7 +18,6 @@ public class Portfolio implements Parcelable
     private String name;
     private String description;
     private List<Company> companies = new ArrayList<Company>();
-    private double currentPrice;
     private double initialPrice;
     private Date lastRebalanced;
     private boolean balanced;
@@ -68,10 +67,6 @@ public class Portfolio implements Parcelable
         this.initialPrice = initialPrice;
     }
 
-    public void setCurrentPrice(double currentPrice) {
-        this.currentPrice = currentPrice;
-    }
-
     public Date getLastRebalanced() {
         return lastRebalanced;
     }
@@ -108,13 +103,12 @@ public class Portfolio implements Parcelable
 
     public Portfolio(){}
 
-    public Portfolio(int id, String name, String description, List<Company> companies, double currentPrice, double initialPrice, Date lastRebalanced, boolean balanced, Date currentPriceDate, int percentageChangeLimit)
+    public Portfolio(int id, String name, String description, List<Company> companies, double initialPrice, Date lastRebalanced, boolean balanced, Date currentPriceDate, int percentageChangeLimit)
     {
         this.id = id;
         this.name = name;
         this.description = description;
         this.companies = companies;
-        this.currentPrice = currentPrice;
         this.initialPrice = initialPrice;
         this.lastRebalanced = lastRebalanced;
         this.balanced = balanced;
@@ -128,7 +122,6 @@ public class Portfolio implements Parcelable
         this.name = p.name;
         this.description = p.description;
         this.companies = p.companies;
-        this.currentPrice = p.currentPrice;
         this.initialPrice = p.initialPrice;
         this.lastRebalanced = p.lastRebalanced;
         this.balanced = p.balanced;
@@ -152,7 +145,7 @@ public class Portfolio implements Parcelable
     {
         if(newPortfolio)
         {
-            return this.currentPrice;
+            return this.initialPrice;
         }
         else
         {
@@ -195,12 +188,20 @@ public class Portfolio implements Parcelable
 
         //Set the current price date of the portfolio
         this.currentPriceDate = date;
+        //Declare the company investment sum
+        double c_investment_sum;
 
         //Balance the portfolio by diving the portfolios equity among the companies (using the target percentages)
         for(Company c : companies)
         {
             //Get the available amount to invest based on target percentage ( [targetPercentage/100] * current price of portfolio)
-            double c_investment_sum = (c.getTargetPercentage()/100.00) * this.currentPrice;
+            if(newPortfolio) {
+                c_investment_sum = (c.getTargetPercentage() / 100.00) * this.getCurrentPrice(true);
+            }
+            else
+            {
+                c_investment_sum = (c.getTargetPercentage() / 100.00) * this.getCurrentPrice(false);
+            }
 
             //Set the unit count by dividing the cost of the company by the available amount to invest
             c.setUnitCount(c_investment_sum/c.getCostPrice());
@@ -263,7 +264,6 @@ public class Portfolio implements Parcelable
         dest.writeString(this.name);
         dest.writeString(this.description);
         dest.writeTypedList(this.companies);
-        dest.writeDouble(this.currentPrice);
         dest.writeDouble(this.initialPrice);
         dest.writeLong(this.lastRebalanced != null ? this.lastRebalanced.getTime() : -1);
         dest.writeByte(this.balanced ? (byte) 1 : (byte) 0);
@@ -276,7 +276,6 @@ public class Portfolio implements Parcelable
         this.name = in.readString();
         this.description = in.readString();
         this.companies = in.createTypedArrayList(Company.CREATOR);
-        this.currentPrice = in.readDouble();
         this.initialPrice = in.readDouble();
         long tmpLastRebalanced = in.readLong();
         this.lastRebalanced = tmpLastRebalanced == -1 ? null : new Date(tmpLastRebalanced);

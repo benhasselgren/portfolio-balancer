@@ -113,7 +113,6 @@ public class AddPortfolioActivity extends AppCompatActivity {
         p.setName(nameString);
         p.setDescription(descriptionString);
         p.setInitialPrice(Double.parseDouble(amountString));
-        p.setCurrentPrice(Double.parseDouble(amountString));
         p.setPercentageChangeLimit(PERCENTAGE_CHANGE_LIMIT);
 
         return p;

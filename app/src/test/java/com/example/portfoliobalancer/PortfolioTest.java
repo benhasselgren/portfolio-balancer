@@ -25,7 +25,7 @@ public class PortfolioTest {
 
         ArrayList<Company>companies=new ArrayList<Company>();
 
-        Portfolio p = new Portfolio(1, "TestPortfolio", "test description", companies, expected, expected, null, true, null, 10);
+        Portfolio p = new Portfolio(1, "TestPortfolio", "test description", companies, expected, null, true, null, 10);
 
         double actual = p.getCurrentPrice(true);
 
@@ -41,7 +41,7 @@ public class PortfolioTest {
         Company c1 = new Company("Apple", "APPL", 2.5, 5, 50, 10, null, 5);
         Company c2 = new Company("Microsoft", "MSFT", 2.5, 5, 50, 10, null, 5);
 
-        Portfolio p = new Portfolio(1, "TestPortfolio", "test description", companies, expected, expected, null, true, null, 10);
+        Portfolio p = new Portfolio(1, "TestPortfolio", "test description", companies, expected, null, true, null, 10);
         p.addCompany(c1);
         p.addCompany(c2);
 
@@ -63,7 +63,7 @@ public class PortfolioTest {
         Company c1 = new Company("Apple", "APPL", 2.5, 5, 50, 10, null, 5);
         Company c2 = new Company("Microsoft", "MSFT", 2.5, 5, 50, 10, null, 5);
 
-        Portfolio p = new Portfolio(1, "TestPortfolio", "test description", companies, expected, expected, null, true, null, 10);
+        Portfolio p = new Portfolio(1, "TestPortfolio", "test description", companies, expected, null, true, null, 10);
         p.addCompany(c1);
         p.addCompany(c2);
 
@@ -84,7 +84,7 @@ public class PortfolioTest {
         Company c1 = new Company("Apple", "APPL", 2.5, 5, 50, 10, null, 5);
         Company c2 = new Company("Microsoft", "MSFT", 2.5, 5, 50, 10, null, 5);
 
-        Portfolio p = new Portfolio(1, "TestPortfolio", "test description", companies, 25, 25, null, true, null, 10);
+        Portfolio p = new Portfolio(1, "TestPortfolio", "test description", companies, 25, null, true, null, 10);
         p.addCompany(c1);
         p.addCompany(c2);
 
@@ -102,7 +102,7 @@ public class PortfolioTest {
         Company c1 = new Company("Apple", "APPL", 2.5, 5, 50, 10, null, 10);
         Company c2 = new Company("Microsoft", "MSFT", 2.5, 5, 50, 10, null, 10);
 
-        Portfolio p = new Portfolio(1, "TestPortfolio", "test description", companies, 25, 25, null, true, null, 10);
+        Portfolio p = new Portfolio(1, "TestPortfolio", "test description", companies, 25, null, true, null, 10);
         p.addCompany(c1);
         p.addCompany(c2);
 
@@ -128,7 +128,7 @@ public class PortfolioTest {
         Company c1 = new Company("Apple", "APPL", 2.5, 5, 50, 10, null, 5);
         Company c2 = new Company("Microsoft", "MSFT", 2.5, 5, 50, 10, null, 5);
 
-        Portfolio p = new Portfolio(1, "TestPortfolio", "test description", companies, 25, 25, null, true, null, 10);
+        Portfolio p = new Portfolio(1, "TestPortfolio", "test description", companies, 25, null, true, null, 10);
         p.addCompany(c1);
         p.addCompany(c2);
 
@@ -146,7 +146,7 @@ public class PortfolioTest {
         Company c1 = new Company("Apple", "APPL", 2.5, 5, 50, 10, null, 10);
         Company c2 = new Company("Microsoft", "MSFT", 2.5, 5, 50, 10, null, 10);
 
-        Portfolio p = new Portfolio(1, "TestPortfolio", "test description", companies, 25, 25, null, true, null, 10);
+        Portfolio p = new Portfolio(1, "TestPortfolio", "test description", companies, 25, null, true, null, 10);
         p.addCompany(c1);
         p.addCompany(c2);
 
@@ -158,5 +158,60 @@ public class PortfolioTest {
         double actual = p.getPercentageGrowth();
 
         assertEquals(expected, actual, 0);
+    }
+
+    /**
+     * Test checkPorfolioisBalanced method
+     */
+    @Test
+    public void balancePortfolioTestNotBalanced() {
+
+        boolean expected = false;
+        ArrayList<Company>companies=new ArrayList<Company>();
+
+        Company c1 = new Company("Apple", "APPL", 2.5, 5, 50, 10, null, 5);
+        Company c2 = new Company("Microsoft", "MSFT", 2.5, 5, 50, 10, null, 5);
+
+        Portfolio p = new Portfolio(1, "TestPortfolio", "test description", companies, 25, null, true, null, 10);
+        p.addCompany(c1);
+        p.addCompany(c2);
+
+        Company c3 = new Company("Apple", "APPL", 2.5, 10, 50, 10, null, 5);
+        Company c4 = new Company("Microsoft", "MSFT", 2.5, 10, 50, 10, null, 5);
+
+        companies.add(c3);
+        companies.add(c4);
+
+        p.checkPortfolioIsBalanced(companies);
+
+        boolean actual = p.isBalanced();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void balancePortfolioTestBalanced() {
+
+        boolean expected = true;
+        ArrayList<Company>companies=new ArrayList<Company>();
+
+        Company c1 = new Company("Apple", "APPL", 2.5, 5, 50, 10, null, 5);
+        Company c2 = new Company("Microsoft", "MSFT", 2.5, 5, 50, 10, null, 5);
+
+        Portfolio p = new Portfolio(1, "TestPortfolio", "test description", companies, 25, null, true, null, 10);
+        p.addCompany(c1);
+        p.addCompany(c2);
+
+        Company c3 = new Company("Apple", "APPL", 2.5, 5, 50, 10, null, 5);
+        Company c4 = new Company("Microsoft", "MSFT", 2.5, 5, 50, 10, null, 5);
+
+        companies.add(c3);
+        companies.add(c4);
+
+        p.checkPortfolioIsBalanced(companies);
+
+        boolean actual = p.isBalanced();
+
+        assertEquals(expected, actual);
     }
 }
