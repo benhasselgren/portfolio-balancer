@@ -103,6 +103,12 @@ public class PortfolioDetailsActivity extends AppCompatActivity {
             if(!portfolio.isBalanced())
             {
                 rebalanceBtn.setBackgroundColor(ContextCompat.getColor(context, R.color.textColorAssetGrowth));
+                rebalanceBtn.setEnabled(true);
+            }
+            else
+            {
+                //Disable button if it is balanced
+                rebalanceBtn.setEnabled(false);
             }
 
             //-----------------------------Event Listener Methods-----------------------------

@@ -185,7 +185,15 @@ public class Portfolio implements Parcelable
     {
         //Get the current date
         Date date = Calendar.getInstance().getTime();
-
+        //Get the current unitPrice of portfolio
+        double p_currentUnitPrice;
+        if(newPortfolio) {
+            p_currentUnitPrice = this.getCurrentPrice(true);
+        }
+        else
+        {
+            p_currentUnitPrice = this.getCurrentPrice(false);
+        }
         //Set the current price date of the portfolio
         this.currentPriceDate = date;
         //Declare the company investment sum
@@ -195,13 +203,7 @@ public class Portfolio implements Parcelable
         for(Company c : companies)
         {
             //Get the available amount to invest based on target percentage ( [targetPercentage/100] * current price of portfolio)
-            if(newPortfolio) {
-                c_investment_sum = (c.getTargetPercentage() / 100.00) * this.getCurrentPrice(true);
-            }
-            else
-            {
-                c_investment_sum = (c.getTargetPercentage() / 100.00) * this.getCurrentPrice(false);
-            }
+            c_investment_sum = (c.getTargetPercentage() / 100.00) * p_currentUnitPrice;
 
             //Set the unit count by dividing the cost of the company by the available amount to invest
             c.setUnitCount(c_investment_sum/c.getCostPrice());
