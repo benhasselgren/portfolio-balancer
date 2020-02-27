@@ -55,10 +55,14 @@ public class MainActivity extends AppCompatActivity {
 
         userData.loadUserData(context);
 
-        userData.checkPortfoliosAreBalanced(getResources().getStringArray(R.array.companies));
-
         if(userData.getPortfolios() != null || userData.getPortfolios().size() == 0)
         {
+            //Is portfolios exist then check they are still balanced
+            if(userData.getPortfolios().size() > 0)
+            {
+                userData.checkPortfoliosAreBalanced(getResources().getStringArray(R.array.companies));
+            }
+
             //Add views
             add_portfolio_btn = (Button)findViewById(R.id.add_portfolio_btn);
 
