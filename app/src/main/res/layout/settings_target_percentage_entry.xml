@@ -14,13 +14,19 @@
         android:layout_height="wrap_content"
         android:text="@string/target_percentages_total"
         android:textColor="@color/textColorHeading"
-        android:textSize="18sp"
+        android:textSize="15sp"
         android:textStyle="bold" />
     <!-- Company target percentage seekbar -->
     <SeekBar
         android:id="@+id/entry_company_target_percentage_seekBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingTop="10px"
+        android:paddingBottom="10px"
+        android:paddingLeft="30px"
+        android:paddingRight="30px"
+        android:minHeight="6dip"
+        android:maxHeight="6dip"
         android:layout_below="@id/entry_company_name" />
 
     <!-- +++++++++++++++++++++++ Right align +++++++++++++++++++++++ -->
