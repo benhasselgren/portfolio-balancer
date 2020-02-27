@@ -80,7 +80,7 @@ public class CompaniesHolder extends RecyclerView.ViewHolder implements View.OnC
     }
 
     //-----------------------------Event Listener Methods----------------------------
-    //Triggered when a user clicks a portfolio
+    //Triggered when a user clicks a company
     @Override
     public void onClick(View v) {
         if (company != null) {

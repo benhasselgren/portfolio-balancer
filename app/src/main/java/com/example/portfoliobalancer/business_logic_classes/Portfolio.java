@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Date;
+import java.lang.Math;
 
 //######################-----------------------------PortfolioClass-----------------------------######################
 //Parcelable class that hold details about a portfolio
@@ -137,6 +138,16 @@ public class Portfolio implements Parcelable
 
     //-----------------------------Methods-----------------------------
 
+    public void addCompany(Company c)
+    {
+        this.companies.add(c);
+    }
+
+    public void removeCompany(Company c)
+    {
+        this.companies.remove(c);
+    }
+
     public double getCurrentPrice(Boolean newPortfolio)
     {
         if(newPortfolio)
@@ -156,9 +167,14 @@ public class Portfolio implements Parcelable
         }
     }
 
-    public double getPriceDifference()
+    public int getTotalPercentage()
     {
-        return 0;
+        int total = 0;
+        for(Company c : companies)
+        {
+            total += c.getTargetPercentage();
+        }
+        return total;
     }
 
     public double getPriceGrowth()
@@ -172,7 +188,7 @@ public class Portfolio implements Parcelable
         return growth;
     }
 
-    public void balancePortfolio()
+    public void balancePortfolio(boolean newPortfolio)
     {
         //Get the current date
         Date date = Calendar.getInstance().getTime();
@@ -190,7 +206,11 @@ public class Portfolio implements Parcelable
             c.setUnitCount(c_investment_sum/c.getCostPrice());
             //Set the current unit price by calling the getUnitPrice method
             c.setCurrentUnitPrice(c.getCurrentUnitPrice());
-            c.setInitialPrice(c.getCurrentUnitPrice());
+            //Set the intitial price to the current unit price if it's a new portfolio
+            if(newPortfolio)
+            {
+                c.setInitialPrice(c.getCurrentUnitPrice());
+            }
             //Set the current unit price date of the company
             c.setCurrentUnitPriceDate(date);
         }
@@ -202,24 +222,31 @@ public class Portfolio implements Parcelable
         this.setLastRebalanced(date);
     }
 
-    public void addCompany(Company c)
+    public void checkPortfolioIsBalanced(List<Company> updatedCompanies)
     {
-        this.companies.add(c);
-    }
+        int totalPercentageChange = 0;
+        for(Company c : this.companies) {
 
-    public void removeCompany(Company c)
-    {
-        this.companies.remove(c);
-    }
-
-    public int getTotalPercentage()
-    {
-        int total = 0;
-        for(Company c : companies)
-        {
-            total += c.getTargetPercentage();
+            //Find the updated company price and set the company costPrice to the updated price
+            for(Company updatedCompany : updatedCompanies)
+            {
+                if (c.getCompanyCode().equals(updatedCompany.getCompanyCode()))
+                {
+                    c.setCostPrice(updatedCompany.getCostPrice());
+                    break;
+                }
+            }
+            //Calculate the current percentage of the portfolio that company takes
+            double currentPercentage = (c.getCurrentUnitPrice() / getCurrentPrice(false)) * 100;
+            //Calculate the difference between the target percentage and the current percentage and add it to totalPercentageChange
+            totalPercentageChange += Math.abs(c.getTargetPercentage() - currentPercentage);
         }
-        return total;
+
+        //If the total percentage change is greater than the percentage change limit, then set balanced to false
+        if(totalPercentageChange > this.percentageChangeLimit)
+        {
+            this.balanced = false;
+        }
     }
 
     //-----------------------------Implemented Parcelable Constructor/Methods-----------------------------

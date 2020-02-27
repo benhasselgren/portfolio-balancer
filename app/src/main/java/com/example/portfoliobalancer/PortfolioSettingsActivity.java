@@ -30,6 +30,7 @@ public class PortfolioSettingsActivity extends AppCompatActivity  {
     //Variables
     private Portfolio portfolio;
     Validation validation = new Validation();
+    private  String previousActivity;
     private BalanceTask balanceTask;
     //Views
     private RecyclerView portfoliosTargetPercentagesListView;
@@ -50,7 +51,7 @@ public class PortfolioSettingsActivity extends AppCompatActivity  {
         //Assign the intent parcelable extra to a variable
         portfolio = (Portfolio) getIntent().getParcelableExtra("portfolio");
         //Get the previous activity to customise activity to suit the action
-        String previousActivity= getIntent().getStringExtra("FROM_ACTIVITY");
+        previousActivity= getIntent().getStringExtra("FROM_ACTIVITY");
 
         //Add views
         portfoliosTargetPercentagesListView = (RecyclerView)findViewById(R.id.portfolios_target_percentages_list);
@@ -114,6 +115,7 @@ public class PortfolioSettingsActivity extends AppCompatActivity  {
             amount.setText(String.format("%.2f", portfolio.getCurrentPrice(false)));
         }
 
+        //-----------------------------EventListenerMethods-----------------------------
         //Triggers if rebalance/create button is clicked
         rebalance_create_btn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -123,7 +125,7 @@ public class PortfolioSettingsActivity extends AppCompatActivity  {
 
                 try
                 {
-                    //-------------------Check to see details are valid-------------------
+                    //-----------Check to see details are valid-----------
                     //Convert name and description to strings
                     String nameString = name.getText().toString().trim();
                     String descriptionString = description.getText().toString().trim();
@@ -133,7 +135,7 @@ public class PortfolioSettingsActivity extends AppCompatActivity  {
                     //Pass strings to validation method
                     validation.checkPortfolioDetailsValid(nameString, descriptionString, amountStringSplit[0]);
 
-                    //-------------------See if total of target percentages is equal too 100% -------------------
+                    //-----------See if total of target percentages is equal too 100%-----------
                     //If the total percentage is = 100 then save target percentages and go back to main activity
                     if(portfolio.getTotalPercentage() == 100)
                     {
@@ -141,7 +143,6 @@ public class PortfolioSettingsActivity extends AppCompatActivity  {
                         finalisePortfolio(nameString, descriptionString, amountString);
                         Intent intent = new Intent(PortfolioSettingsActivity.this, MainActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        intent.putExtra("FROM_ACTIVITY", "portfolio_settings");
                         intent.putExtra("portfolio", portfolio);
                         startActivity(intent);
                     }
@@ -184,11 +185,17 @@ public class PortfolioSettingsActivity extends AppCompatActivity  {
         progressDialog.show();
 
         //Balance portfolio
-        portfolio.balancePortfolio();
-
+        //Get previous activity to decide how to balance the portfolio
+        if (previousActivity.equals("add_company"))
+        {
+            portfolio.balancePortfolio(true);
+        }
+        else if (previousActivity.equals("portfolio_details"))
+        {
+            portfolio.balancePortfolio(false);
+        }
 
         //Load portfolios, check if this portfolio exists and add or update portfolio, then save portfolios
-
         //Load
         UserData ud = new UserData();
         ud.loadUserData(getApplicationContext());

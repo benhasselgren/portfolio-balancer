@@ -6,6 +6,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.widget.ArrayAdapter;
 
+import com.example.portfoliobalancer.R;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -102,6 +103,34 @@ public class UserData implements Parcelable
         editor.apply();
     }
 
+    public void checkPortfoliosAreBalanced(String[] strings)
+    {
+        ArrayList<Company> updatedCompanies = new ArrayList<>();
+        //Get the companies from the string array and add them to the companies strings array list
+        for(String s : strings)
+        {
+            String[] result = s.split(",");
+            String c_code = result[0];
+            String c_name = result[1];
+            Double c_price = Double.parseDouble(result[2]);
+
+            //Create a new company with the basic details
+            Company c = new Company();
+            c.setName(c_name);
+            c.setCompanyCode(c_code);
+            c.setCostPrice(c_price);
+
+            //Add company object to updated companies list
+            updatedCompanies.add(c);
+        }
+
+        for(Portfolio p : portfolios)
+        {
+            p.checkPortfolioIsBalanced(updatedCompanies);
+        }
+    }
+
+    //-----------------------------Implemented Parcelable Constructor/Methods-----------------------------
     @Override
     public int describeContents() {
         return 0;
