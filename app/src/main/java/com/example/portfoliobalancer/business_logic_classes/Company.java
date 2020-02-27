@@ -118,7 +118,7 @@ public class Company implements Parcelable {
 
     public double getPercentageGrowth()
     {
-        double growth = ((this.getCurrentUnitPrice()/this.initialPrice)-1)*10;
+        double growth = (getPriceGrowth()/this.initialPrice)*100;
         return growth;
     }
 

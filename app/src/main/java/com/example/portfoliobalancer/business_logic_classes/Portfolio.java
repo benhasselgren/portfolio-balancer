@@ -177,7 +177,7 @@ public class Portfolio implements Parcelable
 
     public double getPercentageGrowth()
     {
-        double growth = ((this.getCurrentPrice(false)/this.initialPrice)-1)*10;
+        double growth = (getPriceGrowth()/this.initialPrice)*100;
         return growth;
     }
 
@@ -223,29 +223,32 @@ public class Portfolio implements Parcelable
 
     public void checkPortfolioIsBalanced(List<Company> updatedCompanies)
     {
-        int totalPercentageChange = 0;
-
-        for(Company c : this.companies) {
-
-            //Find the updated company price and set the company costPrice to the updated price
-            for(Company updatedCompany : updatedCompanies)
-            {
-                if (c.getCompanyCode().equals(updatedCompany.getCompanyCode()))
-                {
-                    c.setCostPrice(updatedCompany.getCostPrice());
-                    break;
-                }
-            }
-            //Calculate the current percentage of the portfolio that company takes
-            double currentPercentage = (c.getCurrentUnitPrice() / getCurrentPrice(false)) * 100;
-            //Calculate the difference between the target percentage and the current percentage and add it to totalPercentageChange
-            totalPercentageChange += Math.abs(c.getTargetPercentage() - currentPercentage);
-        }
-
-        //If the total percentage change is greater than the percentage change limit, then set balanced to false
-        if(totalPercentageChange > this.percentageChangeLimit)
+        if(updatedCompanies!=null)
         {
-            this.balanced = false;
+            int totalPercentageChange = 0;
+
+            for(Company c : this.companies) {
+
+                //Find the updated company price and set the company costPrice to the updated price
+                for(Company updatedCompany : updatedCompanies)
+                {
+                    if (c.getCompanyCode().equals(updatedCompany.getCompanyCode()))
+                    {
+                        c.setCostPrice(updatedCompany.getCostPrice());
+                        break;
+                    }
+                }
+                //Calculate the current percentage of the portfolio that company takes
+                double currentPercentage = (c.getCurrentUnitPrice() / getCurrentPrice(false)) * 100;
+                //Calculate the difference between the target percentage and the current percentage and add it to totalPercentageChange
+                totalPercentageChange += Math.abs(c.getTargetPercentage() - currentPercentage);
+            }
+
+            //If the total percentage change is greater than the percentage change limit, then set balanced to false
+            if(totalPercentageChange > this.percentageChangeLimit)
+            {
+                this.balanced = false;
+            }
         }
     }
 
