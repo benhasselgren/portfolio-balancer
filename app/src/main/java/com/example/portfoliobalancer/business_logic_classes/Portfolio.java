@@ -225,6 +225,7 @@ public class Portfolio implements Parcelable
     public void checkPortfolioIsBalanced(List<Company> updatedCompanies)
     {
         int totalPercentageChange = 0;
+
         for(Company c : this.companies) {
 
             //Find the updated company price and set the company costPrice to the updated price

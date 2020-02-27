@@ -55,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
 
         userData.loadUserData(context);
 
+        userData.checkPortfoliosAreBalanced(getResources().getStringArray(R.array.companies));
+
         if(userData.getPortfolios() != null || userData.getPortfolios().size() == 0)
         {
             //Add views

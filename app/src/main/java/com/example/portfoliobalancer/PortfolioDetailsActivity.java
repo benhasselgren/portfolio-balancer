@@ -1,5 +1,6 @@
 package com.example.portfoliobalancer;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.content.ContextCompat;
@@ -14,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.portfoliobalancer.business_logic_classes.Portfolio;
+import com.example.portfoliobalancer.business_logic_classes.UserData;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -34,6 +36,7 @@ public class PortfolioDetailsActivity extends AppCompatActivity {
     private ImageButton settingsBtn;
     private Button rebalanceBtn;
     private RecyclerView companiesListView;
+    private ProgressDialog progressDialog;
 
     //-----------------------------On Create Method-----------------------------
     @Override
@@ -96,6 +99,12 @@ public class PortfolioDetailsActivity extends AppCompatActivity {
             String date = formatter.format(portfolio.getLastRebalanced());
             lastRebalanced.setText(String.format("Last rebalanced: %s", date));
 
+            //Set the rebalance button to active if it's unbalanced
+            if(!portfolio.isBalanced())
+            {
+                rebalanceBtn.setBackgroundColor(ContextCompat.getColor(context, R.color.textColorAssetGrowth));
+            }
+
             //-----------------------------Event Listener Methods-----------------------------
             //Add portfolio button clicked event handled here
             settingsBtn.setOnClickListener(new View.OnClickListener() {
@@ -104,6 +113,59 @@ public class PortfolioDetailsActivity extends AppCompatActivity {
                     Intent intent = new Intent(PortfolioDetailsActivity.this, PortfolioSettingsActivity.class);
                     intent.putExtra("portfolio", portfolio);
                     intent.putExtra("FROM_ACTIVITY", "portfolio_details");
+                    startActivity(intent);
+                }
+            });
+
+            //Add portfolio button clicked event handled here
+            rebalanceBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    // Initialize the progress dialog
+                    progressDialog = new ProgressDialog(PortfolioDetailsActivity.this);
+                    progressDialog.setIndeterminate(true);
+                    // Progress dialog horizontal style
+                    progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                    // Progress dialog title
+                    progressDialog.setTitle( getResources().getString(R.string.balance_dialog_title));
+                    // Progress dialog message
+                    progressDialog.setMessage(getResources().getString(R.string.balance_dialog_message));
+
+                    //Start the process dialog
+                    progressDialog.show();
+
+                    //Balance portfolio
+                    portfolio.balancePortfolio(false);
+
+
+                    //Load portfolios, check if this portfolio exists and add or update portfolio, then save portfolios
+                    //Load
+                    UserData ud = new UserData();
+                    ud.loadUserData(getApplicationContext());
+
+                    //Check if it exists
+                    Portfolio p = ud.findPortfolioById(portfolio.getId());
+
+                    if (p != null)
+                    {
+                        //If it does then update
+                        ud.updatePortfolio(portfolio, p);
+                    }
+                    else
+                    {
+                        //If it doesn't then add it to portfolios
+                        ud.addPortfolio(portfolio);
+                    }
+
+                    //Save portfolios
+                    ud.saveUserData(getApplicationContext());
+
+                    //End process dialog
+                    progressDialog.dismiss();
+
+                    //Go back to main page
+                    Intent intent = new Intent(PortfolioDetailsActivity.this, MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                 }
             });

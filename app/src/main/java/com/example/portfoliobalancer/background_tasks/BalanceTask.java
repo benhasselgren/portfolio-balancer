@@ -31,7 +31,7 @@ public class BalanceTask extends AsyncTask<Portfolio, Void, Portfolio> {
         Portfolio portfolio = portfolios[0];
 
         //Balance the portfolio
-        portfolio.balancePortfolio();
+        //portfolio.balancePortfolio();
 
         //Return the portfolio
         return portfolio;
