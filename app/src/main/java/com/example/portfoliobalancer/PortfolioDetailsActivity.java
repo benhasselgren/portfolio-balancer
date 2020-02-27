@@ -82,7 +82,7 @@ public class PortfolioDetailsActivity extends AppCompatActivity {
             if(portfolio.getPriceGrowth() > 0)
             {
                 growth.setTextColor(ContextCompat.getColor(context, R.color.textColorAssetGrowth));
-                growth.setText(String.format("+£%.2f(%.2f%%)", portfolio.getPriceGrowth(), portfolio.getPercentageGrowth()));
+                growth.setText(String.format("+£%.2f(+%.2f%%)", portfolio.getPriceGrowth(), portfolio.getPercentageGrowth()));
             }
             else if (portfolio.getPriceGrowth() < 0)
             {

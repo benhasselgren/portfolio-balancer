@@ -208,10 +208,8 @@ public class Portfolio implements Parcelable
             //Set the unit count by dividing the cost of the company by the available amount to invest
             c.setUnitCount(c_investment_sum/c.getCostPrice());
             //Set the intitial price to the current unit price if it's a new portfolio
-            if(newPortfolio)
-            {
-                c.setInitialPrice(c.getCurrentUnitPrice());
-            }
+            c.setInitialPrice(c.getCurrentUnitPrice());
+
             //Set the current unit price date of the company
             c.setCurrentUnitPriceDate(date);
         }

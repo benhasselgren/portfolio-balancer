@@ -37,8 +37,8 @@
     <string name="balance_dialog_message">Please wait...</string>
 
     <!-- Companies -->
-    <string name="apple">AAPL,Apple Inc,200</string>
-    <string name="microsoft">MSFT,Microsoft Corporation,100</string>
+    <string name="apple">AAPL,Apple Inc,210</string>
+    <string name="microsoft">MSFT,Microsoft Corporation,180</string>
     <string name="tesla">TSLA,Tesla Inc,200</string>
 
     <!-- Array of companies -->
