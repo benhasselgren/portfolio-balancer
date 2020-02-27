@@ -44,10 +44,10 @@ public class MainActivity extends AppCompatActivity {
         //Set context
         context = getApplicationContext();
 
-       // SharedPreferences pref = getApplicationContext().getSharedPreferences("shared preferences", MODE_PRIVATE);
+        //SharedPreferences pref = getApplicationContext().getSharedPreferences("shared preferences", MODE_PRIVATE);
        // Editor editor = pref.edit();
 
-       // editor.clear();
+        //editor.clear();
         //editor.commit();
 
         //Create a new UserData object
