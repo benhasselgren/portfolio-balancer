@@ -17,6 +17,7 @@ public class Company implements Parcelable {
     private int targetPercentage;
     private double initialPrice;
     private Date currentUnitPriceDate;
+    private int percentageChange;
 
     //-----------------------------Getters/Setters-----------------------------
 
@@ -74,6 +75,14 @@ public class Company implements Parcelable {
 
     public void setInitialPrice(double initialPrice) {
         this.initialPrice = initialPrice;
+    }
+
+    public int getPercentageChange() {
+        return percentageChange;
+    }
+
+    public void setPercentageChange(int percentageChange) {
+        this.percentageChange = percentageChange;
     }
 
     //-----------------------------Constructors-----------------------------
@@ -153,6 +162,7 @@ public class Company implements Parcelable {
         dest.writeInt(this.targetPercentage);
         dest.writeDouble(this.initialPrice);
         dest.writeLong(this.currentUnitPriceDate != null ? this.currentUnitPriceDate.getTime() : -1);
+        dest.writeInt(this.percentageChange);
     }
 
     protected Company(Parcel in) {
@@ -164,6 +174,7 @@ public class Company implements Parcelable {
         this.initialPrice = in.readDouble();
         long tmpCurrentUnitPriceDate = in.readLong();
         this.currentUnitPriceDate = tmpCurrentUnitPriceDate == -1 ? null : new Date(tmpCurrentUnitPriceDate);
+        this.percentageChange = in.readInt();
     }
 
     public static final Creator<Company> CREATOR = new Creator<Company>() {

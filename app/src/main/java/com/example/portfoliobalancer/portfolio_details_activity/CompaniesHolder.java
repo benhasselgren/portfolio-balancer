@@ -57,7 +57,7 @@ public class CompaniesHolder extends RecyclerView.ViewHolder implements View.OnC
         companyName.setText(company.getName());
 
         // Percentage change
-        percentageChange.setText(String.format("Percentage change: %s%%", company.getTargetPercentage()));
+        percentageChange.setText(String.format("Percentage change: %s%%", company.getPercentageChange()));
 
         // Current price
         currentPrice.setText(String.format(String.format("£%.2f", company.getCurrentUnitPrice())));

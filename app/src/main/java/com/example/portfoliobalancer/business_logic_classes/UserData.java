@@ -146,7 +146,7 @@ public class UserData implements Parcelable
 
     public void createCompanies()
     {
-        Company c1 = new Company("Apple Inc", "AAPL", 273.11);
+        Company c1 = new Company("Apple Inc", "AAPL", 293.11);
         Company c2 = new Company("Admiral Group", "ADM", 21.31);
         Company c3 = new Company("Coca Cola Consolidated Inc", "COKE", 201.46);
         Company c4 = new Company("Vanguard Active U.K. Equity Fund A GBP Accumulation", "VAAUE", 98.9614);
