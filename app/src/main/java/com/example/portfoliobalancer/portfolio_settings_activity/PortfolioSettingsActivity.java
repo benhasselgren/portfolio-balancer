@@ -175,7 +175,6 @@ public class PortfolioSettingsActivity extends AppCompatActivity  {
             portfolio.setInitialPrice(Double.parseDouble(amountString));
         }
 
-
         // Initialize the progress dialog
         progressDialog = new ProgressDialog(PortfolioSettingsActivity.this);
         progressDialog.setIndeterminate(true);
@@ -193,11 +192,11 @@ public class PortfolioSettingsActivity extends AppCompatActivity  {
         //Get previous activity to decide how to balance the portfolio
         if (previousActivity.equals("add_company"))
         {
-            portfolio.balancePortfolio(true);
+            portfolio.balancePortfolio(true, false,0);
         }
         else if (previousActivity.equals("portfolio_details"))
         {
-            portfolio.balancePortfolio(false);
+            portfolio.balancePortfolio(false, true, Double.parseDouble(amountString));
         }
 
         //Load portfolios, check if this portfolio exists and add or update portfolio, then save portfolios

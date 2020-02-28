@@ -23,6 +23,7 @@ public class Portfolio implements Parcelable
     private boolean balanced;
     private Date currentPriceDate;
     private int percentageChangeLimit;
+    private double totalAmountAdded;
 
     //-----------------------------Getters/Setters-----------------------------
 
@@ -99,6 +100,14 @@ public class Portfolio implements Parcelable
         this.percentageChangeLimit = percentageChangeLimit;
     }
 
+    public double getTotalAmountAdded() {
+        return totalAmountAdded;
+    }
+
+    public void setTotalAmountAdded(double totalAmountAdded) {
+        this.totalAmountAdded = totalAmountAdded;
+    }
+
     //-----------------------------Constructors-----------------------------
 
     public Portfolio(){}
@@ -172,7 +181,8 @@ public class Portfolio implements Parcelable
 
     public double getPriceGrowth()
     {
-        return this.getCurrentPrice(false) - this.initialPrice;
+        //Price growth = current price of portfolio - (the initial price plus the amount added to the portfolio (or removed))
+        return this.getCurrentPrice(false) - (this.initialPrice + this.totalAmountAdded);
     }
 
     public double getPercentageGrowth()
@@ -181,7 +191,7 @@ public class Portfolio implements Parcelable
         return growth;
     }
 
-    public void balancePortfolio(boolean newPortfolio)
+    public void balancePortfolio(boolean newPortfolio, boolean updatedPortfolio, double updatedAmount)
     {
         //Get the current date
         Date date = Calendar.getInstance().getTime();
@@ -193,6 +203,25 @@ public class Portfolio implements Parcelable
         else
         {
             p_currentUnitPrice = this.getCurrentPrice(false);
+
+            //If the portfolio has been updated in the portfolios settings, then check if amount has been altered
+            if(updatedPortfolio)
+            {
+                //If money has been added or removed then update the current unit price of the portfolio
+                //If money has been added or removed then add the amount to totalAmountAdded variable
+                if(updatedAmount > p_currentUnitPrice)
+                {
+                    double diff = updatedAmount - p_currentUnitPrice;
+                    this.totalAmountAdded += diff;
+                    p_currentUnitPrice = updatedAmount;
+                }
+                else if(updatedAmount < p_currentUnitPrice)
+                {
+                    double diff = p_currentUnitPrice - updatedAmount;
+                    this.totalAmountAdded -= diff;
+                    p_currentUnitPrice = updatedAmount;
+                }
+            }
         }
         //Set the current price date of the portfolio
         this.currentPriceDate = date;
@@ -275,6 +304,7 @@ public class Portfolio implements Parcelable
         dest.writeByte(this.balanced ? (byte) 1 : (byte) 0);
         dest.writeLong(this.currentPriceDate != null ? this.currentPriceDate.getTime() : -1);
         dest.writeInt(this.percentageChangeLimit);
+        dest.writeDouble(this.totalAmountAdded);
     }
 
     protected Portfolio(Parcel in) {
@@ -289,6 +319,7 @@ public class Portfolio implements Parcelable
         long tmpCurrentPriceDate = in.readLong();
         this.currentPriceDate = tmpCurrentPriceDate == -1 ? null : new Date(tmpCurrentPriceDate);
         this.percentageChangeLimit = in.readInt();
+        this.totalAmountAdded = in.readDouble();
     }
 
     public static final Creator<Portfolio> CREATOR = new Creator<Portfolio>() {

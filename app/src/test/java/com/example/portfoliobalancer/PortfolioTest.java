@@ -322,7 +322,6 @@ public class PortfolioTest {
         DateFormat formatter = new SimpleDateFormat("EEE, dd MMM yyyy");
         String expectedDate = formatter.format(date);
 
-        ArrayList<Company>updatedCompanies=new ArrayList<Company>();
         ArrayList<Company>companies=new ArrayList<Company>();
 
         Company c1 = new Company("Apple", "APPL", 0, 5, 50, null, 0);
@@ -332,9 +331,7 @@ public class PortfolioTest {
         p.addCompany(c1);
         p.addCompany(c2);
 
-        p.checkPortfolioIsBalanced(updatedCompanies);
-
-        p.balancePortfolio(true);
+        p.balancePortfolio(true, false,0);
 
         boolean actualBalanced = p.isBalanced();
         double actualUnitCount = p.getCompanies().get(0).getUnitCount();
@@ -358,8 +355,6 @@ public class PortfolioTest {
         Date date = Calendar.getInstance().getTime();
         DateFormat formatter = new SimpleDateFormat("EEE, dd MMM yyyy");
         String expectedDate = formatter.format(date);
-
-        ArrayList<Company>updatedCompanies=new ArrayList<Company>();
         ArrayList<Company>companies=new ArrayList<Company>();
 
         Company c1 = new Company("Apple", "APPL", 2, 10, 50, null, 12.5);
@@ -369,9 +364,7 @@ public class PortfolioTest {
         p.addCompany(c1);
         p.addCompany(c2);
 
-        p.checkPortfolioIsBalanced(updatedCompanies);
-
-        p.balancePortfolio(false);
+        p.balancePortfolio(false, false, 0);
 
         boolean actualBalanced = p.isBalanced();
         double actualUnitCount = p.getCompanies().get(0).getUnitCount();

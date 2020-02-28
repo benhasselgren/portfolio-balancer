@@ -147,7 +147,7 @@ public class PortfolioDetailsActivity extends AppCompatActivity {
                     progressDialog.show();
 
                     //Balance portfolio
-                    portfolio.balancePortfolio(false);
+                    portfolio.balancePortfolio(false, false,0);
 
 
                     //Load portfolios, check if this portfolio exists and add or update portfolio, then save portfolios
