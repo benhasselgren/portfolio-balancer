@@ -149,7 +149,7 @@ public class PortfolioDetailsActivity extends AppCompatActivity {
                     //Load portfolios, check if this portfolio exists and add or update portfolio, then save portfolios
                     //Load
                     UserData ud = new UserData();
-                    ud.loadUserData(getApplicationContext());
+                    ud.loadUserData(getApplicationContext(), true);
 
                     //Check if it exists
                     Portfolio p = ud.findPortfolioById(portfolio.getId());
@@ -166,7 +166,7 @@ public class PortfolioDetailsActivity extends AppCompatActivity {
                     }
 
                     //Save portfolios
-                    ud.saveUserData(getApplicationContext());
+                    ud.saveUserData(getApplicationContext(), true);
 
                     //End process dialog
                     progressDialog.dismiss();

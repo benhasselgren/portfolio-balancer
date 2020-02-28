@@ -82,6 +82,16 @@ public class Company implements Parcelable {
     {
     }
 
+    /*
+    Creates a company that can be used for tracking companies cost prices
+     */
+    public Company(String name, String companyCode, double costPrice)
+    {
+        this.name = name;
+        this.companyCode = companyCode;
+        this.costPrice = costPrice;
+    }
+
     public Company(String name, String companyCode, double unitCount, double costPrice, int targetPercentage, Date currentUnitPriceDate, double initialPrice)
     {
         this.name = name;

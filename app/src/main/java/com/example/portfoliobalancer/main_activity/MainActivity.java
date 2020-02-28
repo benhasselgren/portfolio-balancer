@@ -49,7 +49,10 @@ public class MainActivity extends AppCompatActivity {
         //Create a new UserData object
         userData = new UserData();
 
-        userData.loadUserData(context);
+        //Create companies
+        createCompanies();
+
+        userData.loadUserData(context, true);
 
         if(userData.getPortfolios() != null || userData.getPortfolios().size() == 0)
         {
@@ -91,4 +94,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //-----------------------------Methods----------------------------
+    private void createCompanies()
+    {
+        userData.createCompanies();
+        userData.saveUserData(context, false);
+    }
 }
