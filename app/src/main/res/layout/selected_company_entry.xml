@@ -37,7 +37,10 @@
             android:text="@string/title_test_portfolio"
             android:textColor="@color/textColorSubHeading"
             android:textSize="12sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:maxEms="15"/>
     </LinearLayout>
 
     <!-- +++++++++++++++++++++++ Right align +++++++++++++++++++++++ -->
