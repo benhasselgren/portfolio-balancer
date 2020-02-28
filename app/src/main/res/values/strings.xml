@@ -35,6 +35,7 @@
     <string name="rebalance_btn">Rebalance</string>
     <string name="balance_dialog_title">Balancing portfolio</string>
     <string name="balance_dialog_message">Please wait...</string>
+    <string name="delete_company">Delete</string>
 
     <!-- Companies -->
     <string name="apple">AAPL,Apple Inc,220</string>

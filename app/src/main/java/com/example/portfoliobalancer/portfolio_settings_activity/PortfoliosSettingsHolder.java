@@ -1,13 +1,17 @@
 package com.example.portfoliobalancer.portfolio_settings_activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.example.portfoliobalancer.R;
+import com.example.portfoliobalancer.add_portfolio_activity.AddPortfolioActivity;
 import com.example.portfoliobalancer.business_logic_classes.Company;
+import com.example.portfoliobalancer.main_activity.MainActivity;
 
 //######################-----------------------------PortfolioSettingsHolderClass-----------------------------######################
 //XML file: settings_target_percentage_entry.xml
@@ -23,6 +27,7 @@ public class PortfoliosSettingsHolder extends RecyclerView.ViewHolder {
     private final TextView company_name;
     private final SeekBar company_target_percentage_seekbar;
     private final TextView company_target_percentage_value;
+    private final Button deleteCompanyBtn;
 
     //-----------------------------Constructor-----------------------------
     public PortfoliosSettingsHolder(Context context, View itemView)
@@ -36,6 +41,7 @@ public class PortfoliosSettingsHolder extends RecyclerView.ViewHolder {
         this.company_name = (TextView) itemView.findViewById(R.id.entry_company_name);
         this.company_target_percentage_seekbar = (SeekBar) itemView.findViewById(R.id.entry_company_target_percentage_seekBar);
         this.company_target_percentage_value = (TextView) itemView.findViewById(R.id.entry_company_target_percentage);
+        this.deleteCompanyBtn = (Button) itemView.findViewById(R.id.entry_company_delete_btn);
 
         //-----------------------------Event Listener Methods----------------------------
         //Updates the value of the seekbar and displays it in the value text view
@@ -85,4 +91,5 @@ public class PortfoliosSettingsHolder extends RecyclerView.ViewHolder {
         company_target_percentage_seekbar.setProgress(company.getTargetPercentage());
         company_target_percentage_seekbar.setMax(100);
     }
+
 }

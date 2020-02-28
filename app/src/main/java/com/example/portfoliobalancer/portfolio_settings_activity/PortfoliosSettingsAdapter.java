@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.portfoliobalancer.R;
 import com.example.portfoliobalancer.business_logic_classes.Company;
 import java.util.List;
 
@@ -39,13 +40,25 @@ public class PortfoliosSettingsAdapter extends RecyclerView.Adapter<PortfoliosSe
 
     //Binds the data to the holder
     @Override
-    public void onBindViewHolder(PortfoliosSettingsHolder holder, int position) {
+    public void onBindViewHolder(PortfoliosSettingsHolder holder, final int position) {
 
         // Use position to access the correct company object
         Company c = this.companies.get(position);
 
         // Bind the company object to the holder
         holder.bindPortfolio(c);
+
+        //-----------------------------Event Listener Methods----------------------------
+        //deletes company
+        holder.itemView.findViewById(R.id.entry_company_delete_btn).setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                companies.remove(position);
+                notifyItemRemoved(position);
+                notifyItemRangeChanged(position, companies.size());
+            }
+        });
     }
 
     //Returns the size of the list
@@ -53,5 +66,4 @@ public class PortfoliosSettingsAdapter extends RecyclerView.Adapter<PortfoliosSe
     public int getItemCount() {
         return this.companies.size();
     }
-
 }
