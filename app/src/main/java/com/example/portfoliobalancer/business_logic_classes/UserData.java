@@ -21,7 +21,9 @@ public class UserData implements Parcelable
     //-----------------------------Instance variables-----------------------------
 
     private List<Portfolio> portfolios = new ArrayList<Portfolio>();
+    private List<Company> companies = new ArrayList<>();
     private static String portfoliosTag = "portfolios";
+    private static String companiesTag = "companies";
 
     //-----------------------------Getters/Setters-----------------------------
 
@@ -32,6 +34,14 @@ public class UserData implements Parcelable
 
     public void setPortfolios(List<Portfolio> portfolios) {
         this.portfolios = portfolios;
+    }
+
+    public List<Company> getCompanies() {
+        return companies;
+    }
+
+    public void setCompanies(List<Company> companies) {
+        this.companies = companies;
     }
 
     //-----------------------------Constructors-----------------------------
@@ -80,27 +90,50 @@ public class UserData implements Parcelable
         return null;
     }
 
-    public void loadUserData(Context context)
+    public void loadUserData(Context context, boolean load_save_portfolio)
     {
         SharedPreferences sharedPreferences = context.getSharedPreferences("shared preferences", Context.MODE_PRIVATE);
         Gson gson = new Gson();
-        String json = sharedPreferences.getString(portfoliosTag, null);
-        Type type = new TypeToken<ArrayList<Portfolio>>() {}.getType();
-        this.portfolios = gson.fromJson(json, type);
 
-        if (this.portfolios == null) {
-            this.portfolios = new ArrayList<>();
+        if(load_save_portfolio)
+        {
+            String json = sharedPreferences.getString(portfoliosTag, null);
+            Type type = new TypeToken<ArrayList<Portfolio>>() {}.getType();
+            this.portfolios = gson.fromJson(json, type);
+
+            if (this.portfolios == null) {
+                this.portfolios = new ArrayList<>();
+            }
+        }
+        else
+        {
+            String json = sharedPreferences.getString(companiesTag, null);
+            Type type = new TypeToken<ArrayList<Company>>() {}.getType();
+            this.companies = gson.fromJson(json, type);
+
+            if (this.companies == null) {
+                this.companies = new ArrayList<>();
+            }
         }
     }
 
-    public void saveUserData(Context context)
+    public void saveUserData(Context context, boolean load_save_portfolio)
     {
         SharedPreferences sharedPreferences = context.getSharedPreferences("shared preferences", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         Gson gson = new Gson();
-        String json = gson.toJson(this.portfolios);
-        editor.putString(portfoliosTag, json);
-        editor.apply();
+        if(load_save_portfolio)
+        {
+            String json = gson.toJson(this.portfolios);
+            editor.putString(portfoliosTag, json);
+            editor.apply();
+        }
+        else
+        {
+            String json = gson.toJson(this.companies);
+            editor.putString(companiesTag, json);
+            editor.apply();
+        }
     }
 
     public void checkPortfoliosAreBalanced(String[] strings)
@@ -130,7 +163,6 @@ public class UserData implements Parcelable
         }
     }
 
-    //-----------------------------Implemented Parcelable Constructor/Methods-----------------------------
     @Override
     public int describeContents() {
         return 0;
@@ -139,10 +171,12 @@ public class UserData implements Parcelable
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeTypedList(this.portfolios);
+        dest.writeTypedList(this.companies);
     }
 
     protected UserData(Parcel in) {
         this.portfolios = in.createTypedArrayList(Portfolio.CREATOR);
+        this.companies = in.createTypedArrayList(Company.CREATOR);
     }
 
     public static final Creator<UserData> CREATOR = new Creator<UserData>() {
