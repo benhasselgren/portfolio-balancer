@@ -90,7 +90,7 @@ public class PortfolioDetailsActivity extends AppCompatActivity {
                 growth.setTextColor(ContextCompat.getColor(context, R.color.textColorAssetGrowth));
                 growth.setText(String.format("+£%.2f(+%.2f%%)", portfolio.getPriceGrowth(), portfolio.getPercentageGrowth()));
             }
-            else if (Math.round(portfolio.getPriceGrowth() * 100.0) > 0)
+            else if (Math.round(portfolio.getPriceGrowth() * 100.0) < 0)
             {
                 growth.setTextColor(ContextCompat.getColor(context, R.color.textColorAssetDecline));
                 growth.setText(String.format("-£%.2f(-%.2f%%)", Math.abs(portfolio.getPriceGrowth()), Math.abs(portfolio.getPercentageGrowth())));

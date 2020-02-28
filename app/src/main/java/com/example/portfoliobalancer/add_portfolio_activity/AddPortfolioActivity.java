@@ -7,6 +7,7 @@ import android.text.InputFilter;
 
 import android.text.InputType;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -36,6 +37,9 @@ public class AddPortfolioActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_portfolio);
+
+        //Prevents keyboard from popping up intially
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         //Get the portfolio id
         portfolioId= Integer.parseInt(getIntent().getStringExtra("NEW_PORTFOLIO_ID"));

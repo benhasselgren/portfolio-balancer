@@ -40,7 +40,7 @@ public class PortfoliosSettingsAdapter extends RecyclerView.Adapter<PortfoliosSe
 
     //Binds the data to the holder
     @Override
-    public void onBindViewHolder(PortfoliosSettingsHolder holder, final int position) {
+    public void onBindViewHolder(final PortfoliosSettingsHolder holder, int position) {
 
         // Use position to access the correct company object
         Company c = this.companies.get(position);
@@ -54,9 +54,9 @@ public class PortfoliosSettingsAdapter extends RecyclerView.Adapter<PortfoliosSe
 
             @Override
             public void onClick(View view) {
-                companies.remove(position);
-                notifyItemRemoved(position);
-                notifyItemRangeChanged(position, companies.size());
+                companies.remove(holder.getAdapterPosition());
+                notifyItemRemoved(holder.getAdapterPosition());
+                notifyItemRangeChanged(holder.getAdapterPosition(), companies.size());
             }
         });
     }
