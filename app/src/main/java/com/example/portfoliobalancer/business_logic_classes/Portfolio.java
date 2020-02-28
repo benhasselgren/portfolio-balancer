@@ -150,6 +150,11 @@ public class Portfolio implements Parcelable
         this.companies.remove(c);
     }
 
+    public void removeAmountFromTotalAmountAdded(double amount)
+    {
+        this.totalAmountAdded -= amount;
+    }
+
     public double getCurrentPrice(Boolean newPortfolio)
     {
         if(newPortfolio)

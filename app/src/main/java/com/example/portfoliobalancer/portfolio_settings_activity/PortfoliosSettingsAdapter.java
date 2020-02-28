@@ -13,19 +13,25 @@ import java.util.List;
 //######################-----------------------------PortfolioSettingsAdapterClass-----------------------------######################
 //Binds the data from the PortfolioSettingsActivity to the elements in the recyclerview
 
-public class PortfoliosSettingsAdapter extends RecyclerView.Adapter<PortfoliosSettingsHolder> {
+public class PortfoliosSettingsAdapter extends RecyclerView.Adapter<PortfoliosSettingsHolder>{
+
+    public interface OnCompanyDeleted {
+        void onDeleteCompanyClick (double value);
+    }
 
     //-----------------------------Variables-----------------------------
     private List<Company> companies;
     private Context context;
     private int itemResource;
+    private OnCompanyDeleted mCallback;
 
     //-----------------------------Constructor-----------------------------
-    public PortfoliosSettingsAdapter(Context context, int itemResource, List<Company> companies)
+    public PortfoliosSettingsAdapter(Context context, int itemResource, List<Company> companies, OnCompanyDeleted listener)
     {
         this.companies = companies;
         this.context = context;
         this.itemResource = itemResource;
+        this.mCallback = listener;
     }
 
     //-----------------------------Methods-----------------------------
@@ -54,9 +60,11 @@ public class PortfoliosSettingsAdapter extends RecyclerView.Adapter<PortfoliosSe
 
             @Override
             public void onClick(View view) {
+                mCallback.onDeleteCompanyClick(companies.get(holder.getAdapterPosition()).getCurrentUnitPrice());
                 companies.remove(holder.getAdapterPosition());
                 notifyItemRemoved(holder.getAdapterPosition());
                 notifyItemRangeChanged(holder.getAdapterPosition(), companies.size());
+
             }
         });
     }

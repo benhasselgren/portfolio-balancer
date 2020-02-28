@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.portfoliobalancer.R;
+import com.example.portfoliobalancer.add_company_activity.AddCompanyAdapter;
 import com.example.portfoliobalancer.background_tasks.BalanceTask;
 import com.example.portfoliobalancer.business_logic_classes.Portfolio;
 import com.example.portfoliobalancer.business_logic_classes.UserData;
@@ -26,7 +27,7 @@ import com.example.portfoliobalancer.main_activity.MainActivity;
 //XML file: activity_portfolio_settings.xml
 //Portfolio settings page of app. It's where the user can edit their portfolio details and change the target percentages.
 //Also where the user is directed when creating a new portfolio
-public class PortfolioSettingsActivity extends AppCompatActivity  {
+public class PortfolioSettingsActivity extends AppCompatActivity implements PortfoliosSettingsAdapter.OnCompanyDeleted {
 
     //-----------------------------Variables/Views-----------------------------
     //Variables
@@ -90,7 +91,7 @@ public class PortfolioSettingsActivity extends AppCompatActivity  {
         portfoliosTargetPercentagesListView.setHasFixedSize(true);
 
         //Initialize the PortfoliosSettings adapter, which binds the data to the entry view
-        PortfoliosSettingsAdapter adapter = new PortfoliosSettingsAdapter(this, R.layout.settings_target_percentage_entry, portfolio.getCompanies());
+        PortfoliosSettingsAdapter adapter = new PortfoliosSettingsAdapter(this, R.layout.settings_target_percentage_entry, portfolio.getCompanies(), this);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
 
@@ -223,5 +224,12 @@ public class PortfolioSettingsActivity extends AppCompatActivity  {
 
         //End process dialog
         progressDialog.dismiss();
+    }
+
+    //If company is removed then update the totalAmountAdded (totalAmountAdded - currentUnitPrice of company being deleted).
+    //This is to prevent the growth percentage values being affected.
+    @Override
+    public void onDeleteCompanyClick(double value) {
+        portfolio.removeAmountFromTotalAmountAdded(value);
     }
 }
