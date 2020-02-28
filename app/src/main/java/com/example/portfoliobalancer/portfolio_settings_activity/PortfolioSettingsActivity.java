@@ -32,7 +32,7 @@ public class PortfolioSettingsActivity extends AppCompatActivity  {
     //Variables
     private Portfolio portfolio;
     Validation validation = new Validation();
-    private  String previousActivity;
+    private String previousActivity;
     private BalanceTask balanceTask;
     //Views
     private RecyclerView portfoliosTargetPercentagesListView;

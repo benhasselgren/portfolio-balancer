@@ -22,6 +22,7 @@ import com.example.portfoliobalancer.business_logic_classes.Company;
 import com.example.portfoliobalancer.business_logic_classes.Portfolio;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 //######################-----------------------------AppCompanyActivityClass-----------------------------######################
 //XML file: activity_add_company.xml
@@ -34,7 +35,7 @@ public class AddCompanyActivity extends AppCompatActivity {
     private Portfolio portfolio;
     private ArrayList<Company> availableCompanies;
     private ArrayList<Company> selectedCompanies;
-    private ArrayList<String> selectedCompanyTitles;
+    private String previousActivity;
     //Views
     private AutoCompleteTextView companySelector;
     private RecyclerView selectedCompaniesList;
@@ -44,18 +45,29 @@ public class AddCompanyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_company);
 
-        //Assign the intent parcelable extra to a variable
-        portfolio = (Portfolio) getIntent().getParcelableExtra("portfolio");
+        //Get the previous activity to customise activity to suit the action
+        previousActivity= getIntent().getStringExtra("FROM_ACTIVITY");
 
+        //Use the portfolio based on the previous activity
+        if(previousActivity.equals("portfolio_details"))
+        {
+            //Assign the intent parcelable extra to a variable
+            portfolio = (Portfolio) getIntent().getParcelableExtra("portfolio");
+            //Set selected companies to the companies already in the portfolio
+            selectedCompanies = (ArrayList<Company>) portfolio.getCompanies();
+        }
+        else
+        {
+            //Assign the intent parcelable extra to a variable
+            portfolio = (Portfolio) getIntent().getParcelableExtra("portfolio");
+            //Intitalise the selectedCompanies arraylist
+            selectedCompanies = new ArrayList<>();
+        }
         //Add views
         companySelector = (AutoCompleteTextView)findViewById(R.id.company_selector);
         selectedCompaniesList = (RecyclerView) findViewById(R.id.selected_companies);
         //Assigns the button to a variable
         Button nextButton = (Button) findViewById(R.id.add_company_activity_btn);
-
-        //Intitalise the selectedCompanies arraylist
-        selectedCompanies = new ArrayList<>();
-        selectedCompanyTitles = new ArrayList<>();
 
         //Adds the available companies from device and adds them to array list
         getAvailableCompanies();
@@ -88,10 +100,12 @@ public class AddCompanyActivity extends AppCompatActivity {
                 Company c = (Company) adapterView.getItemAtPosition(i);
 
                 //If company already has been selected then show error message
-                if(selectedCompanies.contains(c))
+                if(checkIfAlreadySelected(c))
                 {
                     //Show error message
                     Toast.makeText(getBaseContext(), "You have already added this company.", Toast.LENGTH_SHORT).show();
+                    //Clear search bar
+                    companySelector.setText("");
                 }
                 else
                 {
@@ -137,5 +151,18 @@ public class AddCompanyActivity extends AppCompatActivity {
         ud.loadUserData(getApplicationContext(), false);
 
         availableCompanies = (ArrayList<Company>) ud.getCompanies();
+    }
+
+    //Checks company hasn't already been selected
+    private boolean checkIfAlreadySelected(Company company)
+    {
+        for(Company c : selectedCompanies)
+        {
+            if(c.getCompanyCode().equals(company.getCompanyCode()))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }
