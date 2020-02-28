@@ -41,4 +41,14 @@
         android:textColor="@color/textColorAssetGrowth"
         android:textSize="18sp"
         android:textStyle="bold" />
+
+    <!-- Delete company button-->
+    <ImageButton
+        android:id="@+id/portfolio_settings"
+        android:layout_height="34dip"
+        android:layout_width="34dip"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/entry_company_target_percentage"
+        android:layout_marginRight="10dip"
+        android:background="@drawable/ic_settings"/>
 </RelativeLayout>
