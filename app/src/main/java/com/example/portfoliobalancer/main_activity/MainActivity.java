@@ -1,9 +1,7 @@
-package com.example.portfoliobalancer;
+package com.example.portfoliobalancer.main_activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,14 +9,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.portfoliobalancer.add_portfolio_activity.AddPortfolioActivity;
+import com.example.portfoliobalancer.R;
 import com.example.portfoliobalancer.business_logic_classes.Company;
-import com.example.portfoliobalancer.business_logic_classes.Portfolio;
 import com.example.portfoliobalancer.business_logic_classes.UserData;
 
-import java.util.Calendar;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.prefs.Preferences;
 
 //######################-----------------------------MainActivityClass-----------------------------######################
 //XML file: activity_main.xml

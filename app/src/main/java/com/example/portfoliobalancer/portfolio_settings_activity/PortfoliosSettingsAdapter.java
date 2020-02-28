@@ -1,21 +1,18 @@
-package com.example.portfoliobalancer;
-
-//######################-----------------------------CompaniesAdapterClass-----------------------------######################
-//Binds the data from the PortfolioDetailsActivity to the elements in the recyclerview
+package com.example.portfoliobalancer.portfolio_settings_activity;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AnimationUtils;
 
 import com.example.portfoliobalancer.business_logic_classes.Company;
-import com.example.portfoliobalancer.business_logic_classes.Portfolio;
-
 import java.util.List;
 
-public class CompaniesAdapter extends RecyclerView.Adapter<CompaniesHolder>{
+//######################-----------------------------PortfolioSettingsAdapterClass-----------------------------######################
+//Binds the data from the PortfolioSettingsActivity to the elements in the recyclerview
+
+public class PortfoliosSettingsAdapter extends RecyclerView.Adapter<PortfoliosSettingsHolder> {
 
     //-----------------------------Variables-----------------------------
     private List<Company> companies;
@@ -23,7 +20,7 @@ public class CompaniesAdapter extends RecyclerView.Adapter<CompaniesHolder>{
     private int itemResource;
 
     //-----------------------------Constructor-----------------------------
-    public CompaniesAdapter(Context context, int itemResource, List<Company> companies)
+    public PortfoliosSettingsAdapter(Context context, int itemResource, List<Company> companies)
     {
         this.companies = companies;
         this.context = context;
@@ -34,21 +31,21 @@ public class CompaniesAdapter extends RecyclerView.Adapter<CompaniesHolder>{
 
     //Passes the data from the activity to the holder
     @Override
-    public CompaniesHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public PortfoliosSettingsHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(parent.getContext()).inflate(this.itemResource, parent, false);
-        return new CompaniesHolder(this.context, view);
+        return new PortfoliosSettingsHolder(this.context, view);
     }
 
     //Binds the data to the holder
     @Override
-    public void onBindViewHolder(CompaniesHolder holder, int position) {
+    public void onBindViewHolder(PortfoliosSettingsHolder holder, int position) {
 
-        // Use position to access the correct portfolio object
+        // Use position to access the correct company object
         Company c = this.companies.get(position);
 
-        // Bind the portfolio object to the holder
-        holder.bindCompany(c);
+        // Bind the company object to the holder
+        holder.bindPortfolio(c);
     }
 
     //Returns the size of the list
@@ -56,4 +53,5 @@ public class CompaniesAdapter extends RecyclerView.Adapter<CompaniesHolder>{
     public int getItemCount() {
         return this.companies.size();
     }
+
 }

@@ -1,4 +1,4 @@
-package com.example.portfoliobalancer;
+package com.example.portfoliobalancer.portfolio_details_activity;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -11,11 +11,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.portfoliobalancer.portfolio_settings_activity.PortfolioSettingsActivity;
+import com.example.portfoliobalancer.R;
 import com.example.portfoliobalancer.business_logic_classes.Portfolio;
 import com.example.portfoliobalancer.business_logic_classes.UserData;
+import com.example.portfoliobalancer.main_activity.MainActivity;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

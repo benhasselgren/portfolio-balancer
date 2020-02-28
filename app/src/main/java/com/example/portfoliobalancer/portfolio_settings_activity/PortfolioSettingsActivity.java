@@ -1,4 +1,4 @@
-package com.example.portfoliobalancer;
+package com.example.portfoliobalancer.portfolio_settings_activity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -15,10 +15,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.portfoliobalancer.R;
 import com.example.portfoliobalancer.background_tasks.BalanceTask;
 import com.example.portfoliobalancer.business_logic_classes.Portfolio;
 import com.example.portfoliobalancer.business_logic_classes.UserData;
 import com.example.portfoliobalancer.business_logic_classes.Validation;
+import com.example.portfoliobalancer.main_activity.MainActivity;
 
 //######################-----------------------------PortfoliosSettingsActivityClass-----------------------------######################
 //XML file: activity_portfolio_settings.xml

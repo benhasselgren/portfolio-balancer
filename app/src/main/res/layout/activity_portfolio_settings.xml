@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorMainBackground"
     android:orientation="vertical"
-    tools:context=".PortfolioSettingsActivity">
+    tools:context=".portfolio_settings_activity.PortfolioSettingsActivity">
 
     <ScrollView
         android:layout_width="match_parent"

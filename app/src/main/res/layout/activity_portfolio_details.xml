@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:focusableInTouchMode="true"
     android:background="@color/colorMainBackground"
-    tools:context=".PortfolioDetailsActivity">
+    tools:context=".portfolio_details_activity.PortfolioDetailsActivity">
 
     <ScrollView
         android:layout_width="match_parent"
