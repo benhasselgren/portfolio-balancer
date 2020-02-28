@@ -49,9 +49,10 @@ public class MainActivity extends AppCompatActivity {
         //Create a new UserData object
         userData = new UserData();
 
-        //Create companies
-        createCompanies();
+        //################# Create companies here
+        //createCompanies();
 
+        // Load the PORTFTOLIOS (hence parameter passed is TRUE)
         userData.loadUserData(context, true);
 
         if(userData.getPortfolios() != null || userData.getPortfolios().size() == 0)
@@ -59,7 +60,10 @@ public class MainActivity extends AppCompatActivity {
             //Is portfolios exist then check they are still balanced
             if(userData.getPortfolios().size() > 0)
             {
-                userData.checkPortfoliosAreBalanced(getResources().getStringArray(R.array.companies));
+                // Load the COMPANIES (hence parameter passed is FALSE)
+                userData.loadUserData(context, false);
+                ArrayList<Company> updatedCompanies = (ArrayList<Company>) userData.getCompanies();
+                userData.checkPortfoliosAreBalanced(updatedCompanies);
             }
 
             //Add views

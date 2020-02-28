@@ -39,10 +39,12 @@
             android:orientation="vertical">
 
         <!-- Selected companies list -->
-        <ListView
+        <android.support.v7.widget.RecyclerView
             android:id="@+id/selected_companies"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical" >
+        </android.support.v7.widget.RecyclerView>
 
         <!-- Next button-->
         <Button

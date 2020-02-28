@@ -132,6 +132,11 @@ public class Company implements Parcelable {
         return growth;
     }
 
+    @Override
+    public String toString() {
+        return String.format("%s (%s)", this.name, this.companyCode);
+    }
+
     //-----------------------------Implemented Parcelable Constructor/Methods-----------------------------
 
     @Override

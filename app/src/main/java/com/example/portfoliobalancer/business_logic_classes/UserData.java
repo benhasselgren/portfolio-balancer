@@ -21,7 +21,7 @@ public class UserData implements Parcelable
     //-----------------------------Instance variables-----------------------------
 
     private List<Portfolio> portfolios = new ArrayList<Portfolio>();
-    private List<Company> companies = new ArrayList<>();
+    private List<Company> companies = new ArrayList<Company>();
     private static String portfoliosTag = "portfolios";
     private static String companiesTag = "companies";
 
@@ -136,27 +136,8 @@ public class UserData implements Parcelable
         }
     }
 
-    public void checkPortfoliosAreBalanced(String[] strings)
+    public void checkPortfoliosAreBalanced(ArrayList<Company> updatedCompanies)
     {
-        ArrayList<Company> updatedCompanies = new ArrayList<>();
-        //Get the companies from the string array and add them to the companies strings array list
-        for(String s : strings)
-        {
-            String[] result = s.split(",");
-            String c_code = result[0];
-            String c_name = result[1];
-            Double c_price = Double.parseDouble(result[2]);
-
-            //Create a new company with the basic details
-            Company c = new Company();
-            c.setName(c_name);
-            c.setCompanyCode(c_code);
-            c.setCostPrice(c_price);
-
-            //Add company object to updated companies list
-            updatedCompanies.add(c);
-        }
-
         for(Portfolio p : portfolios)
         {
             p.checkPortfolioIsBalanced(updatedCompanies);
