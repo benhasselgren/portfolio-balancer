@@ -40,7 +40,9 @@
         android:text="@string/target_percentages_total"
         android:textColor="@color/textColorAssetGrowth"
         android:textSize="22sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:drawableRight="@drawable/ic_percentage_sign"
+        android:inputType="number"/>
 
     <!-- Delete company button-->
     <Button

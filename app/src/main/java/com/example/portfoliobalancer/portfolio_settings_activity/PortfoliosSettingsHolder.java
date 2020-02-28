@@ -3,8 +3,11 @@ package com.example.portfoliobalancer.portfolio_settings_activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -26,7 +29,7 @@ public class PortfoliosSettingsHolder extends RecyclerView.ViewHolder {
     //Views
     private final TextView company_name;
     private final SeekBar company_target_percentage_seekbar;
-    private final TextView company_target_percentage_value;
+    private final EditText company_target_percentage_value;
     private final Button deleteCompanyBtn;
 
     //-----------------------------Constructor-----------------------------
@@ -40,7 +43,7 @@ public class PortfoliosSettingsHolder extends RecyclerView.ViewHolder {
         //Add views
         this.company_name = (TextView) itemView.findViewById(R.id.entry_company_name);
         this.company_target_percentage_seekbar = (SeekBar) itemView.findViewById(R.id.entry_company_target_percentage_seekBar);
-        this.company_target_percentage_value = (TextView) itemView.findViewById(R.id.entry_company_target_percentage);
+        this.company_target_percentage_value = (EditText) itemView.findViewById(R.id.entry_company_target_percentage);
         this.deleteCompanyBtn = (Button) itemView.findViewById(R.id.entry_company_delete_btn);
 
         //-----------------------------Event Listener Methods----------------------------
@@ -52,7 +55,7 @@ public class PortfoliosSettingsHolder extends RecyclerView.ViewHolder {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
                 //Update the text value with the seekbar value as it changes
                 progress_tracker = progress;
-                company_target_percentage_value.setText(String.format("%s%%",progress_tracker));
+                company_target_percentage_value.setText(String.format("%s",progress_tracker));
             }
 
             @Override
@@ -66,6 +69,30 @@ public class PortfoliosSettingsHolder extends RecyclerView.ViewHolder {
                 company.setTargetPercentage(Integer.valueOf(progress_tracker));
             }
         });
+
+        //Updates the seekbar progress value if text is changed
+        company_target_percentage_value.addTextChangedListener(new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count)
+        {
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            //Only update if string is not empty
+            if(company_target_percentage_value.getText().length() > 0 )
+            {
+                company_target_percentage_value.setSelection(company_target_percentage_value.getText().length());
+                company.setTargetPercentage(Integer.parseInt(company_target_percentage_value.getText().toString().trim()));
+                company_target_percentage_seekbar.setProgress(company.getTargetPercentage());
+            }
+        }
+    });
     }
 
     //-----------------------------Methods-----------------------------
@@ -82,7 +109,7 @@ public class PortfoliosSettingsHolder extends RecyclerView.ViewHolder {
         setUpSeekBar();
 
         // ------------------- Target Percentage -------------------
-        this.company_target_percentage_value.setText(String.format("%s%%",company.getTargetPercentage()));
+        this.company_target_percentage_value.setText(String.format("%s",company.getTargetPercentage()));
     }
 
     //Sets up the progress bar to show the companies current target percentage
