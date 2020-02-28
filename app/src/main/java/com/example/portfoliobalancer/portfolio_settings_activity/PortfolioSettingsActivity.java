@@ -169,7 +169,12 @@ public class PortfolioSettingsActivity extends AppCompatActivity  {
         //Update porfolio details
         portfolio.setName(nameString);
         portfolio.setDescription(descriptionString);
-        portfolio.setInitialPrice(Double.parseDouble(amountString));
+        //Only update initial price if the user is creating a new portfolio (if the previous activity tag equals "add_company" then it's a new portfolio)
+        if (previousActivity.equals("add_company"))
+        {
+            portfolio.setInitialPrice(Double.parseDouble(amountString));
+        }
+
 
         // Initialize the progress dialog
         progressDialog = new ProgressDialog(PortfolioSettingsActivity.this);
@@ -219,18 +224,5 @@ public class PortfolioSettingsActivity extends AppCompatActivity  {
 
         //End process dialog
         progressDialog.dismiss();
-
-        /*
-        // Create the async task
-        balanceTask = new BalanceTask(
-                progressDialog,
-                getApplicationContext()
-        );
-        // now execute the Task and pass the portfolio to balance
-        balanceTask.execute(
-                portfolio
-        );
-        */
-
     }
 }

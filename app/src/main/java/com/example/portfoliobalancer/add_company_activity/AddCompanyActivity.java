@@ -133,7 +133,16 @@ public class AddCompanyActivity extends AppCompatActivity {
                     portfolio.setCompanies(selectedCompanies);
                     Intent intent = new Intent(AddCompanyActivity.this, PortfolioSettingsActivity.class);
                     intent.putExtra("portfolio", portfolio);
-                    intent.putExtra("FROM_ACTIVITY", "add_company");
+                    //If previous activity was portfolio details then pass that information to portfolio settings activity so it..
+                    //..knows how to balance portfolio properly
+                    if(previousActivity.equals("portfolio_details"))
+                    {
+                        intent.putExtra("FROM_ACTIVITY", "portfolio_details");
+                    }
+                    else
+                    {
+                        intent.putExtra("FROM_ACTIVITY", "add_company");
+                    }
                     startActivity(intent);
                 }
             }
