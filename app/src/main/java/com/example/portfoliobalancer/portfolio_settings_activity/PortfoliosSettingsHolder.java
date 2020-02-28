@@ -87,6 +87,7 @@ public class PortfoliosSettingsHolder extends RecyclerView.ViewHolder {
             //Only update if string is not empty
             if(company_target_percentage_value.getText().length() > 0 )
             {
+                //Make sure cursor is at end of text
                 company_target_percentage_value.setSelection(company_target_percentage_value.getText().length());
                 company.setTargetPercentage(Integer.parseInt(company_target_percentage_value.getText().toString().trim()));
                 company_target_percentage_seekbar.setProgress(company.getTargetPercentage());
