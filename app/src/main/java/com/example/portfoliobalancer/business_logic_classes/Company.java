@@ -92,7 +92,7 @@ public class Company implements Parcelable {
     }
 
     /*
-    Creates a company that can be used for tracking companies cost prices
+     *  Creates a company that can be used for tracking companies cost prices
      */
     public Company(String name, String companyCode, double costPrice)
     {
