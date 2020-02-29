@@ -7,53 +7,64 @@
     android:orientation="vertical"
     tools:context=".add_company_activity.AddCompanyActivity">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorDarkBackground"
-        android:orientation="vertical"
-        android:padding="10dip">
+        android:layout_height="match_parent">
 
-        <!-- Companies search bar -->
-        <AutoCompleteTextView
-            android:id="@+id/company_selector"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#FFFFFF"
-            android:completionHint="@string/search_for_company_hint"
-            android:completionThreshold="1"
-            android:hint="@string/search_for_company_hint"
-            android:textSize="15sp"
-            android:textColor="#FFFFFF"
-            android:textColorHint="#FFFFFF"
-            android:drawableLeft="@drawable/ic_search"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
-            android:layout_marginTop="10dip"
-            android:layout_marginRight="10dip"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
-        <!-- Selected companies list -->
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/selected_companies"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scrollbars="vertical" >
-        </android.support.v7.widget.RecyclerView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorDarkBackground"
+                android:orientation="vertical"
+                android:padding="10dip">
 
-        <!-- Next button-->
-        <Button
-            android:id="@+id/add_company_activity_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="100dp"
-            android:layout_marginRight="100dp"
-            android:layout_weight="1"
-            android:text="@string/next_btn" />
-    </LinearLayout>
+                <!-- Companies search bar -->
+                <AutoCompleteTextView
+                    android:id="@+id/company_selector"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#FFFFFF"
+                    android:completionHint="@string/search_for_company_hint"
+                    android:completionThreshold="1"
+                    android:hint="@string/search_for_company_hint"
+                    android:textSize="15sp"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#FFFFFF"
+                    android:drawableLeft="@drawable/ic_search"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dip"
+                    android:layout_marginTop="10dip"
+                    android:layout_marginRight="10dip"
+                    android:orientation="vertical">
+
+                <!-- Selected companies list -->
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/selected_companies"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="vertical" >
+                </android.support.v7.widget.RecyclerView>
+
+                <!-- Next button-->
+                <Button
+                    android:id="@+id/add_company_activity_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="100dp"
+                    android:layout_marginRight="100dp"
+                    android:layout_weight="1"
+                    android:text="@string/next_btn" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
