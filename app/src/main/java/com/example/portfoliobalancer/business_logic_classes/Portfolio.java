@@ -196,7 +196,7 @@ public class Portfolio implements Parcelable
         return growth;
     }
 
-    public void balancePortfolio(boolean newPortfolio, boolean updatedPortfolio, double updatedAmount)
+    public void balancePortfolio(boolean newPortfolio, double updatedAmount)
     {
         //Get the current date
         Date date = Calendar.getInstance().getTime();
@@ -210,24 +210,22 @@ public class Portfolio implements Parcelable
             p_currentUnitPrice = this.getCurrentPrice(false);
 
             //If the portfolio has been updated in the portfolios settings, then check if amount has been altered
-            if(updatedPortfolio)
+            //If money has been added or removed then update the current unit price of the portfolio
+            //If money has been added or removed then add or remove the amount to totalAmountAdded variable
+            if(updatedAmount != 0 && updatedAmount > p_currentUnitPrice)
             {
-                //If money has been added or removed then update the current unit price of the portfolio
-                //If money has been added or removed then add the amount to totalAmountAdded variable
-                if(updatedAmount > p_currentUnitPrice)
-                {
-                    double diff = updatedAmount - p_currentUnitPrice;
-                    this.totalAmountAdded += diff;
-                    p_currentUnitPrice = updatedAmount;
-                }
-                else if(updatedAmount < p_currentUnitPrice)
-                {
-                    double diff = p_currentUnitPrice - updatedAmount;
-                    this.totalAmountAdded -= diff;
-                    p_currentUnitPrice = updatedAmount;
-                }
+                double diff = updatedAmount - p_currentUnitPrice;
+                this.totalAmountAdded += diff;
+                p_currentUnitPrice = updatedAmount;
+            }
+            else if(updatedAmount != 0 && updatedAmount < p_currentUnitPrice)
+            {
+                double diff = p_currentUnitPrice - updatedAmount;
+                this.totalAmountAdded -= diff;
+                p_currentUnitPrice = updatedAmount;
             }
         }
+
         //Set the current price date of the portfolio
         this.currentPriceDate = date;
         //Declare the company investment sum
@@ -241,8 +239,11 @@ public class Portfolio implements Parcelable
 
             //Set the unit count by dividing the cost of the company by the available amount to invest
             c.setUnitCount(c_investment_sum/c.getCostPrice());
-            //Set the intitial price to the current unit price
-            c.setInitialPrice(c.getCurrentUnitPrice());
+
+            //If it's a new portfolio, then set the initial price to the currentPrice
+            if(newPortfolio) {
+                c.setInitialPrice(c.getCostPrice());
+            }
 
             //Set the current unit price date of the company
             c.setCurrentUnitPriceDate(date);

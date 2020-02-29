@@ -317,7 +317,7 @@ public class PortfolioTest {
 
         boolean expectedBalanced = true;
         double expectedUnitCount = 2.5;
-        double expectedInitialPrice = 12.5;
+        double expectedInitialPrice = 5;
         Date date = Calendar.getInstance().getTime();
         DateFormat formatter = new SimpleDateFormat("EEE, dd MMM yyyy");
         String expectedDate = formatter.format(date);
@@ -331,7 +331,7 @@ public class PortfolioTest {
         p.addCompany(c1);
         p.addCompany(c2);
 
-        p.balancePortfolio(true, false,0);
+        p.balancePortfolio(true, 0);
 
         boolean actualBalanced = p.isBalanced();
         double actualUnitCount = p.getCompanies().get(0).getUnitCount();
@@ -364,7 +364,7 @@ public class PortfolioTest {
         p.addCompany(c1);
         p.addCompany(c2);
 
-        p.balancePortfolio(false, false, 0);
+        p.balancePortfolio(false,  0);
 
         boolean actualBalanced = p.isBalanced();
         double actualUnitCount = p.getCompanies().get(0).getUnitCount();

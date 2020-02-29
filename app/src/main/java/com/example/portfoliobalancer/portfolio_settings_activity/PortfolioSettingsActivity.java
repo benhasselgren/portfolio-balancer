@@ -16,8 +16,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.portfoliobalancer.R;
-import com.example.portfoliobalancer.add_company_activity.AddCompanyAdapter;
-import com.example.portfoliobalancer.background_tasks.BalanceTask;
 import com.example.portfoliobalancer.business_logic_classes.Portfolio;
 import com.example.portfoliobalancer.business_logic_classes.UserData;
 import com.example.portfoliobalancer.business_logic_classes.Validation;
@@ -34,7 +32,6 @@ public class PortfolioSettingsActivity extends AppCompatActivity implements Port
     private Portfolio portfolio;
     Validation validation = new Validation();
     private String previousActivity;
-    private BalanceTask balanceTask;
     //Views
     private RecyclerView portfoliosTargetPercentagesListView;
     private TextView totalPercentage;
@@ -193,11 +190,12 @@ public class PortfolioSettingsActivity extends AppCompatActivity implements Port
         //Get previous activity to decide how to balance the portfolio
         if (previousActivity.equals("add_company"))
         {
-            portfolio.balancePortfolio(true, false,0);
+            portfolio.balancePortfolio(true, 0);
         }
         else if (previousActivity.equals("portfolio_details"))
         {
-            portfolio.balancePortfolio(false, true, Double.parseDouble(amountString));
+
+            portfolio.balancePortfolio(false, Double.parseDouble(amountString));
         }
 
         //Load portfolios, check if this portfolio exists and add or update portfolio, then save portfolios
