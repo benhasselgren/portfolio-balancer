@@ -113,6 +113,8 @@ public class AddCompanyActivity extends AppCompatActivity {
                 }
                 else
                 {
+                    //Set the intital price of the company to the current costPrice
+                    c.setInitialPrice(c.getCostPrice());
                     //add to selected companies arraylist
                     selectedCompanies.add(c);
                     adapter.notifyDataSetChanged();

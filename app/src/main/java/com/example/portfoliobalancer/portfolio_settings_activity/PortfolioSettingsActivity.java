@@ -216,11 +216,13 @@ public class PortfolioSettingsActivity extends AppCompatActivity implements Port
         //Get previous activity to decide how to balance the portfolio
         if (previousActivity.equals("add_company"))
         {
+            //If previous activity = "add_company" then we know it's a new company, so pass true to portfolioBalancer method, with 0 added and rmeoved to portfolio
             portfolio.balancePortfolio(true, 0);
         }
         else if (previousActivity.equals("portfolio_details"))
         {
-
+            //If previous activity = "portfolio_details" then we know it's not a new company, so pass false to portfolioBalancer method, and pass the amount to check..
+            //..money has been removed or added.
             portfolio.balancePortfolio(false, Double.parseDouble(amountString));
         }
 
