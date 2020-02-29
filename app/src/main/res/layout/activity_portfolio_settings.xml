@@ -88,12 +88,19 @@
                 android:textSize="15sp"
                 android:inputType="number" />
 
+            <!-- Line breaker-->
+            <View
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dip"
+                android:layout_marginBottom="10dip"
+                android:layout_height="2dip"
+                android:background="#c0c0c0"/>
+
             <!-- Company target percentages Title-->
             <TextView
                 android:id="@+id/portfolio_target_percentages_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dip"
                 android:layout_marginBottom="5dip"
                 android:text="@string/target_percentages_title"
                 android:textColor="@color/textColorAssetGrowth"
@@ -152,6 +159,37 @@
                     android:text="@string/rebalance_btn"
                     android:textColor="@color/textColorHighlight" />
             </RelativeLayout>
+
+            <!-- Line breaker-->
+            <View
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dip"
+                android:layout_marginBottom="5dip"
+                android:layout_height="2dip"
+                android:background="#c0c0c0"/>
+
+            <!-- Delete button Title-->
+            <TextView
+                android:id="@+id/portfolio_delete_btn_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dip"
+                android:layout_gravity="center"
+                android:text="@string/delete_btn_title"
+                android:textColor="@color/textColorAssetDecline"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <!-- Rebalance/Create portfolio button-->
+            <Button
+                android:id="@+id/portfolio_delete_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/textColorAssetDecline"
+                android:paddingLeft="20dip"
+                android:paddingRight="20dip"
+                android:text="@string/delete_portfolio"
+                android:textColor="@color/textColorHighlight" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

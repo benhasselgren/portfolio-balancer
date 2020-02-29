@@ -30,12 +30,14 @@
     <string name="portfolio_description">Description</string>
     <string name="portfolio_amount">Amount</string>
     <string name="portfolio_details_title">Portfolio Details</string>
-    <string name="target_percentages_title">Portfolio Details</string>
+    <string name="target_percentages_title">Target Percentages</string>
+    <string name="delete_btn_title">Danger zone</string>
     <string name="target_percentages_total">Total</string>
     <string name="rebalance_btn">Rebalance</string>
     <string name="balance_dialog_title">Balancing portfolio</string>
     <string name="balance_dialog_message">Please wait...</string>
     <string name="delete_company">Delete</string>
+    <string name="delete_portfolio">Delete portfolio</string>
 
     <!-- Companies -->
     <string name="apple">AAPL,Apple Inc,220</string>
