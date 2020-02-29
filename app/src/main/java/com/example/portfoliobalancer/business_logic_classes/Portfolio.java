@@ -259,12 +259,10 @@ public class Portfolio implements Parcelable
         this.setLastRebalanced(date);
     }
 
-    public void checkPortfolioIsBalanced(List<Company> updatedCompanies)
+    public void updatePortfolio(List<Company> updatedCompanies)
     {
         if(updatedCompanies!=null)
         {
-            int totalPercentageChange = 0;
-
             for(Company c : this.companies) {
 
                 //Find the updated company price and set the company costPrice to the updated price
@@ -276,19 +274,33 @@ public class Portfolio implements Parcelable
                         break;
                     }
                 }
-                //Calculate the current percentage of the portfolio that company takes
-                double currentPercentage = (c.getCurrentUnitPrice() / getCurrentPrice(false)) * 100;
-                //Calculate the difference between the target percentage and the current percentage and add it to totalPercentageChange
-                totalPercentageChange += Math.abs(c.getTargetPercentage() - currentPercentage);
-                //Set the percentage change for the company
-                c.setPercentageChange((int)Math.abs(c.getTargetPercentage() - currentPercentage));
             }
+        }
+    }
 
-            //If the total percentage change is greater than the percentage change limit, then set balanced to false
-            if(totalPercentageChange > this.percentageChangeLimit)
-            {
-                this.balanced = false;
-            }
+    public void checkPortfolioIsBalanced(List<Company> updatedCompanies)
+    {
+        //Update portfolio
+        updatePortfolio(updatedCompanies);
+
+        double totalPercentageChange = 0;
+
+        //Get the current price of the portfolio
+        double p_current_price = getCurrentPrice(false);
+
+        for(Company c : this.companies) {
+            //Calculate the current percentage of the portfolio that company takes
+            double currentPercentage = (c.getCurrentUnitPrice() / p_current_price) * 100;
+            //Calculate the difference between the target percentage and the current percentage and add it to totalPercentageChange
+            totalPercentageChange += Math.abs(c.getTargetPercentage() - currentPercentage);
+            //Set the percentage change for the company
+            c.setPercentageChange((int)Math.abs(c.getTargetPercentage() - currentPercentage));
+        }
+
+        //If the total percentage change is greater than the percentage change limit, then set balanced to false
+        if(totalPercentageChange > this.percentageChangeLimit)
+        {
+            this.balanced = false;
         }
     }
 

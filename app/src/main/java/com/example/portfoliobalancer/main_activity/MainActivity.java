@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         userData = new UserData();
 
         //################# Create companies here
-        //createCompanies();
+        createCompanies();
 
         // Load the PORTFTOLIOS (hence parameter passed is TRUE)
         userData.loadUserData(context, true);

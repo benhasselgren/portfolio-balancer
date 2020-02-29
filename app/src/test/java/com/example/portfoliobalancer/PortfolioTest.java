@@ -261,6 +261,7 @@ public class PortfolioTest {
 
         boolean expected = false;
         ArrayList<Company>companies=new ArrayList<Company>();
+        ArrayList<Company>updatedCompanies=new ArrayList<Company>();
 
         Company c1 = new Company("Apple", "APPL", 2.5, 5, 50, null, 5);
         Company c2 = new Company("Microsoft", "MSFT", 2.5, 5, 50, null, 5);
@@ -269,13 +270,13 @@ public class PortfolioTest {
         p.addCompany(c1);
         p.addCompany(c2);
 
-        Company c3 = new Company("Apple", "APPL", 2.5, 20, 50, null, 5);
+        Company c3 = new Company("Apple", "APPL", 2.5, 10, 50, null, 5);
         Company c4 = new Company("Microsoft", "MSFT", 2.5, 20, 50, null, 5);
 
-        companies.add(c3);
-        companies.add(c4);
+        updatedCompanies.add(c3);
+        updatedCompanies.add(c4);
 
-        p.checkPortfolioIsBalanced(companies);
+        p.checkPortfolioIsBalanced(updatedCompanies);
 
         boolean actual = p.isBalanced();
 

@@ -64,7 +64,10 @@ public class UserData implements Parcelable
 
     public void addPortfolio(Portfolio p)
     {
-        this.portfolios.add(p);
+        if(p!=null)
+        {
+            this.portfolios.add(p);
+        }
     }
 
     public void removePortfolio(Portfolio p)
@@ -74,8 +77,11 @@ public class UserData implements Parcelable
 
     public void updatePortfolio(Portfolio add_p, Portfolio remove_p)
     {
-        this.removePortfolio(remove_p);
-        this.addPortfolio(add_p);
+        if(add_p != null && remove_p != null)
+        {
+            this.removePortfolio(remove_p);
+            this.addPortfolio(add_p);
+        }
     }
 
     public Portfolio findPortfolioById(int id)
@@ -138,22 +144,25 @@ public class UserData implements Parcelable
 
     public void checkPortfoliosAreBalanced(ArrayList<Company> updatedCompanies)
     {
-        for(Portfolio p : portfolios)
+        if (updatedCompanies != null)
         {
-            p.checkPortfolioIsBalanced(updatedCompanies);
+            for(Portfolio p : portfolios)
+            {
+                p.checkPortfolioIsBalanced(updatedCompanies);
+            }
         }
     }
 
     public void createCompanies()
     {
-        Company c1 = new Company("Apple Inc", "AAPL", 298.11);
-        Company c2 = new Company("Admiral Group", "ADM", 21.31);
-        Company c3 = new Company("Coca Cola Consolidated Inc", "COKE", 201.46);
-        Company c4 = new Company("Vanguard Active U.K. Equity Fund A GBP Accumulation", "VAAUE", 98.9614);
-        Company c5 = new Company("Vanguard Emerging Markets Stock Index", "VNEMI", 180.6317);
+        Company c1 = new Company("Apple Inc", "AAPL", 110.11);
+        Company c2 = new Company("Admiral Group", "ADM", 29.31);
+        Company c3 = new Company("Coca Cola Consolidated Inc", "COKE", 198.46);
+        Company c4 = new Company("Vanguard Active U.K. Equity Fund A GBP Accumulation", "VAAUE", 92.9614);
+        Company c5 = new Company("Vanguard Emerging Markets Stock Index", "VNEMI", 175.6317);
         Company c6 = new Company("Baillie Gifford Global Alpha Growth Fund B Accumulation", "BFGGA", 3.346);
         Company c7 = new Company("Baillie Gifford Global Income Growth Fund B Accumulation", "BFGIA", 15.70);
-        Company c8 = new Company("Tesla Inc", "TSLA", 678.89);
+        Company c8 = new Company("Tesla Inc", "TSLA", 710.89);
 
         this.companies.add(c1);
         this.companies.add(c2);
