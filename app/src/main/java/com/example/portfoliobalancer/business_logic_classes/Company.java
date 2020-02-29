@@ -132,12 +132,12 @@ public class Company implements Parcelable {
 
     public double getPriceGrowth()
     {
-        return (Math.abs(this.getCurrentUnitPrice() - (this.initialPrice * this.unitCount)))/this.unitCount;
+        return (this.getCurrentUnitPrice() - (this.initialPrice * this.unitCount))/this.unitCount;
     }
 
     public double getPercentageGrowth()
     {
-        double growth = (Math.abs(this.getCurrentUnitPrice() - (this.initialPrice * this.unitCount))/(this.initialPrice* this.unitCount))*100;
+        double growth = ((this.getCurrentUnitPrice() - (this.initialPrice * this.unitCount))/(this.initialPrice* this.unitCount))*100;
         return growth;
     }
 

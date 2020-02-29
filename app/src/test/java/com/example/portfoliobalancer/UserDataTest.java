@@ -216,7 +216,7 @@ public class UserDataTest {
         //Update company prices and call method
         Company c5 = new Company("Apple", "APPL", 2.5, 10, 50, null, 5);
         Company c6 = new Company("Microsoft", "MSFT", 2.5, 10, 50, null, 5);
-        Company c7 = new Company("Tesla", "TSLA", 2.5, 101, 50, null, 5);
+        Company c7 = new Company("Tesla", "TSLA", 2.5, 125, 50, null, 5);
         Company c8 = new Company("Dog", "DOG", 2.5, 100, 50, null, 5);
 
         updatedCompanies.add(c5);
@@ -225,16 +225,6 @@ public class UserDataTest {
         updatedCompanies.add(c8);
 
         ud.checkPortfoliosAreBalanced(updatedCompanies);
-
-        //Track percentage changes of company
-        for(Portfolio portfolio : ud.getPortfolios())
-        {
-            for (Company c : p.getCompanies())
-            {
-                System.out.println("Percentage change p: " + c.getPercentageChange());
-            }
-        }
-
 
         boolean actualPortfolioOneValue = ud.findPortfolioById(1).isBalanced();
         boolean actualPortfolioTwoValue = ud.findPortfolioById(2).isBalanced();
