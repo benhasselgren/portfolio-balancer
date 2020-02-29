@@ -155,6 +155,11 @@ public class Portfolio implements Parcelable
         this.totalAmountAdded -= amount;
     }
 
+    public void addAmountToTotalAmountAdded(double amount)
+    {
+        this.totalAmountAdded += amount;
+    }
+
     public double getCurrentPrice(Boolean newPortfolio)
     {
         if(newPortfolio)
@@ -215,13 +220,13 @@ public class Portfolio implements Parcelable
             if(updatedAmount != 0 && updatedAmount > p_currentUnitPrice)
             {
                 double diff = updatedAmount - p_currentUnitPrice;
-                this.totalAmountAdded += diff;
+                this.addAmountToTotalAmountAdded(diff);
                 p_currentUnitPrice = updatedAmount;
             }
             else if(updatedAmount != 0 && updatedAmount < p_currentUnitPrice)
             {
                 double diff = p_currentUnitPrice - updatedAmount;
-                this.totalAmountAdded -= diff;
+                this.removeAmountFromTotalAmountAdded(diff);
                 p_currentUnitPrice = updatedAmount;
             }
         }

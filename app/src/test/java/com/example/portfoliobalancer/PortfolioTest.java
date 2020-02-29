@@ -324,8 +324,8 @@ public class PortfolioTest {
 
         ArrayList<Company>companies=new ArrayList<Company>();
 
-        Company c1 = new Company("Apple", "APPL", 0, 5, 50, null, 0);
-        Company c2 = new Company("Microsoft", "MSFT", 0, 5, 50, null, 0);
+        Company c1 = new Company("Apple", "APPL", 0, 5, 50, null, 5);
+        Company c2 = new Company("Microsoft", "MSFT", 0, 5, 50, null, 5);
 
         Portfolio p = new Portfolio(1, "TestPortfolio", "test description", companies, 25, null, false, null, 10);
         p.addCompany(c1);
@@ -351,14 +351,14 @@ public class PortfolioTest {
 
         boolean expectedBalanced = true;
         double expectedUnitCount = 1.25;
-        double expectedInitialPrice = 12.5;
+        double expectedInitialPrice = 5;
         Date date = Calendar.getInstance().getTime();
         DateFormat formatter = new SimpleDateFormat("EEE, dd MMM yyyy");
         String expectedDate = formatter.format(date);
         ArrayList<Company>companies=new ArrayList<Company>();
 
-        Company c1 = new Company("Apple", "APPL", 2, 10, 50, null, 12.5);
-        Company c2 = new Company("Microsoft", "MSFT", 1, 5, 50, null, 12.5);
+        Company c1 = new Company("Apple", "APPL", 2, 10, 50, null, 5);
+        Company c2 = new Company("Microsoft", "MSFT", 1, 5, 50, null, 5);
 
         Portfolio p = new Portfolio(1, "TestPortfolio", "test description", companies, 25, null, false, null, 10);
         p.addCompany(c1);
@@ -383,8 +383,9 @@ public class PortfolioTest {
     public void balancePortfolioAddedAmountTestBalanced() {
 
         boolean expectedBalanced = true;
-        double expectedUnitCount = 1.25;
+        double expectedUnitCount = 1.75;
         double expectedInitialPrice = 12.5;
+        double expectedPrice = 35;
         Date date = Calendar.getInstance().getTime();
         DateFormat formatter = new SimpleDateFormat("EEE, dd MMM yyyy");
         String expectedDate = formatter.format(date);
@@ -397,17 +398,20 @@ public class PortfolioTest {
         p.addCompany(c1);
         p.addCompany(c2);
 
-        p.balancePortfolio(false,  0);
+        //Simulating adding £10 (25 + 10 = 35)
+        p.balancePortfolio(false,  35);
 
         boolean actualBalanced = p.isBalanced();
         double actualUnitCount = p.getCompanies().get(0).getUnitCount();
         double actualInitialPrice = p.getCompanies().get(0).getInitialPrice();
+        double actualPrice = p.getCurrentPrice(false);
         Date date2 = p.getCompanies().get(0).getCurrentUnitPriceDate();
         String actualDate = formatter.format(date2);
 
         assertEquals(expectedBalanced, actualBalanced);
         assertEquals(expectedUnitCount, actualUnitCount, 0);
         assertEquals(expectedInitialPrice, actualInitialPrice, 0);
+        assertEquals(expectedPrice, actualPrice, 0);
         assertEquals(expectedDate, actualDate);
 
     }
@@ -416,8 +420,9 @@ public class PortfolioTest {
     public void balancePortfolioRemovedAmountTestBalanced() {
 
         boolean expectedBalanced = true;
-        double expectedUnitCount = 1.25;
+        double expectedUnitCount = 0.75;
         double expectedInitialPrice = 12.5;
+        double expectedPrice = 15;
         Date date = Calendar.getInstance().getTime();
         DateFormat formatter = new SimpleDateFormat("EEE, dd MMM yyyy");
         String expectedDate = formatter.format(date);
@@ -430,18 +435,54 @@ public class PortfolioTest {
         p.addCompany(c1);
         p.addCompany(c2);
 
-        p.balancePortfolio(false,  0);
+        //Simulating removing £10 (25 - 10 = 15)
+        p.balancePortfolio(false,  15);
 
         boolean actualBalanced = p.isBalanced();
         double actualUnitCount = p.getCompanies().get(0).getUnitCount();
         double actualInitialPrice = p.getCompanies().get(0).getInitialPrice();
+        double actualPrice = p.getCurrentPrice(false);
         Date date2 = p.getCompanies().get(0).getCurrentUnitPriceDate();
         String actualDate = formatter.format(date2);
 
         assertEquals(expectedBalanced, actualBalanced);
         assertEquals(expectedUnitCount, actualUnitCount, 0);
         assertEquals(expectedInitialPrice, actualInitialPrice, 0);
+        assertEquals(expectedPrice, actualPrice, 0);
         assertEquals(expectedDate, actualDate);
+    }
 
+    /**
+     * Test removeAmountFromTotalAmountAdded method
+     */
+    @Test
+    public void removeAmountFromTotalAmountAddedTest() {
+        double expectedValue = -20.0;
+
+        ArrayList<Company>companies=new ArrayList<Company>();
+        Portfolio p = new Portfolio(1, "TestPortfolio", "test description", companies, 25, null, false, null, 10);
+
+        p.removeAmountFromTotalAmountAdded(20.0);
+
+        double actualValue = p.getTotalAmountAdded();
+
+        assertEquals(expectedValue, actualValue, 0);
+    }
+
+    /**
+     * Test addmountToTotalAmountAdded method
+     */
+    @Test
+    public void addAmountToTotalAmountAddedTest() {
+        double expectedValue = 20.0;
+
+        ArrayList<Company>companies=new ArrayList<Company>();
+        Portfolio p = new Portfolio(1, "TestPortfolio", "test description", companies, 25, null, false, null, 10);
+
+        p.addAmountToTotalAmountAdded(20.0);
+
+        double actualValue = p.getTotalAmountAdded();
+
+        assertEquals(expectedValue, actualValue, 0);
     }
 }
