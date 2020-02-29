@@ -22,10 +22,15 @@ public class Validation {
             throw new RuntimeException("Amount field cannot be empty.");
         }
         else {
-            int amountInt = Integer.parseInt(amountString);
-            if (amountInt < 100 || amountInt > 25000)
+            if(amountString.matches("[0-9]+")) {
+                int amountInt = Integer.parseInt(amountString);
+                if (amountInt < 100 || amountInt > 25000) {
+                    throw new RuntimeException("Amount has to be between £100-£25,000.");
+                }
+            }
+            else
             {
-                throw new RuntimeException("Amount has to be between £100-£25,000.");
+                throw new RuntimeException("Amount has to be a number.");
             }
         }
     }
