@@ -53,19 +53,19 @@ public class AddCompanyActivity extends AppCompatActivity {
         previousActivity= getIntent().getStringExtra("FROM_ACTIVITY");
 
         //Use the portfolio based on the previous activity
-        if(previousActivity.equals("portfolio_details"))
-        {
-            //Assign the intent parcelable extra to a variable
-            portfolio = (Portfolio) getIntent().getParcelableExtra("portfolio");
-            //Set selected companies to the companies already in the portfolio
-            selectedCompanies = (ArrayList<Company>) portfolio.getCompanies();
-        }
-        else
+        if (previousActivity.equals("add_portfolio"))
         {
             //Assign the intent parcelable extra to a variable
             portfolio = (Portfolio) getIntent().getParcelableExtra("portfolio");
             //Intitalise the selectedCompanies arraylist
             selectedCompanies = new ArrayList<>();
+        }
+        else if(previousActivity.equals("portfolio_details"))
+        {
+            //Assign the intent parcelable extra to a variable
+            portfolio = (Portfolio) getIntent().getParcelableExtra("portfolio");
+            //Set selected companies to the companies already in the portfolio
+            selectedCompanies = (ArrayList<Company>) portfolio.getCompanies();
         }
         //Add views
         companySelector = (AutoCompleteTextView)findViewById(R.id.company_selector);

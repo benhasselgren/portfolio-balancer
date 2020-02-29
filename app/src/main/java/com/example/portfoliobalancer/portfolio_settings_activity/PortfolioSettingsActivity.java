@@ -38,8 +38,9 @@ public class PortfolioSettingsActivity extends AppCompatActivity implements Port
     private EditText name;
     private EditText description;
     private EditText amount;
-    private Button rebalance_create_btn;
+    private Button rebalanceCreateBtn;
     private ProgressDialog progressDialog;
+    private Button deletePortfolioBtn;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,7 +83,8 @@ public class PortfolioSettingsActivity extends AppCompatActivity implements Port
         );
 
         amount = (EditText)findViewById(R.id.portfolio_amount_input);
-        rebalance_create_btn = (Button) findViewById(R.id.rebalance_create__btn);
+        rebalanceCreateBtn = (Button) findViewById(R.id.rebalance_create__btn);
+        deletePortfolioBtn = (Button) findViewById(R.id.portfolio_delete_btn);
 
         //If the recyclerview doesn't change size, we can set this true and
         portfoliosTargetPercentagesListView.setHasFixedSize(true);
@@ -106,18 +108,18 @@ public class PortfolioSettingsActivity extends AppCompatActivity implements Port
         //Set the button text based on the previous activity
         if (previousActivity.equals("add_company"))
         {
-            rebalance_create_btn.setText("Create portfolio");
+            rebalanceCreateBtn.setText("Create portfolio");
             amount.setText(String.format("%.2f", portfolio.getCurrentPrice(true)));
         }
         else if (previousActivity.equals("portfolio_details"))
         {
-            rebalance_create_btn.setText("Update portfolio");
+            rebalanceCreateBtn.setText("Update portfolio");
             amount.setText(String.format("%.2f", portfolio.getCurrentPrice(false)));
         }
 
         //-----------------------------EventListenerMethods-----------------------------
         //Triggers if rebalance/create button is clicked
-        rebalance_create_btn.setOnClickListener(new View.OnClickListener() {
+        rebalanceCreateBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
                 //Set the total percentage text to show total percentage
@@ -155,6 +157,30 @@ public class PortfolioSettingsActivity extends AppCompatActivity implements Port
                     //Catches all exceptions here and displays appropriate error message
                     Toast.makeText(getBaseContext(), ex.getMessage(), Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+        //Triggers if delete button is clicked
+        deletePortfolioBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                UserData ud = new UserData();
+
+                //Load the portfolios
+                ud.loadUserData(getApplicationContext(), true);
+
+                //Find the portfolio
+                Portfolio p = ud.findPortfolioById(portfolio.getId());
+
+                //Delete the portfolio
+                ud.removePortfolio(p);
+
+                //Save the portfolios
+                ud.saveUserData(getApplicationContext(), true);
+
+                //Send user back to main activity
+                Intent intent = new Intent(PortfolioSettingsActivity.this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
             }
         });
     }

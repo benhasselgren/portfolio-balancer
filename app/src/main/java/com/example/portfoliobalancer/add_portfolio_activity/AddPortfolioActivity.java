@@ -96,6 +96,7 @@ public class AddPortfolioActivity extends AppCompatActivity {
                     //If everything is valid, create a portfolio and start a new activity (passing the portfolio to that activity)
                     Portfolio portfolio = createPortfolio(nameString, descriptionString, amountString);
                     Intent intent = new Intent(AddPortfolioActivity.this, AddCompanyActivity.class);
+                    intent.putExtra("FROM_ACTIVITY", "add_portfolio");
                     intent.putExtra("portfolio", portfolio);
                     startActivity(intent);
                 }
