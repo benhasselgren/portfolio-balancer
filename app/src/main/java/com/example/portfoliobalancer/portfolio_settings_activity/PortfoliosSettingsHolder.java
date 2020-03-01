@@ -16,9 +16,11 @@ import com.example.portfoliobalancer.add_portfolio_activity.AddPortfolioActivity
 import com.example.portfoliobalancer.business_logic_classes.Company;
 import com.example.portfoliobalancer.main_activity.MainActivity;
 
-//######################-----------------------------PortfolioSettingsHolderClass-----------------------------######################
-//XML file: settings_target_percentage_entry.xml
-//This displays the sliders to adjust the companies target percentages.
+/**
+ * PortfolioSettingsHolder
+ * This displays the sliders to adjust the companies target percentages.
+ * XML file: settings_target_percentage_entry.xml
+ */
 
 public class PortfoliosSettingsHolder extends RecyclerView.ViewHolder {
 
@@ -47,7 +49,12 @@ public class PortfoliosSettingsHolder extends RecyclerView.ViewHolder {
         this.deleteCompanyBtn = (Button) itemView.findViewById(R.id.entry_company_delete_btn);
 
         //-----------------------------Event Listener Methods----------------------------
-        //Updates the value of the seekbar and displays it in the value text view
+
+        /**
+         * company_target_percentage_seekbar.setOnSeekBarChangeListener()
+         * Triggers if company_target_percentage_seekbar progress changes
+         * Updates the seekbar and the company target percentage
+         */
         company_target_percentage_seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
             int progress_tracker;
@@ -70,7 +77,10 @@ public class PortfoliosSettingsHolder extends RecyclerView.ViewHolder {
             }
         });
 
-        //Updates the seekbar progress value if text is changed
+        /**
+         * company_target_percentage_value.addTextChangedListener()
+         * Updates the seekbar progress value if text is changed
+         */
         company_target_percentage_value.addTextChangedListener(new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -98,7 +108,6 @@ public class PortfoliosSettingsHolder extends RecyclerView.ViewHolder {
 
     //-----------------------------Methods-----------------------------
 
-    //Bind the data of the company to the views in the activity
     public void bindPortfolio(Company company) {
         // Bind the data to all the ViewHolders
         this.company = company;
@@ -113,11 +122,14 @@ public class PortfoliosSettingsHolder extends RecyclerView.ViewHolder {
         this.company_target_percentage_value.setText(String.format("%s",company.getTargetPercentage()));
     }
 
-    //Sets up the progress bar to show the companies current target percentage
+    /**
+     * setUpSeekBar()
+     * Sets up the progress bar to show the companies current target percentage
+     * @see com.example.portfoliobalancer.business_logic_classes.UserData
+     */
     public void setUpSeekBar()
     {
         company_target_percentage_seekbar.setProgress(company.getTargetPercentage());
         company_target_percentage_seekbar.setMax(100);
     }
-
 }

@@ -7,9 +7,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.portfoliobalancer.CompanyDetailsActivity;
+import com.example.portfoliobalancer.company_details_activity.CompanyDetailsActivity;
 import com.example.portfoliobalancer.R;
 import com.example.portfoliobalancer.business_logic_classes.Company;
+
+/**
+ * CompaniesHolder
+ * This displays the companies
+ * XML file: company_entry.xml
+ */
 
 public class CompaniesHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
@@ -40,6 +46,13 @@ public class CompaniesHolder extends RecyclerView.ViewHolder implements View.OnC
         percentageChange = (TextView) itemView.findViewById(R.id.entry_company_percentageChange);
         currentPrice = (TextView) itemView.findViewById(R.id.entry_company_currentPrice);
         growth = (TextView) itemView.findViewById(R.id.entry_company_growth);
+
+
+        // Set the "onClick" listener of the holder
+        // here we use (this) because this class has a onClick function thanks
+        // to implementing the PlacesHolder class with the
+        // View.OnClickListener interface
+        itemView.setOnClickListener(this);
     }
 
     public void bindCompany(Company company)
@@ -78,11 +91,16 @@ public class CompaniesHolder extends RecyclerView.ViewHolder implements View.OnC
             growth.setTextColor(ContextCompat.getColor(context, R.color.textColorAsset));
             growth.setText("£00.00(0.0%)");
         }
-
     }
 
     //-----------------------------Event Listener Methods----------------------------
-    //Triggered when a user clicks a company
+
+    /**
+     * onClick()
+     * Triggers if company list item is clicked
+     * User is directed to CompanyDetailsActivity
+     * @see com.example.portfoliobalancer.company_details_activity.CompanyDetailsActivity
+     */
     @Override
     public void onClick(View v) {
         if (company != null) {

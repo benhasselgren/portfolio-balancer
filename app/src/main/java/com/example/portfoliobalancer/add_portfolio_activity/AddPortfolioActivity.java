@@ -17,9 +17,11 @@ import com.example.portfoliobalancer.R;
 import com.example.portfoliobalancer.business_logic_classes.Portfolio;
 import com.example.portfoliobalancer.business_logic_classes.Validation;
 
-//######################-----------------------------AppPortfolioActivityClass-----------------------------######################
-//XML file: activity_add_portfolio.xml
-//User adds the portfolio name, description and amount to invest here
+/**
+ * AppPortfolioActivity
+ * User adds the portfolio name, description and amount to invest here
+ * XML file: activity_add_portfolio.xml
+ */
 
 public class AddPortfolioActivity extends AppCompatActivity {
 
@@ -78,10 +80,15 @@ public class AddPortfolioActivity extends AppCompatActivity {
         Button nextButton = (Button) findViewById(R.id.add_portfolio_activity_btn);
 
         //-----------------------------Event Listener Methods-----------------------------
-        //Triggers if next button is clicked
+
+        /**
+         * nextButton.setOnClickListener()
+         * Triggers if next button is clicked
+         * Validates the data entered in the fields and if it's valid directs the user to the next activity (AddCompanyActivity)
+         * @see com.example.portfoliobalancer.add_company_activity.AddCompanyActivity
+         */
         nextButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
                 try
                 {
                     //Convert name and description to strings
@@ -111,7 +118,15 @@ public class AddPortfolioActivity extends AppCompatActivity {
 
     //-----------------------------Methods-----------------------------
 
-    //Creates a basic portfolio with basic details
+    /**
+     * createPortfolio()
+     * Creates a basic portfolio with initial details
+     * @param nameString
+     * @param descriptionString
+     * @param amountString
+     * @return A new portfolio object
+     *
+     */
     private Portfolio createPortfolio(String nameString, String descriptionString, String amountString)
     {
         Portfolio p = new Portfolio();
@@ -123,5 +138,4 @@ public class AddPortfolioActivity extends AppCompatActivity {
 
         return p;
     }
-
 }

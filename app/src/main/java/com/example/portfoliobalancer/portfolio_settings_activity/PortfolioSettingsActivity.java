@@ -21,10 +21,12 @@ import com.example.portfoliobalancer.business_logic_classes.UserData;
 import com.example.portfoliobalancer.business_logic_classes.Validation;
 import com.example.portfoliobalancer.main_activity.MainActivity;
 
-//######################-----------------------------PortfoliosSettingsActivityClass-----------------------------######################
-//XML file: activity_portfolio_settings.xml
-//Portfolio settings page of app. It's where the user can edit their portfolio details and change the target percentages.
-//Also where the user is directed when creating a new portfolio
+/**
+ * PortfoliosSettingsActivity
+ * Portfolio settings page of app. It's where the user can edit their portfolio details and change the target percentages.
+ * Also where they can delete companies and also where they can delete their portfolio.
+ * XML file: activity_portfolio_settings.xml
+ */
 public class PortfolioSettingsActivity extends AppCompatActivity implements PortfoliosSettingsAdapter.OnCompanyDeleted {
 
     //-----------------------------Variables/Views-----------------------------
@@ -118,7 +120,16 @@ public class PortfolioSettingsActivity extends AppCompatActivity implements Port
         }
 
         //-----------------------------EventListenerMethods-----------------------------
-        //Triggers if rebalance/create button is clicked
+
+        /**
+         * rebalanceCreateBtn.setOnClickListener()
+         * Triggers if rebalanceCreateBtn clicked
+         * The portfolio will be rebalanced
+         * Uses the the balancePortfolio method from Portfolio class
+         * Once balanced the user will be sent back to the Main activity
+         * @see com.example.portfoliobalancer.business_logic_classes.Portfolio
+         * @see com.example.portfoliobalancer.main_activity.MainActivity
+         */
         rebalanceCreateBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
@@ -160,7 +171,12 @@ public class PortfolioSettingsActivity extends AppCompatActivity implements Port
             }
         });
 
-        //Triggers if delete button is clicked
+        /**
+         * deletePortfolioBtn.setOnClickListener()
+         * Triggers if deletePortfolioBtn clicked
+         * The portfolio will be deleted and the user will be directed to the MainActivity
+         * @see com.example.portfoliobalancer.main_activity.MainActivity
+         */
         deletePortfolioBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 UserData ud = new UserData();
@@ -187,7 +203,13 @@ public class PortfolioSettingsActivity extends AppCompatActivity implements Port
 
     //-----------------------------Methods-----------------------------
 
-    //Adds the remaining values tot he empty variables in the object
+    /**
+     * finalisePortfolio()
+     * Finalises the portfolio before saving it to the device
+     * @param nameString
+     * @param descriptionString
+     * @param amountString
+     */
     private void finalisePortfolio(String nameString, String descriptionString, String amountString)
     {
         //Update porfolio details
@@ -252,8 +274,13 @@ public class PortfolioSettingsActivity extends AppCompatActivity implements Port
         progressDialog.dismiss();
     }
 
-    //If company is removed then update the totalAmountAdded (totalAmountAdded - currentUnitPrice of company being deleted).
-    //This is to prevent the growth percentage values being affected.
+    /**
+     * onDeleteCompanyClick()
+     * Triggered by a callback in PortfolioSettingsAdapter
+     * If company is removed then update the totalAmountAdded (totalAmountAdded - currentUnitPrice of company being deleted).
+     * This is to prevent the growth percentage values being affected.
+     * @param value
+     */
     @Override
     public void onDeleteCompanyClick(double value) {
         portfolio.removeAmountFromTotalAmountAdded(value);

@@ -9,8 +9,10 @@ import java.util.List;
 import java.util.Date;
 import java.lang.Math;
 
-//######################-----------------------------PortfolioClass-----------------------------######################
-//Parcelable class that hold details about a portfolio
+/**
+ * Portfolio
+ * Parcelable class that hold details about a portfolio
+ */
 public class Portfolio implements Parcelable
 {
     //-----------------------------Instance variables-----------------------------
@@ -26,7 +28,6 @@ public class Portfolio implements Parcelable
     private double totalAmountAdded;
 
     //-----------------------------Getters/Setters-----------------------------
-
 
     public int getId() {
         return id;
@@ -110,8 +111,16 @@ public class Portfolio implements Parcelable
 
     //-----------------------------Constructors-----------------------------
 
+    /**
+     * Portfolio()
+     * Creates an empty Portfolio object
+     */
     public Portfolio(){}
 
+    /**
+     * Portfolio()
+     * Creates a portfolio object with all fields assigned to apart from totalAmountAdded.
+     */
     public Portfolio(int id, String name, String description, List<Company> companies, double initialPrice, Date lastRebalanced, boolean balanced, Date currentPriceDate, int percentageChangeLimit)
     {
         this.id = id;
@@ -125,6 +134,10 @@ public class Portfolio implements Parcelable
         this.percentageChangeLimit = percentageChangeLimit;
     }
 
+    /**
+     * Portfolio()
+     * Creates an portfolio object from another portfolio object
+     */
     public Portfolio(Portfolio p)
     {
         this.id = p.id;
@@ -136,30 +149,59 @@ public class Portfolio implements Parcelable
         this.balanced = p.balanced;
         this.currentPriceDate = p.currentPriceDate;
         this.percentageChangeLimit = p.percentageChangeLimit;
+        this.totalAmountAdded = p.totalAmountAdded;
     }
 
     //-----------------------------Methods-----------------------------
 
+    /**
+     * addCompany()
+     * Adds a company to the company list
+     * @param c
+     */
     public void addCompany(Company c)
     {
         this.companies.add(c);
     }
 
+    /**
+     * removeCompany()
+     * Removes a company to the company list
+     * @param c
+     */
     public void removeCompany(Company c)
     {
         this.companies.remove(c);
     }
 
+    /**
+     * removeAmountFromTotalAmountAdded()
+     * Removes a given value from the totalAmountAdded variable
+     * @param amount
+     */
     public void removeAmountFromTotalAmountAdded(double amount)
     {
         this.totalAmountAdded -= amount;
     }
 
+    /**
+     * addAmountFromTotalAmountAdded()
+     * Adds a given value from the totalAmountAdded variable
+     * @param amount
+     */
     public void addAmountToTotalAmountAdded(double amount)
     {
         this.totalAmountAdded += amount;
     }
 
+    /**
+     * getCurrentPrice()
+     * Calculates the currentPRice of the portfolio in two ways depending on if it's a new portfolio or not.
+     * If it's new then return the initial price.
+     * If it's not then return currentPrice (the sum of the currentUnitPrice of the companies in the portfolio).
+     * @param newPortfolio
+     * @return either initialPrice or the currentPrice
+     */
     public double getCurrentPrice(Boolean newPortfolio)
     {
         if(newPortfolio)
@@ -179,6 +221,13 @@ public class Portfolio implements Parcelable
         }
     }
 
+    /**
+     * getTotalPercentage()
+     * Calculates the total percentage of all company target percentages.
+     * It's used in the PortfolioSettingsActivity to check totalTargetPercentage equals 100%
+     * @see com.example.portfoliobalancer.portfolio_settings_activity.PortfolioSettingsActivity
+     * @return total percentage of the target percentages in each company
+     */
     public int getTotalPercentage()
     {
         int total = 0;
@@ -189,18 +238,42 @@ public class Portfolio implements Parcelable
         return total;
     }
 
+    /**
+     * getPriceGrowth()
+     * Calculates the price growth of the portfolio
+     * Eg. Initial price of a portfolio was £100. Current price is now £150. So price growth equals £50
+     * @return the growth price of the portfolio
+     */
     public double getPriceGrowth()
     {
         //Price growth = current price of portfolio - (the initial price plus the amount added to the portfolio (or removed))
         return this.getCurrentPrice(false) - (this.initialPrice + this.totalAmountAdded);
     }
 
+    /**
+     * getPercentageGrowth()
+     * Calculates the percentage growth of a company
+     * Eg. Initial price of portfolio was £100. Current price is now £150. So percentage growth equals 50%
+     * @return the growth percentage of the portfolio
+     */
     public double getPercentageGrowth()
     {
         double growth = (getPriceGrowth()/this.initialPrice)*100;
         return growth;
     }
 
+    /**
+     * balancePortfolio()
+     * Balances a portfolio. Balances it in different ways, depending on if you have added/removed money or if it's a new portfolio
+     * If it's new then call getCurrentPrice() with true as parameter. (This is to get the initial price)
+     * If it's not new then call getCurrentPrice() with false as parameter. (This is to get the currentPrice)
+     * If it's not new and amount has been added or removed then do the same as point before but add/subtract the amount added or removed. Also add/subtract that amount to totalAmountAdded.
+     * Used in PortfolioSettingsActivity and PortfolioDetailsActivity
+     * @see com.example.portfoliobalancer.portfolio_settings_activity.PortfolioSettingsActivity
+     * @see com.example.portfoliobalancer.portfolio_details_activity.PortfolioDetailsActivity
+     * @param newPortfolio
+     * @param updatedAmount
+     */
     public void balancePortfolio(boolean newPortfolio, double updatedAmount)
     {
         //Get the current date
@@ -259,6 +332,12 @@ public class Portfolio implements Parcelable
         this.setLastRebalanced(date);
     }
 
+    /**
+     * updatePortfolio()
+     * Updates a portfolio by updating all the companies prices in a portfolio
+     * Used in checkPortfolioIsBalanced().
+     * @param updatedCompanies
+     */
     public void updatePortfolio(List<Company> updatedCompanies)
     {
         if(updatedCompanies!=null)
@@ -278,6 +357,13 @@ public class Portfolio implements Parcelable
         }
     }
 
+    /**
+     * checkPortfolioIsBalanced()
+     * Checks to see if a portfolio is still balanced
+     * Does this by getting the percentage change of each company and checking if the overall amount is greater than or equal to the percentageChangeLimit.
+     * If it is then set isBalanced to false
+     * @param updatedCompanies
+     */
     public void checkPortfolioIsBalanced(List<Company> updatedCompanies)
     {
         //Update portfolio
@@ -298,7 +384,7 @@ public class Portfolio implements Parcelable
         }
 
         //If the total percentage change is greater than the percentage change limit, then set balanced to false
-        if(totalPercentageChange > this.percentageChangeLimit)
+        if(totalPercentageChange >= this.percentageChangeLimit)
         {
             this.balanced = false;
         }

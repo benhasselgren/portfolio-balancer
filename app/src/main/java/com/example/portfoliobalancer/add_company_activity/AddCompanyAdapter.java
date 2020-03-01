@@ -5,18 +5,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AnimationUtils;
-
-import com.example.portfoliobalancer.R;
 import com.example.portfoliobalancer.business_logic_classes.Company;
-import com.example.portfoliobalancer.business_logic_classes.Portfolio;
-import com.example.portfoliobalancer.main_activity.PortfoliosHolder;
-import com.example.portfoliobalancer.portfolio_details_activity.CompaniesHolder;
-
 import java.util.List;
 
-//######################-----------------------------AddCompanyAdapterClass-----------------------------######################
-//Binds the data from the AddCompanyActivity to the elements in the recyclerview
+/**
+ * AddCompanyAdapter
+ * Binds the data from the AddCompanyActivity to the elements in the recyclerview
+ */
 
 public class AddCompanyAdapter extends RecyclerView.Adapter<AddCompanyHolder>{
 
@@ -35,7 +30,12 @@ public class AddCompanyAdapter extends RecyclerView.Adapter<AddCompanyHolder>{
 
     //-----------------------------Methods-----------------------------
 
-    //Passes the data from the activity to the holder
+    /**
+     * onCreateViewHolder()
+     * @param parent
+     * @param viewType
+     * @return view holder
+     */
     @Override
     public AddCompanyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
@@ -43,7 +43,12 @@ public class AddCompanyAdapter extends RecyclerView.Adapter<AddCompanyHolder>{
         return new AddCompanyHolder(this.context, view);
     }
 
-    //Binds the data to the holder
+    /**
+     * onBindViewHolder()
+     * Binds data to the view holder
+     * @param holder
+     * @param position
+     */
     @Override
     public void onBindViewHolder(AddCompanyHolder holder, int position) {
 
@@ -54,7 +59,10 @@ public class AddCompanyAdapter extends RecyclerView.Adapter<AddCompanyHolder>{
         holder.bindAddCompany(c);
     }
 
-    //Returns the size of the list
+    /**
+     * getItemCount()
+     * @return the size of the array list
+     */
     @Override
     public int getItemCount() {
         return this.companies.size();

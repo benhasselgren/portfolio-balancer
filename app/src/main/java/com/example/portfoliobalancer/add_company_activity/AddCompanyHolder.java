@@ -8,9 +8,12 @@ import android.widget.TextView;
 import com.example.portfoliobalancer.R;
 import com.example.portfoliobalancer.business_logic_classes.Company;
 
-//######################-----------------------------AddCompanyHolderClass-----------------------------######################
-//XML file: add_company_entry.xml
-//This displays the companies that can be added to a portfolio
+/**
+ * AddCompanyHolder
+ * This displays the companies that are to be added to a portfolio
+ * XML file: add_company_entry.xml
+ */
+
 public class AddCompanyHolder extends RecyclerView.ViewHolder{
 
     //-----------------------------Variables/Views-----------------------------

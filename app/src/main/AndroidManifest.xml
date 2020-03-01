@@ -20,7 +20,7 @@
             android:label="@string/title_main_activity">
         </activity>
         <activity
-            android:name=".CompanyDetailsActivity"
+            android:name=".company_details_activity.CompanyDetailsActivity"
             android:label="@string/title_main_activity">
         </activity>
         <activity

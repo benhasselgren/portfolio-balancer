@@ -14,7 +14,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.portfoliobalancer.add_company_activity.AddCompanyActivity;
-import com.example.portfoliobalancer.add_portfolio_activity.AddPortfolioActivity;
 import com.example.portfoliobalancer.portfolio_settings_activity.PortfolioSettingsActivity;
 import com.example.portfoliobalancer.R;
 import com.example.portfoliobalancer.business_logic_classes.Portfolio;
@@ -24,9 +23,11 @@ import com.example.portfoliobalancer.main_activity.MainActivity;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
-//######################-----------------------------PortfolioDetailsActivity-----------------------------######################
-//XML file: activity_portfolio_details.xml
-//Displays the portfolio details (List of companies, prices, growth, etc.)
+/**
+ * PortfolioDetailsActivity
+ * Displays the portfolio details (List of companies, prices, growth, etc.)
+ * XML file: activity_portfolio_details.xml
+ */
 
 public class PortfolioDetailsActivity extends AppCompatActivity {
 
@@ -118,7 +119,13 @@ public class PortfolioDetailsActivity extends AppCompatActivity {
             }
 
             //-----------------------------Event Listener Methods-----------------------------
-            //Add portfolio button clicked event handled here
+
+            /**
+             * settingsBtn.setOnClickListener()
+             * Triggers if settingsBtn clicked
+             * The user will be directed to the PortfolioSettingActivity
+             * @see com.example.portfoliobalancer.portfolio_settings_activity.PortfolioSettingsActivity
+             */
             settingsBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -129,7 +136,13 @@ public class PortfolioDetailsActivity extends AppCompatActivity {
                 }
             });
 
-            //Add portfolio button clicked event handled here
+            /**
+             * rebalanceBtn.setOnClickListener()
+             * Triggers if rebalanceBtn clicked
+             * The portfolio will be rebalanced
+             * Uses the the balancePortfolio method from Portfolio class
+             * @see com.example.portfoliobalancer.business_logic_classes.Portfolio
+             */
             rebalanceBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -148,7 +161,6 @@ public class PortfolioDetailsActivity extends AppCompatActivity {
 
                     //Balance portfolio
                     portfolio.balancePortfolio(false, 0);
-
 
                     //Load portfolios, check if this portfolio exists and add or update portfolio, then save portfolios
                     //Load
@@ -182,7 +194,12 @@ public class PortfolioDetailsActivity extends AppCompatActivity {
                 }
             });
 
-            //Add portfolio button clicked event handled here
+            /**
+             * addCompanyBtn.setOnClickListener()
+             * Triggers if addCompanyBtn clicked
+             * The user will be directed to the AddCompanyActivity
+             * @see com.example.portfoliobalancer.add_company_activity.AddCompanyActivity
+             */
             addCompanyBtn.setOnClickListener(new View.OnClickListener() {
 
                 @Override

@@ -16,9 +16,11 @@ import com.example.portfoliobalancer.business_logic_classes.UserData;
 
 import java.util.ArrayList;
 
-//######################-----------------------------MainActivityClass-----------------------------######################
-//XML file: activity_main.xml
-//Main page of app. It shows the user all their portfolios.
+/**
+ * MainActivity
+ * Main page of app. It shows the user all their portfolios.
+ * XML file: activity_main.xml
+ */
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,17 +42,11 @@ public class MainActivity extends AppCompatActivity {
         //Set context
         context = getApplicationContext();
 
-        //SharedPreferences pref = getApplicationContext().getSharedPreferences("shared preferences", MODE_PRIVATE);
-       // Editor editor = pref.edit();
-
-        //editor.clear();
-        //editor.commit();
-
         //Create a new UserData object
         userData = new UserData();
 
         //################# Create companies here
-        createCompanies();
+        //createCompanies();
 
         // Load the PORTFTOLIOS (hence parameter passed is TRUE)
         userData.loadUserData(context, true);
@@ -84,7 +80,13 @@ public class MainActivity extends AppCompatActivity {
             portfoliosListView.setAdapter(adapter);
 
             //-----------------------------Event Listener Methods-----------------------------
-            //Add portfolio button clicked event handled here
+
+            /**
+             * nextButton.setOnClickListener()
+             * Triggers if add_portfolio_btn clicked
+             * The user will be directed to the AddPortfolioActivity
+             * @see com.example.portfoliobalancer.add_portfolio_activity.AddPortfolioActivity
+             */
             add_portfolio_btn.setOnClickListener(new View.OnClickListener() {
 
                 @Override

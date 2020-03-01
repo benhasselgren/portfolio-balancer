@@ -1,12 +1,24 @@
 package com.example.portfoliobalancer.business_logic_classes;
 
-//######################-----------------------------ValidationClass-----------------------------######################
-//Class that hold validation methods
+/**
+ * Validation
+ * Class that hold validation methods
+ */
+
 public class Validation {
 
     //-----------------------------Methods-----------------------------
 
-    //Checks all the field to see if they are valid and throws exceptions if they are not valid
+    /**
+     * checkPortfolioDetailsValid
+     * Check details entered by user are valid. Throws exception if they are not.
+     * Used in PortfolioSettingsActivity and AddPortfolioActivity.
+     * @see com.example.portfoliobalancer.portfolio_settings_activity.PortfolioSettingsActivity
+     * @see com.example.portfoliobalancer.add_portfolio_activity.AddPortfolioActivity
+     * @param nameString
+     * @param descriptionString
+     * @param amountString
+     */
     public void checkPortfolioDetailsValid(String nameString, String descriptionString, String amountString)
     {
         if (nameString.isEmpty())

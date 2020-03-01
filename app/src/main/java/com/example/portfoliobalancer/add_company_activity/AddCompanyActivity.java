@@ -11,23 +11,22 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.portfoliobalancer.business_logic_classes.UserData;
-import com.example.portfoliobalancer.main_activity.PortfoliosAdapter;
-import com.example.portfoliobalancer.portfolio_details_activity.CompaniesAdapter;
 import com.example.portfoliobalancer.portfolio_settings_activity.PortfolioSettingsActivity;
 import com.example.portfoliobalancer.R;
 import com.example.portfoliobalancer.business_logic_classes.Company;
 import com.example.portfoliobalancer.business_logic_classes.Portfolio;
 
 import java.util.ArrayList;
-import java.util.Set;
 
-//######################-----------------------------AppCompanyActivityClass-----------------------------######################
-//XML file: activity_add_company.xml
-//User can add companies from a list to his portfolio
+/**
+ * AppCompanyActivity
+ * User can add companies from a list to his portfolio
+ * XML file: activity_add_company.xml
+ */
+
 
 public class AddCompanyActivity extends AppCompatActivity {
 
@@ -94,8 +93,12 @@ public class AddCompanyActivity extends AppCompatActivity {
         selectedCompaniesList.setAdapter(adapter);
 
         //-----------------------------Event Listener Methods----------------------------
-        //Triggers if item is clicked
-        //Adds the item clicked to the selectedCompaniesArrayList and to the selceted companies list in the xaml file
+
+        /**
+         * companySelector.setOnItemClickListener()
+         * Triggers if item is company is clicked in autoCompleteTextView
+         * Adds the company clicked to the selectedCompaniesArrayList and to the selceted companies recylerview in the xaml file
+         */
         companySelector.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -125,7 +128,12 @@ public class AddCompanyActivity extends AppCompatActivity {
             }
         });
 
-        //Triggers if next button is clicked
+        /**
+         * nextButton.setOnClickListener()
+         * Triggers if next button is clicked
+         * If at least one company has been selected then the user will be directed to the next activity (PortfolioSettingsActivity)
+         * @see com.example.portfoliobalancer.portfolio_settings_activity.PortfolioSettingsActivity
+         */
         nextButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
@@ -157,7 +165,12 @@ public class AddCompanyActivity extends AppCompatActivity {
 
     //-----------------------------Methods-----------------------------
 
-    //Gets all the available companies from the strings.xml file in resources
+    /**
+     * getAvailableCompanies()
+     * Loads all the companies from device and adds them to the available companies array list.
+     * Uses the load method from the UserData class
+     * @see com.example.portfoliobalancer.business_logic_classes.UserData
+     */
     private void getAvailableCompanies()
     {
 
@@ -168,7 +181,12 @@ public class AddCompanyActivity extends AppCompatActivity {
         availableCompanies = (ArrayList<Company>) ud.getCompanies();
     }
 
-    //Checks company hasn't already been selected
+    /**
+     * checkIfAlreadySelected()
+     * Checks company hasn't already been selected
+     * @param company
+     * @return True or false depending on if a company has been found
+     */
     private boolean checkIfAlreadySelected(Company company)
     {
         for(Company c : selectedCompanies)

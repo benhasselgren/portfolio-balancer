@@ -5,8 +5,10 @@ import android.os.Parcelable;
 
 import java.util.Date;
 
-//######################-----------------------------CompanyClass-----------------------------######################
-//Parcelable class that hold details about a company
+/**
+ * Company
+ * Parcelable class that hold details about a company
+ */
 public class Company implements Parcelable {
 
     //-----------------------------Instance variables-----------------------------
@@ -87,12 +89,17 @@ public class Company implements Parcelable {
 
     //-----------------------------Constructors-----------------------------
 
+    /**
+     * Company()
+     * Creates an empty Company object
+     */
     public Company()
     {
     }
 
-    /*
-     *  Creates a company that can be used for tracking companies cost prices
+    /**
+     * Company()
+     * Creates a company that can be used for tracking companies cost prices
      */
     public Company(String name, String companyCode, double costPrice)
     {
@@ -101,6 +108,10 @@ public class Company implements Parcelable {
         this.costPrice = costPrice;
     }
 
+    /**
+     * Company()
+     * Creates a company object with all fields assigned to
+     */
     public Company(String name, String companyCode, double unitCount, double costPrice, int targetPercentage, Date currentUnitPriceDate, double initialPrice)
     {
         this.name = name;
@@ -112,6 +123,10 @@ public class Company implements Parcelable {
         this.initialPrice = initialPrice;
     }
 
+    /**
+     * Company()
+     * Creates a company object from another company object.
+     */
     public Company(Company c)
     {
         this.name = c.name;
@@ -125,22 +140,45 @@ public class Company implements Parcelable {
 
     //-----------------------------Methods-----------------------------
 
+    /**
+     * getCurrentUnitPrice()
+     * Multiplies the unit count of the company by the price of a unit
+     * @return the current unit price of the company
+     */
     public double getCurrentUnitPrice() {
 
         return this.costPrice * this.unitCount;
     }
 
+    /**
+     * getPriceGrowth()
+     * Calculates the price growth of a company
+     * Eg. Initial price of a stock in company was £100. Current price is now £150. So price growth equals £50
+     * @return the growth price of the company
+     */
     public double getPriceGrowth()
     {
         return (this.getCurrentUnitPrice() - (this.initialPrice * this.unitCount))/this.unitCount;
     }
 
+    /**
+     * getPercentageGrowth()
+     * Calculates the percentage growth of a company
+     * Eg. Initial price of a stock in company was £100. Current price is now £150. So percentage growth equals 50%
+     * @return the growth percentage of the company
+     */
     public double getPercentageGrowth()
     {
         double growth = ((this.getCurrentUnitPrice() - (this.initialPrice * this.unitCount))/(this.initialPrice* this.unitCount))*100;
         return growth;
     }
 
+    /**
+     * toString()
+     * Eg. Initial price of a stock in company was £100. Current price is now £150. So percentage growth equals 50%
+     * @return a string that is used to display the name of the company and it's company code. (Used in AddCompanyActivity)
+     * @see com.example.portfoliobalancer.add_company_activity.AddCompanyActivity
+     */
     @Override
     public String toString() {
         return String.format("%s (%s)", this.name, this.companyCode);

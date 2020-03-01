@@ -15,9 +15,11 @@ import com.example.portfoliobalancer.business_logic_classes.Portfolio;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
-//######################-----------------------------PortfoliosHolderClass-----------------------------######################
-//XML file: portfolio_entry.xml
-//This displays the portfolios
+/**
+ * PortfolioHolder
+ * This displays the portfolios
+ * XML file: portfolio_entry.xml
+ */
 
 public class PortfoliosHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
@@ -102,7 +104,13 @@ public class PortfoliosHolder extends RecyclerView.ViewHolder implements View.On
     }
 
     //-----------------------------Event Listener Methods----------------------------
-    //Triggered when a user clicks a portfolio
+
+    /**
+     * onClick()
+     * Triggers if portfolio list item is clicked
+     * User is directed to PortfolioDetailsActivity
+     * @see com.example.portfoliobalancer.portfolio_details_activity.PortfolioDetailsActivity
+     */
     @Override
     public void onClick(View v) {
         if (portfolio != null) {
@@ -111,12 +119,4 @@ public class PortfoliosHolder extends RecyclerView.ViewHolder implements View.On
             itemView.getContext().startActivity(intent);
         }
     }
-/*
-    protected void displayMemoryUsage(String message) {
-        int usedKBytes = (int) (Debug.getNativeHeapAllocatedSize() / 1024L);
-        String usedMegsString = String.format("%s - usedMemory = Memory Used: %d KB", message, usedKBytes);
-        Log.d("DATA", usedMegsString);
-    }
-
- */
 }

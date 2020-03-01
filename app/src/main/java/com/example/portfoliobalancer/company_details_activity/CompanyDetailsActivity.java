@@ -1,14 +1,17 @@
-package com.example.portfoliobalancer;
+package com.example.portfoliobalancer.company_details_activity;
 
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.example.portfoliobalancer.business_logic_classes.Portfolio;
+import com.example.portfoliobalancer.R;
+import com.example.portfoliobalancer.business_logic_classes.Company;
 
-//######################-----------------------------CompanyDetailsActivity-----------------------------######################
-//XML file: activity_company_details.xml
-//Displays the company details (List of companies, prices, growth, etc.)
+/**
+ * CompanyDetailsActivity
+ * Displays the company details (List of companies, prices, growth, etc.)
+ * XML file: activity_company_details.xml
+ */
 
 public class CompanyDetailsActivity extends AppCompatActivity {
 
@@ -26,6 +29,6 @@ public class CompanyDetailsActivity extends AppCompatActivity {
         context = getApplicationContext();
 
         //Assign the intent parcelable extra to a variable
-        Portfolio portfolio = (Portfolio) getIntent().getParcelableExtra("portfolio");
+        Company company = (Company) getIntent().getParcelableExtra("company");
     }
 }

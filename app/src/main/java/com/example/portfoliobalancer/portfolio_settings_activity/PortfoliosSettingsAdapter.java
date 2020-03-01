@@ -10,8 +10,10 @@ import com.example.portfoliobalancer.R;
 import com.example.portfoliobalancer.business_logic_classes.Company;
 import java.util.List;
 
-//######################-----------------------------PortfolioSettingsAdapterClass-----------------------------######################
-//Binds the data from the PortfolioSettingsActivity to the elements in the recyclerview
+/**
+ * PortfolioSettingsAdapter
+ * Binds the data from the PortfolioSettingsActivity to the elements in the recyclerview
+ */
 
 public class PortfoliosSettingsAdapter extends RecyclerView.Adapter<PortfoliosSettingsHolder>{
 
@@ -36,7 +38,12 @@ public class PortfoliosSettingsAdapter extends RecyclerView.Adapter<PortfoliosSe
 
     //-----------------------------Methods-----------------------------
 
-    //Passes the data from the activity to the holder
+    /**
+     * onCreateViewHolder()
+     * @param parent
+     * @param viewType
+     * @return view holder
+     */
     @Override
     public PortfoliosSettingsHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
@@ -44,7 +51,12 @@ public class PortfoliosSettingsAdapter extends RecyclerView.Adapter<PortfoliosSe
         return new PortfoliosSettingsHolder(this.context, view);
     }
 
-    //Binds the data to the holder
+    /**
+     * onBindViewHolder()
+     * Binds data to the view holder
+     * @param holder
+     * @param position
+     */
     @Override
     public void onBindViewHolder(final PortfoliosSettingsHolder holder, int position) {
 
@@ -69,7 +81,10 @@ public class PortfoliosSettingsAdapter extends RecyclerView.Adapter<PortfoliosSe
         });
     }
 
-    //Returns the size of the list
+    /**
+     * getItemCount()
+     * @return the size of the array list
+     */
     @Override
     public int getItemCount() {
         return this.companies.size();

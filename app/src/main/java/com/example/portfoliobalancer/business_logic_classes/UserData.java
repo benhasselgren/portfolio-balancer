@@ -4,9 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.widget.ArrayAdapter;
 
-import com.example.portfoliobalancer.R;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -14,8 +12,11 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-//######################-----------------------------UserDataClass-----------------------------######################
-//Parcelable class that hold details about users portfolios
+/**
+ * UserData
+ * Parcelable class that hold details about users portfolios
+ */
+
 public class UserData implements Parcelable
 {
     //-----------------------------Instance variables-----------------------------
@@ -46,15 +47,27 @@ public class UserData implements Parcelable
 
     //-----------------------------Constructors-----------------------------
 
+    /**
+     * UserData()
+     * Creates an empty UserData object
+     */
     public UserData()
     {
     }
 
+    /**
+     * UserData()
+     * Creates a UserData object with a list of portfolios
+     */
     public UserData(List<Portfolio> portfolios)
     {
         this.portfolios = portfolios;
     }
 
+    /**
+     * UserData()
+     * Creates a UserData object from another UserData object
+     */
     public UserData(UserData u)
     {
         this.portfolios = u.portfolios;
@@ -62,6 +75,11 @@ public class UserData implements Parcelable
 
     //-----------------------------Methods-----------------------------
 
+    /**
+     * addPortfolio()
+     * Adds a portfolio to the portfolio list
+     * @param p
+     */
     public void addPortfolio(Portfolio p)
     {
         if(p!=null)
@@ -70,11 +88,22 @@ public class UserData implements Parcelable
         }
     }
 
+    /**
+     * removePortfolio()
+     * Removes a portfolio to the portfolio list
+     * @param p
+     */
     public void removePortfolio(Portfolio p)
     {
         this.portfolios.remove(p);
     }
 
+    /**
+     * updatePortfolio()
+     * Removes the old portfolio from portfolio list then adds the updated portfolio to portfolio list
+     * @param add_p
+     * @param remove_p
+     */
     public void updatePortfolio(Portfolio add_p, Portfolio remove_p)
     {
         if(add_p != null && remove_p != null)
@@ -84,6 +113,12 @@ public class UserData implements Parcelable
         }
     }
 
+    /**
+     * findPortfolioById()
+     * Find a portfolio int he portfolio list by the portfolio id.
+     * @param id
+     * @return The portolfio found or null if it's not found
+     */
     public Portfolio findPortfolioById(int id)
     {
         for(Portfolio p : this.portfolios)
@@ -96,6 +131,14 @@ public class UserData implements Parcelable
         return null;
     }
 
+    /**
+     * loadUserData()
+     * Loads either users portfolios or list of companies from device depending on the boolean value entered.
+     * If true then load portfolios.
+     * if false then load companies.
+     * @param context
+     * @param load_save_portfolio
+     */
     public void loadUserData(Context context, boolean load_save_portfolio)
     {
         SharedPreferences sharedPreferences = context.getSharedPreferences("shared preferences", Context.MODE_PRIVATE);
@@ -123,6 +166,14 @@ public class UserData implements Parcelable
         }
     }
 
+    /**
+     * saveUserData()
+     * Saves either users portfolios or list of companies from device depending on the boolean value entered.
+     * If true then save portfolios.
+     * if false then save companies.
+     * @param context
+     * @param load_save_portfolio
+     */
     public void saveUserData(Context context, boolean load_save_portfolio)
     {
         SharedPreferences sharedPreferences = context.getSharedPreferences("shared preferences", Context.MODE_PRIVATE);
@@ -142,6 +193,12 @@ public class UserData implements Parcelable
         }
     }
 
+    /**
+     * checkPortfoliosAreBalanced()
+     * Checks to see if all portfolio are balanced
+     * Does this by calling checkPortfolioIsBalanced() on each portfolio
+     * @param updatedCompanies
+     */
     public void checkPortfoliosAreBalanced(ArrayList<Company> updatedCompanies)
     {
         if (updatedCompanies != null)
