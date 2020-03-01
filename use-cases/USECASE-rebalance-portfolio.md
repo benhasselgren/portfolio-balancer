@@ -33,15 +33,11 @@ User presses the the rebalance portfolio button.
 ## MAIN SUCCESS SCENARIO
 
 1. User presses the rebalance portfolio button.
-2. User is asked how they want to rebalance.
-3. User chooses how they want to rebalance.
 4. Portfolio is rebalanced.
 
 ## EXTENSIONS
 
 1. **When rebalance button is pressed the alert to how they want to rebalance doesn't appear.**:
-    1. User emails developers that there is a bug
-3. **App does not use the way that the user has requested.**:
     1. User emails developers that there is a bug
 4. **Portfolio is not rebalanced.**:
     1. User emails developers that there is a bug

@@ -34,7 +34,7 @@ User presses portfolio settings button, edits target percentages, and presses re
 
 1. User presses portfolio settings button.
 2. User changes target percentages
-3. Once total percentage equals 100%, user presses rebalance.
+3. Once total percentage equals 100%, user can rebalance.
 4. Portfolio is rebalanced.
 
 ## EXTENSIONS
