@@ -1,24 +1,45 @@
 @startuml
 'default
 left to right direction
-actor Employee
+actor User
+actor App
 rectangle ls as "Local Storage"
 
 rectangle "Portfolio Balancer Application" {
+
+    rectangle up as "Update Portfolio"
+    rectangle cp as "Portfolio unbalanced"
+    rectangle pr as "Portfolio rebalanced"
 
     usecase UC1 as "View main screen (portfolios)."
     usecase UC2 as "Create a new portfolio."
     usecase UC3 as "Rebalance a portfolio."
     usecase UC4 as "Edit target percentages in portfolio settings."
+    usecase UC5 as "Add/edit/remove companies."
+    usecase UC6 as "Rebalance alert setting."
+    usecase UC7 as "Notify user portfolio is unbalanced"
+    usecase UC8 as "Email rebalance changes."
 
 
-    Employee --> UC1
+    UC3 --> up
+    UC6 --> up
+    UC7 --> cp
+    User --> UC1
     UC1 -- ls
-    Employee --> UC2
+    User --> UC2
     UC2 -- ls
-    Employee --> UC3
+    User --> UC3
     UC3 -- ls
-    Employee --> UC4
+    User --> UC4
     UC4 -- ls
+    User --> UC5
+    UC5 -- ls
+    User --> UC6
+    UC6 --ls
+    App --> UC7
+    UC7 --> User
+    App --> UC8
+    UC8 --> pr
+    pr --> User
 }
 @enduml
