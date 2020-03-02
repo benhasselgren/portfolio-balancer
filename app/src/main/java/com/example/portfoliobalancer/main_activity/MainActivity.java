@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
 
     //-----------------------------Variables/Views-----------------------------
     //Variables
-    private ArrayList<Company> companies;
     private UserData userData;
     private Context context;
     //Views

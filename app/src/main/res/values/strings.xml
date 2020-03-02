@@ -8,6 +8,7 @@
     <string name="title_add_companies">Add companies</string>
     <string name="title_add_portfolio">Add portfolio</string>
     <string name="title_portfolio_settings">Portfolio settings</string>
+    <string name="title_companies">Companies</string>
 
     <!-- Main activity. -->
     <string name="unbalanced_label">Unbalanced</string>
@@ -39,15 +40,7 @@
     <string name="delete_company">Delete</string>
     <string name="delete_portfolio">Delete portfolio</string>
 
-    <!-- Companies -->
-    <string name="apple">AAPL,Apple Inc,220</string>
-    <string name="microsoft">MSFT,Microsoft Corporation,195</string>
-    <string name="tesla">TSLA,Tesla Inc,210</string>
+    <!-- Companies activity -->
+    <string name="companies_btn">Add company</string>
 
-    <!-- Array of companies -->
-    <string-array name="companies">
-        <item>@string/apple</item>
-        <item>@string/microsoft</item>
-        <item>@string/tesla</item>
-    </string-array>
 </resources>

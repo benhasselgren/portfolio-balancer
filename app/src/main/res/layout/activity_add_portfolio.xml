@@ -85,7 +85,6 @@
                 android:layout_marginRight="100dp"
                 android:layout_weight="1"
                 android:text="@string/next_btn" />
-
         </LinearLayout>
     </ScrollView>
 

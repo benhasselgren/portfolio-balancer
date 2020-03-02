@@ -12,6 +12,10 @@
         android:largeHeap="true"
         android:hardwareAccelerated="false">
         <activity
+            android:name=".companies_activity.CompaniesPricesActivity"
+            android:label="@string/title_companies">
+        </activity>
+        <activity
             android:name=".portfolio_settings_activity.PortfolioSettingsActivity"
             android:label="@string/title_portfolio_settings">
         </activity>
