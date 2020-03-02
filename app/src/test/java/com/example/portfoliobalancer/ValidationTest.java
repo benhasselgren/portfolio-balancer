@@ -20,6 +20,7 @@ import static org.junit.Assert.*;
  * @see com.example.portfoliobalancer.business_logic_classes.Validation
  */
 public class ValidationTest {
+
     /**
      * Test checkPortfolioDetailsValid method
      */
@@ -125,6 +126,120 @@ public class ValidationTest {
         try
         {
             v.checkPortfolioDetailsValid(name, description, amount);
+        }
+        catch(RuntimeException e)
+        {
+            actualValue = e.getMessage();
+        }
+
+        assertEquals(expectedValue, actualValue);
+    }
+
+    /**
+     * Test checkCompanyDetailsValid method
+     */
+
+    @Test
+    public void checkCompanyDetailsValidCodeEmptyTest()
+    {
+        Validation v = new Validation();
+        String code = "";
+        String name = "Name";
+        String price = "Amount";
+        String expectedValue = "Code field cannot be empty.";
+        String actualValue = "";
+
+        try
+        {
+            v.checkCompanyDetailsValid(code, name, price);
+        }
+        catch(RuntimeException e)
+        {
+            actualValue = e.getMessage();
+        }
+
+        assertEquals(expectedValue, actualValue);
+    }
+
+    @Test
+    public void checkCompanyDetailsValidNameEmptyTest()
+    {
+        Validation v = new Validation();
+        String code = "CODE";
+        String name = "";
+        String price = "Amount";
+        String expectedValue = "Name field cannot be empty.";
+        String actualValue = "";
+
+        try
+        {
+            v.checkCompanyDetailsValid(code, name, price);
+        }
+        catch(RuntimeException e)
+        {
+            actualValue = e.getMessage();
+        }
+
+        assertEquals(expectedValue, actualValue);
+    }
+
+    @Test
+    public void checkCompanyDetailsValidPriceEmptyTest()
+    {
+        Validation v = new Validation();
+        String code = "CODE";
+        String name = "Name";
+        String price = "";
+        String expectedValue = "Price field cannot be empty.";
+        String actualValue = "";
+
+        try
+        {
+            v.checkCompanyDetailsValid(code, name, price);
+        }
+        catch(RuntimeException e)
+        {
+            actualValue = e.getMessage();
+        }
+
+        assertEquals(expectedValue, actualValue);
+    }
+
+    @Test
+    public void checkCompanyDetailsValidNumberOutOfRange()
+    {
+        Validation v = new Validation();
+        String code = "CODE";
+        String name = "Name";
+        String price = "6100";
+        String expectedValue = "Amount has to be between £0-£5,000.";
+        String actualValue = "";
+
+        try
+        {
+            v.checkCompanyDetailsValid(code, name, price);
+        }
+        catch(RuntimeException e)
+        {
+            actualValue = e.getMessage();
+        }
+
+        assertEquals(expectedValue, actualValue);
+    }
+
+    @Test
+    public void checkCompanyDetailsValidNumberIsString()
+    {
+        Validation v = new Validation();
+        String code = "CODE";
+        String name = "Name";
+        String price = "fdfhsdjss";
+        String expectedValue = "Amount has to be a number.";
+        String actualValue = "";
+
+        try
+        {
+            v.checkCompanyDetailsValid(code, name, price);
         }
         catch(RuntimeException e)
         {

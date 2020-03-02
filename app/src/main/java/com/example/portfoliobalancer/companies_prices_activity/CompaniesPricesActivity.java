@@ -117,7 +117,6 @@ public class CompaniesPricesActivity extends AppCompatActivity {
                         userData.getCompanies().add(c);
                         companiesListView.getAdapter().notifyDataSetChanged();
                         Toast.makeText(getBaseContext(), "You have succesfully added " + c.getName() + ".", Toast.LENGTH_SHORT).show();
-
                     }
                     catch (RuntimeException ex)
                     {
