@@ -12,7 +12,7 @@
         android:largeHeap="true"
         android:hardwareAccelerated="false">
         <activity
-            android:name=".companies_activity.CompaniesPricesActivity"
+            android:name=".companies_prices_activity.CompaniesPricesActivity"
             android:label="@string/title_companies">
         </activity>
         <activity

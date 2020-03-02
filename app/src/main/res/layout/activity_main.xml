@@ -33,6 +33,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Add portfolio" />
+
+            <!-- Companies activity -->
+            <Button
+                android:id="@+id/companies_activity_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Companies" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

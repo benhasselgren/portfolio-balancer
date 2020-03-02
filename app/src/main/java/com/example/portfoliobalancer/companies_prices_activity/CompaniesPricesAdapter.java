@@ -1,4 +1,4 @@
-package com.example.portfoliobalancer.companies_activity;
+package com.example.portfoliobalancer.companies_prices_activity;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.portfoliobalancer.add_company_activity.AddCompanyHolder;
 import com.example.portfoliobalancer.business_logic_classes.Company;
 
 import java.util.List;
@@ -41,10 +40,10 @@ public class CompaniesPricesAdapter extends RecyclerView.Adapter<CompaniesPrices
      * @return view holder
      */
     @Override
-    public AddCompanyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public CompaniesPricesHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(parent.getContext()).inflate(this.itemResource, parent, false);
-        return new AddCompanyHolder(this.context, view);
+        return new CompaniesPricesHolder(this.context, view);
     }
 
     /**
@@ -54,13 +53,13 @@ public class CompaniesPricesAdapter extends RecyclerView.Adapter<CompaniesPrices
      * @param position
      */
     @Override
-    public void onBindViewHolder(AddCompanyHolder holder, int position) {
+    public void onBindViewHolder(CompaniesPricesHolder holder, int position) {
 
         // Use position to access the correct portfolio object
         Company c = this.companies.get(position);
 
         // Bind the portfolio object to the holder
-        holder.bindAddCompany(c);
+        holder.bindCompanyPrice(c);
     }
 
     /**

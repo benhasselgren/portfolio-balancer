@@ -13,6 +13,7 @@ import com.example.portfoliobalancer.add_portfolio_activity.AddPortfolioActivity
 import com.example.portfoliobalancer.R;
 import com.example.portfoliobalancer.business_logic_classes.Company;
 import com.example.portfoliobalancer.business_logic_classes.UserData;
+import com.example.portfoliobalancer.companies_prices_activity.CompaniesPricesActivity;
 
 import java.util.ArrayList;
 
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private Context context;
     //Views
     private Button add_portfolio_btn;
+    private Button companies_btn;
     private RecyclerView portfoliosListView;
 
     //-----------------------------On Create method-----------------------------
@@ -63,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
             //Add views
             add_portfolio_btn = (Button)findViewById(R.id.add_portfolio_btn);
+            companies_btn = (Button)findViewById(R.id.companies_activity_btn);
 
             portfoliosListView = (RecyclerView)findViewById(R.id.portfolios_list);
 
@@ -81,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
             //-----------------------------Event Listener Methods-----------------------------
 
             /**
-             * nextButton.setOnClickListener()
+             * add_portfolio_btn.setOnClickListener()
              * Triggers if add_portfolio_btn clicked
              * The user will be directed to the AddPortfolioActivity
              * @see com.example.portfoliobalancer.add_portfolio_activity.AddPortfolioActivity
@@ -92,6 +95,22 @@ public class MainActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     Intent intent = new Intent(MainActivity.this, AddPortfolioActivity.class);
                     intent.putExtra("NEW_PORTFOLIO_ID", String.format("%s",userData.getPortfolios().size() + 1));
+                    startActivity(intent);
+                }
+            });
+
+            /**
+             * companies_btn.setOnClickListener()
+             * Triggers if companies_btn clicked
+             * The user will be directed to the CompaniesPricesActivity
+             * @see com.example.portfoliobalancer.companies_prices_activity.CompaniesPricesActivity
+             */
+            companies_btn.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(MainActivity.this, CompaniesPricesActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK |Intent.FLAG_ACTIVITY_NO_ANIMATION );
                     startActivity(intent);
                 }
             });
