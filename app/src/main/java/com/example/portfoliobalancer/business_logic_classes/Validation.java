@@ -46,4 +46,32 @@ public class Validation {
             }
         }
     }
+
+    public void checkCompanyDetailsValid(String codeString, String nameString, String priceString)
+    {
+        if (codeString.isEmpty())
+        {
+            throw new RuntimeException("Code field cannot be empty.");
+        }
+        else if(nameString.isEmpty())
+        {
+            throw new RuntimeException("Name field cannot be empty.");
+        }
+        else if(priceString.isEmpty())
+        {
+            throw new RuntimeException("Price field cannot be empty.");
+        }
+        else {
+            if(priceString.matches("[0-9]+")) {
+                int priceInt = Integer.parseInt(priceString);
+                if (priceInt < 0 || priceInt > 5000) {
+                    throw new RuntimeException("Amount has to be between £0-£5,000.");
+                }
+            }
+            else
+            {
+                throw new RuntimeException("Amount has to be a number.");
+            }
+        }
+    }
 }

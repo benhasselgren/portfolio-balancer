@@ -40,7 +40,7 @@
             android:textStyle="bold"
             android:ellipsize="end"
             android:maxLines="1"
-            android:maxEms="10"/>
+            android:maxEms="20"/>
     </LinearLayout>
 
     <!-- +++++++++++++++++++++++ Right align +++++++++++++++++++++++ -->

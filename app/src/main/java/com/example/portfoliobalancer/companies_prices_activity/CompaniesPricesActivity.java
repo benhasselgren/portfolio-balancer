@@ -9,9 +9,17 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.portfoliobalancer.R;
+import com.example.portfoliobalancer.add_company_activity.AddCompanyActivity;
+import com.example.portfoliobalancer.add_portfolio_activity.AddPortfolioActivity;
+import com.example.portfoliobalancer.business_logic_classes.Company;
+import com.example.portfoliobalancer.business_logic_classes.Portfolio;
 import com.example.portfoliobalancer.business_logic_classes.UserData;
+import com.example.portfoliobalancer.business_logic_classes.Validation;
 import com.example.portfoliobalancer.main_activity.MainActivity;
 
 /**
@@ -27,7 +35,11 @@ public class CompaniesPricesActivity extends AppCompatActivity {
     //Variables
     private UserData userData;
     private Context context;
+    private Validation validation = new Validation();
     //Views
+    private EditText name;
+    private EditText code;
+    private EditText price;
     private Button add_company_btn;
     private Button main_btn;
     private RecyclerView companiesListView;
@@ -56,6 +68,10 @@ public class CompaniesPricesActivity extends AppCompatActivity {
         if(userData.getCompanies() != null)
         {
             //Add views
+            name = (EditText) findViewById(R.id.companies_name_input);
+            code = (EditText) findViewById(R.id.companies_name_input);
+            price = (EditText) findViewById(R.id.companies_price_input);
+
             add_company_btn = (Button)findViewById(R.id.companies_add_btn);
             main_btn = (Button)findViewById(R.id.main_activity_btn);
 
@@ -76,13 +92,38 @@ public class CompaniesPricesActivity extends AppCompatActivity {
             //-----------------------------Event Listener Methods-----------------------------
 
             /**
-             * nextButton.setOnClickListener()
-             * Triggers if add_portfolio_btn clicked
-             * The user will be directed to the AddPortfolioActivity
+             * add_company_btn.setOnClickListener()
+             * Triggers if add_company_btn clicked
+             * The company will be added the companies list
              * @see com.example.portfoliobalancer.add_portfolio_activity.AddPortfolioActivity
              */
             add_company_btn.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
+                    try
+                    {
+                        //Convert code and name to strings
+                        String nameString = name.getText().toString().trim().toUpperCase();
+                        String codeString = code.getText().toString().trim();
+                        //Convert price to string
+                        String priceString = price.getText().toString().trim();
+
+                        //Pass strings to validation method
+                        validation.checkCompanyDetailsValid(codeString, nameString, priceString);
+
+                        //If everything is valid, create a company and and add it to the list
+                        Company c = new Company(nameString, codeString, Double.parseDouble(priceString));
+
+                        //add to companies arraylist
+                        userData.getCompanies().add(c);
+                        companiesListView.getAdapter().notifyDataSetChanged();
+                        Toast.makeText(getBaseContext(), "You have succesfully added " + c.getName() + ".", Toast.LENGTH_SHORT).show();
+
+                    }
+                    catch (RuntimeException ex)
+                    {
+                        //Catches all exceptions here and displays appropriate error message
+                        Toast.makeText(getBaseContext(), ex.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
 

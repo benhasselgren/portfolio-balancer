@@ -42,5 +42,7 @@
 
     <!-- Companies activity -->
     <string name="companies_btn">Add company</string>
-
+    <string name="add_company_name">Enter name</string>
+    <string name="add_company_code">Enter code</string>
+    <string name="add_company_price">Enter price</string>
 </resources>
