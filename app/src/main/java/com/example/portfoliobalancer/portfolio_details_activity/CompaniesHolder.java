@@ -27,7 +27,6 @@ public class CompaniesHolder extends RecyclerView.ViewHolder implements View.OnC
     private final TextView code;
     private final TextView targetPercentage;
     private final TextView companyName;
-    private final TextView percentageChange;
     private final TextView currentPrice;
     private final TextView growth;
 
@@ -43,7 +42,6 @@ public class CompaniesHolder extends RecyclerView.ViewHolder implements View.OnC
         code = (TextView) itemView.findViewById(R.id.entry_company_code);
         targetPercentage = (TextView) itemView.findViewById(R.id.entry_company_target_percentage);
         companyName = (TextView) itemView.findViewById(R.id.entry_company_name);
-        percentageChange = (TextView) itemView.findViewById(R.id.entry_company_percentageChange);
         currentPrice = (TextView) itemView.findViewById(R.id.entry_company_currentPrice);
         growth = (TextView) itemView.findViewById(R.id.entry_company_growth);
 
@@ -68,9 +66,6 @@ public class CompaniesHolder extends RecyclerView.ViewHolder implements View.OnC
 
         // Name
         companyName.setText(company.getName());
-
-        // Percentage change
-        percentageChange.setText(String.format("Percentage change: %s%%", company.getPercentageChange()));
 
         // Current price
         currentPrice.setText(String.format(String.format("£%.2f", company.getCurrentUnitPrice())));

@@ -320,9 +320,6 @@ public class Portfolio implements Parcelable
 
             //Set the current unit price date of the company
             c.setCurrentUnitPriceDate(date);
-
-            //Set the percentage change to 0%
-            c.setPercentageChange(0);
         }
 
         // Set the portfolio to balanced
@@ -378,9 +375,6 @@ public class Portfolio implements Parcelable
             //Calculate the current percentage of the portfolio that company takes
             double currentPercentage = (c.getCurrentUnitPrice() / p_current_price) * 100;
             //Calculate the difference between the target percentage and the current percentage and add it to totalPercentageChange
-            totalPercentageChange += Math.abs(c.getTargetPercentage() - currentPercentage);
-            //Set the percentage change for the company
-            c.setPercentageChange((int)Math.abs(c.getTargetPercentage() - currentPercentage));
         }
 
         //If the total percentage change is greater than the percentage change limit, then set balanced to false

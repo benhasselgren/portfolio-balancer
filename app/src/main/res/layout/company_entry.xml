@@ -67,7 +67,7 @@
         android:layout_alignParentRight="true"
         android:gravity="right"
         android:orientation="vertical" >
-        <!-- Portfolio unbalanced-->
+        <!-- Portfolio current price-->
         <TextView
             android:id="@+id/entry_company_currentPrice"
             android:layout_width="wrap_content"
@@ -76,7 +76,7 @@
             android:textColor="@color/textColorHeading"
             android:textSize="18sp"
             android:textStyle="bold" />
-        <!-- Portfolio current price -->
+        <!-- Portfolio growth amount -->
         <TextView
             android:id="@+id/entry_company_growth"
             android:layout_width="wrap_content"
@@ -84,6 +84,7 @@
             android:layout_below="@id/entry_company_currentPrice"
             android:text="@string/title_test_portfolio"
             android:textColor="@color/textColorAssetGrowth"
-            android:textSize="9sp" />
+            android:textSize="9sp"
+            android:textStyle="bold"/>
     </LinearLayout>
 </RelativeLayout>

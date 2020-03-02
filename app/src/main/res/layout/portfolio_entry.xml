@@ -94,6 +94,7 @@
             android:layout_below="@id/entry_portfolio_currentPrice"
             android:text="@string/title_test_portfolio"
             android:textColor="@color/textColorAssetGrowth"
-            android:textSize="9sp" />
+            android:textSize="9sp"
+            android:textStyle="bold"/>
     </LinearLayout>
 </RelativeLayout>
