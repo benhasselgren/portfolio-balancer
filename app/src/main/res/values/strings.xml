@@ -46,4 +46,11 @@
     <string name="add_company_code">Enter code</string>
     <string name="add_company_price">Enter price</string>
     <string name="update_companies_btn">Update companies</string>
+
+    <!-- Companies details -->
+    <string name="company_name_title">Name</string>
+    <string name="company_price_title">Price</string>
+    <string name="company_growth_title">Total gain/loss</string>
+    <string name="company_target_percentage_title">Target percentage</string>
+    <string name="company_number_units_title">Units</string>
 </resources>

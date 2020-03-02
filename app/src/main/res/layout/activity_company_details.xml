@@ -1,6 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<!-- #################################### Activity Portfolio Details #################################### -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:focusableInTouchMode="true"
+    android:background="@color/colorMainBackground"
+    tools:context=".portfolio_details_activity.PortfolioDetailsActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dip"
+                android:paddingBottom="20dip"
+                android:paddingLeft="20dip"
+                android:paddingRight="20dip"
+                android:background="@color/colorDarkBackground"
+                android:orientation="horizontal">
+
+                <!-- +++++++++++++++++++++++ Left align +++++++++++++++++++++++ -->
+                <!-- Company name -->
+                <TextView
+                    android:id="@+id/company_details_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_test_portfolio"
+                    android:textColor="@color/textColorHighlight"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <!-- Company name title -->
+                <TextView
+                    android:id="@+id/company_details_name_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/company_details_name"
+                    android:text="@string/company_name_title"
+                    android:textColor="@color/textColorSubHeading"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+
+                <!-- Company price -->
+                <TextView
+                    android:id="@+id/company_details_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/company_details_name_title"
+                    android:layout_marginTop="5dip"
+                    android:text="@string/title_test_portfolio"
+                    android:textColor="@color/textColorHighlight"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <!-- Company price title -->
+                <TextView
+                    android:id="@+id/company_details_price_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/company_details_price"
+                    android:text="@string/company_price_title"
+                    android:textColor="@color/textColorSubHeading"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+
+                <!-- Company growth-->
+                <TextView
+                    android:id="@+id/company_details_growth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/company_details_price_title"
+                    android:layout_marginTop="5dip"
+                    android:text="@string/title_test_portfolio"
+                    android:textColor="@color/textColorAssetGrowth"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <!-- Company growth title -->
+                <TextView
+                    android:id="@+id/company_details_growth_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/company_details_growth"
+                    android:text="@string/company_growth_title"
+                    android:textColor="@color/textColorSubHeading"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+
+                <!-- +++++++++++++++++++++++ Right align +++++++++++++++++++++++ -->
+
+                <!-- Company targetPercentage -->
+                <TextView
+                    android:id="@+id/company_details_target_percentage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@id/company_details_name_title"
+                    android:gravity="right"
+                    android:text="@string/title_test_portfolio"
+                    android:textColor="@color/textColorAssetGrowth"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <!-- Company target percentage title -->
+                <TextView
+                    android:id="@+id/company_details_target_percentage_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/company_details_target_percentage"
+                    android:layout_alignParentRight="true"
+                    android:gravity="right"
+                    android:text="@string/company_target_percentage_title"
+                    android:textColor="@color/textColorSubHeading"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+
+                <!-- Company units -->
+                <TextView
+                    android:id="@+id/company_details_units"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/company_details_target_percentage_title"
+                    android:layout_marginTop="5dip"
+                    android:layout_alignParentRight="true"
+                    android:gravity="right"
+                    android:text="@string/title_test_portfolio"
+                    android:textColor="@color/textColorHighlight"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <!-- Company units title -->
+                <TextView
+                    android:id="@+id/company_details_units_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/company_details_units"
+                    android:layout_alignParentRight="true"
+                    android:gravity="right"
+                    android:text="@string/company_number_units_title"
+                    android:textColor="@color/textColorSubHeading"
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
