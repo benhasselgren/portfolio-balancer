@@ -50,7 +50,7 @@ public class CompanyDetailsActivity extends AppCompatActivity {
         name.setText(company.getName());
 
         //Price field
-        price.setText(String.format("£%.2f", company.getCurrentUnitPrice()));
+        price.setText(String.format("£%.2f", company.getCostPrice()));
 
         //Growth field
         if(Math.round(company.getPriceGrowth() * 100.0) > 0)

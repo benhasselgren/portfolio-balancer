@@ -258,7 +258,7 @@ public class Portfolio implements Parcelable
      */
     public double getPercentageGrowth()
     {
-        double growth = (getPriceGrowth()/this.initialPrice)*100;
+        double growth = (getPriceGrowth()/(this.initialPrice + this.totalAmountAdded))*100;
         return growth;
     }
 
@@ -280,12 +280,15 @@ public class Portfolio implements Parcelable
         Date date = Calendar.getInstance().getTime();
         //Get the current unitPrice of portfolio
         double p_currentUnitPrice;
+        double original_currentUnitPrice;
         if(newPortfolio) {
             p_currentUnitPrice = this.getCurrentPrice(true);
+            original_currentUnitPrice = p_currentUnitPrice;
         }
         else
         {
             p_currentUnitPrice = this.getCurrentPrice(false);
+            original_currentUnitPrice = p_currentUnitPrice;
 
             //If the portfolio has been updated in the portfolios settings, then check if amount has been altered
             //If money has been added or removed then update the current unit price of the portfolio
@@ -320,6 +323,20 @@ public class Portfolio implements Parcelable
 
             //Set the current unit price date of the company
             c.setCurrentUnitPriceDate(date);
+
+            //If money has been added or removed make sure to also adjust companies initital prices
+            if(updatedAmount != 0 && updatedAmount > original_currentUnitPrice)
+            {
+                double targetPercentage = c.getTargetPercentage();
+                double companyDiff = (updatedAmount - original_currentUnitPrice)*(targetPercentage/100);
+                c.addAmountToTotalAmountAdded(companyDiff);
+            }
+            else if(updatedAmount != 0 && updatedAmount < original_currentUnitPrice)
+            {
+                double targetPercentage = c.getTargetPercentage();
+                double companyDiff = (original_currentUnitPrice - updatedAmount) * (targetPercentage/100);
+                c.removeAmountFromTotalAmountAdded(companyDiff);
+            }
         }
 
         // Set the portfolio to balanced

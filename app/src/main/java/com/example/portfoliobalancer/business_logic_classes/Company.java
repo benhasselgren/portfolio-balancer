@@ -19,6 +19,7 @@ public class Company implements Parcelable {
     private int targetPercentage;
     private double initialPrice;
     private Date currentUnitPriceDate;
+    private double totalAmountAdded;
 
     //-----------------------------Getters/Setters-----------------------------
 
@@ -78,6 +79,14 @@ public class Company implements Parcelable {
         this.initialPrice = initialPrice;
     }
 
+    public double getTotalAmountAdded() {
+        return totalAmountAdded;
+    }
+
+    public void setTotalAmountAdded(double totalAmountAdded) {
+        this.totalAmountAdded = totalAmountAdded;
+    }
+
     //-----------------------------Constructors-----------------------------
 
     /**
@@ -132,6 +141,26 @@ public class Company implements Parcelable {
     //-----------------------------Methods-----------------------------
 
     /**
+     * removeAmountFromTotalAmountAdded()
+     * Removes a given value from the totalAmountAdded variable
+     * @param amount
+     */
+    public void removeAmountFromTotalAmountAdded(double amount)
+    {
+        this.totalAmountAdded -= amount;
+    }
+
+    /**
+     * addAmountFromTotalAmountAdded()
+     * Adds a given value from the totalAmountAdded variable
+     * @param amount
+     */
+    public void addAmountToTotalAmountAdded(double amount)
+    {
+        this.totalAmountAdded += amount;
+    }
+
+    /**
      * getCurrentUnitPrice()
      * Multiplies the unit count of the company by the price of a unit
      * @return the current unit price of the company
@@ -149,7 +178,7 @@ public class Company implements Parcelable {
      */
     public double getPriceGrowth()
     {
-        return (this.getCurrentUnitPrice() - (this.initialPrice * this.unitCount));
+        return (this.getCurrentUnitPrice() - (this.initialPrice * this.unitCount)) - this.totalAmountAdded;
     }
 
     /**
@@ -160,7 +189,7 @@ public class Company implements Parcelable {
      */
     public double getPercentageGrowth()
     {
-        double growth = ((this.getCurrentUnitPrice() - (this.initialPrice * this.unitCount))/(this.initialPrice* this.unitCount))*100;
+        double growth = getPriceGrowth()/((this.initialPrice )* this.unitCount)*100;
         return growth;
     }
 
@@ -191,6 +220,7 @@ public class Company implements Parcelable {
         dest.writeInt(this.targetPercentage);
         dest.writeDouble(this.initialPrice);
         dest.writeLong(this.currentUnitPriceDate != null ? this.currentUnitPriceDate.getTime() : -1);
+        dest.writeDouble(this.totalAmountAdded);
     }
 
     protected Company(Parcel in) {
@@ -202,6 +232,7 @@ public class Company implements Parcelable {
         this.initialPrice = in.readDouble();
         long tmpCurrentUnitPriceDate = in.readLong();
         this.currentUnitPriceDate = tmpCurrentUnitPriceDate == -1 ? null : new Date(tmpCurrentUnitPriceDate);
+        this.totalAmountAdded = in.readDouble();
     }
 
     public static final Creator<Company> CREATOR = new Creator<Company>() {
