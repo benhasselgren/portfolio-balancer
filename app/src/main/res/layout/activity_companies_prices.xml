@@ -21,7 +21,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dip"
-                android:padding="20dip"
+                android:paddingLeft="20dip"
+                android:paddingRight="20dip"
+                android:paddingTop="10dip"
+                android:paddingBottom="10dip"
                 android:background="@color/colorEntryBackground"
                 android:orientation="vertical">
 
@@ -31,7 +34,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textSize="15sp"
+                    android:textSize="12sp"
                     android:text="@string/add_portfolio_name"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -40,7 +43,7 @@
                     android:id="@+id/companies_code_input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="15sp"
+                    android:textSize="12sp"
                     android:layout_weight="1"
                     android:inputType="textPersonName" />
 
@@ -50,7 +53,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textSize="15sp"
+                    android:textSize="12sp"
                     android:text="@string/add_portfolio_description"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -60,8 +63,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textSize="15sp"
-                    android:inputType="textShortMessage" />
+                    android:textSize="12sp"
+                    android:inputType="textCapSentences" />
 
                 <!-- Companies price -->
                 <TextView
@@ -69,7 +72,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textSize="15sp"
+                    android:textSize="12sp"
                     android:text="@string/add_portfolio_amount"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -79,14 +82,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textSize="15sp"
+                    android:textSize="12sp"
                     android:inputType="number" />
 
                 <!-- Add company button -->
                 <Button
                     android:id="@+id/companies_add_btn"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="35dip"
                     android:layout_weight="1"
                     android:textColor="@color/textColorHighlight"
                     android:background="@color/textColorAssetGrowth"
