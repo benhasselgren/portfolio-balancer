@@ -16,7 +16,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -97,22 +96,23 @@
                     android:text="@string/companies_btn" />
             </LinearLayout>
 
-            <!-- Companies List -->
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/companies_prices_list"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dip"
-                android:layout_marginBottom="10dip"
-                android:scrollbars="vertical" >
-            </android.support.v7.widget.RecyclerView>
+                <!-- Companies List -->
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/companies_prices_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dip"
+                    android:layout_marginBottom="10dip"
+                    android:scrollbars="vertical"
+                    android:background="@color/colorMainBackground">
+                </android.support.v7.widget.RecyclerView>
 
-            <!-- Main activity -->
-            <Button
-                android:id="@+id/main_activity_btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Portfolios" />
+                <!-- Main activity Button -->
+                <Button
+                    android:id="@+id/main_activity_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Portfolios" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

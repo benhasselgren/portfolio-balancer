@@ -76,6 +76,40 @@ public class UserData implements Parcelable
     //-----------------------------Methods-----------------------------
 
     /**
+     * findCompanyByCode()
+     * Find a company in the companies list by the code .
+     * @param code
+     * @return The company found or null if it's not found
+     */
+    public Company findCompanyByCode(String code)
+    {
+        for(Company c : this.companies)
+        {
+            if(c.getCompanyCode() == code)
+            {
+                return c;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * updatePortfolio()
+     * Removes the old company from companies list then adds the updated company to companies list
+     * @param add_c
+     * @param remove_c
+     */
+
+    public void updateCompany(Company add_c, Company remove_c)
+    {
+        if(add_c != null && remove_c != null)
+        {
+            this.companies.remove(remove_c);
+            this.companies.add(add_c);
+        }
+    }
+
+    /**
      * addPortfolio()
      * Adds a portfolio to the portfolio list
      * @param p

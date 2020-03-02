@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -69,7 +70,7 @@ public class CompaniesPricesActivity extends AppCompatActivity {
         {
             //Add views
             name = (EditText) findViewById(R.id.companies_name_input);
-            code = (EditText) findViewById(R.id.companies_name_input);
+            code = (EditText) findViewById(R.id.companies_code_input);
             price = (EditText) findViewById(R.id.companies_price_input);
 
             add_company_btn = (Button)findViewById(R.id.companies_add_btn);
@@ -102,8 +103,8 @@ public class CompaniesPricesActivity extends AppCompatActivity {
                     try
                     {
                         //Convert code and name to strings
-                        String nameString = name.getText().toString().trim().toUpperCase();
                         String codeString = code.getText().toString().trim();
+                        String nameString = name.getText().toString().trim().toUpperCase();
                         //Convert price to string
                         String priceString = price.getText().toString().trim();
 
@@ -117,6 +118,10 @@ public class CompaniesPricesActivity extends AppCompatActivity {
                         userData.getCompanies().add(c);
                         companiesListView.getAdapter().notifyDataSetChanged();
                         Toast.makeText(getBaseContext(), "You have succesfully added " + c.getName() + ".", Toast.LENGTH_SHORT).show();
+
+                        //Close keyboard
+                        InputMethodManager inputManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                        inputManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),InputMethodManager.HIDE_NOT_ALWAYS);
                     }
                     catch (RuntimeException ex)
                     {
