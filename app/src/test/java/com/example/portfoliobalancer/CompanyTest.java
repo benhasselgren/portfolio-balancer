@@ -41,7 +41,7 @@ public class CompanyTest {
     @Test
     public void getPriceGrowthIncreaseTest()
     {
-        double expectedValue = 5;
+        double expectedValue = 12.5;
         ArrayList<Company>companies=new ArrayList<Company>();
 
         Company c1 = new Company("Apple", "APPL", 2.5, 5, 50, null, 5);
@@ -57,7 +57,7 @@ public class CompanyTest {
     @Test
     public void getPriceGrowthDecreaseTest()
     {
-        double expectedValue = -2.5;
+        double expectedValue = -6.25;
         ArrayList<Company>companies=new ArrayList<Company>();
 
         Company c1 = new Company("Apple", "APPL", 2.5, 5, 50, null, 5);
@@ -71,7 +71,7 @@ public class CompanyTest {
     }
 
     /**
-     * Test getPriceGrowth method
+     * Test getPercentageGrowth method
      */
     @Test
     public void getPercentageGrowthIncreaseTest()

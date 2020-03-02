@@ -50,7 +50,6 @@
             android:text="@string/title_test_portfolio"
             android:textColor="@color/textColorSubHeading"
             android:textSize="12sp"
-            android:textStyle="bold"
             android:ellipsize="end"
             android:maxLines="1"
             android:maxEms="10"/>
@@ -75,7 +74,7 @@
             android:paddingRight="5dip"
             android:text="@string/unbalanced_label"
             android:textColor="@color/textColorHighlight"
-            android:textSize="12sp"
+            android:textSize="10sp"
             android:textStyle="bold" />
         <!-- Portfolio current price -->
         <TextView
@@ -95,7 +94,6 @@
             android:layout_below="@id/entry_portfolio_currentPrice"
             android:text="@string/title_test_portfolio"
             android:textColor="@color/textColorAssetGrowth"
-            android:textSize="12sp"
-            android:textStyle="bold" />
+            android:textSize="9sp" />
     </LinearLayout>
 </RelativeLayout>
