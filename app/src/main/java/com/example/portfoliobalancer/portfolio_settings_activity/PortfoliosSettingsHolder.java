@@ -82,28 +82,30 @@ public class PortfoliosSettingsHolder extends RecyclerView.ViewHolder {
          * Updates the seekbar progress value if text is changed
          */
         company_target_percentage_value.addTextChangedListener(new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-        }
-
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count)
-        {
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {
-            //Only update if string is not empty
-            if(company_target_percentage_value.getText().length() > 0 )
-            {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                 //Make sure cursor is at end of text
                 company_target_percentage_value.setSelection(company_target_percentage_value.getText().length());
-                company.setTargetPercentage(Integer.parseInt(company_target_percentage_value.getText().toString().trim()));
-                company_target_percentage_seekbar.setProgress(company.getTargetPercentage());
             }
-        }
-    });
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count)
+            {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                //Only update if string is not empty
+                if(company_target_percentage_value.getText().length() > 0 )
+                {
+                    //Make sure cursor is at end of text
+                    company_target_percentage_value.setSelection(company_target_percentage_value.getText().length());
+
+                    company.setTargetPercentage(Integer.parseInt(company_target_percentage_value.getText().toString().trim()));
+                    company_target_percentage_seekbar.setProgress(company.getTargetPercentage());
+                }
+            }
+        });
     }
 
     //-----------------------------Methods-----------------------------

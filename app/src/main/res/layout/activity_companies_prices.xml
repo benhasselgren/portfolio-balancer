@@ -107,6 +107,17 @@
                     android:background="@color/colorMainBackground">
                 </android.support.v7.widget.RecyclerView>
 
+                <!-- Updates Button -->
+                <Button
+                    android:id="@+id/update_companies_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/update_companies_btn"
+                    android:background="@color/textColorAssetGrowth"
+                    android:layout_marginLeft="20dip"
+                    android:layout_marginRight="20dip"
+                    android:textColor="@color/textColorHighlight"/>
+
                 <!-- Main activity Button -->
                 <Button
                     android:id="@+id/main_activity_btn"

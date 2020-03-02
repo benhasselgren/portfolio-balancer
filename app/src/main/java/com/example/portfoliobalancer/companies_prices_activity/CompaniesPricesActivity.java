@@ -43,6 +43,7 @@ public class CompaniesPricesActivity extends AppCompatActivity {
     private EditText price;
     private Button add_company_btn;
     private Button main_btn;
+    private Button updateCompaniesBtn;
     private RecyclerView companiesListView;
 
     //-----------------------------On Create method-----------------------------
@@ -75,6 +76,7 @@ public class CompaniesPricesActivity extends AppCompatActivity {
 
             add_company_btn = (Button)findViewById(R.id.companies_add_btn);
             main_btn = (Button)findViewById(R.id.main_activity_btn);
+            updateCompaniesBtn = (Button)findViewById(R.id.update_companies_btn);
 
             companiesListView = (RecyclerView)findViewById(R.id.companies_prices_list);
 
@@ -128,6 +130,22 @@ public class CompaniesPricesActivity extends AppCompatActivity {
                         //Catches all exceptions here and displays appropriate error message
                         Toast.makeText(getBaseContext(), ex.getMessage(), Toast.LENGTH_SHORT).show();
                     }
+                }
+            });
+
+            /**
+             * updateCompaniesBtn.setOnClickListener()
+             * Triggers if updateCompaniesBtn clicked
+             * The companies will be saved to device
+             */
+            updateCompaniesBtn.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View view) {
+
+                    //Save companies
+                    userData.saveUserData(getApplicationContext(), false);
+                    Toast.makeText(getBaseContext(), "Updated companies", Toast.LENGTH_SHORT).show();
                 }
             });
 

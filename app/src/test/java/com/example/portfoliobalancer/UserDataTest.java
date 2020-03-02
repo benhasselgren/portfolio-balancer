@@ -96,7 +96,7 @@ public class UserDataTest {
     }
 
     /**
-     * Test removePortfolio method
+     * Test updatePortfolio method
      */
     @Test
     public void updatePortfolioTestNull()
@@ -238,5 +238,44 @@ public class UserDataTest {
         UserData ud = new UserData();
 
         ud.checkPortfoliosAreBalanced(null);
+    }
+
+    /**
+     * Test updateCompany method
+     */
+    @Test
+    public void updateCompanyTestNull()
+    {
+        String expectedValue = "TestCompany";
+        UserData ud = new UserData();
+
+        Company c = new Company("TestCompany", "WWWW", 300);
+
+        ud.getCompanies().add(c);
+
+        ud.updateCompany(null, c);
+
+        String actualValue = ud.findCompanyByCode("WWWW").getName();
+
+        assertEquals(expectedValue, actualValue);
+    }
+
+    @Test
+    public void updateCompanyTest()
+    {
+        String expectedValue = "NewCompany";
+        UserData ud = new UserData();
+
+        Company c = new Company("TestCompany", "WWWW", 300);
+
+        ud.getCompanies().add(c);
+
+        Company updatedC = new Company("NewCompany", "WWWW", 300);
+
+        ud.updateCompany(updatedC, c);
+
+        String actualValue = ud.findCompanyByCode("WWWW").getName();
+
+        assertEquals(expectedValue, actualValue);
     }
 }
