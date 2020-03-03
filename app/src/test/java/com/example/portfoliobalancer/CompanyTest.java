@@ -44,10 +44,11 @@ public class CompanyTest {
         double expectedValue = 12.5;
         ArrayList<Company>companies=new ArrayList<Company>();
 
-        Company c1 = new Company("Apple", "APPL", 2.5, 5, 50, null, 5);
+        Company c1 = new Company("Apple", "APPL", 2.5, 5, 50, null, 12.5);
 
         //Increase cost price by £5
         c1.setCostPrice(10);
+        c1.addPriceGrowthAmount();
 
         double actualValue = c1.getPriceGrowth();
 
@@ -60,10 +61,11 @@ public class CompanyTest {
         double expectedValue = -6.25;
         ArrayList<Company>companies=new ArrayList<Company>();
 
-        Company c1 = new Company("Apple", "APPL", 2.5, 5, 50, null, 5);
+        Company c1 = new Company("Apple", "APPL", 2.5, 5, 50, null, 12.5);
 
         //Decrease cost price by £2.5
         c1.setCostPrice(2.5);
+        c1.addPriceGrowthAmount();
 
         double actualValue = c1.getPriceGrowth();
 
@@ -79,10 +81,11 @@ public class CompanyTest {
         double expectedValue = 100.0;
         ArrayList<Company>companies=new ArrayList<Company>();
 
-        Company c1 = new Company("Apple", "APPL", 2.5, 5, 50, null, 5);
+        Company c1 = new Company("Apple", "APPL", 2.5, 5, 50, null, 12.5);
 
         //Increase cost price by £5
         c1.setCostPrice(10);
+        c1.addPriceGrowthAmount();
 
         double actualValue = c1.getPercentageGrowth();
 
@@ -95,12 +98,14 @@ public class CompanyTest {
         double expectedValue = -50;
         ArrayList<Company>companies=new ArrayList<Company>();
 
-        Company c1 = new Company("Apple", "APPL", 2.5, 5, 50, null, 5);
+        Company c1 = new Company("Apple", "APPL", 2.5, 5, 50, null, 12.5);
 
         //Decrease cost price by £2.5
         c1.setCostPrice(2.5);
+        c1.addPriceGrowthAmount();
 
         double actualValue = c1.getPercentageGrowth();
+
 
         assertEquals(expectedValue, actualValue, 0);
     }

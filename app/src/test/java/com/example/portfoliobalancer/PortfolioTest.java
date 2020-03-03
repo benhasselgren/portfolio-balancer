@@ -318,7 +318,6 @@ public class PortfolioTest {
 
         boolean expectedBalanced = true;
         double expectedUnitCount = 2.5;
-        double expectedInitialPrice = 5;
         Date date = Calendar.getInstance().getTime();
         DateFormat formatter = new SimpleDateFormat("EEE, dd MMM yyyy");
         String expectedDate = formatter.format(date);
@@ -336,13 +335,11 @@ public class PortfolioTest {
 
         boolean actualBalanced = p.isBalanced();
         double actualUnitCount = p.getCompanies().get(0).getUnitCount();
-        double actualInitialPrice = p.getCompanies().get(0).getInitialPrice();
         Date date2 = p.getCompanies().get(0).getCurrentUnitPriceDate();
         String actualDate = formatter.format(date2);
 
         assertEquals(expectedBalanced, actualBalanced);
         assertEquals(expectedUnitCount, actualUnitCount, 0);
-        assertEquals(expectedInitialPrice, actualInitialPrice, 0);
         assertEquals(expectedDate, actualDate);
 
     }
@@ -352,7 +349,6 @@ public class PortfolioTest {
 
         boolean expectedBalanced = true;
         double expectedUnitCount = 1.25;
-        double expectedInitialPrice = 5;
         Date date = Calendar.getInstance().getTime();
         DateFormat formatter = new SimpleDateFormat("EEE, dd MMM yyyy");
         String expectedDate = formatter.format(date);
@@ -369,13 +365,11 @@ public class PortfolioTest {
 
         boolean actualBalanced = p.isBalanced();
         double actualUnitCount = p.getCompanies().get(0).getUnitCount();
-        double actualInitialPrice = p.getCompanies().get(0).getInitialPrice();
         Date date2 = p.getCompanies().get(0).getCurrentUnitPriceDate();
         String actualDate = formatter.format(date2);
 
         assertEquals(expectedBalanced, actualBalanced);
         assertEquals(expectedUnitCount, actualUnitCount, 0);
-        assertEquals(expectedInitialPrice, actualInitialPrice, 0);
         assertEquals(expectedDate, actualDate);
 
     }
@@ -385,7 +379,6 @@ public class PortfolioTest {
 
         boolean expectedBalanced = true;
         double expectedUnitCount = 1.75;
-        double expectedInitialPrice = 12.5;
         double expectedPrice = 35;
         Date date = Calendar.getInstance().getTime();
         DateFormat formatter = new SimpleDateFormat("EEE, dd MMM yyyy");
@@ -404,14 +397,12 @@ public class PortfolioTest {
 
         boolean actualBalanced = p.isBalanced();
         double actualUnitCount = p.getCompanies().get(0).getUnitCount();
-        double actualInitialPrice = p.getCompanies().get(0).getInitialPrice();
         double actualPrice = p.getCurrentPrice(false);
         Date date2 = p.getCompanies().get(0).getCurrentUnitPriceDate();
         String actualDate = formatter.format(date2);
 
         assertEquals(expectedBalanced, actualBalanced);
         assertEquals(expectedUnitCount, actualUnitCount, 0);
-        assertEquals(expectedInitialPrice, actualInitialPrice, 0);
         assertEquals(expectedPrice, actualPrice, 0);
         assertEquals(expectedDate, actualDate);
 
@@ -422,7 +413,6 @@ public class PortfolioTest {
 
         boolean expectedBalanced = true;
         double expectedUnitCount = 0.75;
-        double expectedInitialPrice = 12.5;
         double expectedPrice = 15;
         Date date = Calendar.getInstance().getTime();
         DateFormat formatter = new SimpleDateFormat("EEE, dd MMM yyyy");
@@ -441,14 +431,12 @@ public class PortfolioTest {
 
         boolean actualBalanced = p.isBalanced();
         double actualUnitCount = p.getCompanies().get(0).getUnitCount();
-        double actualInitialPrice = p.getCompanies().get(0).getInitialPrice();
         double actualPrice = p.getCurrentPrice(false);
         Date date2 = p.getCompanies().get(0).getCurrentUnitPriceDate();
         String actualDate = formatter.format(date2);
 
         assertEquals(expectedBalanced, actualBalanced);
         assertEquals(expectedUnitCount, actualUnitCount, 0);
-        assertEquals(expectedInitialPrice, actualInitialPrice, 0);
         assertEquals(expectedPrice, actualPrice, 0);
         assertEquals(expectedDate, actualDate);
     }
