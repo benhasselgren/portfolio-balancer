@@ -280,15 +280,13 @@ public class Portfolio implements Parcelable
         Date date = Calendar.getInstance().getTime();
         //Get the current unitPrice of portfolio
         double p_currentUnitPrice;
-        double original_currentUnitPrice;
+
         if(newPortfolio) {
             p_currentUnitPrice = this.getCurrentPrice(true);
-            original_currentUnitPrice = p_currentUnitPrice;
         }
         else
         {
             p_currentUnitPrice = this.getCurrentPrice(false);
-            original_currentUnitPrice = p_currentUnitPrice;
 
             //If the portfolio has been updated in the portfolios settings, then check if amount has been altered
             //If money has been added or removed then update the current unit price of the portfolio
@@ -311,12 +309,21 @@ public class Portfolio implements Parcelable
         this.currentPriceDate = date;
         //Declare the company investment sum
         double c_investment_sum;
+        //Declare target percentage
+        double targetPercentage;
 
         //Balance the portfolio by diving the portfolios equity among the companies (using the target percentages)
         for(Company c : companies)
         {
+            //Get target percentage of company
+            targetPercentage = c.getTargetPercentage();
+
+            //If a new rebalance, set the total amount added to 0 and set company lastCurrentPrice to current unit price before it's updated;
+            c.setTotalAmountAdded(0);
+            c.setLastCurrentPrice(c.getCurrentUnitPrice());
+
             //Get the available amount to invest based on target percentage ( [targetPercentage/100] * current price of portfolio)
-            c_investment_sum = (c.getTargetPercentage() / 100.00) * p_currentUnitPrice;
+            c_investment_sum = (targetPercentage / 100.00) * p_currentUnitPrice;
 
             //Set the unit count by dividing the cost of the company by the available amount to invest
             c.setUnitCount(c_investment_sum/c.getCostPrice());
@@ -324,17 +331,15 @@ public class Portfolio implements Parcelable
             //Set the current unit price date of the company
             c.setCurrentUnitPriceDate(date);
 
-            //If money has been added or removed make sure to also adjust companies initital prices
-            if(updatedAmount != 0 && updatedAmount > original_currentUnitPrice)
+            //If the new current unit price differs from the last unit price then add/remove the difference from total amount added
+            if(c.getCurrentUnitPrice() > c.getLastCurrentPrice())
             {
-                double targetPercentage = c.getTargetPercentage();
-                double companyDiff = (updatedAmount - original_currentUnitPrice)*(targetPercentage/100);
+                double companyDiff = c.getCurrentUnitPrice() - c.getLastCurrentPrice();
                 c.addAmountToTotalAmountAdded(companyDiff);
             }
-            else if(updatedAmount != 0 && updatedAmount < original_currentUnitPrice)
+            else if(c.getCurrentUnitPrice() < c.getLastCurrentPrice())
             {
-                double targetPercentage = c.getTargetPercentage();
-                double companyDiff = (original_currentUnitPrice - updatedAmount) * (targetPercentage/100);
+                double companyDiff = c.getLastCurrentPrice() - c.getCurrentUnitPrice();
                 c.removeAmountFromTotalAmountAdded(companyDiff);
             }
         }
@@ -363,7 +368,10 @@ public class Portfolio implements Parcelable
                 {
                     if (c.getCompanyCode().equals(updatedCompany.getCompanyCode()))
                     {
+                        //Set the cost price of the company
                         c.setCostPrice(updatedCompany.getCostPrice());
+                        //Set the new price growth
+                        c.addPriceGrowthAmount();
                         break;
                     }
                 }
