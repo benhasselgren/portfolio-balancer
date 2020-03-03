@@ -180,7 +180,7 @@ public class Company implements Parcelable {
     }
 
     /**
-     * getPriceGrowth()
+     * addPriceGrowthAmount()
      * Calculates the price growth of a company
      * Eg. Initial price of a stock in company was £100. Current price is now £150. So price growth equals £50
      * @return the growth price of the company
@@ -199,7 +199,7 @@ public class Company implements Parcelable {
      */
     public double getPercentageGrowth()
     {
-        double growth = (getPriceGrowth()/(this.lastCurrentPrice * this.unitCount))*100;
+        double growth = ((this.getCurrentUnitPrice() - (this.getCurrentUnitPrice()-this.priceGrowth))/(this.getCurrentUnitPrice()-this.priceGrowth))*100;
         return growth;
     }
 

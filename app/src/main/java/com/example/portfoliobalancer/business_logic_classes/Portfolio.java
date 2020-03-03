@@ -370,7 +370,7 @@ public class Portfolio implements Parcelable
                     {
                         //Set the cost price of the company
                         c.setCostPrice(updatedCompany.getCostPrice());
-                        //Set the new price growth
+                        //Set the updated growth price
                         c.addPriceGrowthAmount();
                         break;
                     }
