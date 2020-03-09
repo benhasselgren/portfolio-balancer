@@ -94,7 +94,16 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(MainActivity.this, AddPortfolioActivity.class);
-                    intent.putExtra("NEW_PORTFOLIO_ID", String.format("%s",userData.getPortfolios().size() + 1));
+                    //if list exists then id equal to the last item in the list + 1. If list is empty, then id = 1;
+                    if(userData.getPortfolios().size()!=0)
+                    {
+                        intent.putExtra("NEW_PORTFOLIO_ID", String.format("%s",(userData.getPortfolios().get(userData.getPortfolios().size() - 1).getId() + 1)));
+                    }
+                    else
+                    {
+                        intent.putExtra("NEW_PORTFOLIO_ID", "1");
+                    }
+
                     startActivity(intent);
                 }
             });
