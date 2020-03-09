@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.InputFilter;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
@@ -105,8 +106,8 @@ public class CompaniesPricesActivity extends AppCompatActivity {
                     try
                     {
                         //Convert code and name to strings
-                        String codeString = code.getText().toString().trim();
-                        String nameString = name.getText().toString().trim().toUpperCase();
+                        String codeString = code.getText().toString().trim().toUpperCase();
+                        String nameString = name.getText().toString().trim();
                         //Convert price to string
                         String priceString = price.getText().toString().trim();
 
