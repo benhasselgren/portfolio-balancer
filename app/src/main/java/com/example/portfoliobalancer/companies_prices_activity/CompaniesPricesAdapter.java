@@ -22,6 +22,8 @@ public class CompaniesPricesAdapter extends RecyclerView.Adapter<CompaniesPrices
     private List<Company> companies;
     private Context context;
     private int itemResource;
+    private int recentlyDeletedCompanyPosition;
+    private Company recentlyDeletedCompany;
 
     //-----------------------------Constructor-----------------------------
     public CompaniesPricesAdapter(Context context, int itemResource, List<Company> companies)
@@ -69,5 +71,18 @@ public class CompaniesPricesAdapter extends RecyclerView.Adapter<CompaniesPrices
     @Override
     public int getItemCount() {
         return this.companies.size();
+    }
+
+    /**
+     * deleteItem()
+     * deletes an item in a given position
+     * @param position the position of the item to be deleted
+     */
+    public void deleteItem(int position) {
+        recentlyDeletedCompany = companies.get(position);
+        recentlyDeletedCompanyPosition = position;
+        companies.remove(position);
+        notifyItemRemoved(position);
+        showUndoSnackbar();
     }
 }
