@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- #################################### Portfolio Details Entry (Adheres to Activity Portfolio Details) #################################### -->
+<!-- #################################### Selected Company Entry (Adheres to Add Company ) #################################### -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/container"
     android:layout_width="match_parent"
@@ -13,50 +13,35 @@
     android:foreground="?android:attr/selectableItemBackground">
 
     <!-- +++++++++++++++++++++++ Left align +++++++++++++++++++++++ -->
-
     <LinearLayout
-        android:id="@+id/top_row"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
-
+        android:layout_centerVertical="true"
+        android:orientation="vertical" >
+        <!-- Portfolio last rebalanced date -->
         <!-- Company code -->
         <TextView
-            android:id="@+id/entry_company_code"
+            android:id="@+id/entry_add_company_code"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/title_test_portfolio"
             android:textColor="@color/textColorHeading"
             android:textSize="18sp"
             android:textStyle="bold" />
-
-        <!-- Company target percentage -->
+        <!-- Company name -->
         <TextView
-            android:id="@+id/entry_company_target_percentage"
+            android:id="@+id/entry_add_company_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignRight="@id/entry_company_code"
-            android:layout_marginLeft="5dip"
+            android:layout_below="@id/entry_add_company_code"
             android:text="@string/title_test_portfolio"
-            android:textColor="@color/textColorAssetGrowth"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textColor="@color/textColorSubHeading"
+            android:textSize="8sp"
+            android:textStyle="bold"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:maxEms="10"/>
     </LinearLayout>
-
-    <!-- Company name -->
-    <TextView
-        android:id="@+id/entry_company_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/top_row"
-        android:background="@color/colorEntryBackground"
-        android:text="@string/title_test_portfolio"
-        android:textColor="@color/textColorSubHeading"
-        android:textSize="9sp"
-        android:textStyle="bold"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:maxEms="10"/>
 
     <!-- +++++++++++++++++++++++ Right align +++++++++++++++++++++++ -->
 
@@ -67,24 +52,14 @@
         android:layout_alignParentRight="true"
         android:gravity="right"
         android:orientation="vertical" >
-        <!-- Portfolio current price-->
+        <!-- Company current price -->
         <TextView
-            android:id="@+id/entry_company_currentPrice"
+            android:id="@+id/entry_add_company_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/title_test_portfolio"
             android:textColor="@color/textColorHeading"
             android:textSize="18sp"
             android:textStyle="bold" />
-        <!-- Portfolio growth amount -->
-        <TextView
-            android:id="@+id/entry_company_growth"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/entry_company_currentPrice"
-            android:text="@string/title_test_portfolio"
-            android:textColor="@color/textColorAssetGrowth"
-            android:textSize="9sp"
-            android:textStyle="bold"/>
     </LinearLayout>
 </RelativeLayout>

@@ -1,4 +1,4 @@
-package com.example.portfoliobalancer;
+package com.example.portfoliobalancer.main_activity;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -7,12 +7,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 
+import com.example.portfoliobalancer.R;
 import com.example.portfoliobalancer.business_logic_classes.Portfolio;
 
 import java.util.List;
 
-//######################-----------------------------PortfoliosAdapterClass-----------------------------######################
-//Binds the data from the PortfolioActivity to the elements in the recyclerview
+/**
+ * PortfoliosAdapter
+ * Binds the data from the PortfolioActivity to the elements in the recyclerview
+ */
 
 public class PortfoliosAdapter extends RecyclerView.Adapter<PortfoliosHolder>
 {
@@ -31,7 +34,12 @@ public class PortfoliosAdapter extends RecyclerView.Adapter<PortfoliosHolder>
 
     //-----------------------------Methods-----------------------------
 
-    //Passes the data from the activity to the holder
+    /**
+     * onCreateViewHolder()
+     * @param parent
+     * @param viewType
+     * @return view holder
+     */
     @Override
     public PortfoliosHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
@@ -39,7 +47,12 @@ public class PortfoliosAdapter extends RecyclerView.Adapter<PortfoliosHolder>
         return new PortfoliosHolder(this.context, view);
     }
 
-    //Binds the data to the holder
+    /**
+     * onBindViewHolder()
+     * Binds data to the view holder
+     * @param holder
+     * @param position
+     */
     @Override
     public void onBindViewHolder(PortfoliosHolder holder, int position) {
 
@@ -53,7 +66,10 @@ public class PortfoliosAdapter extends RecyclerView.Adapter<PortfoliosHolder>
         holder.bindPortfolio(p);
     }
 
-    //Returns the size of the list
+    /**
+     * getItemCount()
+     * @return the size of the array list
+     */
     @Override
     public int getItemCount() {
         return this.portfolios.size();

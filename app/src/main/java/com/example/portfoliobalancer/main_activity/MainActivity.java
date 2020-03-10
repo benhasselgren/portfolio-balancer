@@ -1,9 +1,7 @@
-package com.example.portfoliobalancer;
+package com.example.portfoliobalancer.main_activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,28 +9,29 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.portfoliobalancer.add_portfolio_activity.AddPortfolioActivity;
+import com.example.portfoliobalancer.R;
 import com.example.portfoliobalancer.business_logic_classes.Company;
-import com.example.portfoliobalancer.business_logic_classes.Portfolio;
 import com.example.portfoliobalancer.business_logic_classes.UserData;
+import com.example.portfoliobalancer.companies_prices_activity.CompaniesPricesActivity;
 
-import java.util.Calendar;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.prefs.Preferences;
 
-//######################-----------------------------MainActivityClass-----------------------------######################
-//XML file: activity_main.xml
-//Main page of app. It shows the user all their portfolios.
+/**
+ * MainActivity
+ * Main page of app. It shows the user all their portfolios.
+ * XML file: activity_main.xml
+ */
 
 public class MainActivity extends AppCompatActivity {
 
     //-----------------------------Variables/Views-----------------------------
     //Variables
-    private ArrayList<Company> companies;
     private UserData userData;
     private Context context;
     //Views
     private Button add_portfolio_btn;
+    private Button companies_btn;
     private RecyclerView portfoliosListView;
 
     //-----------------------------On Create method-----------------------------
@@ -44,27 +43,26 @@ public class MainActivity extends AppCompatActivity {
         //Set context
         context = getApplicationContext();
 
-        //SharedPreferences pref = getApplicationContext().getSharedPreferences("shared preferences", MODE_PRIVATE);
-       // Editor editor = pref.edit();
-
-        //editor.clear();
-        //editor.commit();
-
         //Create a new UserData object
         userData = new UserData();
 
-        userData.loadUserData(context);
+        // Load the PORTFTOLIOS (hence parameter passed is TRUE)
+        userData.loadUserData(context, true);
 
         if(userData.getPortfolios() != null || userData.getPortfolios().size() == 0)
         {
             //Is portfolios exist then check they are still balanced
             if(userData.getPortfolios().size() > 0)
             {
-                userData.checkPortfoliosAreBalanced(getResources().getStringArray(R.array.companies));
+                // Load the COMPANIES (hence parameter passed is FALSE)
+                userData.loadUserData(context, false);
+                ArrayList<Company> updatedCompanies = (ArrayList<Company>) userData.getCompanies();
+                userData.checkPortfoliosAreBalanced(updatedCompanies);
             }
 
             //Add views
             add_portfolio_btn = (Button)findViewById(R.id.add_portfolio_btn);
+            companies_btn = (Button)findViewById(R.id.companies_activity_btn);
 
             portfoliosListView = (RecyclerView)findViewById(R.id.portfolios_list);
 
@@ -81,18 +79,47 @@ public class MainActivity extends AppCompatActivity {
             portfoliosListView.setAdapter(adapter);
 
             //-----------------------------Event Listener Methods-----------------------------
-            //Add portfolio button clicked event handled here
+
+            /**
+             * add_portfolio_btn.setOnClickListener()
+             * Triggers if add_portfolio_btn clicked
+             * The user will be directed to the AddPortfolioActivity
+             * @see com.example.portfoliobalancer.add_portfolio_activity.AddPortfolioActivity
+             */
             add_portfolio_btn.setOnClickListener(new View.OnClickListener() {
 
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(MainActivity.this, AddPortfolioActivity.class);
-                    intent.putExtra("NEW_PORTFOLIO_ID", String.format("%s",userData.getPortfolios().size() + 1));
+                    //if list exists then id equal to the last item in the list + 1. If list is empty, then id = 1;
+                    if(userData.getPortfolios().size()!=0)
+                    {
+                        intent.putExtra("NEW_PORTFOLIO_ID", String.format("%s",(userData.getPortfolios().get(userData.getPortfolios().size() - 1).getId() + 1)));
+                    }
+                    else
+                    {
+                        intent.putExtra("NEW_PORTFOLIO_ID", "1");
+                    }
+
+                    startActivity(intent);
+                }
+            });
+
+            /**
+             * companies_btn.setOnClickListener()
+             * Triggers if companies_btn clicked
+             * The user will be directed to the CompaniesPricesActivity
+             * @see com.example.portfoliobalancer.companies_prices_activity.CompaniesPricesActivity
+             */
+            companies_btn.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(MainActivity.this, CompaniesPricesActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK |Intent.FLAG_ACTIVITY_NO_ANIMATION );
                     startActivity(intent);
                 }
             });
         }
     }
-
-    //-----------------------------Methods----------------------------
 }

@@ -1,4 +1,4 @@
-package com.example.portfoliobalancer;
+package com.example.portfoliobalancer.add_portfolio_activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,17 +7,21 @@ import android.text.InputFilter;
 
 import android.text.InputType;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.portfoliobalancer.add_company_activity.AddCompanyActivity;
+import com.example.portfoliobalancer.R;
 import com.example.portfoliobalancer.business_logic_classes.Portfolio;
-import com.example.portfoliobalancer.business_logic_classes.UserData;
 import com.example.portfoliobalancer.business_logic_classes.Validation;
 
-//######################-----------------------------AppPortfolioActivityClass-----------------------------######################
-//XML file: activity_add_portfolio.xml
-//User adds the portfolio name, description and amount to invest here
+/**
+ * AppPortfolioActivity
+ * User adds the portfolio name, description and amount to invest here
+ * XML file: activity_add_portfolio.xml
+ */
 
 public class AddPortfolioActivity extends AppCompatActivity {
 
@@ -35,6 +39,9 @@ public class AddPortfolioActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_portfolio);
+
+        //Prevents keyboard from popping up intially
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         //Get the portfolio id
         portfolioId= Integer.parseInt(getIntent().getStringExtra("NEW_PORTFOLIO_ID"));
@@ -73,10 +80,15 @@ public class AddPortfolioActivity extends AppCompatActivity {
         Button nextButton = (Button) findViewById(R.id.add_portfolio_activity_btn);
 
         //-----------------------------Event Listener Methods-----------------------------
-        //Triggers if next button is clicked
+
+        /**
+         * nextButton.setOnClickListener()
+         * Triggers if next button is clicked
+         * Validates the data entered in the fields and if it's valid directs the user to the next activity (AddCompanyActivity)
+         * @see com.example.portfoliobalancer.add_company_activity.AddCompanyActivity
+         */
         nextButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
                 try
                 {
                     //Convert name and description to strings
@@ -91,6 +103,7 @@ public class AddPortfolioActivity extends AppCompatActivity {
                     //If everything is valid, create a portfolio and start a new activity (passing the portfolio to that activity)
                     Portfolio portfolio = createPortfolio(nameString, descriptionString, amountString);
                     Intent intent = new Intent(AddPortfolioActivity.this, AddCompanyActivity.class);
+                    intent.putExtra("FROM_ACTIVITY", "add_portfolio");
                     intent.putExtra("portfolio", portfolio);
                     startActivity(intent);
                 }
@@ -105,7 +118,15 @@ public class AddPortfolioActivity extends AppCompatActivity {
 
     //-----------------------------Methods-----------------------------
 
-    //Creates a basic portfolio with basic details
+    /**
+     * createPortfolio()
+     * Creates a basic portfolio with initial details
+     * @param nameString
+     * @param descriptionString
+     * @param amountString
+     * @return A new portfolio object
+     *
+     */
     private Portfolio createPortfolio(String nameString, String descriptionString, String amountString)
     {
         Portfolio p = new Portfolio();
@@ -117,5 +138,4 @@ public class AddPortfolioActivity extends AppCompatActivity {
 
         return p;
     }
-
 }

@@ -1,4 +1,4 @@
-package com.example.portfoliobalancer;
+package com.example.portfoliobalancer.portfolio_details_activity;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -11,18 +11,23 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.portfoliobalancer.add_company_activity.AddCompanyActivity;
+import com.example.portfoliobalancer.portfolio_settings_activity.PortfolioSettingsActivity;
+import com.example.portfoliobalancer.R;
 import com.example.portfoliobalancer.business_logic_classes.Portfolio;
 import com.example.portfoliobalancer.business_logic_classes.UserData;
+import com.example.portfoliobalancer.main_activity.MainActivity;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
-//######################-----------------------------PortfolioDetailsActivity-----------------------------######################
-//XML file: activity_portfolio_details.xml
-//Displays the portfolio details (List of companies, prices, growth, etc.)
+/**
+ * PortfolioDetailsActivity
+ * Displays the portfolio details (List of companies, prices, growth, etc.)
+ * XML file: activity_portfolio_details.xml
+ */
 
 public class PortfolioDetailsActivity extends AppCompatActivity {
 
@@ -35,6 +40,7 @@ public class PortfolioDetailsActivity extends AppCompatActivity {
     private TextView lastRebalanced;
     private ImageButton settingsBtn;
     private Button rebalanceBtn;
+    private Button addCompanyBtn;
     private RecyclerView companiesListView;
     private ProgressDialog progressDialog;
 
@@ -58,6 +64,7 @@ public class PortfolioDetailsActivity extends AppCompatActivity {
             lastRebalanced = (TextView) findViewById(R.id.portfolio_last_rebalanced);
             settingsBtn = (ImageButton) findViewById(R.id.portfolio_settings);
             rebalanceBtn = (Button) findViewById(R.id.portfolio_rebalance_btn);
+            addCompanyBtn = (Button) findViewById(R.id.add_company_btn);
 
             companiesListView = (RecyclerView)findViewById(R.id.companies_list);
 
@@ -79,15 +86,15 @@ public class PortfolioDetailsActivity extends AppCompatActivity {
             currentPrice.setText(String.format("£%.2f", portfolio.getCurrentPrice(false)));
 
             // Set growth
-            if(portfolio.getPriceGrowth() > 0)
+            if(Math.round(portfolio.getPriceGrowth() * 100.0) > 0)
             {
                 growth.setTextColor(ContextCompat.getColor(context, R.color.textColorAssetGrowth));
-                growth.setText(String.format("+£%.2f(%.2f%%)", portfolio.getPriceGrowth(), portfolio.getPercentageGrowth()));
+                growth.setText(String.format("+£%.2f(+%.2f%%)", portfolio.getPriceGrowth(), portfolio.getPercentageGrowth()));
             }
-            else if (portfolio.getPriceGrowth() < 0)
+            else if (Math.round(portfolio.getPriceGrowth() * 100.0) < 0)
             {
                 growth.setTextColor(ContextCompat.getColor(context, R.color.textColorAssetDecline));
-                growth.setText(String.format("+£%.2f(%.2f%%)", portfolio.getPriceGrowth(), portfolio.getPercentageGrowth()));
+                growth.setText(String.format("-£%.2f(-%.2f%%)", Math.abs(portfolio.getPriceGrowth()), Math.abs(portfolio.getPercentageGrowth())));
             }
             else {
                 growth.setTextColor(ContextCompat.getColor(context, R.color.textColorAsset));
@@ -112,7 +119,13 @@ public class PortfolioDetailsActivity extends AppCompatActivity {
             }
 
             //-----------------------------Event Listener Methods-----------------------------
-            //Add portfolio button clicked event handled here
+
+            /**
+             * settingsBtn.setOnClickListener()
+             * Triggers if settingsBtn clicked
+             * The user will be directed to the PortfolioSettingActivity
+             * @see com.example.portfoliobalancer.portfolio_settings_activity.PortfolioSettingsActivity
+             */
             settingsBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -123,7 +136,13 @@ public class PortfolioDetailsActivity extends AppCompatActivity {
                 }
             });
 
-            //Add portfolio button clicked event handled here
+            /**
+             * rebalanceBtn.setOnClickListener()
+             * Triggers if rebalanceBtn clicked
+             * The portfolio will be rebalanced
+             * Uses the the balancePortfolio method from Portfolio class
+             * @see com.example.portfoliobalancer.business_logic_classes.Portfolio
+             */
             rebalanceBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -141,13 +160,12 @@ public class PortfolioDetailsActivity extends AppCompatActivity {
                     progressDialog.show();
 
                     //Balance portfolio
-                    portfolio.balancePortfolio(false);
-
+                    portfolio.balancePortfolio(false, 0);
 
                     //Load portfolios, check if this portfolio exists and add or update portfolio, then save portfolios
                     //Load
                     UserData ud = new UserData();
-                    ud.loadUserData(getApplicationContext());
+                    ud.loadUserData(getApplicationContext(), true);
 
                     //Check if it exists
                     Portfolio p = ud.findPortfolioById(portfolio.getId());
@@ -164,7 +182,7 @@ public class PortfolioDetailsActivity extends AppCompatActivity {
                     }
 
                     //Save portfolios
-                    ud.saveUserData(getApplicationContext());
+                    ud.saveUserData(getApplicationContext(), true);
 
                     //End process dialog
                     progressDialog.dismiss();
@@ -172,6 +190,23 @@ public class PortfolioDetailsActivity extends AppCompatActivity {
                     //Go back to main page
                     Intent intent = new Intent(PortfolioDetailsActivity.this, MainActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                }
+            });
+
+            /**
+             * addCompanyBtn.setOnClickListener()
+             * Triggers if addCompanyBtn clicked
+             * The user will be directed to the AddCompanyActivity
+             * @see com.example.portfoliobalancer.add_company_activity.AddCompanyActivity
+             */
+            addCompanyBtn.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(PortfolioDetailsActivity.this, AddCompanyActivity.class);
+                    intent.putExtra("portfolio", portfolio);
+                    intent.putExtra("FROM_ACTIVITY", "portfolio_details");
                     startActivity(intent);
                 }
             });

@@ -6,8 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:focusableInTouchMode="true"
     android:background="@color/colorMainBackground"
-    tools:context=".PortfolioDetailsActivity">
+    tools:context=".portfolio_details_activity.PortfolioDetailsActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -122,6 +123,13 @@
                 android:layout_marginBottom="10dip"
                 android:scrollbars="vertical" >
             </android.support.v7.widget.RecyclerView>
+
+            <!-- Add new company -->
+            <Button
+                android:id="@+id/add_company_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Add company" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

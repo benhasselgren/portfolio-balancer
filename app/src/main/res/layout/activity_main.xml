@@ -6,22 +6,40 @@
     android:layout_height="match_parent"
     android:background="@color/colorMainBackground"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".main_activity.MainActivity">
 
-    <!-- Portfolios List -->
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/portfolios_list"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dip"
-        android:layout_marginBottom="10dip"
-        android:scrollbars="vertical" >
-    </android.support.v7.widget.RecyclerView>
+        android:layout_height="match_parent">
 
-    <!-- Add new portfolio -->
-    <Button
-        android:id="@+id/add_portfolio_btn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Add portfolio" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Portfolios List -->
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/portfolios_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dip"
+                android:layout_marginBottom="10dip"
+                android:scrollbars="vertical" >
+            </android.support.v7.widget.RecyclerView>
+
+            <!-- Add new portfolio -->
+            <Button
+                android:id="@+id/add_portfolio_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Add portfolio" />
+
+            <!-- Companies activity -->
+            <Button
+                android:id="@+id/companies_activity_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Companies" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

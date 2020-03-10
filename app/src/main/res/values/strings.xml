@@ -8,6 +8,7 @@
     <string name="title_add_companies">Add companies</string>
     <string name="title_add_portfolio">Add portfolio</string>
     <string name="title_portfolio_settings">Portfolio settings</string>
+    <string name="title_companies">Companies</string>
 
     <!-- Main activity. -->
     <string name="unbalanced_label">Unbalanced</string>
@@ -30,21 +31,26 @@
     <string name="portfolio_description">Description</string>
     <string name="portfolio_amount">Amount</string>
     <string name="portfolio_details_title">Portfolio Details</string>
-    <string name="target_percentages_title">Portfolio Details</string>
+    <string name="target_percentages_title">Target Percentages</string>
+    <string name="delete_btn_title">Danger zone</string>
     <string name="target_percentages_total">Total</string>
     <string name="rebalance_btn">Rebalance</string>
     <string name="balance_dialog_title">Balancing portfolio</string>
     <string name="balance_dialog_message">Please wait...</string>
+    <string name="delete_company">Delete</string>
+    <string name="delete_portfolio">Delete portfolio</string>
 
-    <!-- Companies -->
-    <string name="apple">AAPL,Apple Inc,200</string>
-    <string name="microsoft">MSFT,Microsoft Corporation,100</string>
-    <string name="tesla">TSLA,Tesla Inc,200</string>
+    <!-- Companies activity -->
+    <string name="companies_btn">Add company</string>
+    <string name="add_company_name">Enter name</string>
+    <string name="add_company_code">Enter code</string>
+    <string name="add_company_price">Enter price</string>
+    <string name="update_companies_btn">Update companies</string>
 
-    <!-- Array of companies -->
-    <string-array name="companies">
-        <item>@string/apple</item>
-        <item>@string/microsoft</item>
-        <item>@string/tesla</item>
-    </string-array>
+    <!-- Companies details -->
+    <string name="company_name_title">Name</string>
+    <string name="company_price_title">Price</string>
+    <string name="company_growth_title">Total gain/loss</string>
+    <string name="company_target_percentage_title">Target percentage</string>
+    <string name="company_number_units_title">Units</string>
 </resources>

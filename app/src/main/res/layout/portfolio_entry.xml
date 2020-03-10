@@ -37,7 +37,10 @@
             android:text="@string/title_test_portfolio"
             android:textColor="@color/textColorHeading"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:maxEms="15"/>
         <!-- Portfolio description -->
         <TextView
             android:id="@+id/entry_portfolio_description"
@@ -47,7 +50,9 @@
             android:text="@string/title_test_portfolio"
             android:textColor="@color/textColorSubHeading"
             android:textSize="12sp"
-            android:textStyle="bold" />
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:maxEms="10"/>
     </LinearLayout>
 
     <!-- +++++++++++++++++++++++ Right align +++++++++++++++++++++++ -->
@@ -57,6 +62,7 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
+        android:gravity="right"
         android:orientation="vertical" >
         <!-- Portfolio unbalanced-->
         <TextView
@@ -68,7 +74,7 @@
             android:paddingRight="5dip"
             android:text="@string/unbalanced_label"
             android:textColor="@color/textColorHighlight"
-            android:textSize="12sp"
+            android:textSize="10sp"
             android:textStyle="bold" />
         <!-- Portfolio current price -->
         <TextView
@@ -88,7 +94,7 @@
             android:layout_below="@id/entry_portfolio_currentPrice"
             android:text="@string/title_test_portfolio"
             android:textColor="@color/textColorAssetGrowth"
-            android:textSize="12sp"
-            android:textStyle="bold" />
+            android:textSize="9sp"
+            android:textStyle="bold"/>
     </LinearLayout>
 </RelativeLayout>

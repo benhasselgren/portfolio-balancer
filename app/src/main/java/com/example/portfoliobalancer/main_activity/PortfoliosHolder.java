@@ -1,4 +1,4 @@
-package com.example.portfoliobalancer;
+package com.example.portfoliobalancer.main_activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,14 +8,18 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.portfoliobalancer.portfolio_details_activity.PortfolioDetailsActivity;
+import com.example.portfoliobalancer.R;
 import com.example.portfoliobalancer.business_logic_classes.Portfolio;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
-//######################-----------------------------PortfoliosHolderClass-----------------------------######################
-//XML file: portfolio_entry.xml
-//This displays the portfolios
+/**
+ * PortfolioHolder
+ * This displays the portfolios
+ * XML file: portfolio_entry.xml
+ */
 
 public class PortfoliosHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
@@ -83,15 +87,15 @@ public class PortfoliosHolder extends RecyclerView.ViewHolder implements View.On
         currentPrice.setText(String.format("£%.2f", portfolio.getCurrentPrice(false)));
 
         // Overall growth field
-        if(portfolio.getPriceGrowth() > 0)
+        if(Math.round(portfolio.getPriceGrowth() * 100.0) > 0)
         {
             growth.setTextColor(ContextCompat.getColor(context, R.color.textColorAssetGrowth));
-            growth.setText(String.format("+£%.2f(%.2f%%)", portfolio.getPriceGrowth(), portfolio.getPercentageGrowth()));
+            growth.setText(String.format("+£%.2f(+%.2f%%)", portfolio.getPriceGrowth(), portfolio.getPercentageGrowth()));
         }
-        else if (portfolio.getPriceGrowth() < 0)
+        else if (Math.round(portfolio.getPriceGrowth() * 100.0) < 0)
         {
             growth.setTextColor(ContextCompat.getColor(context, R.color.textColorAssetDecline));
-            growth.setText(String.format("+£%.2f(%.2f%%)", portfolio.getPriceGrowth(), portfolio.getPercentageGrowth()));
+            growth.setText(String.format("-£%.2f(-%.2f%%)", Math.abs(portfolio.getPriceGrowth()), Math.abs(portfolio.getPercentageGrowth())));
         }
         else {
             growth.setTextColor(ContextCompat.getColor(context, R.color.textColorAsset));
@@ -100,7 +104,13 @@ public class PortfoliosHolder extends RecyclerView.ViewHolder implements View.On
     }
 
     //-----------------------------Event Listener Methods----------------------------
-    //Triggered when a user clicks a portfolio
+
+    /**
+     * onClick()
+     * Triggers if portfolio list item is clicked
+     * User is directed to PortfolioDetailsActivity
+     * @see com.example.portfoliobalancer.portfolio_details_activity.PortfolioDetailsActivity
+     */
     @Override
     public void onClick(View v) {
         if (portfolio != null) {
@@ -109,12 +119,4 @@ public class PortfoliosHolder extends RecyclerView.ViewHolder implements View.On
             itemView.getContext().startActivity(intent);
         }
     }
-/*
-    protected void displayMemoryUsage(String message) {
-        int usedKBytes = (int) (Debug.getNativeHeapAllocatedSize() / 1024L);
-        String usedMegsString = String.format("%s - usedMemory = Memory Used: %d KB", message, usedKBytes);
-        Log.d("DATA", usedMegsString);
-    }
-
- */
 }

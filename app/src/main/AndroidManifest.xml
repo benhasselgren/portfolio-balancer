@@ -12,27 +12,31 @@
         android:largeHeap="true"
         android:hardwareAccelerated="false">
         <activity
-            android:name=".PortfolioSettingsActivity"
+            android:name=".companies_prices_activity.CompaniesPricesActivity"
+            android:label="@string/title_companies">
+        </activity>
+        <activity
+            android:name=".portfolio_settings_activity.PortfolioSettingsActivity"
             android:label="@string/title_portfolio_settings">
         </activity>
         <activity
-            android:name=".PortfolioDetailsActivity"
+            android:name=".portfolio_details_activity.PortfolioDetailsActivity"
             android:label="@string/title_main_activity">
         </activity>
         <activity
-            android:name=".CompanyDetailsActivity"
+            android:name=".company_details_activity.CompanyDetailsActivity"
             android:label="@string/title_main_activity">
         </activity>
         <activity
-            android:name=".AddCompanyActivity"
+            android:name=".add_company_activity.AddCompanyActivity"
             android:label="@string/title_add_companies">
         </activity>
         <activity
-            android:name=".AddPortfolioActivity"
+            android:name=".add_portfolio_activity.AddPortfolioActivity"
             android:label="@string/title_add_portfolio">
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".main_activity.MainActivity"
             android:label="@string/title_main_activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

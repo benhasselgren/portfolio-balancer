@@ -1,8 +1,9 @@
-package com.example.portfoliobalancer;
+package com.example.portfoliobalancer.portfolio_settings_activity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,31 +16,33 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.portfoliobalancer.background_tasks.BalanceTask;
+import com.example.portfoliobalancer.R;
 import com.example.portfoliobalancer.business_logic_classes.Portfolio;
 import com.example.portfoliobalancer.business_logic_classes.UserData;
 import com.example.portfoliobalancer.business_logic_classes.Validation;
+import com.example.portfoliobalancer.main_activity.MainActivity;
 
-//######################-----------------------------PortfoliosSettingsActivityClass-----------------------------######################
-//XML file: activity_portfolio_settings.xml
-//Portfolio settings page of app. It's where the user can edit their portfolio details and change the target percentages.
-//Also where the user is directed when creating a new portfolio
-public class PortfolioSettingsActivity extends AppCompatActivity  {
+/**
+ * PortfoliosSettingsActivity
+ * Portfolio settings page of app. It's where the user can edit their portfolio details and change the target percentages.
+ * Also where they can delete companies and also where they can delete their portfolio.
+ * XML file: activity_portfolio_settings.xml
+ */
+public class PortfolioSettingsActivity extends AppCompatActivity implements PortfoliosSettingsAdapter.OnCompanyDeleted {
 
     //-----------------------------Variables/Views-----------------------------
     //Variables
     private Portfolio portfolio;
     Validation validation = new Validation();
-    private  String previousActivity;
-    private BalanceTask balanceTask;
+    private String previousActivity;
     //Views
     private RecyclerView portfoliosTargetPercentagesListView;
     private TextView totalPercentage;
     private EditText name;
     private EditText description;
     private EditText amount;
-    private Button rebalance_create_btn;
-    private ProgressDialog progressDialog;
+    private Button rebalanceCreateBtn;
+    private Button deletePortfolioBtn;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,13 +85,14 @@ public class PortfolioSettingsActivity extends AppCompatActivity  {
         );
 
         amount = (EditText)findViewById(R.id.portfolio_amount_input);
-        rebalance_create_btn = (Button) findViewById(R.id.rebalance_create__btn);
+        rebalanceCreateBtn = (Button) findViewById(R.id.rebalance_create__btn);
+        deletePortfolioBtn = (Button) findViewById(R.id.portfolio_delete_btn);
 
         //If the recyclerview doesn't change size, we can set this true and
         portfoliosTargetPercentagesListView.setHasFixedSize(true);
 
         //Initialize the PortfoliosSettings adapter, which binds the data to the entry view
-        PortfoliosSettingsAdapter adapter = new PortfoliosSettingsAdapter(this, R.layout.settings_target_percentage_entry, portfolio.getCompanies());
+        PortfoliosSettingsAdapter adapter = new PortfoliosSettingsAdapter(this, R.layout.settings_target_percentage_entry, portfolio.getCompanies(), this);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
 
@@ -106,18 +110,27 @@ public class PortfolioSettingsActivity extends AppCompatActivity  {
         //Set the button text based on the previous activity
         if (previousActivity.equals("add_company"))
         {
-            rebalance_create_btn.setText("Create portfolio");
+            rebalanceCreateBtn.setText("Create portfolio");
             amount.setText(String.format("%.2f", portfolio.getCurrentPrice(true)));
         }
         else if (previousActivity.equals("portfolio_details"))
         {
-            rebalance_create_btn.setText("Update portfolio");
+            rebalanceCreateBtn.setText("Update portfolio");
             amount.setText(String.format("%.2f", portfolio.getCurrentPrice(false)));
         }
 
         //-----------------------------EventListenerMethods-----------------------------
-        //Triggers if rebalance/create button is clicked
-        rebalance_create_btn.setOnClickListener(new View.OnClickListener() {
+
+        /**
+         * rebalanceCreateBtn.setOnClickListener()
+         * Triggers if rebalanceCreateBtn clicked
+         * The portfolio will be rebalanced
+         * Uses the the balancePortfolio method from Portfolio class
+         * Once balanced the user will be sent back to the Main activity
+         * @see com.example.portfoliobalancer.business_logic_classes.Portfolio
+         * @see com.example.portfoliobalancer.main_activity.MainActivity
+         */
+        rebalanceCreateBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
                 //Set the total percentage text to show total percentage
@@ -157,46 +170,75 @@ public class PortfolioSettingsActivity extends AppCompatActivity  {
                 }
             }
         });
+
+        /**
+         * deletePortfolioBtn.setOnClickListener()
+         * Triggers if deletePortfolioBtn clicked
+         * The portfolio will be deleted and the user will be directed to the MainActivity
+         * @see com.example.portfoliobalancer.main_activity.MainActivity
+         */
+        deletePortfolioBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                UserData ud = new UserData();
+
+                //Load the portfolios
+                ud.loadUserData(getApplicationContext(), true);
+
+                //Find the portfolio
+                Portfolio p = ud.findPortfolioById(portfolio.getId());
+
+                //Delete the portfolio
+                ud.removePortfolio(p);
+
+                //Save the portfolios
+                ud.saveUserData(getApplicationContext(), true);
+
+                //Send user back to main activity
+                Intent intent = new Intent(PortfolioSettingsActivity.this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            }
+        });
     }
 
     //-----------------------------Methods-----------------------------
 
-    //Adds the remaining values tot he empty variables in the object
+    /**
+     * finalisePortfolio()
+     * Finalises the portfolio before saving it to the device
+     * @param nameString
+     * @param descriptionString
+     * @param amountString
+     */
     private void finalisePortfolio(String nameString, String descriptionString, String amountString)
     {
         //Update porfolio details
         portfolio.setName(nameString);
         portfolio.setDescription(descriptionString);
-        portfolio.setInitialPrice(Double.parseDouble(amountString));
-
-        // Initialize the progress dialog
-        progressDialog = new ProgressDialog(PortfolioSettingsActivity.this);
-        progressDialog.setIndeterminate(true);
-        // Progress dialog horizontal style
-        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        // Progress dialog title
-        progressDialog.setTitle( getResources().getString(R.string.balance_dialog_title));
-        // Progress dialog message
-        progressDialog.setMessage(getResources().getString(R.string.balance_dialog_message));
-
-        //Start the process dialog
-        progressDialog.show();
+        //Only update initial price if the user is creating a new portfolio (if the previous activity tag equals "add_company" then it's a new portfolio)
+        if (previousActivity.equals("add_company"))
+        {
+            portfolio.setInitialPrice(Double.parseDouble(amountString));
+        }
 
         //Balance portfolio
         //Get previous activity to decide how to balance the portfolio
         if (previousActivity.equals("add_company"))
         {
-            portfolio.balancePortfolio(true);
+            //If previous activity = "add_company" then we know it's a new company, so pass true to portfolioBalancer method, with 0 added and rmeoved to portfolio
+            portfolio.balancePortfolio(true, 0);
         }
         else if (previousActivity.equals("portfolio_details"))
         {
-            portfolio.balancePortfolio(false);
+            //If previous activity = "portfolio_details" then we know it's not a new company, so pass false to portfolioBalancer method, and pass the amount to check..
+            //..money has been removed or added.
+            portfolio.balancePortfolio(false, Double.parseDouble(amountString));
         }
 
         //Load portfolios, check if this portfolio exists and add or update portfolio, then save portfolios
         //Load
         UserData ud = new UserData();
-        ud.loadUserData(getApplicationContext());
+        ud.loadUserData(getApplicationContext(), true);
 
         //Check if it exists
         Portfolio p = ud.findPortfolioById(portfolio.getId());
@@ -213,22 +255,18 @@ public class PortfolioSettingsActivity extends AppCompatActivity  {
         }
 
         //Save portfolios
-        ud.saveUserData(getApplicationContext());
+        ud.saveUserData(getApplicationContext(), true);
+    }
 
-        //End process dialog
-        progressDialog.dismiss();
-
-        /*
-        // Create the async task
-        balanceTask = new BalanceTask(
-                progressDialog,
-                getApplicationContext()
-        );
-        // now execute the Task and pass the portfolio to balance
-        balanceTask.execute(
-                portfolio
-        );
-        */
-
+    /**
+     * onDeleteCompanyClick()
+     * Triggered by a callback in PortfolioSettingsAdapter
+     * If company is removed then update the totalAmountAdded (totalAmountAdded - currentUnitPrice of company being deleted).
+     * This is to prevent the growth percentage values being affected.
+     * @param value
+     */
+    @Override
+    public void onDeleteCompanyClick(double value) {
+        portfolio.removeAmountFromTotalAmountAdded(value);
     }
 }
