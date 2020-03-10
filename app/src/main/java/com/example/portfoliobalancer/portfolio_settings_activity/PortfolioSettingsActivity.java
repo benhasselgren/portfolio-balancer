@@ -3,6 +3,7 @@ package com.example.portfoliobalancer.portfolio_settings_activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -41,7 +42,6 @@ public class PortfolioSettingsActivity extends AppCompatActivity implements Port
     private EditText description;
     private EditText amount;
     private Button rebalanceCreateBtn;
-    private ProgressDialog progressDialog;
     private Button deletePortfolioBtn;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -221,19 +221,6 @@ public class PortfolioSettingsActivity extends AppCompatActivity implements Port
             portfolio.setInitialPrice(Double.parseDouble(amountString));
         }
 
-        // Initialize the progress dialog
-        progressDialog = new ProgressDialog(PortfolioSettingsActivity.this);
-        progressDialog.setIndeterminate(true);
-        // Progress dialog horizontal style
-        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        // Progress dialog title
-        progressDialog.setTitle( getResources().getString(R.string.balance_dialog_title));
-        // Progress dialog message
-        progressDialog.setMessage(getResources().getString(R.string.balance_dialog_message));
-
-        //Start the process dialog
-        progressDialog.show();
-
         //Balance portfolio
         //Get previous activity to decide how to balance the portfolio
         if (previousActivity.equals("add_company"))
@@ -269,9 +256,6 @@ public class PortfolioSettingsActivity extends AppCompatActivity implements Port
 
         //Save portfolios
         ud.saveUserData(getApplicationContext(), true);
-
-        //End process dialog
-        progressDialog.dismiss();
     }
 
     /**
