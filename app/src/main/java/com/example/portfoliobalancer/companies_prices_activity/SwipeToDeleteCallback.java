@@ -13,6 +13,11 @@ import android.view.View;
 
 import com.example.portfoliobalancer.R;
 
+/**
+ * SwipeToDeleteCallback
+ * Handles the swipe to delete functionality when a user wants to delete a company.
+ */
+
 public class SwipeToDeleteCallback extends ItemTouchHelper.SimpleCallback {
 
     private CompaniesPricesAdapter mAdapter;
