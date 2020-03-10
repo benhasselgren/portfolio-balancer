@@ -36,8 +36,8 @@ public class Validation {
         else {
             if(amountString.matches("[0-9]+")) {
                 int amountInt = Integer.parseInt(amountString);
-                if (amountInt < 100 || amountInt > 25000) {
-                    throw new RuntimeException("Amount has to be between £100-£25,000.");
+                if (amountInt < 0|| amountInt > 10000000) {
+                    throw new RuntimeException("Amount has to be between £0-£10,000,000.");
                 }
             }
             else
