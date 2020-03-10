@@ -97,8 +97,8 @@ public class ValidationTest {
         Validation v = new Validation();
         String name = "Name";
         String description = "Description";
-        String amount = "10";
-        String expectedValue = "Amount has to be between £100-£25,000.";
+        String amount = "10000001";
+        String expectedValue = "Amount has to be between £0-£10,000,000.";
         String actualValue = "";
 
         try
