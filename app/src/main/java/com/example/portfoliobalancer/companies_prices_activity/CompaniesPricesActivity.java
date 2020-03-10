@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.text.InputFilter;
 import android.view.View;
 import android.view.WindowManager;
@@ -92,6 +93,10 @@ public class CompaniesPricesActivity extends AppCompatActivity {
             companiesListView.setLayoutManager(layoutManager);
 
             companiesListView.setAdapter(adapter);
+
+            ItemTouchHelper itemTouchHelper = new
+                    ItemTouchHelper(new SwipeToDeleteCallback(adapter));
+            itemTouchHelper.attachToRecyclerView(companiesListView);
 
             //-----------------------------Event Listener Methods-----------------------------
 
