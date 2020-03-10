@@ -46,9 +46,6 @@ public class MainActivity extends AppCompatActivity {
         //Create a new UserData object
         userData = new UserData();
 
-        //################# Create companies here
-        //createCompanies();
-
         // Load the PORTFTOLIOS (hence parameter passed is TRUE)
         userData.loadUserData(context, true);
 
@@ -124,12 +121,5 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
-    }
-
-    //-----------------------------Methods----------------------------
-    private void createCompanies()
-    {
-        userData.createCompanies();
-        userData.saveUserData(context, false);
     }
 }
