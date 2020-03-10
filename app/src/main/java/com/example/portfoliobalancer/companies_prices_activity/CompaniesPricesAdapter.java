@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.portfoliobalancer.R;
 import com.example.portfoliobalancer.business_logic_classes.Company;
 
 import java.util.List;
@@ -83,6 +84,5 @@ public class CompaniesPricesAdapter extends RecyclerView.Adapter<CompaniesPrices
         recentlyDeletedCompanyPosition = position;
         companies.remove(position);
         notifyItemRemoved(position);
-        showUndoSnackbar();
     }
 }

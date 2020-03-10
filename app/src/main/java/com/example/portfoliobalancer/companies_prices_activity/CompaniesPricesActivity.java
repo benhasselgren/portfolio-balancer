@@ -95,7 +95,7 @@ public class CompaniesPricesActivity extends AppCompatActivity {
             companiesListView.setAdapter(adapter);
 
             ItemTouchHelper itemTouchHelper = new
-                    ItemTouchHelper(new SwipeToDeleteCallback(adapter));
+                    ItemTouchHelper(new SwipeToDeleteCallback(adapter, getApplicationContext()));
             itemTouchHelper.attachToRecyclerView(companiesListView);
 
             //-----------------------------Event Listener Methods-----------------------------
