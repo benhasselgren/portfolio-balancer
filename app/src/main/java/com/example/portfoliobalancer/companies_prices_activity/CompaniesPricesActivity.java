@@ -74,9 +74,6 @@ public class CompaniesPricesActivity extends AppCompatActivity {
         //Create a new UserData object
         userData = new UserData();
 
-        //################# Create companies here
-        //createCompanies();
-
         // Load the COMPANIES (hence parameter passed is FALSE)
         userData.loadUserData(context, false);
 

@@ -9,39 +9,12 @@
     android:orientation="vertical"
     tools:context=".main_activity.MainActivity">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <!-- Portfolios List -->
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/portfolios_list"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dip"
-                android:layout_marginBottom="10dip"
-                android:scrollbars="vertical" >
-            </android.support.v7.widget.RecyclerView>
-
-            <!-- Add new portfolio -->
-            <Button
-                android:id="@+id/add_portfolio_btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Add portfolio" />
-        </LinearLayout>
-    </ScrollView>
-
-    <!-- Navigation bar  -->
-    <!-- Reference - https://www.youtube.com/watch?v=2LtObBTF9CM -->
     <RelativeLayout
         android:layout_height="match_parent"
         android:layout_width="match_parent">
+
+        <!-- Navigation bar  -->
+        <!-- Reference - https://www.youtube.com/watch?v=2LtObBTF9CM -->
 
         <android.support.design.widget.BottomNavigationView
             android:id="@+id/navigationView"
@@ -54,5 +27,34 @@
             app:menu="@menu/bottom_nav"
             app:itemIconTint="@drawable/nav_item_color_state"
             app:itemTextColor="@drawable/nav_item_color_state" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- Portfolios List -->
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/portfolios_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dip"
+                    android:paddingBottom="50dip"
+                    android:scrollbars="vertical" >
+                </android.support.v7.widget.RecyclerView>
+
+                <!-- Add new portfolio -->
+                <Button
+                    android:id="@+id/add_portfolio_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Add portfolio" />
+            </LinearLayout>
+        </ScrollView>
     </RelativeLayout>
 </LinearLayout>
