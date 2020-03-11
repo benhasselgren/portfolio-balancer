@@ -42,4 +42,16 @@
                 android:text="Companies" />
         </LinearLayout>
     </ScrollView>
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/navigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:itemBackground="?selectableItemBackgroundBorderless"
+        android:itemHorizontalTranslationEnabled="true"
+        android:layout_alignParentBottom="true"
+        android:menu="@menu/bottom_nav"
+        android:itemIconTint="@drawable/nav_item_color_state"
+        android:itemTextColor="@drawable/nav_item_color_state"/>
 </LinearLayout>
