@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
     private UserData userData;
     private Context context;
     //Views
-    private Button add_portfolio_btn;
     private RecyclerView portfoliosListView;
     private ActionBar toolbar;
 
@@ -74,8 +73,6 @@ public class MainActivity extends AppCompatActivity {
             }
 
             //Add views
-            add_portfolio_btn = (Button)findViewById(R.id.add_portfolio_btn);
-
             portfoliosListView = (RecyclerView)findViewById(R.id.portfolios_list);
 
             //If the recyclerview doesn't change size, we can set this true and

@@ -45,7 +45,6 @@ public class PortfolioDetailsActivity extends AppCompatActivity {
     private TextView lastRebalanced;
     private ImageButton settingsBtn;
     private Button rebalanceBtn;
-    private Button addCompanyBtn;
     private RecyclerView companiesListView;
     private ProgressDialog progressDialog;
     private ActionBar toolbar;
@@ -74,7 +73,6 @@ public class PortfolioDetailsActivity extends AppCompatActivity {
             lastRebalanced = (TextView) findViewById(R.id.portfolio_last_rebalanced);
             settingsBtn = (ImageButton) findViewById(R.id.portfolio_settings);
             rebalanceBtn = (Button) findViewById(R.id.portfolio_rebalance_btn);
-            addCompanyBtn = (Button) findViewById(R.id.add_company_btn);
 
             companiesListView = (RecyclerView)findViewById(R.id.companies_list);
 
