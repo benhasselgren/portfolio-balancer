@@ -7,7 +7,7 @@
 
     <!--Action Bar-->
     <color name="colorActionBarPrimary">#FFFFFF</color>
-    <color name="colorActionBarTitle">#34AAF1</color>
+    <color name="colorActionBarTitle">#000000</color>
 
     <!--Bottom Nav Bar-->
     <color name="colorSelected">#34AAF1</color>

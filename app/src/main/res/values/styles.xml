@@ -18,12 +18,14 @@
         <item name="android:activityCloseExitAnimation">@anim/slide_out_right</item>
     </style>
 
+    <!-- Application Action Bar. -->
     <style name="MyActionBar" parent="@style/Widget.AppCompat.ActionBar.Solid">
         <item name="titleTextStyle">@style/MyTitleTextStyle</item>
     </style>
 
     <style name="MyTitleTextStyle" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="android:textColor">@color/colorActionBarTitle</item>
+        <item name="android:textAlignment">center</item>
     </style>
 
 </resources>

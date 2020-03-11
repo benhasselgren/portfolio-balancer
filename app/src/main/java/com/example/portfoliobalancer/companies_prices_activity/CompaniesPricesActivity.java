@@ -11,6 +11,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.text.InputFilter;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
@@ -63,6 +64,7 @@ public class CompaniesPricesActivity extends AppCompatActivity {
         //Create navigation bar
         //Reference https://www.youtube.com/watch?v=2LtObBTF9CM
         toolbar = getSupportActionBar();
+        toolbar.setTitle("Companies");
 
         BottomNavigationView navigation = findViewById(R.id.navigationView);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -167,7 +169,6 @@ public class CompaniesPricesActivity extends AppCompatActivity {
                      * The user will be directed to the MainActivity
                      * @see com.example.portfoliobalancer.main_activity.MainActivity
                      */
-                    toolbar.setTitle("Portfolios");
                     Intent intent = new Intent(CompaniesPricesActivity.this, MainActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK |Intent.FLAG_ACTIVITY_NO_ANIMATION );
                     startActivity(intent);

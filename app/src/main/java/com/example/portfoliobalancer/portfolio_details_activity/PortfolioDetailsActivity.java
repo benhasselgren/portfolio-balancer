@@ -8,12 +8,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.portfoliobalancer.add_company_activity.AddCompanyActivity;
+import com.example.portfoliobalancer.add_portfolio_activity.AddPortfolioActivity;
 import com.example.portfoliobalancer.portfolio_settings_activity.PortfolioSettingsActivity;
 import com.example.portfoliobalancer.R;
 import com.example.portfoliobalancer.business_logic_classes.Portfolio;
@@ -34,6 +37,7 @@ public class PortfolioDetailsActivity extends AppCompatActivity {
     //-----------------------------Variables/Views-----------------------------
     //Variables
     private Context context;
+    private Portfolio portfolio;
     //Views
     private TextView currentPrice;
     private TextView growth;
@@ -54,7 +58,7 @@ public class PortfolioDetailsActivity extends AppCompatActivity {
         context = getApplicationContext();
 
         //Assign the intent parcelable extra to a variable
-        final Portfolio portfolio = (Portfolio) getIntent().getParcelableExtra("portfolio");
+        portfolio = (Portfolio) getIntent().getParcelableExtra("portfolio");
 
         if (portfolio != null)
         {
@@ -211,5 +215,38 @@ public class PortfolioDetailsActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    /**
+     * onCreateOptionsMenu
+     * create an action bar button
+     * Reference https://stackoverflow.com/questions/38158953/how-to-create-button-in-action-bar-in-android
+     * @param menu the menu that contains the add button
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // R.menu.mymenu is a reference to an xml file named mymenu.xml which should be inside your res/menu directory.
+        // If you don't have res/menu, just create a directory named "menu" inside res
+        getMenuInflater().inflate(R.menu.action_bar_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    /**
+     * onOptionsItemSelected
+     * handle button activities
+     * Reference https://stackoverflow.com/questions/38158953/how-to-create-button-in-action-bar-in-android
+     * @param item the item in the menu
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.add_button) {
+            Intent intent = new Intent(PortfolioDetailsActivity.this, AddCompanyActivity.class);
+            intent.putExtra("portfolio", portfolio);
+            intent.putExtra("FROM_ACTIVITY", "portfolio_details");
+            startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

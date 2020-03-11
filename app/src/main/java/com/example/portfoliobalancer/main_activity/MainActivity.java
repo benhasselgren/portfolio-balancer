@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.app.ActionBar;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         //Create navigation bar
         //Reference https://www.youtube.com/watch?v=2LtObBTF9CM
         toolbar = getSupportActionBar();
+        toolbar.setTitle("Portfolios");
 
         BottomNavigationView navigation = findViewById(R.id.navigationView);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -87,33 +89,6 @@ public class MainActivity extends AppCompatActivity {
             portfoliosListView.setLayoutManager(layoutManager);
 
             portfoliosListView.setAdapter(adapter);
-
-            //-----------------------------Event Listener Methods-----------------------------
-
-            /**
-             * add_portfolio_btn.setOnClickListener()
-             * Triggers if add_portfolio_btn clicked
-             * The user will be directed to the AddPortfolioActivity
-             * @see com.example.portfoliobalancer.add_portfolio_activity.AddPortfolioActivity
-             */
-            add_portfolio_btn.setOnClickListener(new View.OnClickListener() {
-
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(MainActivity.this, AddPortfolioActivity.class);
-                    //if list exists then id equal to the last item in the list + 1. If list is empty, then id = 1;
-                    if(userData.getPortfolios().size()!=0)
-                    {
-                        intent.putExtra("NEW_PORTFOLIO_ID", String.format("%s",(userData.getPortfolios().get(userData.getPortfolios().size() - 1).getId() + 1)));
-                    }
-                    else
-                    {
-                        intent.putExtra("NEW_PORTFOLIO_ID", "1");
-                    }
-
-                    startActivity(intent);
-                }
-            });
         }
     }
 
@@ -129,14 +104,12 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.home_menu:
-                    toolbar.setTitle("Portfolios");
                     return true;
                 case R.id.companies_menu:
                     /**
                      * The user will be directed to the CompaniesPricesActivity
                      * @see com.example.portfoliobalancer.companies_prices_activity.CompaniesPricesActivity
                      */
-                    toolbar.setTitle("Companies");
                     Intent intent = new Intent(MainActivity.this, CompaniesPricesActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK |Intent.FLAG_ACTIVITY_NO_ANIMATION );
                     startActivity(intent);
@@ -145,4 +118,49 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
     };
+
+    /**
+     * onCreateOptionsMenu
+     * create an action bar button
+     * Reference https://stackoverflow.com/questions/38158953/how-to-create-button-in-action-bar-in-android
+     * @param menu the menu that contains the add button
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // R.menu.mymenu is a reference to an xml file named mymenu.xml which should be inside your res/menu directory.
+        // If you don't have res/menu, just create a directory named "menu" inside res
+        getMenuInflater().inflate(R.menu.action_bar_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    /**
+     * onOptionsItemSelected
+     * handle button activities
+     * Reference https://stackoverflow.com/questions/38158953/how-to-create-button-in-action-bar-in-android
+     * @param item the item in the menu
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.add_button) {
+            /**
+             * The user will be directed to the AddPortfolioActivity
+             * @see com.example.portfoliobalancer.add_portfolio_activity.AddPortfolioActivity
+             */
+            Intent intent = new Intent(MainActivity.this, AddPortfolioActivity.class);
+            //if list exists then id equal to the last item in the list + 1. If list is empty, then id = 1;
+            if(userData.getPortfolios().size()!=0)
+            {
+                intent.putExtra("NEW_PORTFOLIO_ID", String.format("%s",(userData.getPortfolios().get(userData.getPortfolios().size() - 1).getId() + 1)));
+            }
+            else
+            {
+                intent.putExtra("NEW_PORTFOLIO_ID", "1");
+            }
+
+            startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
