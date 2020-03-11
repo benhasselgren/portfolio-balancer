@@ -5,6 +5,10 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
 
+    <!--Action Bar-->
+    <color name="colorActionBarPrimary">#FFFFFF</color>
+    <color name="colorActionBarTitle">#34AAF1</color>
+
     <!--Bottom Nav Bar-->
     <color name="colorSelected">#34AAF1</color>
     <color name="colorUnselected">#ababab</color>
