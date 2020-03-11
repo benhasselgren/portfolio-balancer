@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- #################################### Bottom Navigation Bar #################################### -->
+<!-- Reference - https://www.youtube.com/watch?v=2LtObBTF9CM -->
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <item
+        android:id="@+id/home_menu"
+        android:icon="@drawable/ic_home"
+        android:title="@string/home_item_title" />
+
+    <item
+        android:id="@+id/companies_menu"
+        android:icon="@drawable/ic_menu"
+        android:title="@string/companies_item_title" />
 </menu>

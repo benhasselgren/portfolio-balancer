@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- #################################### Activity Main #################################### -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,7 +11,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -40,18 +41,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Companies" />
+
         </LinearLayout>
     </ScrollView>
 
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/navigationView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:itemBackground="?selectableItemBackgroundBorderless"
-        android:itemHorizontalTranslationEnabled="true"
-        android:layout_alignParentBottom="true"
-        android:menu="@menu/bottom_nav"
-        android:itemIconTint="@drawable/nav_item_color_state"
-        android:itemTextColor="@drawable/nav_item_color_state"/>
+    <!-- Navigation bar  -->
+    <!-- Reference - https://www.youtube.com/watch?v=2LtObBTF9CM -->
+    <RelativeLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
+        <android.support.design.widget.BottomNavigationView
+            android:id="@+id/navigationView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorEntryBackground"
+            app:itemBackground="?selectableItemBackgroundBorderless"
+            app:itemHorizontalTranslationEnabled="true"
+            android:layout_alignParentBottom="true"
+            app:menu="@menu/bottom_nav"
+            app:itemIconTint="@drawable/nav_item_color_state"
+            app:itemTextColor="@drawable/nav_item_color_state" />
+    </RelativeLayout>
 </LinearLayout>

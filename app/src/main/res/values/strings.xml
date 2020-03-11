@@ -10,6 +10,10 @@
     <string name="title_portfolio_settings">Portfolio settings</string>
     <string name="title_companies">Companies</string>
 
+    <!-- Bottom Navigation Bar -->
+    <string name="home_item_title">Home</string>
+    <string name="companies_item_title">Companies</string>
+
     <!-- Main activity. -->
     <string name="unbalanced_label">Unbalanced</string>
 
