@@ -2,10 +2,14 @@ package com.example.portfoliobalancer.main_activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.app.ActionBar;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
@@ -31,14 +35,21 @@ public class MainActivity extends AppCompatActivity {
     private Context context;
     //Views
     private Button add_portfolio_btn;
-    private Button companies_btn;
     private RecyclerView portfoliosListView;
+    private ActionBar toolbar;
 
     //-----------------------------On Create method-----------------------------
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Create navigation bar
+        //Reference https://www.youtube.com/watch?v=2LtObBTF9CM
+        toolbar = getSupportActionBar();
+
+        BottomNavigationView navigation = findViewById(R.id.navigationView);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         //Set context
         context = getApplicationContext();
@@ -62,7 +73,6 @@ public class MainActivity extends AppCompatActivity {
 
             //Add views
             add_portfolio_btn = (Button)findViewById(R.id.add_portfolio_btn);
-            companies_btn = (Button)findViewById(R.id.companies_activity_btn);
 
             portfoliosListView = (RecyclerView)findViewById(R.id.portfolios_list);
 
@@ -104,22 +114,35 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
             });
+        }
+    }
 
-            /**
-             * companies_btn.setOnClickListener()
-             * Triggers if companies_btn clicked
-             * The user will be directed to the CompaniesPricesActivity
-             * @see com.example.portfoliobalancer.companies_prices_activity.CompaniesPricesActivity
-             */
-            companies_btn.setOnClickListener(new View.OnClickListener() {
+    /**
+     * mOnNavigationItemSelectedListener
+     * Handles bottom navigation bar clicks.
+     * Reference https://www.youtube.com/watch?v=2LtObBTF9CM
+     */
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
-                @Override
-                public void onClick(View view) {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.home_menu:
+                    toolbar.setTitle("Portfolios");
+                    return true;
+                case R.id.companies_menu:
+                    /**
+                     * The user will be directed to the CompaniesPricesActivity
+                     * @see com.example.portfoliobalancer.companies_prices_activity.CompaniesPricesActivity
+                     */
+                    toolbar.setTitle("Companies");
                     Intent intent = new Intent(MainActivity.this, CompaniesPricesActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK |Intent.FLAG_ACTIVITY_NO_ANIMATION );
                     startActivity(intent);
-                }
-            });
+                    return true;
+            }
+            return false;
         }
-    }
+    };
 }

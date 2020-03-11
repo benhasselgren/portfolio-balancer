@@ -3,11 +3,15 @@ package com.example.portfoliobalancer.companies_prices_activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.text.InputFilter;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
@@ -44,9 +48,8 @@ public class CompaniesPricesActivity extends AppCompatActivity {
     private EditText code;
     private EditText price;
     private Button add_company_btn;
-    private Button main_btn;
-    private Button updateCompaniesBtn;
     private RecyclerView companiesListView;
+    private ActionBar toolbar;
 
     //-----------------------------On Create method-----------------------------
     @Override
@@ -56,6 +59,14 @@ public class CompaniesPricesActivity extends AppCompatActivity {
 
         //Prevents keyboard from popping up intially
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
+        //Create navigation bar
+        //Reference https://www.youtube.com/watch?v=2LtObBTF9CM
+        toolbar = getSupportActionBar();
+
+        BottomNavigationView navigation = findViewById(R.id.navigationView);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        navigation.setSelectedItemId(R.id.companies_menu);
 
         //Set context
         context = getApplicationContext();
@@ -77,8 +88,6 @@ public class CompaniesPricesActivity extends AppCompatActivity {
             price = (EditText) findViewById(R.id.companies_price_input);
 
             add_company_btn = (Button)findViewById(R.id.companies_add_btn);
-            main_btn = (Button)findViewById(R.id.main_activity_btn);
-            updateCompaniesBtn = (Button)findViewById(R.id.update_companies_btn);
 
             companiesListView = (RecyclerView)findViewById(R.id.companies_prices_list);
 
@@ -138,38 +147,38 @@ public class CompaniesPricesActivity extends AppCompatActivity {
                     }
                 }
             });
+        }
+    }
 
-            /**
-             * updateCompaniesBtn.setOnClickListener()
-             * Triggers if updateCompaniesBtn clicked
-             * The companies will be saved to device
-             */
-            updateCompaniesBtn.setOnClickListener(new View.OnClickListener() {
+    /**
+     * mOnNavigationItemSelectedListener
+     * Handles bottom navigation bar clicks.
+     * Reference https://www.youtube.com/watch?v=2LtObBTF9CM
+     */
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
-                @Override
-                public void onClick(View view) {
-
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.home_menu:
                     //Save companies
                     userData.saveUserData(getApplicationContext(), false);
                     Toast.makeText(getBaseContext(), "Updated companies", Toast.LENGTH_SHORT).show();
-                }
-            });
 
-            /**
-             * main_btn.setOnClickListener()
-             * Triggers if main_btn clicked
-             * The user will be directed to the MainActivity
-             * @see com.example.portfoliobalancer.main_activity.MainActivity
-             */
-            main_btn.setOnClickListener(new View.OnClickListener() {
-
-                @Override
-                public void onClick(View view) {
+                    /**
+                     * The user will be directed to the MainActivity
+                     * @see com.example.portfoliobalancer.main_activity.MainActivity
+                     */
+                    toolbar.setTitle("Portfolios");
                     Intent intent = new Intent(CompaniesPricesActivity.this, MainActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK |Intent.FLAG_ACTIVITY_NO_ANIMATION );
                     startActivity(intent);
-                }
-            });
+                    return true;
+                case R.id.companies_menu:
+                    return true;
+            }
+            return false;
         }
-    }
+    };
 }

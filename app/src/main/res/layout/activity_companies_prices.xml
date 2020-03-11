@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- #################################### Activity Companies #################################### -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,121 +9,127 @@
     tools:context=".companies_prices_activity.CompaniesPricesActivity"
     android:background="@color/colorMainBackground">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-        <LinearLayout
+    <RelativeLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
+        <!-- Navigation bar  -->
+        <!-- Reference - https://www.youtube.com/watch?v=2LtObBTF9CM -->
+
+        <android.support.design.widget.BottomNavigationView
+            android:id="@+id/navigationView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:background="@color/colorEntryBackground"
+            app:itemBackground="?selectableItemBackgroundBorderless"
+            app:itemHorizontalTranslationEnabled="true"
+            android:layout_alignParentBottom="true"
+            app:menu="@menu/bottom_nav"
+            app:itemIconTint="@drawable/nav_item_color_state"
+            app:itemTextColor="@drawable/nav_item_color_state" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dip"
-                android:paddingLeft="20dip"
-                android:paddingRight="20dip"
-                android:paddingTop="10dip"
-                android:paddingBottom="10dip"
-                android:background="@color/colorEntryBackground"
                 android:orientation="vertical">
 
-                <!-- Company code -->
-                <TextView
-                    android:id="@+id/companies_code"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textSize="12sp"
-                    android:text="@string/add_company_code"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
-
-                <!-- Company code input -->
-                <EditText
-                    android:id="@+id/companies_code_input"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="12sp"
-                    android:layout_weight="1"
-                    android:inputType="textCapCharacters"/>
-
-                <!-- Company name -->
-                <TextView
-                    android:id="@+id/companies_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textSize="12sp"
-                    android:text="@string/add_company_name"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
-
-                <!-- Company name input -->
-                <EditText
-                    android:id="@+id/companies_name_input"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textSize="12sp"
-                    android:inputType="textPersonName"/>
-
-                <!-- Companies price -->
-                <TextView
-                    android:id="@+id/companies_price"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textSize="12sp"
-                    android:text="@string/add_company_price"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
-
-                <!-- Companies price input -->
-                <EditText
-                    android:id="@+id/companies_price_input"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textSize="12sp"
-                    android:inputType="numberDecimal" />
-
-                <!-- Add company button -->
-                <Button
-                    android:id="@+id/companies_add_btn"
-                    android:layout_width="match_parent"
-                    android:layout_height="35dip"
-                    android:layout_weight="1"
-                    android:textColor="@color/textColorHighlight"
-                    android:background="@color/textColorAssetGrowth"
-                    android:text="@string/companies_btn" />
-            </LinearLayout>
-
-                <!-- Companies List -->
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/companies_prices_list"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
                     android:layout_marginTop="10dip"
-                    android:layout_marginBottom="10dip"
-                    android:scrollbars="vertical"
-                    android:background="@color/colorMainBackground">
-                </android.support.v7.widget.RecyclerView>
+                    android:paddingLeft="20dip"
+                    android:paddingRight="20dip"
+                    android:paddingTop="10dip"
+                    android:paddingBottom="10dip"
+                    android:background="@color/colorEntryBackground"
+                    android:orientation="vertical">
 
-                <!-- Updates Button -->
-                <Button
-                    android:id="@+id/update_companies_btn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/update_companies_btn"
-                    android:background="@color/textColorAssetGrowth"
-                    android:layout_marginLeft="20dip"
-                    android:layout_marginRight="20dip"
-                    android:textColor="@color/textColorHighlight"/>
+                    <!-- Company code -->
+                    <TextView
+                        android:id="@+id/companies_code"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textSize="12sp"
+                        android:text="@string/add_company_code"
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
 
-                <!-- Main activity Button -->
-                <Button
-                    android:id="@+id/main_activity_btn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Portfolios" />
-        </LinearLayout>
-    </ScrollView>
+                    <!-- Company code input -->
+                    <EditText
+                        android:id="@+id/companies_code_input"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:layout_weight="1"
+                        android:inputType="textCapCharacters"/>
+
+                    <!-- Company name -->
+                    <TextView
+                        android:id="@+id/companies_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textSize="12sp"
+                        android:text="@string/add_company_name"
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                    <!-- Company name input -->
+                    <EditText
+                        android:id="@+id/companies_name_input"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textSize="12sp"
+                        android:inputType="textPersonName"/>
+
+                    <!-- Companies price -->
+                    <TextView
+                        android:id="@+id/companies_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textSize="12sp"
+                        android:text="@string/add_company_price"
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                    <!-- Companies price input -->
+                    <EditText
+                        android:id="@+id/companies_price_input"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textSize="12sp"
+                        android:inputType="numberDecimal" />
+
+                    <!-- Add company button -->
+                    <Button
+                        android:id="@+id/companies_add_btn"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dip"
+                        android:layout_weight="1"
+                        android:textColor="@color/textColorHighlight"
+                        android:background="@color/textColorAssetGrowth"
+                        android:text="@string/companies_btn" />
+                </LinearLayout>
+
+                    <!-- Companies List -->
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/companies_prices_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dip"
+                        android:paddingBottom="50dip"
+                        android:layout_marginBottom="10dip"
+                        android:scrollbars="vertical"
+                        android:background="@color/colorMainBackground">
+                    </android.support.v7.widget.RecyclerView>
+            </LinearLayout>
+        </ScrollView>
+    </RelativeLayout>
 </LinearLayout>
