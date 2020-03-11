@@ -47,13 +47,6 @@
                     android:paddingBottom="50dip"
                     android:scrollbars="vertical" >
                 </android.support.v7.widget.RecyclerView>
-
-                <!-- Add new portfolio -->
-                <Button
-                    android:id="@+id/add_portfolio_btn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Add portfolio" />
             </LinearLayout>
         </ScrollView>
     </RelativeLayout>
