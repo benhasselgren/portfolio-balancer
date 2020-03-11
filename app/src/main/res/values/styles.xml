@@ -21,11 +21,11 @@
     <!-- Application Action Bar. -->
     <style name="MyActionBar" parent="@style/Widget.AppCompat.ActionBar.Solid">
         <item name="titleTextStyle">@style/MyTitleTextStyle</item>
+        <item name="android:textAlignment">center</item>
     </style>
 
     <style name="MyTitleTextStyle" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="android:textColor">@color/colorActionBarTitle</item>
-        <item name="android:textAlignment">center</item>
     </style>
 
 </resources>

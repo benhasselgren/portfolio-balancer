@@ -3,6 +3,7 @@ package com.example.portfoliobalancer.company_details_activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.TextView;
@@ -27,6 +28,8 @@ public class CompanyDetailsActivity extends AppCompatActivity {
     private TextView growth;
     private TextView targetPercentage;
     private TextView units;
+    private ActionBar toolbar;
+
 
     //-----------------------------On Create Method-----------------------------
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,10 @@ public class CompanyDetailsActivity extends AppCompatActivity {
 
         //Assign the intent parcelable extra to a variable
         Company company = (Company) getIntent().getParcelableExtra("company");
+
+        //Set toolbar title
+        toolbar = getSupportActionBar();
+        toolbar.setTitle(company.getCompanyCode());
 
         //Add views
         name = (TextView) findViewById(R.id.company_details_name);

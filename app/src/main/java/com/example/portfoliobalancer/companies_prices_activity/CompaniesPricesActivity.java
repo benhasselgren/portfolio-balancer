@@ -11,6 +11,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.text.InputFilter;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,6 +30,9 @@ import com.example.portfoliobalancer.business_logic_classes.Portfolio;
 import com.example.portfoliobalancer.business_logic_classes.UserData;
 import com.example.portfoliobalancer.business_logic_classes.Validation;
 import com.example.portfoliobalancer.main_activity.MainActivity;
+
+import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent;
+import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEventListener;
 
 /**
  * CompaniesPricesActivity
@@ -66,7 +70,7 @@ public class CompaniesPricesActivity extends AppCompatActivity {
         toolbar = getSupportActionBar();
         toolbar.setTitle("Companies");
 
-        BottomNavigationView navigation = findViewById(R.id.navigationView);
+        final BottomNavigationView navigation = findViewById(R.id.navigationView);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         navigation.setSelectedItemId(R.id.companies_menu);
 
@@ -146,6 +150,25 @@ public class CompaniesPricesActivity extends AppCompatActivity {
                     }
                 }
             });
+
+            /**
+             * KeyboardVisibilityEvent
+             * Hides the bottom navigatio if keyboard clicked
+             * Prevents the bottom nav from getting pushed up by keyboard
+             * Reference https://stackoverflow.com/questions/52391743/bottom-navigation-bar-moves-up-with-keyboard
+             */
+            KeyboardVisibilityEvent.setEventListener(
+                    this,
+                    new KeyboardVisibilityEventListener() {
+                        @Override
+                        public void onVisibilityChanged(boolean isOpen) {
+                            if(isOpen){
+                                navigation.setVisibility(View.INVISIBLE);
+                            }else{
+                                navigation.setVisibility(View.VISIBLE);
+                            }
+                        }
+                    });
         }
     }
 

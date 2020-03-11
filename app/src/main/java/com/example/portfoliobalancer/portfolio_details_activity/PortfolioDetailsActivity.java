@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -47,6 +48,7 @@ public class PortfolioDetailsActivity extends AppCompatActivity {
     private Button addCompanyBtn;
     private RecyclerView companiesListView;
     private ProgressDialog progressDialog;
+    private ActionBar toolbar;
 
     //-----------------------------On Create Method-----------------------------
     @Override
@@ -62,6 +64,10 @@ public class PortfolioDetailsActivity extends AppCompatActivity {
 
         if (portfolio != null)
         {
+            //Set toolbar title
+            toolbar = getSupportActionBar();
+            toolbar.setTitle(portfolio.getName());
+
             //Add views
             currentPrice = (TextView) findViewById(R.id.portfolio_current_price);
             growth = (TextView) findViewById(R.id.portfolio_growth);
@@ -194,23 +200,6 @@ public class PortfolioDetailsActivity extends AppCompatActivity {
                     //Go back to main page
                     Intent intent = new Intent(PortfolioDetailsActivity.this, MainActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
-                }
-            });
-
-            /**
-             * addCompanyBtn.setOnClickListener()
-             * Triggers if addCompanyBtn clicked
-             * The user will be directed to the AddCompanyActivity
-             * @see com.example.portfoliobalancer.add_company_activity.AddCompanyActivity
-             */
-            addCompanyBtn.setOnClickListener(new View.OnClickListener() {
-
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(PortfolioDetailsActivity.this, AddCompanyActivity.class);
-                    intent.putExtra("portfolio", portfolio);
-                    intent.putExtra("FROM_ACTIVITY", "portfolio_details");
                     startActivity(intent);
                 }
             });
