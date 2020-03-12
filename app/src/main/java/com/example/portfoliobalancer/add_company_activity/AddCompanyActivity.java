@@ -76,6 +76,7 @@ public class AddCompanyActivity extends AppCompatActivity {
         getAvailableCompanies();
 
         //Add objects to a autocomplete text view to create a search bar
+        //Reference for auto complete text view https://www.youtube.com/watch?v=JB3ETK5mh3c
         ArrayAdapter<Company> adapterSelector = new ArrayAdapter<Company>(this, android.R.layout.simple_list_item_1, availableCompanies);
         companySelector.setAdapter(adapterSelector);
 

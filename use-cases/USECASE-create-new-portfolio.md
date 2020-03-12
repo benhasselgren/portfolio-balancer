@@ -55,3 +55,6 @@ None.
 ## SCHEDULE
 
 **DUE DATE**: Release 1.0
+
+#### Layout Refernce
+https://github.com/Kevin-Sim/SET08103/blob/master/labs/lab05/use-case-4.md

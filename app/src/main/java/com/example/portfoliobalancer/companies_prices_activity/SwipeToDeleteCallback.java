@@ -16,6 +16,7 @@ import com.example.portfoliobalancer.R;
 /**
  * SwipeToDeleteCallback
  * Handles the swipe to delete functionality when a user wants to delete a company.
+ * Reference Reference https://medium.com/@zackcosborn/step-by-step-recyclerview-swipe-to-delete-and-undo-7bbae1fce27e
  */
 
 public class SwipeToDeleteCallback extends ItemTouchHelper.SimpleCallback {

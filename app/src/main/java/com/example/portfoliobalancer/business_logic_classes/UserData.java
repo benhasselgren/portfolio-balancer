@@ -172,6 +172,7 @@ public class UserData implements Parcelable
      * if false then load companies.
      * @param context
      * @param load_save_portfolio
+     * Reference https://codinginflow.com/tutorials/android/save-arraylist-to-sharedpreferences-with-gson
      */
     public void loadUserData(Context context, boolean load_save_portfolio)
     {
@@ -207,6 +208,7 @@ public class UserData implements Parcelable
      * if false then save companies.
      * @param context
      * @param load_save_portfolio
+     * Reference https://codinginflow.com/tutorials/android/save-arraylist-to-sharedpreferences-with-gson
      */
     public void saveUserData(Context context, boolean load_save_portfolio)
     {

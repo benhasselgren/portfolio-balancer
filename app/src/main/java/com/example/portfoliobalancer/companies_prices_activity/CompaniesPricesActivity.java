@@ -153,7 +153,7 @@ public class CompaniesPricesActivity extends AppCompatActivity {
 
             /**
              * KeyboardVisibilityEvent
-             * Hides the bottom navigatio if keyboard clicked
+             * Hides the bottom navigation if keyboard clicked
              * Prevents the bottom nav from getting pushed up by keyboard
              * Reference https://stackoverflow.com/questions/52391743/bottom-navigation-bar-moves-up-with-keyboard
              */

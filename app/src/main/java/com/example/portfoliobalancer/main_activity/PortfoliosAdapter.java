@@ -57,6 +57,7 @@ public class PortfoliosAdapter extends RecyclerView.Adapter<PortfoliosHolder>
     public void onBindViewHolder(PortfoliosHolder holder, int position) {
 
         //set animation
+        //Reference https://www.youtube.com/watch?v=rJ-7KgMAJUo
         holder.container.setAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_scale_animation));
 
         // Use position to access the correct portfolio object

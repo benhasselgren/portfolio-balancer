@@ -1,3 +1,4 @@
+#Reference https://medium.com/@fawwazyusran/how-to-travis-ci-working-for-android-api-level-28-2fde7292813c
 language: android
 sudo: required
 jdk: oraclejdk8

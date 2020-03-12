@@ -24,6 +24,7 @@
                 android:padding="10dip">
 
                 <!-- Companies search bar -->
+                <!-- Reference https://www.youtube.com/watch?v=JB3ETK5mh3c -->
                 <AutoCompleteTextView
                     android:id="@+id/company_selector"
                     android:layout_width="match_parent"

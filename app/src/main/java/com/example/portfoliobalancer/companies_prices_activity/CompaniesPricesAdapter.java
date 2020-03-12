@@ -78,6 +78,7 @@ public class CompaniesPricesAdapter extends RecyclerView.Adapter<CompaniesPrices
      * deleteItem()
      * deletes an item in a given position
      * @param position the position of the item to be deleted
+     * Reference https://medium.com/@zackcosborn/step-by-step-recyclerview-swipe-to-delete-and-undo-7bbae1fce27e
      */
     public void deleteItem(int position) {
         recentlyDeletedCompany = companies.get(position);

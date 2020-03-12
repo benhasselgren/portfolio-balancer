@@ -54,6 +54,7 @@ public class PortfoliosSettingsHolder extends RecyclerView.ViewHolder {
          * company_target_percentage_seekbar.setOnSeekBarChangeListener()
          * Triggers if company_target_percentage_seekbar progress changes
          * Updates the seekbar and the company target percentage
+         * Reference https://abhiandroid.com/ui/seekbar
          */
         company_target_percentage_seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
